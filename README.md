@@ -1,6 +1,6 @@
 ## ProjetoHackadev-CodeBusters
 
-Esse repositório contém todos os arquivos relacionados ao desenvolvimento do projeto para o Hackadev, proporcionado pelo bootcamp Sharp Coders da Imã Tech em parceria com a MXM. No aplicativo, desenvolvemos um sistema de aplicativo web, focado para finanças. O usuário terá disponíveis no aplicativo: ...
+Esse repositório contém todos os arquivos relacionados ao desenvolvimento do projeto para o Hackadev, proporcionado pelo bootcamp Sharp Coders da Imã Tech em parceria com a MXM. No aplicativo, desenvolvemos um sistema de aplicativo web, focado para finanças. O usuário terá disponíveis as seguintes funções no aplicativo: ...
 
 
 ## Integrantes
