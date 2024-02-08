@@ -10,7 +10,7 @@ Alan Eduardo</br>
 Alexandre Paiva</br>
 Camila Vieira</br>
 Dayane</br>
-Eduardo</br>
+Eduardo Santos</br>
 Franklin</br>
 Gustavo Lucianelli</br>
 Karine Castro</br>
