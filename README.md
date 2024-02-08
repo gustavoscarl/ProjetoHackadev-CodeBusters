@@ -5,7 +5,7 @@ Esse repositório contém todos os arquivos relacionados ao desenvolvimento do p
 
 ## Integrantes
 
-Agamenon Júnior
+Agamenon Júnior \n
 Alan Eduardo
 Alexandre Paiva
 Camila Vieira
