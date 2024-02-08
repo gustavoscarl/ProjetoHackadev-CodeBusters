@@ -5,17 +5,17 @@ Esse repositório contém todos os arquivos relacionados ao desenvolvimento do p
 
 ## Integrantes
 
-Agamenon Júnior \n
-Alan Eduardo
-Alexandre Paiva
-Camila Vieira
-Dayane
-Eduardo
-Franklin
-Gustavo Lucianelli
-Karine Castro
-Pedro Brandes
-Rubens
-Wander Matheus
-Wlisses Silva
+Agamenon Júnior</br>
+Alan Eduardo</br>
+Alexandre Paiva</br>
+Camila Vieira</br>
+Dayane</br>
+Eduardo</br>
+Franklin</br>
+Gustavo Lucianelli</br>
+Karine Castro</br>
+Pedro Brandes</br>
+Rubens</br>
+Wander Matheus</br>
+Wlisses Silva</br>
 
