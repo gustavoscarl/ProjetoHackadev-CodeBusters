@@ -9,7 +9,7 @@ Agamenon Júnior</br>
 Alan Eduardo</br>
 Alexandre Paiva</br>
 Camila Vieira</br>
-Dayane</br>
+Dayane Trevisan</br>
 Eduardo Santos</br>
 Franklin</br>
 Gustavo Lucianelli</br>
