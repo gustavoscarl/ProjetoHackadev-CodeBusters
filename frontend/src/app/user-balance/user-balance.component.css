@@ -1,0 +1,58 @@
+.user-balance-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; /* Ajuste a largura conforme necessário */
+  max-width: 400px; /* Defina uma largura máxima */
+  padding: 10px;
+  background-color: #222; /* Cor de fundo ajustada */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Adiciona uma sombra */
+  width: 370px;
+  height: 10%;
+  top: 128px;
+  left: 30px;
+  border-radius: 8px;
+}
+
+.greeting,
+.saldo-atual {
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.saldo-atual {
+  text-align: right; /* Alinha o texto "Saldo Atual" à direita */
+  margin-top: 55px;
+}
+
+.avatar {
+  width: 40px; /* Ajuste o tamanho conforme necessário */
+  height: 40px; /* Ajuste o tamanho conforme necessário */
+  border-radius: 50%; /* Torna a imagem redonda */
+  margin-right: 10px; /* Adiciona um espaçamento à direita da imagem */
+}
+
+.custom-font {
+  margin-bottom: 25px;
+}
+p {
+  margin-top: 10px;
+}
+
+.vetor {
+  width: 20px; /* Ajuste o tamanho conforme necessário */
+  height: 20px; /* Ajuste o tamanho conforme necessário */
+}
+/* Regra de mídia para ajustar estilos em telas menores */
+@media screen and (max-width: 600px) {
+  .user-balance-container {
+    width: 100%; /* Ajusta a largura do contêiner para ocupar toda a largura da tela em telas menores */
+    border-radius: 0; /* Remove a borda arredondada em telas menores */
+    
+  }
+}
