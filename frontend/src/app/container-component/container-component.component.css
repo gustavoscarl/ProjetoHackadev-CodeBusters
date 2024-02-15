@@ -1,14 +1,6 @@
 .container {
-  background-color: black;
+  background: linear-gradient(0deg, #000000, #000000);
   width: 100%;
   padding: 20px;
   height: 100vh;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    width: 100%; 
-    padding: 20px; 
-    height: 100vh;
-  }
 }
