@@ -36,6 +36,9 @@
 .vetor {
   display: none;
 }
+.light-img {
+  display: none;
+}
 
 @media screen and (max-width: 600px) {
   .user-balance-container,
@@ -43,7 +46,7 @@
     width: 100%;
     border-radius: 0;
   }
-
+  .light-img,
   .vetor {
     display: block;
     width: 40px;
@@ -51,6 +54,8 @@
     margin-left: auto;
   }
 }
+
+/* Regras para modo dark e modo light */
 
 @media (prefers-color-scheme: dark) {
   .user-balance-container {
@@ -60,14 +65,22 @@
   .saldo-atual {
     color: #ffffff;
   }
+
+  .light-img {
+    display: none;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .user-balance-container {
-    background-color: #d2d2d2;
+    background-color: #ffffff;
   }
   .greeting,
   .saldo-atual {
     color: #000000;
+  }
+
+  .vetor {
+    display: none;
   }
 }
