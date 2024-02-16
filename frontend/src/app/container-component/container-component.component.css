@@ -1,6 +1,17 @@
 .container {
-  background: linear-gradient(0deg, #000000, #000000);
   width: 100%;
   padding: 20px;
   height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: #000000;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .container {
+    background-color: #525252;
+  }
 }

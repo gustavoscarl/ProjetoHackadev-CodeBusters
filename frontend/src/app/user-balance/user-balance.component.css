@@ -10,21 +10,18 @@
   width: 370px;
   height: 100px;
   border-radius: 8px;
-}
-
-.user-balance-container {
-  background: #262626;
+  top: 128px;
+  left: 30px;
 }
 
 .greeting,
 .saldo-atual {
-  font-family: Montserrat;
   font-size: 18px;
   font-weight: 600;
   line-height: 35px;
   letter-spacing: 0em;
-  color: #ffffff;
   margin-top: 20px;
+  font-size: 20px;
 }
 
 .saldo-atual {
@@ -52,5 +49,25 @@
     width: 40px;
     height: 40px;
     margin-left: auto;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .user-balance-container {
+    background-color: #525252;
+  }
+  .greeting,
+  .saldo-atual {
+    color: #ffffff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .user-balance-container {
+    background-color: #d2d2d2;
+  }
+  .greeting,
+  .saldo-atual {
+    color: #000000;
   }
 }
