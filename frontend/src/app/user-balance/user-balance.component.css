@@ -12,6 +12,7 @@
   border-radius: 8px;
   top: 128px;
   left: 30px;
+  margin-top: 20px;
 }
 
 .greeting,
@@ -44,7 +45,7 @@
   .user-balance-container,
   .user-greetings-container {
     width: 100%;
-    border-radius: 0;
+    border-radius: 8px;
   }
   .light-img,
   .vetor {
@@ -54,8 +55,7 @@
     margin-left: auto;
     margin-right: -16px;
   }
-  }
-
+}
 
 /* Regras para modo dark e modo light */
 
