@@ -1,0 +1,24 @@
+<nav id="navbar">
+    <div class="navbar-container">
+        <img [src]="'assets/img_header/WhatsApp_Image_2024-02-10_at_14.46_3.png'" alt="logo" class="logo">
+        <ul class="navbar-itens">
+            <li class="navbar-item">
+                <ng-template [ngIf]="exibirHistorico">
+                    <img [src]="'assets/img_header/lupa.png'" alt="logo" class="lupa">
+                </ng-template>
+
+                <ng-template [ngIf]="exibirTexto">
+                    <button class="navbar-button" (click)="paginaHistorico()">Histórico de transações</button>
+                    <p *ngIF="exibirHistorico"></p>
+                </ng-template>
+            </li>
+            <li class="navbar-item"><ng-template [ngIf]="exibirTexto">Sair</ng-template></li>            
+        </ul>
+    </div>
+</nav>
+
+<!--Botão Entrar da tela de login-->
+<button (click)="visibilidadeTexto()">Entrar</button> 
+
+
+
