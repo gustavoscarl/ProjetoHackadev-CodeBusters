@@ -1,0 +1,141 @@
+:root{
+    --gray200: #E5E5E5;
+    --gray500: #737373;
+    --gray700: #525252;
+    --gray600: #262626;
+    --gray800: #111111;
+    
+    
+    --purple300: #C4AFF0;
+    --purple400: #A484E8;
+    --purple500: #A48AE8;
+    --purple700: #7F53DF;
+    --purple800: #6630D9;
+    
+
+    --red300: #E89A84;
+    --green300: #84E8CB;
+}
+
+/* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
+
+.info {
+    display: flexbox;
+    width: 40%;
+    justify-content: space-between;
+
+}
+
+.gastos {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.detalhe {
+    content: '';
+    width: 108px;
+    height: 24px;
+    border-radius: 0px 8px 0px 0px;
+    background-color: rgba(167, 76, 76, 1);
+    margin: 5px;
+}
+
+.detalhe1 {
+    content: '';
+    margin: 5px;
+    width: 108px;
+    height: 24px;
+    background-color: rgba(167, 76, 76, 1);
+}
+
+.gastos-dir {
+    display: flex;
+    width: 213px;
+    height: 88px;
+    border-radius: 8px;
+    background-color: var(--red300);
+}
+
+.ganhos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.detalhe2 {
+    content: '';
+    width: 108px;
+    height: 24px;
+    border-radius: 0px 8px 0px 0px;
+    background-color: rgba(132, 232, 203, 1);
+    margin: 5px;
+}
+
+.detalhe3 {
+    content: '';
+    margin: 5px;
+    width: 108px;
+    height: 24px;
+    background-color: rgba(132, 232, 203, 1);
+}
+
+.ganhos-dir {
+    display: flex;
+    width: 213px;
+    height: 88px;
+    border-radius: 8px;
+    background-color: var(--green300);
+}
+
+
+/* LADO DIREITO DA TELA - HISTÓRICO DE TRANSAÇÕES */
+
+.container {
+    display: flex;
+    width: 100vh;
+    justify-content: space-evenly;
+}
+
+.transationcard {
+    margin: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    border-radius: 8px;
+    width: 366px;
+    height: 82px;
+    background-color: rgba(179, 179, 179, 1);
+    justify-content: space-around;
+    align-items: center;
+}
+
+#img{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 100px;
+    background-color: rgba(196, 175, 240, 1);
+}
+
+
+/* PARTE DE BAIXO LADO ESQUERDO */
+
+.resumoEicones {
+    display: flex;
+    margin: 5px;
+    justify-content: space-between;
+}
+
+.resumoEicones > p {
+    display: flex;
+    width: 121px;
+    height: 50px;
+    background-color: var(--gray500);
+    border-radius: 8px;
+    padding: 4px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
