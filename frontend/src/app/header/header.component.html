@@ -1,12 +1,4 @@
 <nav id="navbar">
-<<<<<<< HEAD
-    <div class="navbar-container">
-        <img [src]="'assets/img_header/logoDarkMode.svg'" alt="logo" class="logo">
-        <ul class="navbar-itens">
-            <li class="navbar-item">
-                <ng-template [ngIf]="exibirHistorico">
-                    <img [src]="'assets/img_header/lupa.svg'" alt="logo" class="lupa">
-=======
     <div class="navbar-container" [class.dark-mode]="darkMode">
 
         <!-- Lodo do header -->
@@ -16,7 +8,7 @@
             <li class="navbar-item">
                 <ng-template [ngIf]="exibirHistorico">                    
                     <img [src]="getLupaPath()" alt="logo" class="lupa">
->>>>>>> development
+
                 </ng-template>
 
                 <ng-template [ngIf]="exibirTexto">
