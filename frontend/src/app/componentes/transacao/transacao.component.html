@@ -3,15 +3,29 @@
         <div class="infoGerais">
             <h3>Transação</h3>
             <h4>Realize a sua transação</h4>
-            <p>{{ formulario.value | json}}</p>
-
-            <form [formGroup]="formulario">
-                <input type="text" placeholder="Tipo de Transação" formControlName="tipo">
-                <input type="number" placeholder="Valor da Transação" formControlName="valor">
-                <input type="text" placeholder="Conta Destino" formControlName="contaDestino">
-                <input type="text" placeholder="Data da Transação" formControlName="data">
-            </form>
+            <div class="formulario">
+                <form [formGroup]="formulario"  (submit)="transacao()">
+                    <div class="inputBox">
+                        <input type="text" placeholder=" " formControlName="tipo" required="required">
+                        <span>Tipo de Transação</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="number" placeholder=" " formControlName="valor" required="required">
+                        <span>Valor da Transação</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" placeholder=" " formControlName="contaDestino" required="required">
+                        <span>Conta destino</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" placeholder=" " formControlName="data" required="required">
+                        <span>Data da Transação</span>
+                    </div>
+                    <div class="botao">
+                        <input type="submit" value="Realizar Transação" class="button">
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="outro"></div>
     </div>
 </div>
