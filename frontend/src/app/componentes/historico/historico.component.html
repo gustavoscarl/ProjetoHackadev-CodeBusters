@@ -2,6 +2,8 @@
 
 <div class="container">
     
+    <!-- LADO ESQUERDO DA PAGINA, COMENTADO PARA EU FOCAR NO HISTÓRICO -->
+
         <div class="info">
             <div class="gastos">
                 <div class="gastos-esq">
@@ -42,71 +44,43 @@
             </div>
         </div>
     
+    <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
+
     <div class="historico">
+        <h1>Histórico de Transações</h1>
         <div class="algo">
+            <h3>Últimas transações:</h3>
+
+            <!-- TABELA COM O HISTÓRICO DE TRANSAÇÕES -->
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th> Tipo de Transação </th>
+                        <th> Valor da Transação </th>
+                        <th> Conta Destino </th>
+                        <th> Data </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of transacoes">
+                        <td> {{ t.tipo }} </td>
+                        <td> {{ t.valor }} </td>
+                        <td> {{ t.contaDestino }} </td>
+                        <td> {{ t.data }}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+
             <div>
-                <h1>Histórico de Transações</h1>
-                <h4>Qua, 31 de jan </h4>
+               
+            <!-- CARD HISTÓRICO DE TRANSAÇÕES -->
 
-                <div class="transationcard">
+                <div class="transationcard" *ngFor="let t of transacoes">
                     <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe</p>
+                    <h6> {{ t.tipo }} </h6>
+                    <p> {{ t.valor }} </p>
                     <div class="valor">
-                        <h6>resumo financeiro</h6>
-                        <p>icone tipo</p>
-                    </div>
-                </div>
-
-                <div class="transationcard">
-                    <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe </p>
-                    <div class="valor">
-                        <h6>resumo financeiro</h6>
-                        <p>icone tipo </p>
-                    </div>
-                </div>
-
-                <h4>Ter, 30 de jan </h4>
-
-                <div class="transationcard">
-                    <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe</p>
-                    <div class="valor">
-                        <h6>resumo financeiro</h6>
-                        <p>icone tipo</p>
-                    </div>
-                </div>
-
-                <div class="transationcard">
-                    <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe</p>
-                    <div class="valor">
-                        <h6>resumo financeiro</h6>
-                        <p>icone tipo</p>
-                    </div>
-                </div>
-                <h4>Seg, 29 de jan </h4>
-
-                <div class="transationcard">
-                    <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe</p>
-                    <div class="valor">
-                        <h6>resumo financeiro</h6>
-                        <p>icone tipo</p>
-                    </div>
-                </div>
-
-                <div class="transationcard">
-                    <div id="img"></div>
-                    <h6> Título transação </h6>
-                    <p>pequeno detalhe</p>
-                    <div class="valor">
-                        <h6>resumo financeiro</h6>
+                        <h6>{{ t.data }}</h6>
                         <p>icone tipo</p>
                     </div>
                 </div>

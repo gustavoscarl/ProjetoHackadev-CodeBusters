@@ -5,13 +5,11 @@
     --gray600: #262626;
     --gray800: #111111;
     
-    
     --purple300: #C4AFF0;
     --purple400: #A484E8;
     --purple500: #A48AE8;
     --purple700: #7F53DF;
     --purple800: #6630D9;
-    
 
     --red300: #E89A84;
     --green300: #84E8CB;
@@ -139,3 +137,4 @@
     justify-content: center;
     align-items: center;
 }
+
