@@ -7,8 +7,12 @@
 
 #navbar {
     display: flex;
-    background-color: #252121;
+<<<<<<< HEAD
+    background-color: #525252;
     color: white;
+=======
+    background-color: #252121;
+>>>>>>> development
     font-weight: bold;
     justify-content: center;
     height: 50px;
@@ -24,7 +28,11 @@
 }
 
 #navbar .navbar-container .logo {
-    height: 40px;
+<<<<<<< HEAD
+    height: 100px;
+=======
+    height: 80px;
+>>>>>>> development
     width: auto;
     padding-top: 2px;
     padding-left: 4px;
@@ -42,8 +50,12 @@
 
 #navbar .navbar-container ul li .navbar-button{
     font-family: 'Inter', sans-serif;
+<<<<<<< HEAD
     border: none;
-    background-color: #252121;
+    background-color: #525252;
+=======
+    border: none;    
+>>>>>>> development
     color: white;
     font-weight: bold;
     font-size: 12pt;
@@ -55,5 +67,49 @@
     padding: 0 20px;
 }
 
+<<<<<<< HEAD
+@media (prefers-color-scheme: dark) {
+    #navbar {
+        background-color: #525252;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #navbar {
+        background-color: #d2d2d2;
+    }
+=======
+@media (prefers-color-scheme: dark){
+    .navbar-container .dark-mode{
+        height: 80px;
+        width: auto;
+        padding-top: 2px;
+        padding-left: 4px;
+    }
+    #navbar {
+        background-color: #525252;        
+    }
+    #navbar .navbar-container ul li .navbar-button{
+        background-color: #525252;
+        color: white;
+    }
+    #navbar {
+        color: white
+    }
+}
+
+@media (prefers-color-scheme: light){
+    #navbar {
+        background-color: #d2d2d2;
+    }
+    #navbar .navbar-container ul li .navbar-button {
+        background-color: #d2d2d2;
+        color: #181818
+    }
+    #navbar {
+        color: #181818
+    }
+>>>>>>> development
+}
 
 
