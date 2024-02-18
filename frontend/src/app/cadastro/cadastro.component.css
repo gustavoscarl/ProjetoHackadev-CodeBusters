@@ -1,0 +1,97 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f0f0;
+    
+}
+
+.header {
+    background-color: #b3b3b3;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #7F53DF;
+}
+
+h2 {
+    margin: 20px;
+}
+
+h4 {
+    margin: 20px ;
+    padding: 16px;
+    text-decoration: underline;
+}
+
+.container {
+    padding: 0 16px;
+    
+}
+
+.form-group {
+    margin-bottom: 20px;
+    
+}
+
+
+.form-control{
+    border: 1px solid #7F53DF; /* Adiciona uma borda de 1px sólida com cor cinza */
+    border-radius: 10px; /* Adiciona um leve arredondamento às bordas */
+}
+
+.form-control-file {
+    color: black;
+    
+}
+
+.btn-purple{
+    background-color: #7F53DF;
+    margin-bottom: 26px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.btn-purple:hover {
+    background-color: black;
+    color: #7F53DF;
+}
+
+/* Estilos para telas menores */
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .header img {
+        margin-bottom: 10px;
+    }
+
+    body{
+        background-image: url('../assets/mobile-light.svg');
+        background-size:cover;
+        background-position: center; /* Para centralizar a imagem de fundo */
+        background-repeat: no-repeat;
+        background-position-y: -400px;
+
+
+    }
+    h2 {
+        margin-top: 10px;
+    }
+
+    .form-group {
+        margin: 8px 0;
+    }
+
+    h2, h4 {
+        text-align: center;
+    }
+}
+
+
