@@ -1,0 +1,88 @@
+.user-greetings-container,
+.user-balance-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  box-shadow: none;
+  border: 0;
+  outline: none;
+  width: 370px;
+  height: 100px;
+  border-radius: 8px;
+  top: 128px;
+  left: 30px;
+  margin-top: 20px;
+}
+
+.greeting,
+.saldo-atual {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 35px;
+  letter-spacing: 0em;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.saldo-atual {
+  text-align: right;
+  margin-top: 55px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+.vetor {
+  display: none;
+}
+.light-img {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .user-balance-container,
+  .user-greetings-container {
+    width: 100%;
+    border-radius: 8px;
+  }
+  .light-img,
+  .vetor {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: -16px;
+  }
+}
+
+/* Regras para modo dark e modo light */
+
+@media (prefers-color-scheme: dark) {
+  .user-balance-container {
+    background-color: #525252;
+  }
+  .greeting,
+  .saldo-atual {
+    color: #ffffff;
+  }
+
+  .light-img {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .user-balance-container {
+    background-color: #ffffff;
+  }
+  .greeting,
+  .saldo-atual {
+    color: #000000;
+  }
+
+  .vetor {
+    display: none;
+  }
+}
