@@ -25,6 +25,11 @@
     box-sizing: border-box;
     background: var(--purple300);
     border-radius: 10px;
+    transition: 0.5s;
+}
+
+.container:hover {
+    box-shadow: 3px 2px 7px 1.5px var(--purple800); ;
 }
 
 .inputBox {
