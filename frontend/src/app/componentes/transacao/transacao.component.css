@@ -101,7 +101,7 @@ h3 {
 .button:hover{
     background: var(--purple700);
     color: var(--red300);
-    transition: 0.5s;
+    box-shadow: 2px 1.3px 5px 1px var(--purple700);
 }
 
 form {
