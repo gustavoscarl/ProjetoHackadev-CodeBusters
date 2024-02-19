@@ -48,13 +48,15 @@
     
     <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
  
-
+    
     <div class="historico">
         <button (click)="filtroAno(2024)" class="button">Filtrar por 2024</button>
         <div class="filtros">
             <div class="transationcard" *ngFor="let t of transacaoFiltrada">
                 <div class="resumo">
-                    <div id="img"></div>
+                    <div id="img">
+                    
+                    </div>
                     <div class="texto">
                         <p>  {{ t.data  }} </p>
                         <p>  {{ t.tipo }} </p>
@@ -70,7 +72,9 @@
         <div class="transationcard" *ngFor="let t of transacoes">
             <div class="card">
                 <div class="resumo">
-                    <div id="img"></div>
+                    <div id="img">
+                        <img src="../../../assets/Shop.svg" alt="">
+                    </div>
                     <div class="texto">
                         <p>  {{ t.data  }} </p>
                         <p>  {{ t.tipo }} </p>

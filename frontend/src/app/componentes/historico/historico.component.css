@@ -148,7 +148,15 @@
     height: 50px;
     display: flex;
     border-radius: 100px;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(196, 175, 240, 1);
+}
+
+#img > img {
+    display: flex;
+    width: 30px;
+    height: 30px;
 }
 
 
