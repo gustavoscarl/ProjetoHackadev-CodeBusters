@@ -31,6 +31,10 @@
   margin-bottom: 20px; /* Ajuste para o espaçamento do texto dentro da div */
 }
 
+.translate {
+  transform: translateX(-10px);
+}
+
 /* Ajustes de tema baseados na preferência do usuário */
 @media (prefers-color-scheme: dark) {
   .icons-sub-text {
