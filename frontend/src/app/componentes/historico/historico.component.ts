@@ -14,12 +14,12 @@ export class HistoricoComponent {
 
     // Vetor de transacões - Onde as transações ficarão armazenadas no momento (sem backend)
   transacoes: Transacao[] = [
-    { tipo:'Pix', valor:120, contaDestino:202020, data:'01/02/2024' },
+    { tipo:'Pix', valor:120, contaDestino:202020, data:'01/02/2024'},
     ];
 
   // FUNCAO TRANSACAO
   realizarTrasacao(obj:Transacao):void {
-    this.transacoes.push(obj);
+    this.transacoes.unshift(obj);
   }
 
 }
