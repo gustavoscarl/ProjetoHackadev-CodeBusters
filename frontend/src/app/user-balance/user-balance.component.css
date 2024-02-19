@@ -1,3 +1,7 @@
+* {
+  margin: 0px;
+}
+
 .user-greetings-container,
 .user-balance-container {
   display: flex;
@@ -48,8 +52,8 @@
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  max-width: 100px;
+  height: 100px;
 }
 .vetor {
   display: none;
@@ -58,7 +62,7 @@
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 990px) {
   .user-balance-container,
   .user-greetings-container {
     width: 100%;

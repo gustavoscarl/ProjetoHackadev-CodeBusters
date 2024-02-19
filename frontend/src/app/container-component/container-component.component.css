@@ -1,17 +1,12 @@
-.container {
-  width: 100%;
-  padding: 20px;
-  height: 100vh;
-}
-
 @media (prefers-color-scheme: dark) {
-  .container {
+  *,
+  body {
     background-color: #000000;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  .container {
-    background-color: #E5E5E5;;
+  * {
+    background-color: #e5e5e5;
   }
 }

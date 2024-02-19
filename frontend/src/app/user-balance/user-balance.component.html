@@ -1,6 +1,6 @@
-<div>
+<div class="">
   <div
-    class="row justify-content-between align-items-center user-greetings-container rounded p-3"
+    class="row justify-content-between align-items-center user-greetings-container rounded p-3 col-lg-6"
   >
     <div class="col-auto">
       <img
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="container user-balance-container mt-3">
+<div class="container user-balance-container mt-5 col-lg-6">
   <div class="row">
     <div class="col greeting">
       <p class="custom-font">Olá, {{ userName }}!</p>
@@ -39,15 +39,15 @@
     </div>
   </div>
 </div>
-<div class="link-container">
+<div class="link-container d-lg-none">
   <a class="historico-button" href="#">Histórico</a>
 </div>
 
-<div class="col-12 row d-flex align-items-center">
-  <div class="col-6 mt-5">
+<div class="col-12 row align-items-center text-center d-lg-none">
+  <div class="col-7 mt-5">
     <img src="../../assets/user-balance/grafico.svg" alt="">
   </div>
-  <div class="col-6 mt-5">
+  <div class="col-5 mt-5 text-start d-lg-none">
     <img src="../../assets/user-balance/setaup.svg" alt="">
     <p class="d-inline">R$ 4.000,00</p>
     <div>
@@ -55,5 +55,25 @@
     <p class="d-inline">R$ 7.500,00</p>
   </div>
   </div>
-  
+
+</div>
+
+<div class="d-none d-lg-flex col-lg-6 mt-5">
+  <div class="d-flex">
+    <img src="../../assets/user-balance/barrasLG.svg" alt="">
+    <div class="ms-4 mt-2">
+      <p class="text-danger">R$ 4.000,00</p>
+      <p class="text-danger">Gastos</p>
+    </div>
+  </div>
+</div>
+
+<div class="d-none d-lg-flex col-lg-6 mt-5">
+  <div class="d-flex">
+    <img src="../../assets/user-balance/barras3.svg" alt="">
+    <div class="ms-4 mt-2">
+      <p class="text-success">R$ 7.500,00</p>
+      <p class="text-success">Ganhos</p>
+    </div>
+  </div>
 </div>
