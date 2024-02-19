@@ -1,4 +1,6 @@
-import { Component, Input  } from '@angular/core';
+import { Component, Inject, Input  } from '@angular/core';
+import { InputserviceService } from '../servicos/inputservice.service';
+@Inject({ providedIn: 'root' })
 
 @Component({
   selector: 'app-user-balance',
@@ -10,4 +12,8 @@ import { Component, Input  } from '@angular/core';
 export class UserBalanceComponent {
   @Input() saldoAtual: number = 0;
   @Input() userName!: string;
+  constructor(private inputService: InputserviceService) {
+    this.saldoAtual = this.inputService.saldoDoUsuario;
+    this.userName = this.inputService.nomeDoUsuario;
+  }
 }
