@@ -15,11 +15,13 @@ body {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #000000;
+    color: #fff;
   }
 }
 
 @media (prefers-color-scheme: light) {
   body {
     background-color: #e5e5e5;
+    color: #000000;
   }
 }

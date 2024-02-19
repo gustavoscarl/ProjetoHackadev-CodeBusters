@@ -11,12 +11,14 @@
 
                 </ng-template>
 
-                <ng-template [ngIf]="exibirTexto">
+                <ng-template [ngIf]="exibirHistorico">
                     <button class="navbar-button" (click)="paginaHistorico()">Histórico de transações</button>
-                    <p *ngIF="exibirHistorico"></p>
                 </ng-template>
             </li>
-            <li class="navbar-item"><ng-template [ngIf]="exibirTexto">Sair</ng-template></li>            
+            <li class="navbar-item">
+                <ng-template [ngIf]="exibirHistorico">
+                    Sair</ng-template>
+                </li>            
         </ul>
     </div>
 </nav>

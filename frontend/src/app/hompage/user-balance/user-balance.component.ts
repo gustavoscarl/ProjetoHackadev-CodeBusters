@@ -1,5 +1,5 @@
 import { Component, Inject, Input  } from '@angular/core';
-import { InputserviceService } from '../servicos/inputservice.service';
+import { InputserviceService } from '../../servicos/inputservice.service';
 @Inject({ providedIn: 'root' })
 
 @Component({
