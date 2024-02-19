@@ -18,7 +18,7 @@
 /* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
 
 .info {
-    display: flexbox;
+    display: flex;
     width: 40%;
     justify-content: space-between;
 
@@ -89,18 +89,27 @@
 
 
 /* LADO DIREITO DA TELA - HISTÓRICO DE TRANSAÇÕES */
-
 .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:10rem;
     width: 100vh;
-    justify-content: space-evenly;
+    height: 90vh;
+    justify-content: center;
+    margin: 150px;
+}
+
+.historico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .transationcard {
+    display: flex;
     margin: 10px;
     padding-left: 15px;
     padding-right: 15px;
-    display: flex;
     border-radius: 8px;
     width: 366px;
     height: 82px;
@@ -108,6 +117,28 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    width: 366px;
+    height: 82px;
+    text-align: center;
+}
+
+.resumo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.valor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 #img{
     width: 50px;
@@ -138,3 +169,17 @@
     align-items: center;
 }
 
+.button {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: var(--purple400);
+    transition: 0.5s;
+}
+
+.button:hover{
+    background: var(--purple700);
+    color: var(--red300);
+    transition: 0.5s;
+}

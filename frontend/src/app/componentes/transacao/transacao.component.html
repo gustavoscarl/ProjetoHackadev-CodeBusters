@@ -1,7 +1,7 @@
 <div class="container">
     <div class="transacao">
         <div class="infoGerais">
-            <h3>Transação</h3>
+            <h3>NOVA TRANSAÇÃO</h3>
             <div class="formulario">
                 <form [formGroup]="formulario"  (submit)="transacao()">
                     <div class="inputBox">
@@ -17,7 +17,7 @@
                         <span>Conta destino</span>
                     </div>
                     <div class="inputBox">
-                        <input type="text" placeholder=" " formControlName="data" required="required">
+                        <input type="date" placeholder=" " formControlName="data" required="required">
                         <span>Data da Transação</span>
                     </div>
                     <div class="botao">

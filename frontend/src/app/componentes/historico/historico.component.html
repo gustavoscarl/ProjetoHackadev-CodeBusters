@@ -1,7 +1,5 @@
 <!-- HEADER -->
 
-
-
 <div class="container">
 
     <app-transacao (cadastrarTransacao)="realizarTrasacao($event)"></app-transacao>
@@ -49,49 +47,41 @@
     </div> -->
     
     <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
+ 
 
     <div class="historico">
-        <h1>Histórico de Transações</h1>
-        <div class="algo">
-            <h3>Últimas transações:</h3>
-
-            <!-- TABELA COM O HISTÓRICO DE TRANSAÇÕES -->
-            <!-- <table>
-                <thead>
-                    <tr>
-                        <th> Tipo de Transação </th>
-                        <th> Valor da Transação </th>
-                        <th> Conta Destino </th>
-                        <th> Data </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let t of transacoes">
-                        <td> {{ t.tipo }} </td>
-                        <td> {{ t.valor }} </td>
-                        <td> {{ t.contaDestino }} </td>
-                        <td> {{ t.data }}</td>
-                    </tr>
-                </tbody>
-            </table> -->
-
-            <div>
-               
-            <!-- CARD HISTÓRICO DE TRANSAÇÕES -->
-
-                <div class="transationcard" *ngFor="let t of transacoes">
+        <button (click)="filtroAno(2024)" class="button">Filtrar por 2024</button>
+        <div class="filtros">
+            <div class="transationcard" *ngFor="let t of transacaoFiltrada">
+                <div class="resumo">
                     <div id="img"></div>
-                    <h6> {{ t.tipo }} </h6>
-                    <p> {{ t.valor }} </p>
-                    <div class="valor">
-                        <h6>{{ t.data }}</h6>
-                        <p>icone tipo</p>
+                    <div class="texto">
+                        <p>  {{ t.data  }} </p>
+                        <p>  {{ t.tipo }} </p>
                     </div>
                 </div>
-
+        </div>
+         
+        <!-- CARD HISTÓRICO DE TRANSAÇÕES -->
+        <div class="data">
+            <h3> Quarta, 30 de jan. </h3>
+        </div>
+        
+        <div class="transationcard" *ngFor="let t of transacoes">
+            <div class="card">
+                <div class="resumo">
+                    <div id="img"></div>
+                    <div class="texto">
+                        <p>  {{ t.data  }} </p>
+                        <p>  {{ t.tipo }} </p>
+                    </div>
+                </div>
+                <div class="valor">
+                    <span> {{ t.valor }} </span>
+                    <span> icone tipo </span>
+                </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
-
 <!-- FOOTER -->

@@ -4,6 +4,6 @@ export interface Transacao {
     tipo?:string;
     valor?:number;
     contaDestino?:number;
-    data?:string;
+    data:Date|string;
 }
 
