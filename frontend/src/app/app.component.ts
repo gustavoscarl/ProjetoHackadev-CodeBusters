@@ -5,6 +5,7 @@ import { UserBalanceComponent } from './user-balance/user-balance.component';
 import { ContainerComponentComponent } from './container-component/container-component.component';
 import { IconsHomeComponent } from "./icons-home/icons-home.component";
 import { HeaderComponent } from './header/header.component';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,7 @@ import { HeaderComponent } from './header/header.component';
 export class AppComponent {
   title = 'frontend';
   //Criando nome de usuario
-  nomeDoUsuario: string = 'Pessoal';
+  nomeDoUsuario: string = 'João';
   // Criando saldo do usuario
   saldoDoUsuario: number = 20000;
 }
