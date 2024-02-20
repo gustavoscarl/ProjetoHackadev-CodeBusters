@@ -1,0 +1,193 @@
+/* Estilos padrão */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.header {
+    background-color: #f0f0f0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.logoheader {
+    width: 100px;
+    height: auto;
+}
+
+.link-sair {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.links-container {
+    text-align: left;
+}
+
+a:nth-of-type(1) {
+    color: purple;
+    font-weight: bold;
+}
+
+a:nth-of-type(2) {
+    color: black;
+}
+
+a:nth-of-type(2)::after {
+    content: ' Registre-se';
+    color: purple;
+}
+
+button[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    margin-left: 2%;
+    background-color: #7F53DF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.icon-container a {
+    display: inline-block;
+}
+
+.icon-container i {
+    font-size: 40px;
+    color: #7F53DF;
+    cursor: pointer;
+}
+
+/* Estilos para telas menores */
+@media only screen and (max-width: 480px) {
+    .link-sair {
+        margin-right: 10px;
+        
+    }
+    
+.background {
+    background-image: url('/frontend/src/assets/logotypes-login-cadastro/mobile-light.svg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position-y: -60px;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .icon-container {
+        bottom: 20px; /* Alterado para ficar abaixo do botão de login */
+        right: 20px;
+    }
+    
+    .icon-container i {
+        font-size: 30px;
+    }
+}
+
+/* Estilos para telas médias */
+@media only screen and (max-width: 480px) {
+    .icon-container {
+        right: 30px;
+        
+    }
+
+.background {
+    background-image: url('/frontend/src/assets/logotypes-login-cadastro/mobile-light.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+}
+
+/* Estilos para telas grandes */
+@media only screen and (min-width: 481px) {
+    .icon-container {
+        right: 40px;
+    }
+
+    .background {
+        background-image: url('/frontend/src/assets/logotypes-login-cadastro/mobile-light.svg');
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position-y: -100px;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+/* Estilos para telas extra grandes */
+@media only screen and (min-width: 567px) {
+    .icon-container {
+        right: 50px;
+    }
+    .background {
+        background-image: url('/frontend/src/assets/logotypes-login-cadastro/mobile-light.svg');
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position-y: -100px;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+}
+
+/* Esconde o texto associado ao ícone */
+.icon-container span {
+    display: none;
+}
