@@ -4,20 +4,21 @@
         <!-- Lodo do header -->
         <img [src]="getImagePath()" alt="logo" class="logo">
 
-        <ul class="navbar-itens">
+        <ul class="navbar-itens d-flex place">
             <li class="navbar-item">
                 <ng-template [ngIf]="exibirHistorico">
                     <img [src]="getLupaPath()" alt="logo" class="lupa">
 
                 </ng-template>
 
-                <ng-template [ngIf]="exibirHistorico">
-                    <button class="navbar-button" (click)="paginaHistorico()">Histórico de transações</button>
+                <ng-template [ngIf]="exibirHome">
+                    <button class="navbar-button">Histórico de transações</button>
                 </ng-template>
             </li>
             <li class="navbar-item">
-                <ng-template [ngIf]="exibirHistorico">
-                    Sair</ng-template>
+                <ng-template [ngIf]="exibirHistorico || exibirHome">
+                    <a [routerLink]="['/login']">Sair</a>
+                </ng-template>
             </li>
         </ul>
     </div>

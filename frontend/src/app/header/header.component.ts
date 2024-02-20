@@ -2,10 +2,13 @@ import { Component, HostBinding, HostListener, Inject, PLATFORM_ID } from '@angu
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
+import { NavigationEnd, NavigationStart, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgOptimizedImage, CommonModule, FormsModule],
+  imports: [NgOptimizedImage, CommonModule, FormsModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -13,7 +16,18 @@ export class HeaderComponent {
 
   darkMode: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: Router) {
+    // Define se o histórico deve ser exibido com base na rota atual
+    this.exibirHistorico = this.deveExibirHistorico();
+    this.exibirHome = this.deveExibirHome();
+    
+    this.route.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.exibirHome = this.deveExibirHome();
+      this.exibirHistorico = this.deveExibirHistorico();
+    });
+
     this.darkMode = isPlatformBrowser(this.platformId) && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     //Adiciona um ouvinte de evento para detectar alterações no tema do sistema
@@ -23,6 +37,8 @@ export class HeaderComponent {
       });
     }
   }
+
+
   
   //Função para alternar os logos dark e light mode
   getImagePath(): string {
@@ -43,15 +59,18 @@ export class HeaderComponent {
   }
   
   // Exibir texto
-    exibirTexto:boolean = false;
+    exibirHome:boolean = true;
     exibirHistorico:boolean = false;
 
     // Funções para exibir ou ocultar o texto
-    visibilidadeTexto():void{
-      this.exibirTexto = !this.exibirTexto;
+    deveExibirHome():boolean{
+      return this.route.url === '/home';
     }
 
-    paginaHistorico():void{
-      this.exibirHistorico = !this.exibirHistorico;
-    }
+    deveExibirHistorico(): boolean {
+      // Substitua '/alguma-rota' pela rota específica que deseja verificar
+      return this.route.url === '/historico';
+    };
+
+    
 }
