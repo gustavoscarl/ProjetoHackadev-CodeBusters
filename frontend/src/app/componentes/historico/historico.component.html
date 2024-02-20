@@ -57,7 +57,8 @@
  
     
     <div class="historico">
-        <button (click)="filtroAno(2024)" class="button">Filtrar por 2024</button>
+        <!-- <button (click)="filtroAno(2024)" class="button">Filtrar por 2024</button> -->
+        
         <div class="filtros">
             <div class="transationcard" *ngFor="let t of transacaoFiltrada">
                 <div class="resumo">
@@ -88,9 +89,13 @@
                     </div>
                 </div>
                 <div class="valor">
-                    <span> {{ t.valor }} </span>
-                    <span> {{ t.tipo  }}  </span>
-                    <img src="../../../assets/CashCoin.svg" alt="">
+                    <div class="infoCardDir">
+                        <span> {{ t.valor }} </span>
+                        <span> {{ t.tipo  }}  </span>
+                    </div>
+                    <div class="iconeDir">
+                        <img src="../../../assets/CashCoin.svg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
