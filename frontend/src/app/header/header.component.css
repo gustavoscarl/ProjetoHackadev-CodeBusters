@@ -1,17 +1,10 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    
-}
-
 #navbar {
     display: flex;
     background-color: #252121;
     font-weight: bold;
     justify-content: center;
     height: 50px;
-    
+
 }
 
 #navbar .navbar-container {
@@ -35,10 +28,10 @@
 }
 
 #navbar .navbar-container ul li {
-    padding: 0 20px;   
+    padding: 0 20px;
 }
 
-#navbar .navbar-container ul li .navbar-button{
+#navbar .navbar-container ul li .navbar-button {
     font-family: 'Inter', sans-serif;
     border: none;
     color: white;
@@ -46,42 +39,45 @@
     font-size: 12pt;
 }
 
-#navbar .navbar-container ul li .lupa{
+#navbar .navbar-container ul li .lupa {
     height: 16px;
     justify-content: space-between;
     padding: 0 20px;
 }
 
-@media (prefers-color-scheme: dark){
-    .navbar-container .dark-mode{
+@media (prefers-color-scheme: dark) {
+    .navbar-container .dark-mode {
         height: 80px;
         width: auto;
         padding-top: 2px;
         padding-left: 4px;
     }
+
     #navbar {
-        background-color: #525252;        
+        background-color: #525252;
     }
-    #navbar .navbar-container ul li .navbar-button{
+
+    #navbar .navbar-container ul li .navbar-button {
         background-color: #525252;
         color: white;
     }
+
     #navbar {
         color: white
     }
 }
 
-@media (prefers-color-scheme: light){
+@media (prefers-color-scheme: light) {
     #navbar {
         background-color: #d2d2d2;
     }
+
     #navbar .navbar-container ul li .navbar-button {
         background-color: #d2d2d2;
         color: #181818
     }
+
     #navbar {
         color: #181818
     }
 }
-
-

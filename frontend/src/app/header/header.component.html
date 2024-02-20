@@ -1,4 +1,4 @@
-<nav id="navbar">
+<nav id="navbar" class="d-none d-lg-flex">
     <div class="navbar-container" [class.dark-mode]="darkMode">
 
         <!-- Lodo do header -->
@@ -6,7 +6,7 @@
 
         <ul class="navbar-itens">
             <li class="navbar-item">
-                <ng-template [ngIf]="exibirHistorico">                    
+                <ng-template [ngIf]="exibirHistorico">
                     <img [src]="getLupaPath()" alt="logo" class="lupa">
 
                 </ng-template>
@@ -18,13 +18,10 @@
             <li class="navbar-item">
                 <ng-template [ngIf]="exibirHistorico">
                     Sair</ng-template>
-                </li>            
+            </li>
         </ul>
     </div>
 </nav>
 
 <!--Botão Entrar da tela de login
 <button (click)="visibilidadeTexto()">Entrar</button> -->
-
-
-
