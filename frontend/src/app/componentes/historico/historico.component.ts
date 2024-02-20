@@ -26,6 +26,9 @@ export class HistoricoComponent {
     { tipo:'Pix', valor:120, contaDestino:123123, data:'2024-01-28'},
     { tipo:'Debito', valor:15, contaDestino:111111, data:'2024-01-29'},
     { tipo:'Credito', valor:1000, contaDestino:222222, data:'2024-01-30'},
+    { tipo:'Pix', valor:120, contaDestino:123123, data:'2024-01-28'},
+    { tipo:'Debito', valor:15, contaDestino:111111, data:'2024-01-29'},
+    { tipo:'Credito', valor:1000, contaDestino:222222, data:'2024-01-30'},
     ];
 
   // FUNÇÃO QUE ADICIONA A TRANSAÇÃO NO VETOR DO HISTÓRICO.

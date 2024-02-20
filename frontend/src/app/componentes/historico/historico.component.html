@@ -2,11 +2,12 @@
 
 <div class="container">
 
-    <app-transacao (cadastrarTransacao)="realizarTrasacao($event)"></app-transacao>
+    <!-- <app-transacao (cadastrarTransacao)="realizarTrasacao($event)"></app-transacao> -->
 
     <!-- LADO ESQUERDO DA PAGINA, COMENTADO PARA EU FOCAR NO HISTÓRICO -->
 
-    <!-- <div class="info">
+    <div class="info">
+        <div class="gastosEganhos">
             <div class="gastos">
                 <div class="gastos-esq">
                     <div class="detalhe"></div>
@@ -15,9 +16,11 @@
                 </div>
 
                 <div class="gastos-dir">
-                    <p>icon</p>
-                    <h4>Gastos</h4>
-                    <p>R$4.000,00</p>
+                    <img src="../../../assets/Setagasto.svg" alt="">
+                    <div class="gastosResumo">
+                        <span>Gastos</span>
+                        <p>R$4.000,00</p>
+                    </div>
                 </div>   
             </div>
 
@@ -27,24 +30,24 @@
                     <div class="detalhe3"></div>
                     <div class="detalhe3"></div>
                 </div>
-                
                 <div class="ganhos-dir">
-                    <p>icone</p>
-                    <h4>Ganhos</h4>
-                    <p>R$7.500,00</p>
+                    <img src="../../../assets/Setaganho.svg" alt="">
+                    <div class="ganhosResumo">
+                        <span>Ganhos</span>
+                        <p>R$7.500,00</p>
+                    </div>
                 </div>   
             </div>
-
-            <div class="resumoEicones">
+        </div>
+            <div class="filtro">
                 <p> Mês </p>
                 <p> Dezembro </p>
                 <p> Categoria </p>
             </div>
             <div class="icone">
-                <p> icone grande
-                </p>
+                <img src="../../../assets/calendario 1.svg" alt="Filtro calendario">
             </div>
-    </div> -->
+    </div>
     
     <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
  
@@ -76,13 +79,14 @@
                         <img src="../../../assets/Shop.svg" alt="">
                     </div>
                     <div class="texto">
-                        <p>  {{ t.data  }} </p>
-                        <p>  {{ t.tipo }} </p>
+                        <p>  {{ t.tipo  }}  </p>
+                        <p>  {{ t.data  }}  </p>
                     </div>
                 </div>
                 <div class="valor">
                     <span> {{ t.valor }} </span>
-                    <span> icone tipo </span>
+                    <span> {{ t.tipo  }}  </span>
+                    <img src="../../../assets/CashCoin.svg" alt="">
                 </div>
             </div>
         </div>

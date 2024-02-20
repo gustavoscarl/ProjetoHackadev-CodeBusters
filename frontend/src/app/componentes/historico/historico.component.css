@@ -11,23 +11,48 @@
     --purple700: #7F53DF;
     --purple800: #6630D9;
 
-    --red300: #E89A84;
+    --red300: #E8848A;
     --green300: #84E8CB;
 }
 
 /* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
+.container {
+    display: flex;
+}
 
 .info {
-    display: flex;
-    width: 40%;
-    justify-content: space-between;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 2fr;
+    margin: 150px;
+    grid-template-areas:
+    "gastos gastos gastos"
+    "filtro filtro filtro"
+    "icone icone icone";
+    min-width: 55vh;
 }
+
+.gastosEganhos{
+    grid-area: gastos;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+}
+
 
 .gastos {
     display: flex;
-    justify-content: space-between;
     margin: 15px;
+    justify-content: space-between;
+}
+
+.gastosResumo > span {
+    font-weight: 500;
+}
+
+.gastosResumo > p {
+    font-weight: 700;
+    margin: 3px;
 }
 
 .detalhe {
@@ -47,19 +72,19 @@
     background-color: rgba(167, 76, 76, 1);
 }
 
-.gastos-dir {
-    display: flex;
-    width: 213px;
-    height: 88px;
-    border-radius: 8px;
-    background-color: var(--red300);
-}
-
 .ganhos {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     margin: 15px;
+}
+
+.ganhosResumo > span {
+    font-weight: 500;
+}
+
+.ganhosResumo > p {
+    font-weight: 700;
+    margin: 3px;
 }
 
 .detalhe2 {
@@ -79,25 +104,79 @@
     background-color: rgba(132, 232, 203, 1);
 }
 
+.gastos-dir {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 213px;
+    height: 88px;
+    border-radius: 8px;
+    background-color: var(--red300);
+}
+
+
 .ganhos-dir {
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     width: 213px;
     height: 88px;
     border-radius: 8px;
     background-color: var(--green300);
 }
 
+.gastos-dir > img,
+.ganhos-dir > img {
+    width: 17.5px;
+    height: 20px;
+}
+
+
+/* PARTE DE BAIXO LADO ESQUERDO */
+
+.filtro {
+    display: flex;
+    margin: 5px;
+    justify-content: space-between;
+    grid-area: filtro;
+}
+
+.filtro > p {
+    display: flex;
+    width: 121px;
+    height: 50px;
+    background-color: var(--gray500);
+    border-radius: 8px;
+    padding: 4px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    grid-area: icone;
+}
+
+.button {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: var(--purple400);
+    transition: 0.5s;
+}
+
+.button:hover{
+    background: var(--purple700);
+    color: var(--red300);
+    box-shadow: 2px 1.3px 5px 1px var(--gray500);
+}
+
 
 /* LADO DIREITO DA TELA - HISTÓRICO DE TRANSAÇÕES */
-.container {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap:10rem;
-    /* width: 100vh;
-    height: 90vh; */
-    justify-content: center;
-    margin: 150px;
-}
+
 
 .historico {
     display: flex;
@@ -111,7 +190,7 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 8px;
-    background-color: rgba(179, 179, 179, 1);
+    background-color: var(--gray500);
     justify-content: space-around;
     align-items: center;
     transition: 0.5s;
@@ -160,37 +239,3 @@
 }
 
 
-/* PARTE DE BAIXO LADO ESQUERDO */
-
-.resumoEicones {
-    display: flex;
-    margin: 5px;
-    justify-content: space-between;
-}
-
-.resumoEicones > p {
-    display: flex;
-    width: 121px;
-    height: 50px;
-    background-color: var(--gray500);
-    border-radius: 8px;
-    padding: 4px;
-    margin: 5px;
-    justify-content: center;
-    align-items: center;
-}
-
-.button {
-    width: 200px;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    background: var(--purple400);
-    transition: 0.5s;
-}
-
-.button:hover{
-    background: var(--purple700);
-    color: var(--red300);
-    box-shadow: 2px 1.3px 5px 1px var(--gray500);
-}
