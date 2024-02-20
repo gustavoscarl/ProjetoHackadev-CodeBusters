@@ -18,18 +18,24 @@
 /* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
 .container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .info {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 2fr 1fr 2fr;
-    margin: 150px;
+    margin: 5px;
     grid-template-areas:
     "gastos gastos gastos"
     "filtro filtro filtro"
-    "icone icone icone";
-    min-width: 55vh;
+}
+
+@media screen and (max-width: 870px), (max-height: 710px){
+    .info{
+        display: flex;
+    }
 }
 
 .gastosEganhos{
@@ -38,7 +44,6 @@
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
 }
-
 
 .gastos {
     display: flex;
@@ -108,8 +113,8 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 213px;
-    height: 88px;
+    min-width: 213px;
+    min-height: 88px;
     border-radius: 8px;
     background-color: var(--red300);
 }
@@ -119,8 +124,8 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 213px;
-    height: 88px;
+    min-width: 213px;
+    min-height: 88px;
     border-radius: 8px;
     background-color: var(--green300);
 }
@@ -134,11 +139,18 @@
 
 /* PARTE DE BAIXO LADO ESQUERDO */
 
+.pesquisa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: filtro;
+}
+
 .filtro {
     display: flex;
     margin: 5px;
     justify-content: space-between;
-    grid-area: filtro;
+    
 }
 
 .filtro > p {
@@ -155,8 +167,13 @@
 
 .icone {
     display: flex;
-    justify-content: center;
-    grid-area: icone;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px), (max-height: 710px) {
+    .icone {
+         display: none;
+    }
 }
 
 .button {
@@ -181,7 +198,8 @@
 .historico {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 .transationcard {
@@ -203,8 +221,8 @@
 .card {
     display: flex;
     justify-content: space-between;
-    width: 366px;
-    height: 82px;
+    max-width: 366px;
+    max-height: 82px;
     text-align: center;
 }
 
