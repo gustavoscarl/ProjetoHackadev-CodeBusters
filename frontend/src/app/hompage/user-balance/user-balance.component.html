@@ -31,17 +31,20 @@
   <a class="historico-button" href="#">Histórico</a>
 </div>
 
-<div class="col-12 row align-items-center text-center d-flex d-lg-none">
+<div class="col-12 row align-items-center text-center d-lg-none">
   <div class="col-6 mt-5">
     <p-chart type="bar" [data]="chartData" [options]="chartOptions" width="200px"></p-chart>
 
   </div>
   <div class="col-6 mt-5 text-start d-lg-none">
-    <img src="../../assets/user-balance/setaup.svg" alt="">
-
-    <p class="d-inline">R$ 4.000,00</p>
-    <div>
-      <img src="../../assets/user-balance/setadown.svg" alt="">
+    <div class=" d-flex">
+      <img id="setaup-dark" src="../../assets/user-balance/setaup.svg" alt="">
+      <img id="setaup-light" src="../../../assets/user-balance/setaup copy.svg" alt="">
+      <p class="d-inline">R$ 4.000,00</p>
+    </div>
+    <div class="d-flex">
+      <img id="setadown-dark" src="../../assets/user-balance/setadown.svg" alt="">
+      <img id="setadown-light" src="../../../assets/user-balance/setadown copy.svg" alt="">
       <p class="d-inline">R$ 7.500,00</p>
     </div>
   </div>

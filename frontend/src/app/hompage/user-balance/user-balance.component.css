@@ -92,6 +92,19 @@
     color: #ffffff;
   }
 
+  #setadown-light {
+    display: none;
+  }
+  #setaup-light {
+    display: none;
+  }
+  #setadown-dark {
+    display: block;
+  }
+  #setaup-dark {
+    display: block;
+  }
+
   .light-img {
     display: none;
   }
@@ -107,6 +120,18 @@
   .greeting,
   .saldo-atual {
     color: #000000;
+  }
+  #setadown-dark {
+    display: none;
+  }
+  #setaup-dark {
+    display: none;
+  }
+  #setadown-light {
+    display: block;
+  }
+  #setaup-light {
+    display: block;
   }
 
   .vetor {

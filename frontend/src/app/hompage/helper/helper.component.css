@@ -11,3 +11,8 @@
     color: #000000;
   }
 }
+
+img:hover {
+  transition-duration: 400ms;
+  transform: scale(1.02);
+}

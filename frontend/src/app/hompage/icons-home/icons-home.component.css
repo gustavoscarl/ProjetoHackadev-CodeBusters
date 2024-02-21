@@ -7,6 +7,15 @@
   gap: 10px; /* Espaço entre as divs */
 }
 
+.icons-sub:hover,
+.icons-sub:focus,
+.icons-sub:active {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  transition-duration: 400ms;
+  outline: 1px solid #6cb9a42f;
+}
+
 .icons-sub {
   flex: 0 1 calc(33.333% - 20px); /* Usa 'flex' para ajustar a largura das divs */
   height: 110px; /* Altura fixa para as divs */
