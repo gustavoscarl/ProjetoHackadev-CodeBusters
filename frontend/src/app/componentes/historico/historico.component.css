@@ -34,7 +34,7 @@
     "filtro filtro filtro";
 }
 
-@media screen and (max-width: 870px), (max-height: 710px){
+@media screen and (max-width: 981px), (max-height: 710px){
     .info{
         display: flex;
         flex-wrap: wrap;
