@@ -47,3 +47,21 @@
     color: #525252;
   }
 }
+
+@media screen and (max-width: 430px) {
+  .icons-sub {
+    max-width: 80px;
+    font-size: 4px;
+  }
+
+  .icons-sub img {
+    width: 50px;
+  }
+  .icons-sub p {
+    font-size: 12px;
+  }
+
+  .translate {
+    transform: translateX(-15px);
+  }
+}
