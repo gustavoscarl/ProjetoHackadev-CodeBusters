@@ -120,13 +120,6 @@ input[type="password"] {
     right: 30px;
   }
 
-  .logo {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
   .background {
     background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
     background-size: cover;
