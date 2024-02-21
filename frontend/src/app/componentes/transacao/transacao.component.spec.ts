@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserBalanceComponent } from './user-balance.component';
+import { TransacaoComponent } from './transacao.component';
 
-
-describe('UserBalanceComponent', () => {
-  let component: UserBalanceComponent;
-  let fixture: ComponentFixture<UserBalanceComponent>;
+describe('TransacaoComponent', () => {
+  let component: TransacaoComponent;
+  let fixture: ComponentFixture<TransacaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserBalanceComponent]
+      imports: [TransacaoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserBalanceComponent);
+    fixture = TestBed.createComponent(TransacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

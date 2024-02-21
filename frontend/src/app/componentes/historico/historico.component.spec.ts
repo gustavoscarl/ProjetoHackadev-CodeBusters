@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserBalanceComponent } from './user-balance.component';
+import { HistoricoComponent } from './historico.component';
 
-
-describe('UserBalanceComponent', () => {
-  let component: UserBalanceComponent;
-  let fixture: ComponentFixture<UserBalanceComponent>;
+describe('HistoricoComponent', () => {
+  let component: HistoricoComponent;
+  let fixture: ComponentFixture<HistoricoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserBalanceComponent]
+      imports: [HistoricoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserBalanceComponent);
+    fixture = TestBed.createComponent(HistoricoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
