@@ -23,12 +23,12 @@ export class HistoricoComponent {
 
     // Vetor de transacões - Onde as transações ficarão armazenadas no momento (sem backend)
   transacoes: Transacao[] = [
-    { tipo:'Pix', valor:120, contaDestino:123123, data:'2024-01-28'},
-    { tipo:'Debito', valor:15, contaDestino:111111, data:'2024-01-29'},
-    { tipo:'Credito', valor:1000, contaDestino:222222, data:'2024-01-30'},
-    { tipo:'Pix', valor:120, contaDestino:123123, data:'2024-01-28'},
-    { tipo:'Debito', valor:15, contaDestino:111111, data:'2024-01-29'},
-    { tipo:'Credito', valor:1000, contaDestino:222222, data:'2024-01-30'},
+    { nome:'Code Busters', descricao:'Compra de aplicat...', tipo:'Pix', valor:'R$ 120,00', contaDestino:123123, data:'2024-01-28'},
+    { nome:'Amazon', descricao:'Campanha publici...', tipo:'Debito', valor:'R$ 15,00', contaDestino:111111, data:'2024-01-29'},
+    { nome:'Code Busters', descricao:'Compra de aplicat...', tipo:'Credito', valor:'R$ 1000,00', contaDestino:222222, data:'2024-01-30'},
+    { nome:'Amazon', descricao:'Campanha publici...', tipo:'Pix', valor:'R$ 120,00', contaDestino:123123, data:'2024-01-28'},
+    { nome:'Spotify', descricao:'Compra de aplicat...', tipo:'Debito', valor:'R$ 120,00', contaDestino:111111, data:'2024-01-29'},
+    { nome:'Code Busters', descricao:'Compra de aplicat...', tipo:'Credito', valor:'R$ 120,00', contaDestino:222222, data:'2024-01-30'},
     ];
 
   // FUNÇÃO QUE ADICIONA A TRANSAÇÃO NO VETOR DO HISTÓRICO.

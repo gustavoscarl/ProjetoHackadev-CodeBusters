@@ -27,15 +27,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 2fr 1fr 2fr;
-    margin: 5px;
+    margin-inline: auto;
+    align-content: center;
     grid-template-areas:
     "gastos gastos gastos"
-    "filtro filtro filtro"
+    "filtro filtro filtro";
 }
 
 @media screen and (max-width: 870px), (max-height: 710px){
     .info{
         display: flex;
+        flex-wrap: wrap;
     }
 }
 
@@ -43,6 +45,7 @@
     grid-area: gastos;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -114,22 +117,28 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    min-width: 213px;
-    min-height: 88px;
+    width: 213px;
+    height: 88px;
     border-radius: 8px;
     background-color: var(--red300);
 }
 
+@media (max-width: 375px){
+     .gastosEganhos{
+        width: 95%;
+    }
+}
 
 .ganhos-dir {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    min-width: 213px;
-    min-height: 88px;
+    width: 213px;
+    height: 88px;
     border-radius: 8px;
     background-color: var(--green300);
 }
+
 
 .gastos-dir > img,
 .ganhos-dir > img {
@@ -137,43 +146,50 @@
     height: 20px;
 }
 
-
 /* PARTE DE BAIXO LADO ESQUERDO */
 
 .pesquisa {
     display: flex;
-    flex-direction: column;
     align-items: center;
     grid-area: filtro;
+    margin-inline: auto;
+    gap: 15px;
 }
+
 
 .filtro {
     display: flex;
-    margin: 5px;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto;
+    width: 121px;
+    height: 50px;
+    background-color: white;
+    border-radius: 8px;
 }
 
 .filtro > p {
     display: flex;
-    width: 121px;
-    height: 50px;
-    background-color: white;
-    color: var(--purple700);
-    border-radius: 8px;
-    padding: 4px;
-    margin: 5px;
     justify-content: center;
-    align-items: center;
+    color: var(--purple700);
 }
 
 .icone {
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin: 15px;
 }
 
-@media screen and (max-width: 480px), (max-height: 710px) {
+@media screen and (max-width: 520px), (max-height: 710px) {
     .icone {
          display: none;
+    }
+    .filtro {
+        display: flex;
+        width: 98px;
+        height: 43px;
+        margin: 2px auto;
     }
 }
 
@@ -213,6 +229,7 @@
     color: var(--gray700);
     justify-content: space-around;
     transition: 0.5s;
+    margin-inline: auto;
 }
 
 .transationcard:hover {
@@ -222,8 +239,23 @@
 .card {
     display: flex;
     justify-content: space-between;
-    min-width: 366px;
-    min-height: 82px;
+    width: 366px;
+    height: 82px;
+}
+
+@media screen and (max-width: 520px) {
+    .card {
+        max-width: 250px;
+        max-height: 70px;
+    }
+}
+
+.data {
+    color: var(--gray700);
+}
+
+.textoCard {
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .resumo {
@@ -234,17 +266,30 @@
 }
 
 .valor {
-    display: flex;
+    display: grid;
+    width: 130px;
+    grid-template-columns: 1fr 30px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "info icon"
+    "info icon";
     gap: 10px;
+    justify-items: end;
     align-items: center;
+    font-size: 11px;
 }
 
 .infoCardDir {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    grid-area: info;
+    display: grid;
+    justify-items: end;
+    gap: 4px;
 }
 
+.iconeDir {
+    grid-area: icon;
+    width: 30px;
+    height: 30px;
+}
 
 
 #img{
