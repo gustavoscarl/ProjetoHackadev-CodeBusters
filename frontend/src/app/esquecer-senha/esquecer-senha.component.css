@@ -202,15 +202,6 @@
     }
   }
   
-  @media screen and (min-width: 768px) and (prefers-color-scheme: dark) {
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: -100px;
-      background-color: black;
-    }
-  }
   
   @media screen and (min-width: 768px) and (max-width: 1197px) and (prefers-color-scheme: light) {
     .background {
@@ -321,7 +312,6 @@
       background-size: cover;
       background-repeat: no-repeat;
 
-
     }
   }
 
@@ -331,10 +321,145 @@
       background-size: cover;
       background-repeat: no-repeat;
 
-
     }
   }
   @media screen and (max-width: 668px) and (prefers-color-scheme: light) {
+    .background {
+      background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+      background-position-y: -150px;
+    }
+  }
+  
+  @media screen and (min-width: 768px) and (prefers-color-scheme: dark) {
+    .background {
+      background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-y: -100px;
+      background-color: black;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1197px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -100px;
+    }
+  }
+  
+  @media screen and (min-width: 1198px) and (max-width: 1440px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -350px;
+    }
+  }
+  
+  @media screen and (min-width: 1441px) and (max-width: 1558px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -400px;
+    }
+  }
+
+  @media screen and (min-width: 1559px) and (max-width: 1825px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -450px;
+    }
+  }
+
+  @media screen and (min-width: 1826px) and (max-width: 1904px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -500px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+  @media screen and (min-width: 1905px) and (max-width: 2005px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -550px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+
+  @media screen and (min-width: 2006px) and (max-width: 2105px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -600px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+  
+  @media screen and (min-width: 2106px) and (max-width: 2195px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -650px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+
+  @media screen and (min-width: 2196px) and (max-width: 2285px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -700px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+
+  @media screen and (min-width: 2286px) and (max-width: 2385px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -750px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+
+  @media screen and (min-width: 2386px) and (max-width: 2485px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -800px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+
+    }
+  }
+
+  @media screen and (min-width: 2486px) and (max-width: 2555px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -850px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+    }
+  }
+
+  @media screen and (min-width: 2556px) and (max-width: 2650px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -900px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+    }
+  }
+
+  @media screen and (min-width: 2651px) and (prefers-color-scheme: dark) {
+    .background {
+      background-position-y: -950px;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+    }
+  }
+  @media screen and (max-width: 668px) and (prefers-color-scheme: dark) {
     .background {
       background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
       background-position-y: -150px;
