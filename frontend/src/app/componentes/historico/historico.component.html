@@ -86,15 +86,20 @@
         </div>
         
         <div class="transationcard" *ngFor="let t of transacoes">
-            <div class="card">
+            <div class="cardItens">
                 <div class="resumo">
-                    <div id="img">
-                        <img src="../../../assets/Shop.svg" alt="">
-                    </div>
-                    <div class="textoCard">
-                        <p>  {{ t.nome  }}  </p>
-                        <p>  {{ t.descricao  }}  </p>
-                    </div>
+
+                        <div class="resumoDir">
+                            <div id="img">
+                                <img src="../../../assets/Shop.svg" alt="">
+                            </div>
+                                <div class="textoCard">
+                                    <p>  {{ t.nome  }}  </p>
+                                    <p>  {{ t.descricao  }}  </p>
+                                </div>
+                            
+                        </div>
+                    
                     <div class="valor">
                         <div class="infoCardDir">
                             <span> {{ t.valor }} </span>
