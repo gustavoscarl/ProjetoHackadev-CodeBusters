@@ -2,6 +2,11 @@
   margin: 0px;
 }
 
+.vetor:hover,
+.light-img:hover {
+  transform: scale(1.1);
+}
+
 .user-greetings-container,
 .user-balance-container {
   display: flex;

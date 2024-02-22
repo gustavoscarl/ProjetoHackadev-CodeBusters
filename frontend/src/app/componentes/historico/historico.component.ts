@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { TransacaoComponent } from '../transacao/transacao.component';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [CommonModule, TransacaoComponent],
+  imports: [CommonModule, TransacaoComponent, RouterModule],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
