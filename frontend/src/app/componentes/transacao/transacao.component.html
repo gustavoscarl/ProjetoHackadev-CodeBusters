@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="transacao">
+        <div class="infoGerais">
+            <h3>NOVA TRANSAÇÃO</h3>
+            <div class="formulario">
+                <form [formGroup]="formulario"  (submit)="transacao()">
+                    <div class="inputBox">
+                        <input type="text" placeholder=" " formControlName="tipo" required="required">
+                        <span>Tipo de Transação</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="number" placeholder=" " formControlName="valor" required="required">
+                        <span>Valor da Transação</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" placeholder=" " formControlName="contaDestino" required="required">
+                        <span>Conta destino</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="date" placeholder=" " formControlName="data" required="required">
+                        <span>Data da Transação</span>
+                    </div>
+                    <div class="botao">
+                        <input type="submit" value="Realizar Transação" class="button">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
