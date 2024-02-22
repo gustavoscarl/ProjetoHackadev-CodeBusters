@@ -26,13 +26,16 @@
 
 .container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     background-color: var(--backgroudcolor);
-    margin: 0 auto;
+    margin: 0;
     padding-top: 15px;
-    width: 100%;
-    height: 100%;
+    /* min-width: 100%;
+    min-height: 100%; */
+}
+
+.icone > object {
+    width: 500px;
 }
 
 .background {
@@ -43,6 +46,13 @@
 }
 
 /* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
 
 /*  TEMA DARK */
@@ -65,18 +75,17 @@
     }
 }
 
-.info {
-    margin: auto;
-}
+
 
 @media screen and (max-width: 780px) {
     .background {
         background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
-        background-size: cover;
+        background-size: 100%;
         background-repeat: no-repeat;
         background-position-y: -600px;
         background-position-x: 10px;
     }
+
 }
 
 @media screen and (max-width: 981px), (max-height: 710px){
@@ -90,6 +99,7 @@
 .gastosEganhos{
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     font-family: "Montserrat", sans-serif;
     max-width:500px;
@@ -232,24 +242,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px auto;
-    width: 80%;
-    border-radius: 10px;
+    width: 85%;
+    margin: auto;
 }
 
 .vazia {
-    display: none;
-    max-width: 30%;
-    max-height: 100px;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px), (max-height: 830px){
-    .icone {
-         display: none;
+    .pesquisa {
+        display: flex;
     }
-
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .icone {
+        margin: 15px auto;
+        width: 60%;
+    }
     .info {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -296,6 +312,15 @@
     }
 }
 
+
+@media screen and (max-width: 375px){
+    .icone {
+        display: none;
+    }
+}
+
+
+
 .button {
     max-width: 200px;
     max-height: 35px;
@@ -319,7 +344,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 40px;
+    padding-left: 10px;
 }
 
 

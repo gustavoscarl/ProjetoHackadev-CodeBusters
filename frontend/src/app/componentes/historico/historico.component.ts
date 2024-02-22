@@ -2,15 +2,14 @@ import { Component, EventEmitter, Input, input } from '@angular/core';
 import { Transacao } from '../../modelo/Transacoes';
 import { CommonModule } from '@angular/common';
 import { TransacaoComponent } from '../transacao/transacao.component';
-import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule],
+  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule, CalendarModule],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
@@ -78,6 +77,8 @@ export class HistoricoComponent {
       );
     }
   }
+
+ value: Date | undefined;
 
 
   //  IMAGEM CHARTS TELA MENOR
