@@ -80,6 +80,14 @@ h4 {
     background-position-y: -400px;
   }
 
+  .background-container {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+    background-size: cover;
+    background-position: center; /* Para centralizar a imagem de fundo */
+    background-repeat: no-repeat;
+    background-position-y: -400px;
+  }
+
   h2 {
     margin-top: 10px;
   }
@@ -97,6 +105,10 @@ h4 {
 @media (prefers-color-scheme: dark) {
   label {
     color: #a484e8;
+  }
+
+  .background-container {
+    background-image: none;
   }
 
   .indigo,
