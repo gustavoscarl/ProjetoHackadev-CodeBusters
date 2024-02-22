@@ -2,7 +2,7 @@
     <div class="navbar-container" [class.dark-mode]="darkMode">
 
         <!-- Lodo do header -->
-        <img [src]="getImagePath()" alt="logo" class="logo">
+        <a [routerLink]="['/home']"><img id="logo-img" [src]="getImagePath()" alt="logo" class="logo"></a>
 
         <ul class="navbar-itens d-flex place">
             <li class="navbar-item">
@@ -12,12 +12,12 @@
                 </ng-template>
 
                 <ng-template [ngIf]="exibirHome">
-                    <button class="navbar-button">Histórico de transações</button>
+                    <a [routerLink]="['/historico']" id="historico" class="navbar-button">Histórico de transações</a>
                 </ng-template>
             </li>
             <li class="navbar-item">
                 <ng-template [ngIf]="exibirHistorico || exibirHome">
-                    <a [routerLink]="['/login']">Sair</a>
+                    <a class="sair" [routerLink]="['/login']">Sair</a>
                 </ng-template>
             </li>
         </ul>

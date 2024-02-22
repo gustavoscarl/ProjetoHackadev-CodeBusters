@@ -5,6 +5,18 @@ html {
   font-family: "Inter", sans-serif;
   background-color: #f0f0f0;
 }
+a {
+  color: #fff;
+}
+
+.header {
+  background-color: #b3b3b3;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #7f53df;
+}
 
 h2 {
   margin-left: 16px;
@@ -45,7 +57,7 @@ h4 {
 }
 
 .btn-purple:hover {
-  background-color: black;
+  background-color: #6630d9;
   color: #7f53df;
 }
 
@@ -68,7 +80,9 @@ h4 {
     background-repeat: no-repeat;
     background-position-y: -400px;
   }
-
+  h2 {
+    margin-top: 10px;
+  }
   .form-group {
     margin: 8px 0;
   }
@@ -76,5 +90,40 @@ h4 {
   h2,
   h4 {
     text-align: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  label {
+    color: #a484e8;
+  }
+
+  .indigo,
+  h2 {
+    color: #7f53df;
+    text-decoration: underline;
+    text-decoration-color: #737373;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  input,
+  select {
+    background-color: #383737;
+  }
+
+  input,
+  select {
+    color: #fff;
+  }
+
+  input::placeholder {
+    color: #929292;
+  }
+  input:focus {
+    background-color: #383737;
+    color: #fff;
   }
 }

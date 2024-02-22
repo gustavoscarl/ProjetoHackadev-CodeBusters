@@ -1,0 +1,132 @@
+<!-- HEADER -->
+<!-- <app-transacao (cadastrarTransacao)="realizarTrasacao($event)"> </app-transacao> -->
+
+
+
+
+<div class="container">
+
+    <div class="col-10 mt-5 mb-5 d-flex text-start d-lg-none justify-content-between">
+        <div>
+          <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/historico/seta-dark.svg" alt=""></a>
+          <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/historico/seta-light.svg" alt=""></a>
+        </div>
+        <div>
+          <img id="lupa-dark" src="../../assets/historico/lupa-dark.svg" alt="">
+          <img id="lupa-light" src="../../../assets/historico/lupa-light.svg" alt="">
+        </div>
+      </div>
+
+    
+
+    <!-- LADO ESQUERDO DA PAGINA, COMENTADO PARA EU FOCAR NO HISTÓRICO -->
+
+    <div class="info">
+        <div class="gastosEganhos">
+            <div class="gastos">
+                <div class="gastos-esq">
+                    <div class="detalhe"></div>
+                    <div class="detalhe1"></div>
+                    <div class="detalhe1"></div>
+                </div>
+
+                <div class="gastos-dir">
+                    <img src="../../../assets/historico/Setagasto.svg" alt="">
+                    <div class="gastosResumo">
+                        <span>Gastos</span>
+                        <p>R$4.000,00</p>
+                    </div>
+                </div>   
+            </div>
+
+            <div class="ganhos">
+                <div class="ganhos-esq">
+                    <div class="detalhe2"></div>
+                    <div class="detalhe3"></div>
+                    <div class="detalhe3"></div>
+                </div>
+                <div class="ganhos-dir">
+                    <img src="../../../assets/historico/Setaganho.svg" alt="">
+                    <div class="ganhosResumo">
+                        <span>Ganhos</span>
+                        <p>R$7.500,00</p>
+                    </div>
+                </div>   
+            </div>
+        
+            <div class="pesquisa">
+                <div class="filtro">
+                    <p> Mês </p>
+                </div>
+                <div class="filtro">
+                    <p> Dezembro </p>
+                </div>
+                <div class="filtro">
+                    <p> Categoria </p>
+                </div>
+            </div>
+
+            <div class="icone">
+                <img src="../../../assets/historico/calendario 1.svg" alt="Filtro calendario">
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
+ 
+    
+    <div class="historico">
+
+        <!-- <button (click)="filtroAno(2024)" class="button">Filtrar por 2024</button> -->
+        
+        <div class="filtros">
+            <div class="transationcard" *ngFor="let t of transacaoFiltrada">
+                <div class="resumo">
+                    <div id="img">
+                    
+                    </div>
+                    <div class="texto">
+                        <p>  {{ t.data  }} </p>
+                        <p>  {{ t.nome }} </p>
+                    </div>
+                </div>
+        </div>
+         
+        <!-- CARD HISTÓRICO DE TRANSAÇÕES -->
+        <div class="data">
+            <h2>Histórico de Transações</h2>
+            <h3> Quarta, 30 de jan. </h3>
+        </div>
+        
+        <div class="transationcard" *ngFor="let t of transacoes">
+            <div class="cardItens">
+                <div class="resumo">
+
+                        <div class="resumoDir">
+                            <div id="img">
+                                <img src="../../../assets/historico/Shop.svg" alt="">
+                            </div>
+                                <div class="textoCard">
+                                    <p>  {{ t.nome  }}  </p>
+                                    <p>  {{ t.descricao  }}  </p>
+                                </div>
+                            
+                        </div>
+                    
+                    <div class="valor">
+                        <div class="infoCardDir">
+                            <span> {{ t.valor }} </span>
+                            <span> {{ t.tipo  }}  </span>
+                        </div>
+                        <div class="iconeDir">
+                            <img src="../../../assets/historico/CashCoin.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> 
+</div>
+<!-- FOOTER -->

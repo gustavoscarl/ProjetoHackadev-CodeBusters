@@ -4,11 +4,11 @@
       <img src="assets/user-balance/avatar.svg" alt="Avatar" class="avatar img-fluid" />
     </div>
     <div class="col-auto">
-      <img src="assets/user-balance/vetor.svg" alt="Vetor" class="vetor img-fluid" />
+      <a [routerLink]="['/login']"><img src="assets/user-balance/vetor.svg" alt="Vetor" class="vetor img-fluid" /></a>
       <!-- <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="vetor img-fluid"></p-chart> -->
       <div class="col-auto">
         <!-- <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="light-img img-fluid"></p-chart> -->
-        <img src="assets/user-balance/vetor-I.svg" alt="Light Image" class="light-img img-fluid" />
+        <a [routerLink]="['/login']"><img src="assets/user-balance/vetor-I.svg" alt="Light Image" class="light-img img-fluid" /></a>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
   </div>
 </div>
 <div class="link-container d-lg-none">
-  <a class="historico-button" href="#">Histórico</a>
+  <a class="historico-button" [routerLink]="['/historico']">Histórico</a>
 </div>
 
 <div class="col-12 row align-items-center text-center d-lg-none">

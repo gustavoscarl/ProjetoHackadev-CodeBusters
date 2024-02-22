@@ -1,0 +1,378 @@
+:root {
+  --white: #ffffff;
+  --gray200: #e5e5e5;
+  --gray500: #737373;
+  --gray700: #525252;
+  --gray600: #262626;
+  --gray800: #111111;
+  --backgroundcolor: #e6e6e6;
+
+  --purple300: #c4aff0;
+  --purple400: #a484e8;
+  --purple500: #a48ae8;
+  --purple700: #7f53df;
+  --purple800: #6630d9;
+
+  --red300: #e8848a;
+  --green300: #84e8cb;
+}
+
+#seta-light:hover,
+#seta-dark:hover {
+  transform: scale(1.1);
+}
+
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
+}
+
+#lupa-light {
+  display: block;
+}
+#lupa-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --backgroundcolor: red;
+    --white: red !important;
+  }
+}
+
+/* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--backgroudcolor);
+  margin-top: 35px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr 2fr;
+  margin-inline: auto;
+  align-content: center;
+  grid-template-areas:
+    "gastos gastos gastos"
+    "filtro filtro filtro";
+}
+
+@media screen and (max-width: 981px), (max-height: 710px) {
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.gastosEganhos {
+  grid-area: gastos;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+}
+
+.gastos {
+  display: flex;
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.gastosResumo > span {
+  font-weight: 500;
+}
+
+.gastosResumo > p {
+  font-weight: 700;
+  margin: 3px;
+}
+
+.detalhe {
+  content: "";
+  width: 108px;
+  height: 24px;
+  border-radius: 0px 8px 0px 0px;
+  background-color: rgba(167, 76, 76, 1);
+  margin: 5px;
+}
+
+.detalhe1 {
+  content: "";
+  margin: 5px;
+  width: 108px;
+  height: 24px;
+  background-color: rgba(167, 76, 76, 1);
+}
+
+.ganhos {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.ganhosResumo > span {
+  font-weight: 500;
+}
+
+.ganhosResumo > p {
+  font-weight: 700;
+  margin: 3px;
+}
+
+.detalhe2 {
+  content: "";
+  width: 108px;
+  height: 24px;
+  border-radius: 0px 8px 0px 0px;
+  background-color: rgba(132, 232, 203, 1);
+  margin: 5px;
+}
+
+.detalhe3 {
+  content: "";
+  margin: 5px;
+  width: 108px;
+  height: 24px;
+  background-color: rgba(132, 232, 203, 1);
+}
+
+.gastos-dir {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 213px;
+  height: 88px;
+  border-radius: 8px;
+  background-color: var(--red300);
+}
+
+@media (max-width: 375px) {
+  .gastosEganhos {
+    width: 95%;
+  }
+}
+
+.ganhos-dir {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 213px;
+  height: 88px;
+  border-radius: 8px;
+  background-color: var(--green300);
+}
+
+.gastos-dir > img,
+.ganhos-dir > img {
+  width: 17.5px;
+  height: 20px;
+}
+
+/* PARTE DE BAIXO LADO ESQUERDO */
+
+.pesquisa {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-area: filtro;
+  gap: 15px;
+}
+
+.filtro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 15px;
+  width: 121px;
+  height: 50px;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .filtro {
+    --white: #262626;
+  }
+}
+
+.filtro > p {
+  display: flex;
+  justify-content: center;
+  color: var(--purple700);
+}
+
+.icone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .icone {
+    background-color: var(--purple500);
+    border-radius: 10px;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
+  }
+
+  #lupa-light {
+    display: none;
+  }
+  #lupa-dark {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 520px), (max-height: 710px) {
+  .icone {
+    display: none;
+  }
+
+  .filtro {
+    display: flex;
+    width: 98px;
+    height: 43px;
+    margin: 2px auto;
+  }
+}
+
+.button {
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  background: var(--purple400);
+  transition: 0.5s;
+}
+
+.button:hover {
+  background: var(--purple700);
+  color: var(--red300);
+  box-shadow: 2px 1.3px 5px 1px var(--gray500);
+}
+
+/* LADO DIREITO DA TELA - HISTÓRICO DE TRANSAÇÕES */
+
+.historico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.resumo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.valor {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "info icon"
+    "info icon";
+  gap: 10px;
+  justify-items: end;
+  align-items: end;
+  font-size: 11px;
+}
+
+.transationcard {
+  display: flex;
+  margin: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--gray700);
+  transition: 0.5s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .transationcard {
+    --white: #262626;
+  }
+  .textoCard,
+  .infoCardDir,
+  .iconeDir {
+    color: var(--gray200);
+  }
+}
+
+.transationcard:hover {
+  box-shadow: 5px 2px 8px 1px var(--purple700);
+}
+
+.resumoDir {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.cardItens {
+  display: flex;
+  justify-content: space-between;
+  width: 366px;
+  height: 82px;
+}
+
+@media screen and (max-width: 520px) {
+  .card {
+    max-width: 250px;
+    max-height: 70px;
+  }
+}
+
+.data {
+  color: var(--gray700);
+}
+
+.textoCard {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  margin-top: 15px;
+}
+
+.infoCardDir {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 4px;
+}
+
+.iconeDir {
+  grid-area: icon;
+  width: 30px;
+  height: 30px;
+}
+
+#img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 100px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(196, 175, 240, 1);
+}
+
+#img > img {
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
