@@ -4,6 +4,15 @@
   text-decoration: none;
 }
 
+#logo-img:hover {
+  transform: scale(1.1);
+}
+
+.historico a:hover {
+  color: #7f53df;
+  transition-duration: 400ms;
+}
+
 .navbar-button {
   font-family: "Inter", sans-serif;
   border: none;
@@ -113,6 +122,11 @@
     color: #7f53df;
     transition-duration: 400ms;
   }
+
+  #historico:hover {
+    color: #7f53df !important;
+    transition-duration: 400ms !important;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -141,5 +155,10 @@
 
   #navbar {
     color: #181818;
+  }
+
+  #historico:hover {
+    color: #7f53df !important;
+    transition-duration: 400ms !important;
   }
 }
