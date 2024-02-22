@@ -17,29 +17,40 @@
     --green300: #84E8CB;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --backgroundcolor:red;
-        --white: red !important;
-    }
-
-}
-
-
-/* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: var(--backgroudcolor);
-    margin-top: 35px;
+    margin-top: 15px;
+}
+
+/* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
+
+
+/*  TEMA DARK */
+
+@media (prefers-color-scheme: dark){
+    .container{
+        background-color: var(--gray800);
+    }
+    .gastosResumo,
+    .ganhosResumo {
+    color:var(--gray800);
+    }
+    .filtro {
+        --white: var(--gray600);
+    }
+    .icone {
+        background-color: var(--purple500);
+    }
 }
 
 .info {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 2fr 1fr 2fr;
-    margin-inline: auto;
+    margin: auto;
     align-content: center;
     grid-template-areas:
     "gastos gastos gastos"
@@ -50,6 +61,7 @@
     .info{
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 }
 
@@ -61,20 +73,25 @@
     font-family: "Montserrat", sans-serif;
 }
 
-.gastos {
+.gastos,
+.ganhos {
     display: flex;
     margin: 15px;
     justify-content: space-between;
 }
 
-.gastosResumo > span {
+.gastosResumo > span,
+.ganhosResumo > span  {
     font-weight: 500;
 }
 
-.gastosResumo > p {
+.gastosResumo > p,
+.ganhosResumo > p {
     font-weight: 700;
     margin: 3px;
 }
+
+
 
 .detalhe {
     content: '';
@@ -84,7 +101,6 @@
     background-color: rgba(167, 76, 76, 1);
     margin: 5px;
 }
-
 .detalhe1 {
     content: '';
     margin: 5px;
@@ -93,20 +109,6 @@
     background-color: rgba(167, 76, 76, 1);
 }
 
-.ganhos {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px;
-}
-
-.ganhosResumo > span {
-    font-weight: 500;
-}
-
-.ganhosResumo > p {
-    font-weight: 700;
-    margin: 3px;
-}
 
 .detalhe2 {
     content: '';
@@ -130,14 +132,14 @@
     align-items: center;
     justify-content: space-evenly;
     width: 213px;
-    height: 88px;
+    max-height: 88px;
     border-radius: 8px;
     background-color: var(--red300);
 }
 
 @media (max-width: 375px){
      .gastosEganhos{
-        width: 95%;
+        width: 80%;
     }
 }
 
@@ -146,7 +148,7 @@
     align-items: center;
     justify-content: space-evenly;
     width: 213px;
-    height: 88px;
+    max-height: 88px;
     border-radius: 8px;
     background-color: var(--green300);
 }
@@ -154,8 +156,8 @@
 
 .gastos-dir > img,
 .ganhos-dir > img {
-    width: 17.5px;
-    height: 20px;
+    max-width: 17.5px;
+    max-height: 20px;
 }
 
 /* PARTE DE BAIXO LADO ESQUERDO */
@@ -165,6 +167,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-area: filtro;
     gap: 15px;
+    margin: auto;
 }
 
 
@@ -179,11 +182,10 @@
     border-radius: 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-    .filtro {
-        --white: #262626;
-    }
+.filtro:hover{
+    box-shadow: 2px 1.3px 5px 1px var(--gray600)
 }
+
 
 .filtro > p {
     display: flex;
@@ -195,33 +197,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
-    width: 100%;
+    margin: 15px auto;
+    width: 80%;
+    border-radius: 10px;
 }
 
-@media (prefers-color-scheme: dark){
-    .icone {
-        background-color: var(--purple500);
-        border-radius: 10px;
-    }
-}
 
-@media screen and (max-width: 520px), (max-height: 710px) {
+
+@media screen and (max-width: 435px), (max-height: 710px) {
     .icone {
          display: none;
     }
+}
 
+@media screen and (max-width: 430px){
     .filtro {
         display: flex;
-        width: 98px;
-        height: 43px;
-        margin: 2px auto;
+        justify-content: center;
+        max-width: 98px;
+        max-height: 43px;
+        margin: 5px auto;
+    }
+}
+
+@media screen and (max-width: 300px){
+    .pesquisa {
+        max-width: 250px;
+    }
+
+
+    .filtro {
+    max-width: 88px;
+    max-height: 30px;
     }
 }
 
 .button {
-    width: 200px;
-    height: 35px;
+    max-width: 200px;
+    max-height: 35px;
     border-radius: 5px;
     border: none;
     background: var(--purple400);
@@ -242,7 +255,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding-left: 40px;
 }
 
 
@@ -274,7 +287,7 @@
     border-radius: 8px;
     background-color: var(--white);
     color: var(--gray700);
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -286,11 +299,14 @@
     .iconeDir  {
         color: var(--gray200);
     }
+    .data > p {
+        color: var(--white)
+    }
 }
 
 
 .transationcard:hover {
-    box-shadow: 5px 2px 8px 1px var(--purple700);
+    box-shadow: 2px 1px 4px 1px var(--gray700);
 }
 
 .resumoDir {
@@ -299,27 +315,33 @@
     gap: 15px;
 }
 .cardItens {
-    display: flex;
+    display: grid;
+    grid-template-columns: 99% 1fr;
     justify-content: space-between;
     width: 366px;
     height: 82px;
 }
 
-@media screen and (max-width: 520px) {
-    .card {
-        max-width: 250px;
+@media screen and (max-width: 375px) {
+    .cardItens {
+        max-width: 300px;
         max-height: 70px;
     }
 }
 
 .data {
     color: var(--gray700);
+    margin-top: 25px;
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2vh, 1.5rem);
 }
 
 .textoCard {
     font-size: clamp(0.75rem, 2vw, 1rem);
     margin-top: 15px;
 }
+
 
 .infoCardDir {
     grid-area: info;
@@ -328,6 +350,7 @@
     align-items: end;
     gap: 4px;
 }
+
 
 .iconeDir {
     grid-area: icon;
