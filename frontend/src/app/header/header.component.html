@@ -12,12 +12,12 @@
                 </ng-template>
 
                 <ng-template [ngIf]="exibirHome">
-                    <button class="navbar-button">Histórico de transações</button>
+                    <a href="" class="navbar-button historico">Histórico de transações</a>
                 </ng-template>
             </li>
             <li class="navbar-item">
                 <ng-template [ngIf]="exibirHistorico || exibirHome">
-                    <a [routerLink]="['/login']">Sair</a>
+                    <a class="sair" [routerLink]="['/login']">Sair</a>
                 </ng-template>
             </li>
         </ul>
