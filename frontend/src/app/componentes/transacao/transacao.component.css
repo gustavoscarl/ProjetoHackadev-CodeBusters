@@ -1,0 +1,121 @@
+:root{
+    --gray200: #E5E5E5;
+    --gray500: #737373;
+    --gray700: #525252;
+    --gray600: #262626;
+    --gray800: #111111;
+    
+    --purple300: #C4AFF0;
+    --purple400: #A484E8;
+    --purple500: #A48AE8;
+    --purple700: #7F53DF;
+    --purple800: #6630D9;
+
+    --red300: #E89A84;
+    --green300: #84E8CB;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    height: 500px;
+    box-sizing: border-box;
+    background: var(--purple300);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.container:hover {
+    box-shadow: 3px 2px 7px 1.5px var(--purple800); ;
+}
+
+.inputBox {
+    position: relative;
+    width:250px ;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--purple400);
+    background: var(--purple300);
+    border-radius: 5px;
+    outline: none;
+    color: var(--gray700);
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+.inputBox span {
+    position: absolute;
+    top:0;
+    padding: 13px;
+    pointer-events: none;
+    font-size:1rem;
+    color: var(--purple500);
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.inputBox input:valid ~span,
+.inputBox input:focus ~span {
+    color: var(--purple800);
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.8rem;
+    padding: 0 7px;
+    background: var(--purple300);
+    border-left: 2px solid var(--purple800);
+    border-right: 2px solid var(--purple800);
+    letter-spacing: 0.2rem;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+    border: 2px solid var(--purple800);
+}
+
+.inputBox:nth-child(3) input:valid ~ span,
+.inputBox:nth-child(3) input:focus ~ span {
+    background: var(--purple800);
+    color: #262626;
+    border-radius: 5px;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin: 50px 0px;
+    background: var(--purple400);
+    transition: 0.5s;
+}
+
+.button {
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: var(--purple400);
+    transition: 0.5s;
+}
+
+.button:hover{
+    background: var(--purple700);
+    color: var(--red300);
+    box-shadow: 2px 1.3px 5px 1px var(--purple700);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}

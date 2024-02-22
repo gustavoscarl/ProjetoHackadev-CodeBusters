@@ -1,13 +1,14 @@
 import { Component, Inject, Input } from '@angular/core';
 import { InputserviceService } from '../../servicos/inputservice.service';
 import { ChartModule } from 'primeng/chart';
+import { RouterLink } from '@angular/router';
 
 @Inject({ providedIn: 'root' })
 
 @Component({
   selector: 'app-user-balance',
   standalone: true,
-  imports: [ChartModule],
+  imports: [ChartModule, RouterLink],
   templateUrl: './user-balance.component.html',
   styleUrl: './user-balance.component.css'
 })
