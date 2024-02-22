@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { TransacaoComponent } from '../transacao/transacao.component';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { ChartModule } from 'primeng/chart';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [CommonModule, TransacaoComponent],
+  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
@@ -38,8 +40,6 @@ export class HistoricoComponent {
 
   // HISTÓRICO EXIBIDO, ORGANIZADO POR DIA.
 
-  historicotransacoes: Transacao[] = [];
-
   ordenarTransacoes(){
     this.transacoes.sort((a,b) => {
       const dataA = new Date(a.data).getTime();
@@ -48,13 +48,91 @@ export class HistoricoComponent {
     })
   }
 
+  
+  // BARRA DE PESQUISA POR NOME, VALOR, TIPO E DESCRIÇÃO.
 
-  transacaoFiltrada: Transacao[] = [];
+  filteredItems: Transacao[] = [];
 
-  filtroAno(ano: number){
-    this.transacaoFiltrada = this.transacoes.filter(transacoes => {
-      return new Date(transacoes.data).getFullYear() === ano;
-    })
+  searchTerm: string = '';
+  searchMade: boolean = false;
+
+  constructor() {
+    this.filteredItems = this.transacoes;
   }
 
-}
+  filterItems() {
+    
+    if (!this.searchTerm.trim()) {
+      this.searchMade = false;
+      // Se não houver termo de pesquisa, mostre todos os itens
+      this.filteredItems = this.transacoes;
+    } else {
+      
+      this.searchMade = true;
+      // Filtra os itens que incluem o termo de pesquisa
+      this.filteredItems = this.transacoes.filter(transacoes =>
+      (transacoes.nome?.toLowerCase().includes(this.searchTerm.toLowerCase()) ?? false) ||
+      (transacoes.valor?.toString().toLowerCase().includes(this.searchTerm.toLowerCase()) ?? false) ||
+      (transacoes.tipo?.toString().toLowerCase().includes(this.searchTerm.toLowerCase()) ?? false) ||
+      (transacoes.descricao?.toString().toLowerCase().includes(this.searchTerm.toLowerCase()) ?? false)
+      );
+    }
+  }
+
+
+  //  IMAGEM CHARTS TELA MENOR
+
+  chartData: any = {
+    labels: ['Alimentação', 'Lazer', 'Educação', 'Viagens', 'Jogos', 'Mercado', 'Jogos', 'Mercado', 'Mercado'],
+    datasets: [
+      {
+        label: 'Gastos',
+        data: [100, 50, 15, 30, 40, 100, 70, 20, 30],
+        backgroundColor: 'rgba(127, 83, 223, 1)',
+        hoverBackgroundColor: 'rgba(102, 48, 217, 1)',
+        borderRadius: [{ topLeft: 0, topRight: 12, bottomLeft: 0, bottomRight: 0 }, 0, 0, 0, 0, 0, 0, 0, { topLeft: 0, topRight: 0, bottomLeft: 0, bottomRight: 12 }]
+      }
+    ]
+  }
+
+  chartOptions: any = {
+    indexAxis: 'y',
+    responsive: true,
+
+    layout: {
+      padding: 0,
+    },
+
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+
+    scales: {
+      x: {
+        border: {
+          color: 'transparent',
+        },
+        ticks: {
+          display: false,
+        },
+        grid: {
+          display: false,
+        }
+      },
+      y: {
+        border: {
+          color: 'transparent',
+        },
+        ticks: {
+          display: false,
+        },
+        grid: {
+          display: false,
+        },
+      },
+    }
+  }
+
+};

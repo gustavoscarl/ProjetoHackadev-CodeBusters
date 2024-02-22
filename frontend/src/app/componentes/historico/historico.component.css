@@ -17,12 +17,29 @@
     --green300: #84E8CB;
 }
 
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing: border-box;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: var(--backgroudcolor);
-    margin-top: 15px;
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+.background {
+    background-image: url("../../../assets/logotypes-login-cadastro/desktop-light.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
 }
 
 /* LADO ESQUERDO A TELA - RESUMOS E INFORMAÇÕES */
@@ -31,9 +48,11 @@
 /*  TEMA DARK */
 
 @media (prefers-color-scheme: dark){
-    .container{
+    .container {
         background-color: var(--gray800);
     }
+
+
     .gastosResumo,
     .ganhosResumo {
     color:var(--gray800);
@@ -47,14 +66,17 @@
 }
 
 .info {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 2fr;
     margin: auto;
-    align-content: center;
-    grid-template-areas:
-    "gastos gastos gastos"
-    "filtro filtro filtro";
+}
+
+@media screen and (max-width: 780px) {
+    .background {
+        background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: -600px;
+        background-position-x: 10px;
+    }
 }
 
 @media screen and (max-width: 981px), (max-height: 710px){
@@ -66,11 +88,11 @@
 }
 
 .gastosEganhos{
-    grid-area: gastos;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-family: "Montserrat", sans-serif;
+    max-width:500px;
 }
 
 .gastos,
@@ -140,7 +162,7 @@
 @media (max-width: 375px){
      .gastosEganhos{
         width: 80%;
-    }
+    } 
 }
 
 .ganhos-dir {
@@ -165,9 +187,22 @@
 .pesquisa {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-area: filtro;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 15px;
     margin: auto;
+    grid-template-areas:
+    "filtro filtro filtro"
+    "search search search";
+}
+
+ .search-bar {
+    display: flex;
+    flex-direction: column;
+    grid-area: search;
+    width:auto;
+    height: auto;
+    justify-content: center;
 }
 
 
@@ -202,11 +237,41 @@
     border-radius: 10px;
 }
 
+.vazia {
+    display: none;
+    max-width: 30%;
+    max-height: 100px;
+}
+
+@media screen and (max-width: 768px), (max-height: 830px){
+    .icone {
+         display: none;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+}
+
 
 
 @media screen and (max-width: 435px), (max-height: 710px) {
-    .icone {
-         display: none;
+    .ganhos-esq,
+    .gastos-esq {
+        display: none;
+    }
+    .vazia {
+        display: flex;
+    }
+    .pesquisa {
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .background {
+        background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-y: -333px;
     }
 }
 
@@ -224,7 +289,6 @@
     .pesquisa {
         max-width: 250px;
     }
-
 
     .filtro {
     max-width: 88px;
@@ -271,7 +335,8 @@
     display: grid;
     grid-template-columns: 1fr 30px;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "info icon"
+    grid-template-areas: 
+    "info icon"
     "info icon";
     gap: 10px;
     justify-items: end;
@@ -330,12 +395,13 @@
 }
 
 .data {
-    color: var(--gray700);
-    margin-top: 25px;
+    color: var(--gray600);
+    align-self: flex-start;
     padding-left: 10px;
     font-weight: 600;
     font-size: clamp(0.9rem, 2vh, 1.5rem);
 }
+
 
 .textoCard {
     font-size: clamp(0.75rem, 2vw, 1rem);
