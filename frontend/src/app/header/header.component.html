@@ -2,7 +2,7 @@
     <div class="navbar-container" [class.dark-mode]="darkMode">
 
         <!-- Lodo do header -->
-        <img [src]="getImagePath()" alt="logo" class="logo">
+        <a [routerLink]="['/home']"><img [src]="getImagePath()" alt="logo" class="logo"></a>
 
         <ul class="navbar-itens d-flex place">
             <li class="navbar-item">
