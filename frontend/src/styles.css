@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-
 :root {
   --white: #ffffff;
   --gray200: #e5e5e5;
@@ -25,8 +24,8 @@
   font-family: "Montserrat", sans-serif;
 }
 
-
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -35,7 +34,7 @@ body, html {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #111111;
+    background-color: #000;
     color: #fff;
   }
 }
