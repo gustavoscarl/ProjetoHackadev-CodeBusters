@@ -45,9 +45,9 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   background-color: var(--backgroudcolor);
-  margin: 0;
+  margin: 0 auto;
   padding-top: 15px;
   /* min-width: 100%;
     min-height: 100%; */
