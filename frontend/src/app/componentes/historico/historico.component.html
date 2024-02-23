@@ -14,6 +14,7 @@
                     </div> -->
                     <div class="vazia">
                         <p-chart type="bar" [data]="chartData" [options]="chartOptions" height="100px" width="200px"></p-chart>
+
                     </div>
 
                     <div class="gastos-dir">
@@ -47,6 +48,16 @@
                 <div class="pesquisa">
                     <!-- <div class="search-bar">
                         <input type="text" [(ngModel)]="searchTerm" placeholder="Pesquisar..." (input)="filterItems()" />
+            <div class="icone">
+                <img src="../../../assets/historico/calendario 1.svg" alt="Filtro calendario">
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
+ 
+    
                     
                     <div class="searchbool"   *ngIf="searchMade" >
                         <div class="cardItens transationcard" *ngFor="let item of filteredItems">
@@ -104,6 +115,7 @@
             <div class="transationcard" *ngFor="let t of transacoes">
                 <div class="cardItens">
                     <div class="resumo">
+
 
                             <div class="resumoDir">
                                 <div id="img">

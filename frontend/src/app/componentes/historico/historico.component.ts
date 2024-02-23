@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, input } from '@angular/core';
 import { Transacao } from '../../modelo/Transacoes';
 import { CommonModule } from '@angular/common';
 import { TransacaoComponent } from '../transacao/transacao.component';
+
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
@@ -9,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 @Component({
   selector: 'app-historico',
   standalone: true,
+
   imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule, CalendarModule],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
