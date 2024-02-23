@@ -281,7 +281,12 @@
     }
 }
 
-
+@media screen and (max-width: 700px){
+    .background {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 @media screen and (max-width: 435px), (max-height: 710px) {
     .ganhos-esq,
