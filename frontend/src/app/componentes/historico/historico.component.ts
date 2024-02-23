@@ -6,12 +6,14 @@ import { TransacaoComponent } from '../transacao/transacao.component';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
 
-  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule, CalendarModule],
+  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule, CalendarModule, RouterModule, HeaderComponent],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })

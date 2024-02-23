@@ -2,6 +2,21 @@
   background-color: var(--purple500);
 }
 
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
+}
+
+#lupa-light {
+  display: block;
+}
+
+#lupa-dark {
+  display: none;
+}
+
 :root {
   --white: #ffffff;
   --gray200: #e5e5e5;
@@ -63,6 +78,21 @@
 @media (prefers-color-scheme: dark) {
   .container {
     background-color: #000;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
+  }
+
+  #lupa-light {
+    display: none;
+  }
+
+  #lupa-dark {
+    display: block;
   }
 
   .gastosResumo,
