@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-                <div class="pesquisa">
+                
                     <!-- <div class="search-bar">
                         <input type="text" [(ngModel)]="searchTerm" placeholder="Pesquisar..." (input)="filterItems()" />
             <div class="icone">
@@ -53,53 +53,51 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     
     <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
  
     
-                    
-                    <div class="searchbool"   *ngIf="searchMade" >
-                        <div class="cardItens transationcard" *ngFor="let item of filteredItems">
-                            <div class="resumo ">
-                                <div class="resumoDir">
-                                    <div id="img">
-                                        <img src="../../../assets/Shop.svg" alt="">
+                 <div class="pesquisa">   
+                        <div class="searchbool"   *ngIf="searchMade" >
+                            <div class="cardItens transationcard" *ngFor="let item of filteredItems">
+                                <div class="resumo ">
+                                    <div class="resumoDir">
+                                        <div id="img">
+                                            <img src="../../../assets/Shop.svg" alt="">
+                                        </div>
+                                        <div class="textoCard">
+                                            <p>  {{ item.nome  }}  </p>
+                                            <p>  {{ item.descricao  }}  </p>
+                                        </div>
                                     </div>
-                                    <div class="textoCard">
-                                        <p>  {{ item.nome  }}  </p>
-                                        <p>  {{ item.descricao  }}  </p>
-                                    </div>
-                                </div>
-                                <div class="valor">
-                                    <div class="infoCardDir">
-                                        <span> {{ item.valor }} </span>
-                                        <span> {{ item.tipo  }}  </span>
-                                    </div>
-                                    <div class="iconeDir">
-                                        <img src="../../../assets/CashCoin.svg" alt="">
+                                    <div class="valor">
+                                        <div class="infoCardDir">
+                                            <span> {{ item.valor }} </span>
+                                            <span> {{ item.tipo  }}  </span>
+                                        </div>
+                                        <div class="iconeDir">
+                                            <img src="../../../assets/CashCoin.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                    
+                        <div class="filtro">
+                            <p> Mês </p>
                         </div>
-                    </div> 
-                </div> -->
-                    <div class="filtro">
-                        <p> Mês </p>
-                    </div>
-                    <div class="filtro">
-                        <p> Dezembro </p>
-                    </div>
-                    <div class="filtro">
-                        <p> Categoria </p>
+                        <div class="filtro">
+                            <p> Dezembro </p>
+                        </div>
+                        <div class="filtro">
+                            <p> Categoria </p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="icone">
-                    <object type="image/svg+xml" data="../../../assets/calendario.svg"></object>
-                </div>
-
-            
+                    <div class="icone">
+                        <object type="image/svg+xml" data="../../../assets/calendario.svg"></object>
+                    </div>
+            </div>
         </div>
         
         <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
@@ -143,4 +141,3 @@
             </div>
         </div> 
     </div>
-</div>

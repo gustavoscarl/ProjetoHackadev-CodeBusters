@@ -40,6 +40,7 @@
 }
 
 .background {
+    display: flex;
     background-image: url("../../../assets/logotypes-login-cadastro/desktop-light.svg");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -92,6 +93,7 @@
 @media screen and (max-width: 981px), (max-height: 710px){
     .info{
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -122,8 +124,7 @@
 .ganhosResumo > p {
     font-weight: 700;
     margin: 3px;
-=======
-  
+}
 
 
 
@@ -158,7 +159,6 @@
   font-weight: 700;
   margin: 3px;
 }
-
 
 .detalhe2 {
   content: "";
@@ -214,13 +214,13 @@
 .pesquisa {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     gap: 15px;
     margin: auto;
     grid-template-areas:
     "filtro filtro filtro"
-    "search search search";
+    "search search search"
+    "icone icone icone";
 }
 
  .search-bar {
@@ -255,6 +255,7 @@
 }
 
 .icone {
+    grid-area: icone;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -270,16 +271,11 @@
     .pesquisa {
         display: flex;
     }
-    .container {
-        display: flex;
-        flex-direction: column;
-    }
     .icone {
         margin: 15px auto;
         width: 60%;
     }
     .info {
-        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
