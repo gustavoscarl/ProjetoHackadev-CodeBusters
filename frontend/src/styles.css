@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
 
 :root {
   --white: #ffffff;
@@ -24,13 +28,17 @@
   font-family: "Montserrat", sans-serif;
 }
 
-a {
-  text-decoration: none;
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #000;
+    background-color: #111111;
     color: #fff;
   }
 }

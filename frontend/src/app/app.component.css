@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
     background-color: #E5E5E5;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
