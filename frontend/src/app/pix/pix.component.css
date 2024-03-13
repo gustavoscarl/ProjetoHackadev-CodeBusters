@@ -1,0 +1,55 @@
+/* Estilos para telas maiores */
+.container {
+    max-width: 600px; /* Ajuste conforme necessário */
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  input,
+  textarea,
+  button {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: none;
+  }
+  
+  textarea {
+    height: 100px; /* Ajuste conforme necessário */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease; /* Adicionando uma transição suave */
+  }
+  
+  button:hover {
+    opacity: 0.8; /* Define a opacidade ao passar o mouse */
+  }
+  
+  /* Estilos para telas menores */
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    input,
+    textarea,
+    button {
+      margin-right: 0;
+    }
+  
+    textarea {
+      height: 80px; /* Ajuste conforme necessário */
+    }
+  }
+  
