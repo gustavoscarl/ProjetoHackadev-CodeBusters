@@ -40,6 +40,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/hello", () => "Hello");
-
 app.Run();
