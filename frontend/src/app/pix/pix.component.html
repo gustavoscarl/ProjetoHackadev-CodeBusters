@@ -1,13 +1,28 @@
 <!-- pix.component.html -->
 
-<div>
-    <h1>Transação PIX</h1>
-  
-    <form (ngSubmit)="realizarTransacaoPix()">
-      <label for="valor">Valor:</label>
-      <input type="number" id="valor" name="valor" [(ngModel)]="valor" required />
-  
-      <label for="chavePix">Chave PIX:</label>
+<div class="transacao-pix">
+
+  <div class="titulo">
+    <h1>NOVA</h1>
+    <h2>TRANSFERÊNCIA</h2>
+
+  </div>
+ 
+
+  <form class="transacao-pix-form" (ngSubmit)="realizarTransacaoPix()">
+    <div class="form-group">
+      <label for="valor" class="label">Valor:</label>
+      <input
+        type="number"
+        id="valor"
+        name="valor"
+        [(ngModel)]="valor"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="chavePix" class="label">Chave PIX:</label>
       <input
         type="text"
         id="chavePix"
@@ -15,15 +30,17 @@
         [(ngModel)]="chavePix"
         required
       />
-  
-      <label for="descricao">Descrição:</label>
+    </div>
+
+    <div class="form-group">
+      <label for="descricao" class="label">Descrição:</label>
       <textarea
         id="descricao"
         name="descricao"
         [(ngModel)]="descricao"
       ></textarea>
-  
-      <button type="submit">Realizar Transação PIX</button>
-    </form>
-  </div>
-  
+    </div>
+
+    <button type="submit">ENVIAR VALOR</button>
+  </form>
+</div>

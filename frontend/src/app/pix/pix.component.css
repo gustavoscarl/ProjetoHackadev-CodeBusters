@@ -1,55 +1,110 @@
 /* Estilos para telas maiores */
 .container {
-    max-width: 600px; /* Ajuste conforme necessário */
-    margin: 0 auto;
-    padding: 20px;
-  }
+  max-width: 600px; /* Ajuste conforme necessário */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #c4aff0;
+  display: flex;
+}
+h2 {
+  color: #64ced9;
+  display: flex;
+}
+
+.titulo {
+  margin-top: 100px;
+  margin-left: 50px;
   
-  form {
-    width: 100%;
+}
+.transacao-pix {
+  text-align: center;
+}
+
+.transacao-pix h1 {
+  margin-bottom: 20px;
+}
+
+.transacao-pix-form {
+  width: 100%;
+  text-align: center; /* Centraliza os elementos */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-right: 50%; /* Alinha os rótulos ao canto esquerdo */
+  padding: 5px;
+}
+
+input,
+textarea,
+button {
+  width: calc(
+    100% - 20px
+  ); /* Calcula o tamanho considerando a margem interna */
+  margin: 0 auto; /* Centraliza os elementos */
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  outline: none;
+}
+
+textarea {
+  height: 100px; /* Ajuste conforme necessário */
+}
+
+button {
+  background-color: #7f53df;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8; /*Opacidade aplicada de 0.8*/
+}
+
+button:active {
+  opacity: 0.6; /*Opacidade aplicada de 0.6*/
+}
+
+/* Estilos para telas menores */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
   }
-  
+
   input,
   textarea,
   button {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    outline: none;
+    width: calc(
+      80% - 20px
+    ); /* Calcula o tamanho considerando a margem interna */
+    margin: 0 auto; /* Centraliza os elementos */
+    margin-bottom: 10px; /* Reduz a margem inferior */
+    padding: 8px; /* Reduz o preenchimento */
   }
-  
+
   textarea {
-    height: 100px; /* Ajuste conforme necessário */
+    height: 50px; /* Reduz a altura do textarea */
   }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.3s ease; /* Adicionando uma transição suave */
+
+  .label {
+    margin-left: 11%; /* Ajusta o alinhamento do rótulo */
   }
-  
   button:hover {
-    opacity: 0.8; /* Define a opacidade ao passar o mouse */
+    opacity: 0.8; /*Opacidade aplicada de 0.8*/
   }
-  
-  /* Estilos para telas menores */
-  @media screen and (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
-  
-    input,
-    textarea,
-    button {
-      margin-right: 0;
-    }
-  
-    textarea {
-      height: 80px; /* Ajuste conforme necessário */
-    }
+
+  button:active {
+    opacity: 0.6; /*Opacidade aplicada de 0.6*/
   }
-  
+}
