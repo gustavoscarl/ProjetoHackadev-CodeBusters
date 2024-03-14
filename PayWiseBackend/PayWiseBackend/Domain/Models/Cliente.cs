@@ -1,4 +1,4 @@
-﻿namespace PayWiseBackend.Domain.Models.Cliente;
+﻿namespace PayWiseBackend.Domain.Models;
 
 public class Cliente : Entity
 {
@@ -15,4 +15,10 @@ public class Cliente : Entity
 
     public int DocumentoId { get; set; }
     public virtual Documento Documento { get; set; }
+
+    public int? SessaoId { get; set; }
+    public virtual Sessao Sessao { get; set; }
+
+    public int? ContaId { get; set; }
+    public virtual Conta Conta { get; set; }
 }

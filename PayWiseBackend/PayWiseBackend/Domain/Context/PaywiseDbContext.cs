@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PayWiseBackend.Domain.Models.Cliente;
+using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Domain.Context;
 
@@ -11,4 +11,6 @@ public class PaywiseDbContext : DbContext
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<TentativaLogin> TentativasLogin { get; set; }
     public DbSet<Documento> Documentos { get; set; }
+    public DbSet<Sessao> Sessoes { get; set; }
+    public DbSet<Conta> Contas { get; set; }
 }

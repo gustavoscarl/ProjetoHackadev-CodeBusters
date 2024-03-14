@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240314113619_CreateSessao")]
+    partial class CreateSessao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,16 +25,13 @@ namespace PayWiseBackend.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ContaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -59,63 +59,21 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("SessaoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TentativaLoginId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaId");
-
                     b.HasIndex("DocumentoId");
 
                     b.HasIndex("EnderecoId");
-
-                    b.HasIndex("SessaoId");
 
                     b.HasIndex("TentativaLoginId");
 
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Conta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Agencia")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("DataAbertura")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<double>("LimitePixGeral")
-                        .HasColumnType("double");
-
-                    b.Property<double>("LimitePixNoturno")
-                        .HasColumnType("double");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Pin")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Saldo")
-                        .HasColumnType("double");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contas");
-                });
-
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Documento", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.Documento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +94,7 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("Documentos");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Endereco", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.Endereco", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,7 +134,7 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("Enderecos");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.Sessao", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,7 +151,7 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("Sessoes");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.TentativaLogin", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.TentativaLogin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -215,41 +173,29 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("TentativasLogin");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente", b =>
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente.Cliente", b =>
                 {
-                    b.HasOne("PayWiseBackend.Domain.Models.Conta", "Conta")
-                        .WithMany()
-                        .HasForeignKey("ContaId");
-
-                    b.HasOne("PayWiseBackend.Domain.Models.Documento", "Documento")
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente.Documento", "Documento")
                         .WithMany()
                         .HasForeignKey("DocumentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PayWiseBackend.Domain.Models.Endereco", "Endereco")
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente.Endereco", "Endereco")
                         .WithMany()
                         .HasForeignKey("EnderecoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PayWiseBackend.Domain.Models.Sessao", "Sessao")
-                        .WithMany()
-                        .HasForeignKey("SessaoId");
-
-                    b.HasOne("PayWiseBackend.Domain.Models.TentativaLogin", "TentativaLogin")
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente.TentativaLogin", "TentativaLogin")
                         .WithMany()
                         .HasForeignKey("TentativaLoginId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Conta");
-
                     b.Navigation("Documento");
 
                     b.Navigation("Endereco");
-
-                    b.Navigation("Sessao");
 
                     b.Navigation("TentativaLogin");
                 });
