@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240314132514_CreateTransacao")]
+    partial class CreateTransacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,9 +98,6 @@ namespace PayWiseBackend.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("HistoricoId")
-                        .HasColumnType("int");
-
                     b.Property<double>("LimitePixGeral")
                         .HasColumnType("double");
 
@@ -114,8 +114,6 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HistoricoId");
 
                     b.ToTable("Contas");
                 });
@@ -181,19 +179,6 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("Enderecos");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Historicos");
-                });
-
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
                 {
                     b.Property<int>("Id")
@@ -245,9 +230,6 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("HistoricoId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Horario")
                         .HasColumnType("datetime(6)");
 
@@ -259,8 +241,6 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HistoricoId");
 
                     b.ToTable("Transacoes");
                 });
@@ -302,33 +282,6 @@ namespace PayWiseBackend.Migrations
                     b.Navigation("Sessao");
 
                     b.Navigation("TentativaLogin");
-                });
-
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Conta", b =>
-                {
-                    b.HasOne("PayWiseBackend.Domain.Models.Historico", "Historico")
-                        .WithMany()
-                        .HasForeignKey("HistoricoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Historico");
-                });
-
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Transacao", b =>
-                {
-                    b.HasOne("PayWiseBackend.Domain.Models.Historico", "Historico")
-                        .WithMany("Transacoes")
-                        .HasForeignKey("HistoricoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Historico");
-                });
-
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>
-                {
-                    b.Navigation("Transacoes");
                 });
 #pragma warning restore 612, 618
         }
