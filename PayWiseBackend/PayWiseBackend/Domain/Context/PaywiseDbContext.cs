@@ -13,4 +13,6 @@ public class PaywiseDbContext : DbContext
     public DbSet<Documento> Documentos { get; set; }
     public DbSet<Sessao> Sessoes { get; set; }
     public DbSet<Conta> Contas { get; set; }
+    public DbSet<Transacao> Transacoes { get; set; }
+    public DbSet<Historico> Historicos { get; set; }
 }
