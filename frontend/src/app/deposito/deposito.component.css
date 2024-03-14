@@ -1,0 +1,128 @@
+/* Estilos para telas grandes (computadores) */
+@media screen and (min-width: 768px) {
+  .container.desktop {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #b3b3b3;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .container.desktop h1 {
+    color: #8a05be;
+    margin-bottom: 20px;
+  }
+
+  .container.desktop .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container.desktop .form-group {
+    margin-bottom: 20px;
+  }
+
+  .container.desktop label {
+    font-weight: bold;
+  }
+
+  .container.desktop input[type="number"],
+  .container.desktop select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .container.desktop .btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #8a05be;
+    color: #b3b3b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .container.desktop .btn-primary:hover {
+    background-color: #6e0477;
+  }
+
+  /* Oculta os estilos para telas menores */
+  .container.mobile {
+    display: none;
+  }
+}
+
+/* Estilos para telas menores (dispositivos móveis) */
+@media screen and (max-width: 767px) {
+  .container.mobile {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #b3b3b3;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centraliza o conteúdo */
+  }
+
+  .container.mobile h1 {
+    color: #8a05be;
+    margin-bottom: 20px;
+  }
+
+  .container.mobile .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container.mobile .form-group {
+    margin-bottom: 20px;
+  }
+
+  .container.mobile label {
+    font-weight: bold;
+  }
+
+  .container.mobile input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .container.mobile .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os botões */
+  }
+
+  .container.mobile .button-group .btn {
+    width: 48%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #8a05be;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .container.mobile .btn-primary {
+    background-color: #8a05be;
+  }
+
+  .container.mobile .button-group .btn:hover {
+    background-color: #6e0477;
+  }
+
+  /* Oculta os estilos para telas grandes */
+  .container.desktop {
+    display: none;
+  }
+}
