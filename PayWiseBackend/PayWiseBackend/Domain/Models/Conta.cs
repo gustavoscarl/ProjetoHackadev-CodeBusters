@@ -2,6 +2,7 @@
 
 public class Conta : Entity
 {
+    public int ClienteId { get; set; }
     public int Numero { get; set; }
     public double Saldo { get; set; }
     public DateTime DataAbertura { get; set; }
