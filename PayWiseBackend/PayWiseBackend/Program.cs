@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.
 using PayWiseBackend.Domain.Context;
 using System.Text.Json.Serialization;
 
@@ -25,7 +26,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 string? mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+builder.Services.AddDbContext<PaywiseDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 
 var app = builder.Build();
 
