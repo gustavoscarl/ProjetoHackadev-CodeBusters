@@ -1,4 +1,4 @@
-﻿namespace PayWiseBackend.Domain.Models.Cliente;
+﻿namespace PayWiseBackend.Domain.Models;
 
 public class TentativaLogin : Entity
 {
