@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240314133219_CreateContaHistoricoRelationship")]
+    partial class CreateContaHistoricoRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,7 +248,7 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("HistoricoId")
+                    b.Property<int?>("HistoricoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Horario")
@@ -317,13 +320,9 @@ namespace PayWiseBackend.Migrations
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Transacao", b =>
                 {
-                    b.HasOne("PayWiseBackend.Domain.Models.Historico", "Historico")
+                    b.HasOne("PayWiseBackend.Domain.Models.Historico", null)
                         .WithMany("Transacoes")
-                        .HasForeignKey("HistoricoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Historico");
+                        .HasForeignKey("HistoricoId");
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>
