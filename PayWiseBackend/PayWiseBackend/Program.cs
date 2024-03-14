@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using System;
+using PayWiseBackend.Domain.Context;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var stringDeConexao = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<PaywiseDbContext>(options =>
+{
+    options.UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -35,6 +40,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
+app.MapGet("/hello", () => "Hello");
 
 app.Run();
