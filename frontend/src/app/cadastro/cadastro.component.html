@@ -22,10 +22,10 @@
 
                         <!-- CEP API -->
 
-                        <input type="text" class="form-control" id="inputCep" placeholder="Ex: 12345-000">
+                        <input type="text" class="form-control" id="inputCep" [(ngModel)]="cep" name="cep" placeholder="Ex: 12345-000">
                     </div>
                     <div class="form-group col-md-2 d-flex align-items-end justify-content-center mt-3 mt-md-0">
-                        <button type="button" class="btn btn-purple-submit ">Buscar</button>
+                        <button type="button" (click)="obterEndereco()" class="btn btn-purple-submit">Buscar</button>
                     </div>
                 </div>
                 <div class="row">
