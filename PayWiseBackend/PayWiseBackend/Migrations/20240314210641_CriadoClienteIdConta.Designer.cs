@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240314210641_CriadoClienteIdConta")]
+    partial class CriadoClienteIdConta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +104,7 @@ namespace PayWiseBackend.Migrations
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("HistoricoId")
+                    b.Property<int>("HistoricoId")
                         .HasColumnType("int");
 
                     b.Property<double>("LimitePixGeral")
@@ -308,7 +311,9 @@ namespace PayWiseBackend.Migrations
                 {
                     b.HasOne("PayWiseBackend.Domain.Models.Historico", "Historico")
                         .WithMany()
-                        .HasForeignKey("HistoricoId");
+                        .HasForeignKey("HistoricoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Historico");
                 });

@@ -1,0 +1,86 @@
+<div class="container desktop">
+  <h1>Depósito</h1>
+
+  <form action="/endpoint-do-servidor" method="post" class="form-container">
+  
+    <div class="form-group">
+      <label for="tipoConta">Tipo de conta:</label>
+      <select formControlName="tipoConta" id="tipoConta">
+        <option value="corrente">Corrente</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="valorDeposito">Valor do depósito:</label>
+      <input type="number" formControlName="valorDeposito" id="valorDeposito" placeholder="Digite o valor">
+    </div>
+  
+    <div class="form-group">
+      <label for="opcaoDeposito">Opções de depósito:</label>
+      <select formControlName="opcaoDeposito" id="opcaoDeposito">
+        <option value="opcao1">Receber na hora em qualquer dia (gerar código PIX)</option>
+        <option value="opcao2">PIX via Open Finance (deposite um valor de outra conta para a sua conta PayWise)</option>
+        <option value="opcao3">Receber na hora com um documento de depósito sem custo (gerar arquivo para pagar com PIX)</option>
+        <option value="opcao4">Depositar em dinheiro (gerar boleto para pagar em bancos e lotéricas)</option>
+        <option value="opcao5">Copiar dados da conta (usar os dados da sua conta para transferir usando PIX, TED e DOC)</option>
+        <option value="opcao6">Portabilidade de salário (peça e acompanhe seus pedidos de portabilidade)</option>
+        <option value="opcao7">Receba dinheiro do exterior (receba dinheiro do exterior com segurança em apenas 2 dias úteis)</option>
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Confirmar depósito</button>
+  </form>
+</div>
+
+<div class="container mobile">
+  <h1>Formulário de Depósito</h1>
+
+  <form action="/endpoint-do-servidor" method="post" class="form-container">
+  
+    <div class="form-group">
+      <label for="tipoConta">Tipo de conta:</label>
+      <div class="button-group">
+        <button type="button" class="btn btn-icon" id="tipoConta1">
+          <img src="icon_corrente.png" alt="Conta Corrente">
+        </button>
+        <button type="button" class="btn btn-icon" id="tipoConta2">
+          <img src="icon_poupanca.png" alt="Conta Poupança">
+        </button>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="valorDeposito">Valor do depósito:</label>
+      <input type="number" id="valorDeposito" name="valorDeposito" placeholder="Digite o valor">
+    </div>
+  
+    <div class="form-group">
+      <label for="opcaoDeposito">Opções de depósito:</label>
+      <div class="button-group">
+        <button type="button" class="btn btn-icon" id="opcao1">
+          <img src="icon_pix.png" alt="PIX">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao2">
+          <img src="icon_open_finance.png" alt="PIX via Open Finance">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao3">
+          <img src="icon_documento.png" alt="Documento de Depósito">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao4">
+          <img src="icon_boleto.png" alt="Depositar em Dinheiro">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao5">
+          <img src="icon_dados_conta.png" alt="Copiar Dados da Conta">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao6">
+          <img src="icon_portabilidade.png" alt="Portabilidade de Salário">
+        </button>
+        <button type="button" class="btn btn-icon" id="opcao7">
+          <img src="icon_exterior.png" alt="Receba Dinheiro do Exterior">
+        </button>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Confirmar depósito</button>
+  </form>
+</div>
