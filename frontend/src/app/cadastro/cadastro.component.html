@@ -1,92 +1,95 @@
 <h2>Cadastro</h2>
 <h4 class="indigo">Informações Pessoais</h4>
-<body>
+
 <form>
     <div class="container text-start mt-5">
-        <div class="form-row">
-            <div class="row">
+        <div class="form-row border border-secondary rounded border-opacity-50 p-5">
+            <div class="row  mb-5 pt-1">
                 <div class="form-group col-md-6">
                     <label for="inputNome">Nome</label>
                     <input type="text" class="form-control" id="nome" placeholder="Digite o Seu Nome">
                 </div>
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="inputSobrenome">Sobrenome</label>
                     <input type="text" class="form-control" id="Sobrenome" placeholder="Digite o Seu Sobrenome">
                 </div>
             </div>
-
-            <div class="row">
-                <div class="form-group col-md-1">
-                    <label for="inputState">Estado</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>UF</option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>
-                    </select>
-                </div>
-            
+            <div>
                 <div class="row">
-            <div class="form-group col-md-2">
-                <label for="inputCity">Cidade</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="Ex: Charqueadas">
+                    <div class="form-group col-lg-2 col-md-3">
+                        <label for="inputCep">CEP</label>
+                        <input type="text" class="form-control" id="inputCep" placeholder="Ex: 96745-000">
+                    </div>
+                    <div class="form-group col-md-2 d-flex align-items-end">
+                        <button type="button" class="btn btn-purple-submit ">Buscar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-1 col-md-2">
+                        <label for="inputState">Estado</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>UF</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                
+                <div class="form-group col-lg-3 col-md-4">
+                    <label for="inputCity">Cidade</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Ex: Charqueadas">
+                </div>
+                        
+                        </div>
+                
+                        <div class="row">
+                    <div class="form-group col-md-5">
+                        <label for="inputAddress2">Endereço</label>
+                        <input type="text" class="form-control" id="inputEndereco" placeholder="Av, Rua">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputAddress2">Nº</label>
+                        <input type="text" class="form-control" id="inputnumero" placeholder="Ex 435">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inputAddress2">Bairro</label>
+                        <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Am">
+                    </div>
+                        </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">Complemento</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="Ex: Casa, Apto">
+                    </div>
+                </div>
             </div>
-        </div>
-        </div> 
-            
-        <div class="row">
-                <div class="form-group col-md-2">
-                    <label for="inputAddress2">Endereço</label>
-                    <input type="text" class="form-control" id="inputEndereco" placeholder="Av, Rua">
-                </div>
-    
-                <div class="form-group col-md-2">
-                    <label for="inputAddress2">Bairro</label>
-                    <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Am">
-                </div>
-        </div>
 
-            <div class="row">
-                <div class="form-group col-md-2">
-                    <label for="inputAddress2">Nº</label>
-                    <input type="text" class="form-control" id="inputnumero" placeholder="Ex 435">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputCity">Complemento</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Ex: Casa, Apto">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="inputCep">CEP</label>
-                    <input type="text" class="form-control" id="inputCep" placeholder="Ex: 96745-000">
-                </div>
-            </div>
-
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-5 mt-5">
                 <label for="inputEmail">Email</label>
                 <input type="text" class="form-control" id="inputEmail" placeholder="Ex: exemplo@dominio.com">
             </div>
@@ -117,11 +120,10 @@
                     </div>
                 </div>
             </div> -->
-        <div class="form-group mt-5 ">
-            <button type="submit" class="btn btn-purple"><a [routerLink]="['/home']">Cadastrar</a></button>
+        <div class="form-group mt-5 text-center">
+            <button type="submit" class="btn btn-purple col-md-3"><a [routerLink]="['/home']">Cadastrar</a></button>
             </div>
         </div>
 </form>
-</body>
 
 
