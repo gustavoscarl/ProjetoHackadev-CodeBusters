@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
@@ -28,7 +27,7 @@ namespace PayWiseBackend.Controllers
             if (buscaCliente == null)
                 return NotFound();
 
-            return Ok(buscaCliente);
+            return Ok(new { buscaCliente, buscaCliente.Conta});
         }
 
         [HttpPost]
@@ -38,9 +37,10 @@ namespace PayWiseBackend.Controllers
 
             var result = _context.Clientes.Add(clienteCadastrar);
             _context.SaveChanges();
+
             var clienteSalvo = result.Entity;
 
-            return CreatedAtAction("PegarPorId", new { id = clienteSalvo.Id }, clienteSalvo);
+            return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, clienteSalvo);
         }
     }
 }

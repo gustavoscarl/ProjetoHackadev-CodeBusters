@@ -39,6 +39,12 @@ namespace PayWiseBackend.Controllers
             // Mapear os dados da nova conta para o objeto Conta
             var contaCadastrar = _mapper.Map<Conta>(novaConta);
 
+            var result = _context.Contas.Add(contaCadastrar);
+            cliente.Conta = result.Entity;
+            /*var conta = result.Entity;
+
+            cliente.ContaId
+
             // Associar a nova conta ao cliente
             contaCadastrar.ClienteId = clienteId;
             cliente.Conta = contaCadastrar; // Associar a nova conta ao cliente
@@ -46,7 +52,7 @@ namespace PayWiseBackend.Controllers
             // Adicionar a nova conta ao contexto do banco de dados
             _context.Contas.Add(contaCadastrar);
 
-            // Salvar as mudanças no banco de dados
+            // Salvar as mudanças no banco de dados*/
             _context.SaveChanges();
 
             return Ok("Conta criada com sucesso");
