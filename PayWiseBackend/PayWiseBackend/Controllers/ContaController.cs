@@ -20,42 +20,42 @@ namespace PayWiseBackend.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("{id:int}")]
+        public IActionResult PegarPorId(int id)
+        {
+            var conta = _context.Contas.Find(id);
+
+            if (conta == null)
+                return NotFound();
+
+            var contaResponse = _mapper.Map<RetrieveContaDTO>(conta);
+
+            return Ok(new { contaResponse });
+        }
+
         [HttpPost]
         public IActionResult CriarConta(int clienteId, CreateContaDTO novaConta)
         {
-            // Verificar se o cliente existe
-            Cliente cliente = _context.Clientes.FirstOrDefault(c => c.Id == clienteId);
-            if (cliente == null)
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Id == clienteId);
+            if (cliente is null)
             {
                 return NotFound("Cliente não encontrado");
             }
 
-            // Verificar se o cliente já possui uma conta
             if (cliente.Conta != null)
             {
                 return BadRequest("O cliente já possui uma conta");
             }
 
-            // Mapear os dados da nova conta para o objeto Conta
             var contaCadastrar = _mapper.Map<Conta>(novaConta);
 
             var result = _context.Contas.Add(contaCadastrar);
-            cliente.Conta = result.Entity;
-            /*var conta = result.Entity;
-
-            cliente.ContaId
-
-            // Associar a nova conta ao cliente
-            contaCadastrar.ClienteId = clienteId;
-            cliente.Conta = contaCadastrar; // Associar a nova conta ao cliente
-
-            // Adicionar a nova conta ao contexto do banco de dados
-            _context.Contas.Add(contaCadastrar);
-
-            // Salvar as mudanças no banco de dados*/
+            var contaCadastrada = result.Entity;
+            cliente.Conta = contaCadastrada;
+            cliente.temConta = true;
             _context.SaveChanges();
 
-            return Ok("Conta criada com sucesso");
+            return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
         }
 
     }
