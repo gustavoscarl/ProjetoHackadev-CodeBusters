@@ -18,15 +18,15 @@
 </div>
 
 
-<div class="container user-balance-container mt-5 col-lg-6">
-  <div class="row">
-    <div class="col greeting">
+<div class="user-balance-container mt-5 col-lg-6">
+  <div class="col-5">
+    <div class="greeting">
       <p class="custom-font">Olá, {{ userName }}!</p>
       <p class="custom-font">Saldo Atual:</p>
     </div>
   </div>
 
-  <div class="row">
+  <div class="">
   <div>
     <!-- <p *ngIf="saldoVisivel">Saldo: R$ 1000,00</p> -->
     <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo">
@@ -36,7 +36,7 @@
     </button>
   </div>
 
-    <div class="col">
+    <div class="">
       <p class="saldo-atual custom-font">R$ {{ saldoAtual }}</p>
     </div>
   </div>
