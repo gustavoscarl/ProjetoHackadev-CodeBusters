@@ -2,13 +2,14 @@ import { Component, Inject, Input } from '@angular/core';
 import { InputserviceService } from '../../servicos/inputservice.service';
 import { ChartModule } from 'primeng/chart';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Inject({ providedIn: 'root' })
 
 @Component({
   selector: 'app-user-balance',
   standalone: true,
-  imports: [ChartModule, RouterLink],
+  imports: [ChartModule, RouterLink, CommonModule],
   templateUrl: './user-balance.component.html',
   styleUrl: './user-balance.component.css'
 })
@@ -71,5 +72,11 @@ export class UserBalanceComponent {
   constructor(private inputService: InputserviceService) {
     this.saldoAtual = this.inputService.saldoDoUsuario;
     this.userName = this.inputService.nomeDoUsuario;
+  }
+
+  saldoVisivel: boolean = false;
+
+  toggleSaldoVisibilidade() {
+    this.saldoVisivel = !this.saldoVisivel;
   }
 }

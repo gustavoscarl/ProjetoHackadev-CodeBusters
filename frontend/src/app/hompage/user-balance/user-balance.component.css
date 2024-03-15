@@ -6,6 +6,14 @@
 .light-img:hover {
   transform: scale(1.1);
 }
+* {
+  margin: 0px;
+}
+
+.vetor:hover,
+.light-img:hover {
+  transform: scale(1.1);
+}
 
 .user-greetings-container,
 .user-balance-container {
@@ -54,6 +62,173 @@
 .saldo-atual {
   text-align: right;
   margin-top: 55px;
+}
+
+.avatar {
+  max-width: 100px;
+  height: 100px;
+}
+
+.vetor {
+  display: none;
+}
+
+.light-img {
+  display: none;
+}
+
+@media screen and (max-width: 990px) {
+
+  .user-balance-container,
+  .user-greetings-container {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .light-img,
+  .vetor {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: -16px;
+  }
+}
+
+/* Regras para modo dark e modo light */
+
+@media (prefers-color-scheme: dark) {
+  * {
+    color: #fff;
+  }
+
+  .user-balance-container {
+    background-color: #525252;
+  }
+
+  .greeting,
+  .saldo-atual {
+    color: #ffffff;
+  }
+
+  #setadown-light {
+    display: none;
+  }
+
+  #setaup-light {
+    display: none;
+  }
+
+  #setadown-dark {
+    display: block;
+  }
+
+  #setaup-dark {
+    display: block;
+  }
+
+  .light-img {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  * {
+    color: #000;
+  }
+
+  .user-balance-container {
+    background-color: #ffffff;
+  }
+
+  .greeting,
+  .saldo-atual {
+    color: #000000;
+  }
+
+  #setadown-dark {
+    display: none;
+  }
+
+  #setaup-dark {
+    display: none;
+  }
+
+  #setadown-light {
+    display: block;
+  }
+
+  #setaup-light {
+    display: block;
+  }
+
+  .vetor {
+    display: none;
+  }
+
+  .exibirSaldo {
+    border: none;
+
+  }
+}
+
+.exibirSaldo {
+  margin-top: 5px;
+  margin-left: 140px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+
+
+}
+.user-greetings-container,
+.user-balance-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  box-shadow: none;
+  border: 0;
+  outline: none;
+  width: 370px;
+  height: 100px;
+  border-radius: 8px;
+  top: 128px;
+  left: 30px;
+  margin-top: 20px;
+}
+
+.link-container {
+  margin-top: 20px;
+  text-align: end;
+}
+
+.historico-button {
+  color: #a484e8;
+  text-transform: none;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.historico-button:hover {
+  color: #cebff0;
+  transition-duration: 400ms;
+}
+
+.greeting,
+.saldo-atual {
+  /* font-size: 18px; */
+  font-weight: 600;
+  line-height: 35px;
+  letter-spacing: 0em;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.saldo-atual {
+  text-align: right;
+  margin-top: 0px;
 }
 
 .avatar {
