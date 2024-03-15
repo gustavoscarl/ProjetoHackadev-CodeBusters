@@ -1,30 +1,49 @@
-/* Estilos para telas maiores */
-.container {
-  max-width: 600px; /* Ajuste conforme necessário */
-  margin: 0 auto;
-  padding: 20px;
+.imagens-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-h1 {
-  color: #c4aff0;
-  display: flex;
-}
-h2 {
-  color: #64ced9;
-  display: flex;
+.imagem-direita {
+  margin-right: 30px;
 }
 
-.titulo {
-  margin-top: 100px;
-  margin-left: 50px;
-  
+.imagem-esquerda {
+  margin-left: 30px;
+  margin-top: 2px;
 }
+
 .transacao-pix {
   text-align: center;
 }
 
-.transacao-pix h1 {
-  margin-bottom: 20px;
+.titulo {
+  margin-top: 50px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  display: flex; /* Permite a exibição em linha dos elementos */
+  align-items: center; /* Alinha verticalmente os elementos */
+}
+
+.imagem-container {
+  margin-right: 20px; /* Espaço entre a imagem e o texto */
+}
+
+.imagem-icone {
+  width: 50px; /* Tamanho da imagem, ajuste conforme necessário */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #c4aff0;
+  margin-left: -80px;
+}
+
+h2 {
+  color: #64ced9;
+  margin-bottom: 10px;
 }
 
 .transacao-pix-form {
@@ -44,6 +63,13 @@ label {
 }
 
 input,
+textarea {
+  background-color: #262626;
+  color: #fff;
+  border: none;
+}
+
+input,
 textarea,
 button {
   width: calc(
@@ -53,12 +79,12 @@ button {
   margin-bottom: 20px;
   padding: 10px;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 15px;
   outline: none;
 }
 
 textarea {
-  height: 100px; /* Ajuste conforme necessário */
+  height: 80px; /* Ajuste conforme necessário */
 }
 
 button {
@@ -66,6 +92,11 @@ button {
   color: #fff;
   border: none;
   cursor: pointer;
+  width: 50%;
+}
+
+.linha {
+  margin-top: 50px;
 }
 
 button:hover {
@@ -78,33 +109,67 @@ button:active {
 
 /* Estilos para telas menores */
 @media screen and (max-width: 768px) {
-  .container {
-    padding: 10px;
+  .imagem-direita {
+    margin-right: 30px;
+  }
+
+  .imagem-esquerda {
+    margin-left: 30px;
+  }
+
+  .titulo {
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .imagem-container {
+    margin-right: 10px;
+  }
+
+  .imagem-icone {
+    width: 40px;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: 5px;
+  }
+
+  label {
+    display: block;
+    text-align: left;
+    margin-left: 12%;
+    padding: 5px;
   }
 
   input,
-  textarea,
-  button {
+  textarea {
     width: calc(
       80% - 20px
     ); /* Calcula o tamanho considerando a margem interna */
-    margin: 0 auto; /* Centraliza os elementos */
     margin-bottom: 10px; /* Reduz a margem inferior */
     padding: 8px; /* Reduz o preenchimento */
+  }
+  button {
+    width: 50%;
   }
 
   textarea {
     height: 50px; /* Reduz a altura do textarea */
   }
 
-  .label {
-    margin-left: 11%; /* Ajusta o alinhamento do rótulo */
-  }
-  button:hover {
-    opacity: 0.8; /*Opacidade aplicada de 0.8*/
+  label {
+    margin-right: 0; /* Remove a margem direita para alinhar à esquerda */
   }
 
-  button:active {
-    opacity: 0.6; /*Opacidade aplicada de 0.6*/
+  /* Seu CSS existente aqui */
+
+  .dark-mode {
+    background-color: #262626; /* Cor de fundo do modo escuro */
+  }
+
+  .custom-color-mode {
+    background-color: #2e2e2e; /* Nova cor de fundo para o modo personalizado */
   }
 }
