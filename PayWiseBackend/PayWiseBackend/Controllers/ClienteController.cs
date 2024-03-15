@@ -26,8 +26,9 @@ namespace PayWiseBackend.Controllers
 
             if (buscaCliente == null)
                 return NotFound();
+            var clienteResponse = _mapper.Map<RetrieveClienteDTO>(buscaCliente);
 
-            return Ok(new { buscaCliente, buscaCliente.Conta});
+            return Ok(new { clienteResponse });
         }
 
         [HttpPost]
