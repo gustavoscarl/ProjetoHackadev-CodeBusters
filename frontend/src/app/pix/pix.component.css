@@ -6,12 +6,19 @@
 }
 
 .imagem-direita {
-  margin-right: 30px;
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .imagem-esquerda {
-  margin-left: 30px;
-  margin-top: 2px;
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .transacao-pix {
@@ -100,6 +107,9 @@ button {
 button:hover {
   opacity: 0.8;
 }
+.imagem-esquerda a:hover {
+  opacity: 0.7;
+}
 
 button:active {
   opacity: 0.6;
@@ -109,10 +119,12 @@ button:active {
 @media screen and (max-width: 768px) {
   .imagem-direita {
     margin-right: 30px;
+    transition: all 0.3s ease;
   }
 
   .imagem-esquerda {
     margin-left: 30px;
+    transition: all 0.3s ease;
   }
 
   .titulo {
@@ -157,9 +169,5 @@ button:active {
 
   label {
     margin-right: 0;
-
-    
-
-    
   }
 }
