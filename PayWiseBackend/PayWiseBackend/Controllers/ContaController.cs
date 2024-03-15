@@ -61,7 +61,9 @@ namespace PayWiseBackend.Controllers
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
         }
 
-        [HttpPost("sacar")]
+        [HttpPut("sacar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Sacar(int contaId, double valor)
         {
             var conta = _context.Contas.Find(contaId);
@@ -73,6 +75,23 @@ namespace PayWiseBackend.Controllers
                 return BadRequest(new { message = "Saldo insuficiente" });
 
             conta.Saldo -= valor;
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPut("depositar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Depositar(int contaId, double valor)
+        {
+            var conta = _context.Contas.Find(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            conta.Saldo += valor;
+
             await _context.SaveChangesAsync();
             return Ok();
         }
