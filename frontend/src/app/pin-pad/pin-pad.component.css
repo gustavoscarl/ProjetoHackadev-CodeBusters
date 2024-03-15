@@ -1,0 +1,64 @@
+.container-button {
+    margin-top: 20%;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+    gap: 10px; /* espaco entre itens */
+  }
+  
+  .pin-button {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .pin-button:hover {
+    background-color: #ddd;
+  }
+  
+  .pin-button:active {
+    background-color: #bbb;
+  }
+  
+  /* Estilos para o botão "X" */
+  .pin-button.x-button {
+    background-color: #c4aff0;
+    color: white;
+  }
+  
+  /* Estilos para o botão "0" */
+  .pin-button.zero-button {
+    background-color: #f0f0f0;
+    color: #333;
+    margin-right: 70px;
+  }
+  
+  .pin-button.x-button:active {
+      background-color: #bea5f1;
+  }
+  
+  /* Estilos para o botão "0" */
+  .pin-button.zero-button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Novo estilo para a linha dos botões "X" e "0" */
+  .x-zero-row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    margin-right: 50px;
+  }
+  
