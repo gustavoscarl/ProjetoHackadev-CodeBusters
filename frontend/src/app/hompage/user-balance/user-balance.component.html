@@ -4,8 +4,6 @@
       <img src="assets/user-balance/avatar.svg" alt="Avatar" class="avatar img-fluid" />
     </div>
 
-
-
     <div class="col-auto">
       <a [routerLink]="['/login']"><img src="assets/user-balance/vetor.svg" alt="Vetor" class="vetor img-fluid" /></a>
       <!-- <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="vetor img-fluid"></p-chart> -->
@@ -14,14 +12,7 @@
         <a [routerLink]="['/login']"><img src="assets/user-balance/vetor-I.svg" alt="Light Image"
             class="light-img img-fluid" /></a>
       </div>
-      <div>
-        <!-- <p *ngIf="saldoVisivel">Saldo: R$ 1000,00</p> -->
-        <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo">
-          <!-- {{ saldoVisivel ? 'Ocultar Saldo' : 'Exibir Saldo'}} -->
-          <img *ngIf="saldoVisivel" src="/assets/img_icons/eye-solid.svg" alt="olho aberto">
-          <img *ngIf="!saldoVisivel" src="/assets/img_icons/eye-slash-solid.svg" alt="olho fechado">
-        </button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -36,6 +27,15 @@
   </div>
 
   <div class="row">
+  <div>
+    <!-- <p *ngIf="saldoVisivel">Saldo: R$ 1000,00</p> -->
+    <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo">
+      <!-- {{ saldoVisivel ? 'Ocultar Saldo' : 'Exibir Saldo'}} -->
+      <img *ngIf="saldoVisivel" src="/assets/img_icons/eye-solid.svg" alt="olho aberto">
+      <img *ngIf="!saldoVisivel" src="/assets/img_icons/eye-slash-solid.svg" alt="olho fechado">
+    </button>
+  </div>
+
     <div class="col">
       <p class="saldo-atual custom-font">R$ {{ saldoAtual }}</p>
     </div>

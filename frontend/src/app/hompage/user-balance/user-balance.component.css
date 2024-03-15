@@ -173,6 +173,8 @@
 }
 
 .exibirSaldo {
+  margin-top: 5px;
+  margin-left: 140px;
   width: 30px;
   height: 30px;
   border: none;
@@ -216,7 +218,7 @@
 
 .greeting,
 .saldo-atual {
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 600;
   line-height: 35px;
   letter-spacing: 0em;
@@ -226,7 +228,7 @@
 
 .saldo-atual {
   text-align: right;
-  margin-top: 55px;
+  margin-top: 0px;
 }
 
 .avatar {
