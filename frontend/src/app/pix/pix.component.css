@@ -22,17 +22,17 @@
   margin-top: 50px;
   margin-left: 40px;
   margin-bottom: 30px;
-  display: flex; /* Permite a exibição em linha dos elementos */
-  align-items: center; /* Alinha verticalmente os elementos */
+  display: flex;
+  align-items: center;
 }
 
 .imagem-container {
-  margin-right: 20px; /* Espaço entre a imagem e o texto */
+  margin-right: 20px;
 }
 
 .imagem-icone {
-  width: 50px; /* Tamanho da imagem, ajuste conforme necessário */
-  height: auto; /* Mantém a proporção da imagem */
+  width: 50px;
+  height: auto;
 }
 
 h1 {
@@ -48,7 +48,7 @@ h2 {
 
 .transacao-pix-form {
   width: 100%;
-  text-align: center; /* Centraliza os elementos */
+  text-align: center;
 }
 
 .form-group {
@@ -58,7 +58,7 @@ h2 {
 label {
   display: block;
   text-align: left;
-  margin-right: 50%; /* Alinha os rótulos ao canto esquerdo */
+  margin-right: 50%;
   padding: 5px;
 }
 
@@ -72,10 +72,8 @@ textarea {
 input,
 textarea,
 button {
-  width: calc(
-    100% - 20px
-  ); /* Calcula o tamanho considerando a margem interna */
-  margin: 0 auto; /* Centraliza os elementos */
+  width: calc(100% - 20px);
+  margin: 0 auto;
   margin-bottom: 20px;
   padding: 10px;
   box-sizing: border-box;
@@ -84,7 +82,7 @@ button {
 }
 
 textarea {
-  height: 80px; /* Ajuste conforme necessário */
+  height: 80px;
 }
 
 button {
@@ -100,11 +98,11 @@ button {
 }
 
 button:hover {
-  opacity: 0.8; /*Opacidade aplicada de 0.8*/
+  opacity: 0.8;
 }
 
 button:active {
-  opacity: 0.6; /*Opacidade aplicada de 0.6*/
+  opacity: 0.6;
 }
 
 /* Estilos para telas menores */
@@ -145,31 +143,23 @@ button:active {
 
   input,
   textarea {
-    width: calc(
-      80% - 20px
-    ); /* Calcula o tamanho considerando a margem interna */
-    margin-bottom: 10px; /* Reduz a margem inferior */
-    padding: 8px; /* Reduz o preenchimento */
+    width: calc(80% - 20px);
+    margin-bottom: 10px;
+    padding: 8px;
   }
   button {
     width: 50%;
   }
 
   textarea {
-    height: 50px; /* Reduz a altura do textarea */
+    height: 50px;
   }
 
   label {
-    margin-right: 0; /* Remove a margem direita para alinhar à esquerda */
-  }
+    margin-right: 0;
 
-  /* Seu CSS existente aqui */
+    
 
-  .dark-mode {
-    background-color: #262626; /* Cor de fundo do modo escuro */
-  }
-
-  .custom-color-mode {
-    background-color: #2e2e2e; /* Nova cor de fundo para o modo personalizado */
+    
   }
 }
