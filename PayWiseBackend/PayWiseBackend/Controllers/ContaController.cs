@@ -52,7 +52,7 @@ namespace PayWiseBackend.Controllers
             var result = _context.Contas.Add(contaCadastrar);
             var contaCadastrada = result.Entity;
             cliente.Conta = contaCadastrada;
-            cliente.temConta = true;
+            cliente.TemConta = true;
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
