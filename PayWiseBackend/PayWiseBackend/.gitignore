@@ -1,1 +1,6 @@
 docker-compose.yml
+*.suo
+*.user
+_ReSharper.*
+bin
+obj

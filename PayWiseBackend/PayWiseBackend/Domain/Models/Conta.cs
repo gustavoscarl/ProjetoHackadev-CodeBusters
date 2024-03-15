@@ -11,6 +11,6 @@ public class Conta : Entity
     public double LimitePixGeral { get; set; }
     public double LimitePixNoturno { get; set; }
 
-    public int HistoricoId { get; set; }
+    public int? HistoricoId { get; set; }
     public virtual Historico Historico { get; set; }
 }
