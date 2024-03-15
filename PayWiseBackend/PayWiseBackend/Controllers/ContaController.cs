@@ -21,12 +21,14 @@ namespace PayWiseBackend.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult PegarPorId(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<RetrieveContaDTO> PegarPorId(int id)
         {
             var conta = _context.Contas.Find(id);
 
-            if (conta == null)
-                return NotFound();
+            if (conta is null)
+                return NotFound(new { message = "Conta não encontrada" });
 
             var contaResponse = _mapper.Map<RetrieveContaDTO>(conta);
 
@@ -34,17 +36,18 @@ namespace PayWiseBackend.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult CriarConta(int clienteId, CreateContaDTO novaConta)
         {
             var cliente = _context.Clientes.FirstOrDefault(c => c.Id == clienteId);
             if (cliente is null)
             {
-                return NotFound("Cliente não encontrado");
+                return NotFound(new { message = "Cliente não encontrado" });
             }
 
-            if (cliente.Conta != null)
+            if (cliente.temConta)
             {
-                return BadRequest("O cliente já possui uma conta");
+                return BadRequest(new { message = "O cliente já possui uma conta" });
             }
 
             var contaCadastrar = _mapper.Map<Conta>(novaConta);
