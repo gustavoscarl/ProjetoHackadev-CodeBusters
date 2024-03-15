@@ -35,7 +35,7 @@ namespace PayWiseBackend.Controllers
             return Ok(new { contaResponse });
         }
 
-        [HttpPost]
+        [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult CriarConta(int clienteId, CreateContaDTO novaConta)
         {
@@ -59,6 +59,22 @@ namespace PayWiseBackend.Controllers
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
+        }
+
+        [HttpPost("sacar")]
+        public async Task<IActionResult> Sacar(int contaId, double valor)
+        {
+            var conta = _context.Contas.Find(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            if (conta.Saldo <= 0)
+                return BadRequest(new { message = "Saldo insuficiente" });
+
+            conta.Saldo -= valor;
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
     }
