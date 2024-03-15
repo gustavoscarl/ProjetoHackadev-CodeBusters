@@ -45,7 +45,7 @@ namespace PayWiseBackend.Controllers
                 return NotFound(new { message = "Cliente não encontrado" });
             }
 
-            if (cliente.temConta)
+            if (cliente.TemConta)
             {
                 return BadRequest(new { message = "O cliente já possui uma conta" });
             }
