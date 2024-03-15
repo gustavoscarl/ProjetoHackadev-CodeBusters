@@ -12,8 +12,8 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    [Migration("20240314165216_ChangesToIds")]
-    partial class ChangesToIds
+    [Migration("20240315131059_AddPropertiesTemContaTeCartaoToCliente")]
+    partial class AddPropertiesTemContaTeCartaoToCliente
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,14 +40,14 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("DocumentoId")
+                    b.Property<int>("DocumentoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("EnderecoId")
+                    b.Property<int>("EnderecoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -65,8 +65,14 @@ namespace PayWiseBackend.Migrations
                     b.Property<int?>("SessaoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TentativaLoginId")
+                    b.Property<int>("TentativaLoginId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("temCartao")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("temConta")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
@@ -96,6 +102,9 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataModificacao")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("HistoricoId")
@@ -276,11 +285,15 @@ namespace PayWiseBackend.Migrations
 
                     b.HasOne("PayWiseBackend.Domain.Models.Documento", "Documento")
                         .WithMany()
-                        .HasForeignKey("DocumentoId");
+                        .HasForeignKey("DocumentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PayWiseBackend.Domain.Models.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PayWiseBackend.Domain.Models.Sessao", "Sessao")
                         .WithMany()
@@ -288,7 +301,9 @@ namespace PayWiseBackend.Migrations
 
                     b.HasOne("PayWiseBackend.Domain.Models.TentativaLogin", "TentativaLogin")
                         .WithMany()
-                        .HasForeignKey("TentativaLoginId");
+                        .HasForeignKey("TentativaLoginId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Conta");
 
