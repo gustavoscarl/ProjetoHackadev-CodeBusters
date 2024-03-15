@@ -15,7 +15,7 @@ namespace PayWiseBackend.Domain.DTOs
 
         public string Agencia { get; set; } = "1";
 
-        public double LimitePixGeral { get; set; } = 0;
+        public double LimitePixGeral { get; set; } = 1000;
 
         public double LimitePixNoturno { get; set; } = 1000;
 
