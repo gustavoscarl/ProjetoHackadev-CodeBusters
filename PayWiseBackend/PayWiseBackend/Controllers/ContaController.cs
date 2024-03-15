@@ -23,9 +23,9 @@ namespace PayWiseBackend.Controllers
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<RetrieveContaDTO> PegarPorId(int id)
+        public async Task<ActionResult<RetrieveContaDTO>> PegarPorId(int id)
         {
-            var conta = _context.Contas.Find(id);
+            var conta = await _context.Contas.FindAsync(id);
 
             if (conta is null)
                 return NotFound(new { message = "Conta não encontrada" });
@@ -37,9 +37,11 @@ namespace PayWiseBackend.Controllers
 
         [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult CriarConta(int clienteId, CreateContaDTO novaConta)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CriarConta(int clienteId, CreateContaDTO novaConta)
         {
-            var cliente = _context.Clientes.FirstOrDefault(c => c.Id == clienteId);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == clienteId);
             if (cliente is null)
             {
                 return NotFound(new { message = "Cliente não encontrado" });
@@ -52,11 +54,11 @@ namespace PayWiseBackend.Controllers
 
             var contaCadastrar = _mapper.Map<Conta>(novaConta);
 
-            var result = _context.Contas.Add(contaCadastrar);
+            var result = await _context.Contas.AddAsync(contaCadastrar);
             var contaCadastrada = result.Entity;
             cliente.Conta = contaCadastrada;
             cliente.TemConta = true;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
         }
@@ -66,7 +68,7 @@ namespace PayWiseBackend.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Sacar(int contaId, double valor)
         {
-            var conta = _context.Contas.Find(contaId);
+            var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
@@ -85,12 +87,37 @@ namespace PayWiseBackend.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Depositar(int contaId, double valor)
         {
-            var conta = _context.Contas.Find(contaId);
+            var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
 
             conta.Saldo += valor;
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPut("transferir")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Transferir(int contaId, int numeroContaDestino, double valor)
+        {
+            var conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            if (conta.Saldo <= 0)
+                return BadRequest(new { mesage = "Saldo insuficiente" });
+
+            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == numeroContaDestino);
+
+            if (contaDestino is null)
+                return BadRequest(new { message = "Conta de destino inexistente" });
+
+            conta.Saldo -= valor;
+            contaDestino.Saldo += valor;
 
             await _context.SaveChangesAsync();
             return Ok();
