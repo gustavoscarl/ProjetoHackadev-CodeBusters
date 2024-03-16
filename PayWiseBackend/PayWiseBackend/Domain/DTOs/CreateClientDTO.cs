@@ -14,14 +14,17 @@ namespace PayWiseBackend.Domain.DTOs
         public string Email { get; set; } = null!;
 
         [Required]
+        [MinLength(8)]
         [StringLength(8)]
         public string Senha { get; set; } = null!;
 
         [Required]
+        [MinLength(11)]
         [StringLength(11)]
         public string Cpf { get; set; } = null!;
 
         [Required]
+        [MinLength(7)]
         [StringLength(7)]
         public string Rg { get; set; } = null!;
 
