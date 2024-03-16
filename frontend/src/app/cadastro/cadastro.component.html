@@ -1,25 +1,35 @@
 <h2>Cadastro</h2>
 <h4 class="indigo">Informações Pessoais</h4>
 
-<form>
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
     <div class="container text-start mt-5">
         <div class="form-row border border-secondary rounded border-opacity-50 p-5">
             <div class="row  mb-5 pt-1">
                 <div class="form-group col-md-6">
                     <label for="inputNome">Nome</label>
-                    <input type="text" class="form-control" id="inputNome" placeholder="Digite o Seu Nome">
+                    <input type="text" class="form-control"
+                    id="inputNome" 
+                    placeholder="Digite o Seu Nome"
+                    formControlName="name">
+                    <span *ngIf="cadastroForm.get('name')?.invalid && cadastroForm.get('name')?.touched"
+                    class="text-danger d-inline">
+                        Por favor, digite um nome válido!
+                    </span>
                 </div>
                 
                 <div class="form-group col-md-6">
                     <label for="inputSobrenome">Sobrenome</label>
-                    <input type="text" class="form-control" id="inputSobrenome" placeholder="Digite o Seu Sobrenome">
+                    <input type="text" class="form-control" id="inputSobrenome" placeholder="Digite o Seu Sobrenome"
+                    formControlName="lastname">
                 </div>
             </div>
             <div>
                 <div class="row">
                     <div class="form-group col-lg-2 col-md-3">
                         <label for="inputCep">CEP</label>
-                        <input type="text" class="form-control" id="inputCep" placeholder="Ex: 96745-000">
+                        <input type="text" class="form-control" id="inputCep" 
+                        placeholder="Ex: 96745-000"
+                        formControlName="cep">
                     </div>
                     <div class="form-group col-md-2 d-flex align-items-end justify-content-center mt-3 mt-md-0">
                         <button type="button" class="btn btn-purple-submit ">Buscar</button>
@@ -131,7 +141,7 @@
                 </div>
             </div> -->
         <div class="form-group mt-5 text-center">
-            <button type="submit" class="btn btn-purple col-md-3"><a [routerLink]="['/home']">Cadastrar</a></button>
+            <button type="submit" class="btn btn-purple col-md-3">Cadastrar</button>
             </div>
         </div>
 </form>
