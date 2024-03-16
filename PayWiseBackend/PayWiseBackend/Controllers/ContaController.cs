@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
+using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Controllers
@@ -92,7 +93,7 @@ namespace PayWiseBackend.Controllers
             {
                 Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
-                Tipo = "SAQUE",
+                Tipo = TransacaoTipo.SAQUE,
                 Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
@@ -119,7 +120,7 @@ namespace PayWiseBackend.Controllers
             {
                 Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
-                Tipo = "DEPOSITO",
+                Tipo = TransacaoTipo.DEPOSITO,
                 Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
@@ -155,7 +156,7 @@ namespace PayWiseBackend.Controllers
             {
                 Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
-                Tipo = "TRANSFERENCIA",
+                Tipo = TransacaoTipo.TRANSFERENCIA,
                 Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
@@ -166,7 +167,7 @@ namespace PayWiseBackend.Controllers
             {
                 Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
-                Tipo = "TRANSFERENCIA",
+                Tipo = TransacaoTipo.TRANSFERENCIA,
                 Valor = dadosTransacao.Valor,
                 HistoricoId = contaDestino.HistoricoId
             };
