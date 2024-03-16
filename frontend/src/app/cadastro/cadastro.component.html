@@ -27,12 +27,10 @@
                 <div class="row">
                     <div class="form-group col-lg-2 col-md-3">
                         <label for="inputCep">CEP</label>
-                        <input type="text" class="form-control" id="inputCep" 
-                        placeholder="Ex: 96745-000"
-                        formControlName="cep">
+                        <input type="text" class="form-control" id="inputCep" [formControl]="cep" placeholder="Ex: 96745-000">
                     </div>
                     <div class="form-group col-md-2 d-flex align-items-end justify-content-center mt-3 mt-md-0">
-                        <button type="button" class="btn btn-purple-submit ">Buscar</button>
+                        <button type="button" (click)="obterEndereco()" class="btn btn-purple-submit">Buscar</button>
                     </div>
                 </div>
                 <div class="row">
