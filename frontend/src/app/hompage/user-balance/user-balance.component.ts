@@ -72,11 +72,17 @@ export class UserBalanceComponent {
   constructor(private inputService: InputserviceService) {
     this.saldoAtual = this.inputService.saldoDoUsuario;
     this.userName = this.inputService.nomeDoUsuario;
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.isdarkMode = event.matches;
+    });
   }
-
-  saldoVisivel: boolean = false;
+    
+  
+    saldoVisivel: boolean = true;
+    isdarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   toggleSaldoVisibilidade() {
     this.saldoVisivel = !this.saldoVisivel;
   }
+
 }
