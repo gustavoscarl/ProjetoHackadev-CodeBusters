@@ -12,10 +12,10 @@ public class Cliente : Entity
     public int EnderecoId { get; set; }
     public virtual Endereco Endereco { get; set; }
 
-    public int TentativaLoginId { get; set; }
+    public int? TentativaLoginId { get; set; }
     public virtual TentativaLogin TentativaLogin { get; set; }
 
-    public int DocumentoId { get; set; }
+    public int? DocumentoId { get; set; }
     public virtual Documento Documento { get; set; }
 
     public int? SessaoId { get; set; }
