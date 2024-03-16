@@ -6,7 +6,7 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Controllers;
 
-[Route("[controller]")]
+[Route("/clientes")]
 [ApiController]
 public class ClienteController : ControllerBase
 {

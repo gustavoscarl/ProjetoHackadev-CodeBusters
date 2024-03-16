@@ -1,4 +1,6 @@
-﻿namespace PayWiseBackend.Domain.DTOs;
+﻿using PayWiseBackend.Domain.Models;
+
+namespace PayWiseBackend.Domain.DTOs;
 
 public class RetrieveClienteDTO
 {
