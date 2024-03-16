@@ -7,7 +7,7 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Controllers
 {
-    [Route("[controller]")]
+    [Route("/contas")]
     [ApiController]
     public class ContaController : ControllerBase
     {
@@ -53,11 +53,16 @@ namespace PayWiseBackend.Controllers
             }
 
             var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            Historico historico = new Historico();
+            contaCadastrar.Historico = historico;
 
             var result = await _context.Contas.AddAsync(contaCadastrar);
             var contaCadastrada = result.Entity;
             cliente.Conta = contaCadastrada;
             cliente.TemConta = true;
+
+
+            await _context.Historicos.AddAsync(historico);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
@@ -77,6 +82,17 @@ namespace PayWiseBackend.Controllers
                 return BadRequest(new { message = "Saldo insuficiente" });
 
             conta.Saldo -= valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "SAQUE",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
 
             await _context.SaveChangesAsync();
             return Ok();
