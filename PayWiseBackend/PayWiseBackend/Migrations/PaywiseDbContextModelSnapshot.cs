@@ -83,7 +83,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasIndex("TentativaLoginId");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Conta", b =>
@@ -127,7 +127,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasIndex("HistoricoId");
 
-                    b.ToTable("Contas");
+                    b.ToTable("Contas", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Documento", b =>
@@ -148,7 +148,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Documentos");
+                    b.ToTable("Documentos", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Endereco", b =>
@@ -188,7 +188,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Enderecos");
+                    b.ToTable("Enderecos", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>
@@ -201,7 +201,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Historicos");
+                    b.ToTable("Historicos", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
@@ -218,7 +218,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sessoes");
+                    b.ToTable("Sessoes", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.TentativaLogin", b =>
@@ -240,7 +240,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TentativasLogin");
+                    b.ToTable("TentativasLogin", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Transacao", b =>
@@ -271,7 +271,7 @@ namespace PayWiseBackend.Migrations
 
                     b.HasIndex("HistoricoId");
 
-                    b.ToTable("Transacoes");
+                    b.ToTable("Transacoes", (string)null);
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente", b =>

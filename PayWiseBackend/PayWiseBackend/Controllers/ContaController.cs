@@ -49,10 +49,11 @@ namespace PayWiseBackend.Controllers
             if (cliente.TemConta)
                 return BadRequest(new { message = "O cliente já possui uma conta" });
 
-            var numConta = _context.Contas.Count();
+            var numConta = await _context.Contas.MaxAsync(conta => (int?)conta.Numero) ?? 0000;
+            numConta += 1;
             Conta contaCadastrar = new Conta()
             {
-                Numero = numConta++,
+                Numero = numConta,
                 Pin = novaConta.Pin
             };
 
