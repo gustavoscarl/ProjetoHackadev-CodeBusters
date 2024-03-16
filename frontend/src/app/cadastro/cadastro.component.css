@@ -6,7 +6,8 @@ html {
   background-color: #f0f0f0;
 }
 a {
-  color: #fff;
+  color: #ce2222;
+  text-decoration: none;
 }
 
 .header {
@@ -56,6 +57,11 @@ h4 {
   border-radius: 15px;
 }
 
+.btn-purple-submit {
+  background-color: #7f53df;
+  border-radius: 15px;
+}
+
 .btn-purple:hover {
   background-color: #6630d9;
   color: #7f53df;
@@ -94,6 +100,15 @@ h4 {
 }
 
 @media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+
+  input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #383737 inset !important;
+  }
+
   label {
     color: #a484e8;
   }

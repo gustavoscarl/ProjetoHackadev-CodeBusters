@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240315165122_FixClienteTentativaLoginRelationship")]
+    partial class FixClienteTentativaLoginRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("DocumentoId")
+                    b.Property<int>("DocumentoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -114,7 +117,6 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("double");
 
                     b.Property<int>("Numero")
-                        .HasMaxLength(6)
                         .HasColumnType("int");
 
                     b.Property<int>("Pin")
@@ -283,7 +285,9 @@ namespace PayWiseBackend.Migrations
 
                     b.HasOne("PayWiseBackend.Domain.Models.Documento", "Documento")
                         .WithMany()
-                        .HasForeignKey("DocumentoId");
+                        .HasForeignKey("DocumentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PayWiseBackend.Domain.Models.Endereco", "Endereco")
                         .WithMany()

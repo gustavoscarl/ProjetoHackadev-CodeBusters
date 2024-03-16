@@ -7,7 +7,7 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Controllers
 {
-    [Route("[controller]")]
+    [Route("/contas")]
     [ApiController]
     public class ContaController : ControllerBase
     {
@@ -23,9 +23,9 @@ namespace PayWiseBackend.Controllers
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<RetrieveContaDTO> PegarPorId(int id)
+        public async Task<ActionResult<RetrieveContaDTO>> PegarPorId(int id)
         {
-            var conta = _context.Contas.Find(id);
+            var conta = await _context.Contas.FindAsync(id);
 
             if (conta is null)
                 return NotFound(new { message = "Conta não encontrada" });
@@ -35,30 +35,144 @@ namespace PayWiseBackend.Controllers
             return Ok(new { contaResponse });
         }
 
-        [HttpPost]
+        [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult CriarConta(int clienteId, CreateContaDTO novaConta)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CriarConta(int clienteId, CreateContaDTO novaConta)
         {
-            var cliente = _context.Clientes.FirstOrDefault(c => c.Id == clienteId);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == clienteId);
             if (cliente is null)
-            {
                 return NotFound(new { message = "Cliente não encontrado" });
-            }
 
-            if (cliente.temConta)
-            {
+            if (cliente.TemConta)
                 return BadRequest(new { message = "O cliente já possui uma conta" });
-            }
 
-            var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            //var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            var numConta = _context.Contas.Count();
+            Conta contaCadastrar = new Conta()
+            {
+                Numero = numConta++,
+                Pin = novaConta.Pin
+            };
 
-            var result = _context.Contas.Add(contaCadastrar);
+            Historico historico = new Historico();
+            contaCadastrar.Historico = historico;
+
+            var result = await _context.Contas.AddAsync(contaCadastrar);
             var contaCadastrada = result.Entity;
             cliente.Conta = contaCadastrada;
-            cliente.temConta = true;
-            _context.SaveChanges();
+            cliente.TemConta = true;
+
+
+            await _context.Historicos.AddAsync(historico);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
+        }
+
+        [HttpPut("sacar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Sacar(int contaId, double valor)
+        {
+            var conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            if (conta.Saldo <= 0)
+                return BadRequest(new { message = "Saldo insuficiente" });
+
+            conta.Saldo -= valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "SAQUE",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+            
+            await _context.Transacoes.AddAsync(transacao);
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPut("depositar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Depositar(int contaId, double valor)
+        {
+            var conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            conta.Saldo += valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "DEPOSITO",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
+
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPut("transferir")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Transferir(int contaId, int numeroContaDestino, double valor)
+        {
+            var conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            if (conta.Saldo <= 0)
+                return BadRequest(new { mesage = "Saldo insuficiente" });
+
+            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == numeroContaDestino);
+
+            if (contaDestino is null)
+                return BadRequest(new { message = "Conta de destino inexistente" });
+
+            conta.Saldo -= valor;
+            contaDestino.Saldo += valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "TRANSFERENCIA",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
+
+            Transacao transacaoDestino = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "TRANSFERENCIA",
+                Valor = valor,
+                HistoricoId = contaDestino.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacaoDestino);
+
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
     }

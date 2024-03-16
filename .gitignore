@@ -63,6 +63,8 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 obj/
+Debug/
+net8.0/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
