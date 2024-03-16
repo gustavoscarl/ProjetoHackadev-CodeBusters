@@ -19,7 +19,7 @@
 .user-balance-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 20px;
   box-shadow: none;
   border: 0;
@@ -78,7 +78,6 @@
 }
 
 @media screen and (max-width: 990px) {
-
   .user-balance-container,
   .user-greetings-container {
     width: 100%;
@@ -168,7 +167,6 @@
 
   .exibirSaldo {
     border: none;
-
   }
 }
 
@@ -179,14 +177,12 @@
   height: 30px;
   border: none;
   background: none;
-
-
 }
 .user-greetings-container,
 .user-balance-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 20px;
   box-shadow: none;
   border: 0;
