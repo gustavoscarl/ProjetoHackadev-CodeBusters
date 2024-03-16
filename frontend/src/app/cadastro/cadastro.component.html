@@ -33,17 +33,17 @@
                         <label for="inputCep">CEP</label>
                         <input type="text" class="form-control" id="inputCep" 
                         formControlName="cep" 
-                        placeholder="Ex: 96745000">
-                        <span *ngIf="cadastroForm.get('cep')?.invalid && cadastroForm.get('cep')?.touched"
-                        class="text-danger d-inline">
-                            Por favor, digite somente números!
-                        </span>
+                        placeholder="96745000">
                     </div>
-                    <div class="form-group col-md-2 d-flex align-items-end justify-content-center mt-3 mt-md-0">
+                    <div class="form-group col-md-2 d-flex col align-items-end justify-content-center mt-3 mt-md-0">
                         <button type="button" (click)="obterEndereco()" class="btn btn-purple-submit">Buscar</button>
                     </div>
                 </div>
-                <div class="row">
+                <span *ngIf="cadastroForm.get('cep')?.invalid && cadastroForm.get('cep')?.touched"
+                class="text-danger d-inline">
+                    Por favor, digite somente números!
+                </span>
+                <div class="row row-cols-12">
                     <div class="form-group col-lg-1 col-md-2">
                         <label for="inputState">Estado</label>
                         <select id="inputState" class="form-control">
@@ -80,7 +80,14 @@
                 
                 <div class="form-group col-lg-3 col-md-4">
                     <label for="inputCity">Cidade</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Ex: Charqueadas">
+                    <input type="text" class="form-control" 
+                    id="inputCity" 
+                    placeholder="Ex: Charqueadas"
+                    formControlName="cidade">
+                    <span *ngIf="cadastroForm.get('cidade')?.invalid && cadastroForm.get('cidade')?.touched"
+                    class="text-danger d-inline">
+                        Por favor, digite um nome de cidade válido!
+                    </span>
                 </div>
                         
                         </div>
