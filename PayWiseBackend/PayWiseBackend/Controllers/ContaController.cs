@@ -91,7 +91,7 @@ namespace PayWiseBackend.Controllers
                 Valor = valor,
                 HistoricoId = conta.HistoricoId
             };
-
+            
             await _context.Transacoes.AddAsync(transacao);
 
             await _context.SaveChangesAsync();
@@ -109,6 +109,17 @@ namespace PayWiseBackend.Controllers
                 return BadRequest(new { message = "Conta não existe" });
 
             conta.Saldo += valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "DEPOSITO",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
 
             await _context.SaveChangesAsync();
             return Ok();
@@ -134,6 +145,28 @@ namespace PayWiseBackend.Controllers
 
             conta.Saldo -= valor;
             contaDestino.Saldo += valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "TRANSFERENCIA",
+                Valor = valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
+
+            Transacao transacaoDestino = new Transacao()
+            {
+                Descricao = "description",
+                Horario = new DateTime(),
+                Tipo = "TRANSFERENCIA",
+                Valor = valor,
+                HistoricoId = contaDestino.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacaoDestino);
 
             await _context.SaveChangesAsync();
             return Ok();
