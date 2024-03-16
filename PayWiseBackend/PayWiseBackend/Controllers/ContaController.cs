@@ -43,16 +43,19 @@ namespace PayWiseBackend.Controllers
         {
             var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == clienteId);
             if (cliente is null)
-            {
                 return NotFound(new { message = "Cliente não encontrado" });
-            }
 
             if (cliente.TemConta)
-            {
                 return BadRequest(new { message = "O cliente já possui uma conta" });
-            }
 
-            var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            //var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            var numConta = _context.Contas.Count();
+            Conta contaCadastrar = new Conta()
+            {
+                Numero = numConta++,
+                Pin = novaConta.Pin
+            };
+
             Historico historico = new Historico();
             contaCadastrar.Historico = historico;
 
