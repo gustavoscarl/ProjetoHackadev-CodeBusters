@@ -5,7 +5,7 @@
     <div class="container text-start mt-5">
         <div class="form-row border border-secondary rounded border-opacity-50 p-5">
             <div class="row  mb-5 pt-1">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label for="inputNome">Nome</label>
                     <input type="text" class="form-control"
                     id="inputNome" 
@@ -17,7 +17,7 @@
                     </span>
                 </div>
                 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-7">
                     <label for="inputSobrenome">Sobrenome</label>
                     <input type="text" class="form-control" id="inputSobrenome" placeholder="Digite o Seu Sobrenome"
                     formControlName="lastname">
@@ -33,7 +33,7 @@
                         <label for="inputCep">CEP</label>
                         <input type="text" class="form-control" id="inputCep" 
                         formControlName="cep" 
-                        placeholder="96745000">
+                        placeholder="96745-000">
                     </div>
                     <div class="form-group col-md-2 d-flex col align-items-end justify-content-center mt-3 mt-md-0">
                         <button type="button" (click)="obterEndereco()" class="btn btn-purple-submit">Buscar</button>
@@ -95,28 +95,80 @@
                         <div class="row">
                     <div class="form-group col-md-5">
                         <label for="inputLogradouro">Logradouro</label>
-                        <input type="text" class="form-control" id="inputLogradouro" placeholder="Ex: Avenida Paulista">
+                        <input type="text" class="form-control" id="inputLogradouro" placeholder="Ex: Avenida Paulista"
+                        formControlName="logradouro">
+                        <span *ngIf="cadastroForm.get('logradouro')?.invalid && cadastroForm.get('logradouro')?.touched"
+                        class="text-danger d-inline">
+                            Digite um nome de logradouro válido! (Somente letras)
+                        </span>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputNumero">Nº</label>
-                        <input type="text" class="form-control" id="inputNumero" placeholder="Ex: 435">
+                        <input type="text" class="form-control" id="inputNumero" placeholder="Ex: 435"
+                        formControlName="numero">
+                        <span *ngIf="cadastroForm.get('numero')?.invalid && cadastroForm.get('numero')?.touched"
+                        class="text-danger d-inline">
+                            Número inválido!
+                        </span>
                     </div>
                     <div class="form-group col-md-5">
                         <label for="inputBairro">Bairro</label>
-                        <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Am">
+                        <input type="text" class="form-control" id="inputBairro" placeholder="Ex: Am"
+                        formControlName="bairro">
+                        <span *ngIf="cadastroForm.get('bairro')?.invalid && cadastroForm.get('bairro')?.touched"
+                        class="text-danger d-inline">
+                            Por favor, digite um bairro válido! (Somente letras)
+                        </span>
                     </div>
                         </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="inputComplemento">Complemento</label>
-                        <input type="text" class="form-control" id="inputComplemento" placeholder="Ex: Casa, Apto">
+                        <input type="text" 
+                        class="form-control" id="inputComplemento" 
+                        placeholder="Ex: Casa, Apto"
+                        formControlName="complemento">
+                        <span *ngIf="cadastroForm.get('complemento')?.invalid && cadastroForm.get('complemento')?.touched"
+                        class="text-danger d-inline">
+                            Por favor, digite um complemento válido! (Somente letras)
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group col-md-5 mt-5">
+            <div class="form-group col-md-8 mt-5">
                 <label for="inputEmail">Email</label>
-                <input type="text" class="form-control" id="inputEmail" placeholder="Ex: exemplo@dominio.com">
+                <input type="email"
+                 class="form-control" 
+                 id="inputEmail" 
+                 placeholder="Ex: exemplo@dominio.com"
+                 formControlName="email">
+                 <span *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched"
+                 class="text-danger d-inline">
+                     Por favor, digite um email válido!
+                 </span>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword">Senha</label>
+                    <input type="password"
+                     class="form-control" 
+                     id="inputPassword" 
+                     placeholder="Digite uma senha forte"
+                     formControlName="password">
+                     <span *ngIf="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched"
+                     class="text-danger d-inline">
+                         Por favor, digite um email válido!
+                     </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword">Confirmação Senha</label>
+                    <input type="password"
+                     class="form-control" 
+                     id="inputConfPassword" 
+                     placeholder="Confirme a senha"
+                     formControlName="confirm-password">
+                </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-5 col-lg-4">

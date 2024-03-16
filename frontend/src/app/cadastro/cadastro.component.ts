@@ -77,7 +77,27 @@ export class CadastroComponent {
               Validators.required,
               Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
               Validators.minLength(3)
-            ])
+            ]),
+      'numero': new FormControl(null, 
+            [
+              Validators.required,
+              Validators.pattern('^[0-9]+$')
+            ]),
+      'bairro': new FormControl(null,
+          [
+            Validators.required,
+            Validators.pattern('^[a-zA-ZÀ-ú ]+$')
+          ]),
+      'complemento': new FormControl(null,
+            [
+              Validators.required,
+              Validators.pattern('^[a-zA-ZÀ-ú ]+$')
+            ]),
+      'email': new FormControl(null,
+        [
+          Validators.required,
+          Validators.email
+        ]),
     });
   }
 
