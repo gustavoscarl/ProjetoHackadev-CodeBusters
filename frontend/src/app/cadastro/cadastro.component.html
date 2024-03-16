@@ -15,7 +15,8 @@
                     formControlName="name">
                     <span *ngIf="cadastroForm.get('name')?.invalid && cadastroForm.get('name')?.touched"
                     class="text-danger d-inline">
-                        Por favor, digite um nome válido!
+                        <p *ngIf="cadastroForm.get('name')?.errors?.['required']">Por favor, digite um nome.</p>
+                        <p *ngIf="cadastroForm.get('name')?.errors?.['pattern']">Somente letras são aceitas.</p>
                     </span>
                 </div>
                 
@@ -25,7 +26,8 @@
                     formControlName="lastname">
                     <span *ngIf="cadastroForm.get('lastname')?.invalid && cadastroForm.get('lastname')?.touched"
                     class="text-danger d-inline">
-                        Por favor, digite um nome válido!
+                    <p *ngIf="cadastroForm.get('lastname')?.errors?.['required']">Por favor, digite um nome.</p>
+                    <p *ngIf="cadastroForm.get('lastname')?.errors?.['pattern']">Somente letras são aceitas.</p>
                     </span>
                 </div>
             </div>
@@ -35,7 +37,8 @@
                         <label for="inputCep">CEP</label>
                         <input type="text" class="form-control" id="inputCep" 
                         formControlName="cep" 
-                        placeholder="96745-000">
+                        placeholder="96745-000"
+                        mask="00000-000">
                     </div>
                     <div class="form-group col-md-2 d-flex col align-items-end justify-content-center mt-3 mt-md-0">
                         <button type="button" (click)="obterEndereco()" class="btn btn-purple-submit">Buscar</button>
@@ -43,7 +46,8 @@
                 </div>
                 <span *ngIf="cadastroForm.get('cep')?.invalid && cadastroForm.get('cep')?.touched"
                 class="text-danger d-inline">
-                    Por favor, digite somente números!
+                    <p *ngIf="cadastroForm.get('cep')?.errors?.['required']">Por favor, digite um CEP.</p>
+                    <p *ngIf="cadastroForm.get('cep')?.errors?.['pattern']">Somente números são aceitos.</p>
                 </span>
                 <div class="row row-cols-12">
                     <div class="form-group col-lg-1 col-md-2">
@@ -88,7 +92,8 @@
                     formControlName="cidade">
                     <span *ngIf="cadastroForm.get('cidade')?.invalid && cadastroForm.get('cidade')?.touched"
                     class="text-danger d-inline">
-                        Por favor, digite um nome de cidade válido!
+                        <p *ngIf="cadastroForm.get('cidade')?.errors?.['required']">Digite uma cidade.</p>
+                        <p *ngIf="cadastroForm.get('cidade')?.errors?.['pattern']">Somente letras são aceitas.</p>
                     </span>
                 </div>
                         
@@ -101,7 +106,8 @@
                         formControlName="logradouro">
                         <span *ngIf="cadastroForm.get('logradouro')?.invalid && cadastroForm.get('logradouro')?.touched"
                         class="text-danger d-inline">
-                            Digite um nome de logradouro válido! (Somente letras)
+                            <p *ngIf="cadastroForm.get('logradouro')?.errors?.['required']">Digite um logradouro.</p>
+                            <p *ngIf="cadastroForm.get('logradouro')?.errors?.['pattern']">Somente letras são aceitas.</p>
                         </span>
                     </div>
                     <div class="form-group col-md-2">
@@ -110,7 +116,8 @@
                         formControlName="numero">
                         <span *ngIf="cadastroForm.get('numero')?.invalid && cadastroForm.get('numero')?.touched"
                         class="text-danger d-inline">
-                            Número inválido!
+                            <p *ngIf="cadastroForm.get('numero')?.errors?.['required']">Digite um número.</p>
+                            <p *ngIf="cadastroForm.get('numero')?.errors?.['pattern']">Somente números são aceitos.</p>
                         </span>
                     </div>
                     <div class="form-group col-md-5">
@@ -119,7 +126,8 @@
                         formControlName="bairro">
                         <span *ngIf="cadastroForm.get('bairro')?.invalid && cadastroForm.get('bairro')?.touched"
                         class="text-danger d-inline">
-                            Por favor, digite um bairro válido! (Somente letras)
+                            <p *ngIf="cadastroForm.get('bairro')?.errors?.['required']">Digite um bairro.</p>
+                            <p *ngIf="cadastroForm.get('bairro')?.errors?.['pattern']">Somente letras são aceitos.</p>
                         </span>
                     </div>
                         </div>
@@ -132,14 +140,17 @@
                         formControlName="complemento">
                         <span *ngIf="cadastroForm.get('complemento')?.invalid && cadastroForm.get('complemento')?.touched"
                         class="text-danger d-inline">
-                            Por favor, digite um complemento válido! (Somente letras)
+                            <p *ngIf="cadastroForm.get('complemento')?.errors?.['required']">Digite um complemento.</p>
+                            <p *ngIf="cadastroForm.get('complemento')?.errors?.['pattern']">Somente letras e números são aceitos.</p>
                         </span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row  mt-4">
                     <div class="form-group col-md-5 col-lg-4">
                         <label for="inputCpf">CPF</label>
-                        <input type="text" class="form-control" id="inputCpf" placeholder="000.000.000-00">
+                        <input type="text" class="form-control" id="inputCpf"
+                        placeholder="000.000.000-00"
+                        mask="000.000.000-00">
                     </div>
                     <div class="form-group col-md-5 col-lg-4">
                         <label for="inputId">Identidade</label>
@@ -160,7 +171,7 @@
                  formControlName="email">
                  <span *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched"
                  class="text-danger d-inline">
-                     Por favor, digite um email válido!
+                     <p *ngIf="cadastroForm.get('userData.email')?.getError('required')">Por favor, digite um email válido!</p>
                  </span>
             </div>
             <div class="row">
