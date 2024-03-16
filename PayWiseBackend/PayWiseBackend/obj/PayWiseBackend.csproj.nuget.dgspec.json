@@ -4,20 +4,20 @@
     "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {}
   },
   "projects": {
-    "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
+    "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
         "projectName": "PayWiseBackend",
-        "projectPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
-        "packagesPath": "C:\\Users\\Camila Vieira\\.nuget\\packages\\",
-        "outputPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
+        "projectPath": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "packagesPath": "C:\\Users\\Alan Eduardo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Camila Vieira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alan Eduardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
