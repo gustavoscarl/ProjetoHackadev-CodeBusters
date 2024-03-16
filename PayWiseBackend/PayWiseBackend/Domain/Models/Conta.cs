@@ -7,7 +7,7 @@ public class Conta : Entity
 {
     [MinLength(6)]
     [MaxLength(6)]
-    public int Numero { get; set; }
+    public string Numero { get; set; } = null!;
     public double Saldo { get; set; } = 0.00;
     public DateTime DataAbertura { get; set; } = DateTime.Now;
     public DateTime DataModificacao { get; set; } = DateTime.Now;
