@@ -48,7 +48,6 @@ namespace PayWiseBackend.Controllers
             if (cliente.TemConta)
                 return BadRequest(new { message = "O cliente já possui uma conta" });
 
-            //var contaCadastrar = _mapper.Map<Conta>(novaConta);
             var numConta = _context.Contas.Count();
             Conta contaCadastrar = new Conta()
             {
@@ -74,7 +73,7 @@ namespace PayWiseBackend.Controllers
         [HttpPut("sacar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Sacar(int contaId, double valor)
+        public async Task<IActionResult> Sacar(int contaId, CreateTransacaoSaqueDTO dadosTransacao)
         {
             var conta = await _context.Contas.FindAsync(contaId);
 
@@ -84,14 +83,17 @@ namespace PayWiseBackend.Controllers
             if (conta.Saldo <= 0)
                 return BadRequest(new { message = "Saldo insuficiente" });
 
-            conta.Saldo -= valor;
+            if (conta.Pin != dadosTransacao.Pin)
+                return BadRequest(new { message = "Senha PIN inválida" });
+
+            conta.Saldo -= dadosTransacao.Valor;
 
             Transacao transacao = new Transacao()
             {
-                Descricao = "description",
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
                 Tipo = "SAQUE",
-                Valor = valor,
+                Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
             
@@ -104,21 +106,21 @@ namespace PayWiseBackend.Controllers
         [HttpPut("depositar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Depositar(int contaId, double valor)
+        public async Task<IActionResult> Depositar(int contaId, CreateTransacaoDepositoDTO dadosTransacao)
         {
             var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
 
-            conta.Saldo += valor;
+            conta.Saldo += dadosTransacao.Valor;
 
             Transacao transacao = new Transacao()
             {
-                Descricao = "description",
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
                 Tipo = "DEPOSITO",
-                Valor = valor,
+                Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
 
@@ -131,7 +133,7 @@ namespace PayWiseBackend.Controllers
         [HttpPut("transferir")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Transferir(int contaId, int numeroContaDestino, double valor)
+        public async Task<IActionResult> Transferir(int contaId, CreateTransacaoTransferenciaDTO dadosTransacao)
         {
             var conta = await _context.Contas.FindAsync(contaId);
 
@@ -141,20 +143,20 @@ namespace PayWiseBackend.Controllers
             if (conta.Saldo <= 0)
                 return BadRequest(new { mesage = "Saldo insuficiente" });
 
-            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == numeroContaDestino);
+            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
 
             if (contaDestino is null)
                 return BadRequest(new { message = "Conta de destino inexistente" });
 
-            conta.Saldo -= valor;
-            contaDestino.Saldo += valor;
+            conta.Saldo -= dadosTransacao.Valor;
+            contaDestino.Saldo += dadosTransacao.Valor;
 
             Transacao transacao = new Transacao()
             {
-                Descricao = "description",
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
                 Tipo = "TRANSFERENCIA",
-                Valor = valor,
+                Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
 
@@ -162,10 +164,10 @@ namespace PayWiseBackend.Controllers
 
             Transacao transacaoDestino = new Transacao()
             {
-                Descricao = "description",
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
                 Tipo = "TRANSFERENCIA",
-                Valor = valor,
+                Valor = dadosTransacao.Valor,
                 HistoricoId = contaDestino.HistoricoId
             };
 
