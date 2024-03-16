@@ -20,13 +20,19 @@ a {
 }
 
 h2 {
-  margin-left: 16px;
+  padding-top: 50px;
+  text-align: center;
 }
 
 h4 {
-  margin: 20px;
+  margin-bottom: 20px;
   padding: 16px;
   text-decoration: underline;
+}
+
+.login {
+  margin-top: 50px;
+  margin-bottom: 0px;
 }
 
 .container {

@@ -98,6 +98,16 @@ export class CadastroComponent {
           Validators.required,
           Validators.email
         ]),
+      'password': new FormControl(null,
+          [
+            Validators.required,
+            Validators.email
+          ]),
+      'confirm-password': new FormControl(null,
+            [
+              Validators.required,
+              Validators.email
+            ]),
     });
   }
 
