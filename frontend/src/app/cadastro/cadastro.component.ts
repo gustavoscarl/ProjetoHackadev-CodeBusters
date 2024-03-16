@@ -28,7 +28,9 @@ export class CadastroComponent {
     .subscribe((retorno: Endereco | undefined) => { 
       this.enderecoPorCep = retorno;
       this.preencherCamposEndereco();
+      console.log(retorno);
     });
+
   }
 
   // Função que preenche os campos endereço
@@ -48,14 +50,22 @@ export class CadastroComponent {
   ngOnInit() {
     this.cadastroForm = new FormGroup({
       'name': new FormControl(null, 
-        [Validators.required,
+        [
+        Validators.required,
         Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
-        Validators.minLength(3),]),
+        Validators.minLength(3),
+      ]),
       'lastname': new FormControl(null, 
-        [Validators.required, 
+        [
+        Validators.required, 
         Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
-        Validators.minLength(3)]),
-      'cep': new FormControl(null),
+        Validators.minLength(3)
+      ]),
+      'cep': new FormControl(null, 
+        [
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+        ]),
     });
   }
 
