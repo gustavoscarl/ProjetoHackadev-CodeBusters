@@ -25,9 +25,8 @@ export class CadastroComponent {
   // Função para obter o endereço e chamar a função que preenche após obter os endereços via API.
   obterEndereco():void{
     this.servico.retornarEndereco(this.cep.value)
-    .subscribe( retorno => { 
+    .subscribe((retorno: Endereco | undefined) => { 
       this.enderecoPorCep = retorno;
-      console.log(this.enderecoPorCep);
       this.preencherCamposEndereco();
     });
   }
