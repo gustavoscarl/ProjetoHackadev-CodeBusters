@@ -47,8 +47,14 @@ export class CadastroComponent {
 
   ngOnInit() {
     this.cadastroForm = new FormGroup({
-      'name': new FormControl('', [Validators.required]),
-      'lastname': new FormControl(''),
+      'name': new FormControl(null, 
+        [Validators.required,
+        Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
+        Validators.minLength(3),]),
+      'lastname': new FormControl(null, 
+        [Validators.required, 
+        Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
+        Validators.minLength(3)]),
       'cep': new FormControl(null),
     });
   }
@@ -56,5 +62,9 @@ export class CadastroComponent {
   onSubmit() {
     console.log(this.cadastroForm);
   }
+
+
+
+
 
 }

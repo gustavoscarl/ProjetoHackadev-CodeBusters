@@ -21,6 +21,10 @@
                     <label for="inputSobrenome">Sobrenome</label>
                     <input type="text" class="form-control" id="inputSobrenome" placeholder="Digite o Seu Sobrenome"
                     formControlName="lastname">
+                    <span *ngIf="cadastroForm.get('lastname')?.invalid && cadastroForm.get('lastname')?.touched"
+                    class="text-danger d-inline">
+                        Por favor, digite um nome válido!
+                    </span>
                 </div>
             </div>
             <div>
