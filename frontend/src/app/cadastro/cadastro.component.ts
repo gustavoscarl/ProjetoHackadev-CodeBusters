@@ -129,6 +129,7 @@ export class CadastroComponent {
   }
 
   onSubmit(): void {
+    console.log(this.cadastroForm)
     this.cadastroForm.markAllAsTouched();
     if (this.cadastroForm.valid) {
       const cadastroData: Cadastro = {
@@ -139,13 +140,13 @@ export class CadastroComponent {
         rg: this.cadastroForm.get('identidade')?.value,
         endereco: {
           id: this.cadastroForm.get('endereco.id')?.value,
-          rua: this.cadastroForm.get('endereco.rua')?.value,
-          numero: this.cadastroForm.get('endereco.numero')?.value,
-          bairro: this.cadastroForm.get('endereco.bairro')?.value,
-          complemento: this.cadastroForm.get('endereco.complemento')?.value,
-          cep: this.cadastroForm.get('endereco.cep')?.value,
-          cidade: this.cadastroForm.get('endereco.cidade')?.value,
-          estado: this.cadastroForm.get('endereco.estado')?.value,
+          rua: this.cadastroForm.get('logradouro')?.value,
+          numero: this.cadastroForm.get('numero')?.value,
+          bairro: this.cadastroForm.get('bairro')?.value,
+          complemento: this.cadastroForm.get('complemento')?.value,
+          cep: this.cadastroForm.get('cep')?.value,
+          cidade: this.cadastroForm.get('cidade')?.value,
+          estado: this.cadastroForm.get('estado')?.value,
         }
       };
 
