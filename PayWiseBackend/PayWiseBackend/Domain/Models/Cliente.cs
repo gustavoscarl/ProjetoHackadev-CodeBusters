@@ -19,6 +19,7 @@ public class Cliente : Entity
     [StringLength(11)]
     public string Cpf { get; set; } = null!;
     [Required]
+    [MinLength(5)]
     [StringLength(11)]
     public string Rg { get; set; } = null!;
     public bool TemConta { get; set; } = false;
