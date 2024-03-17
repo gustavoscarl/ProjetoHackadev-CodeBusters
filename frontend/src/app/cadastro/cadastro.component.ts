@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Endereco } from '../modelos/Endereco';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { criarSenhaForte } from '../validators/senhaforte';
+import { CadastroService } from '../servicos/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,7 +24,7 @@ export class CadastroComponent {
   cep: FormControl = new FormControl('');
   enderecoPorCep: Endereco | undefined;
 
-  constructor(private servico:EnderecoService){}
+  constructor(private servico:EnderecoService, private cadastroService: CadastroService){}
 
   // Função para obter o endereço e chamar a função que preenche após obter os endereços via API.
   obterEndereco():void{
@@ -127,11 +128,17 @@ export class CadastroComponent {
   }
 
   onSubmit() {
-    console.log(this.cadastroForm);
+    if (this.cadastroForm.valid) {
+      this.cadastroService.cadastrarCliente(this.cadastroForm.value)
+      .subscribe(
+        retorno => {
+          console.log('Cliente cadastrado com sucesso', retorno)
+        }
+      )
+    }
+    else {
+      console.log('Formulário inválido ou erro no servidor')
+    }
   }
-
-
-
-
 
 }
