@@ -72,6 +72,20 @@ namespace PayWiseBackend.Controllers
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
         }
 
+        [HttpGet("saldo{contaId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<double>> ConsultarSaldo(int contaId)
+        {
+            Conta? conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe." });
+
+            double saldo = conta.Saldo;
+            return Ok(new { saldo });
+        }
+
         [HttpPut("sacar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
