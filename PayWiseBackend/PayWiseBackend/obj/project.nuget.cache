@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "kEuHmQhhYkAR1E+b+eITOuTBhEU8Na1uS1XnYuSdh8k9wiUsQTvBQJQJJVxjAcuqQeliyguyGYk40ctFR2BjQQ==",
+  "dgSpecHash": "wi0jfynZ566Ik8FrlcW6K+HDHVJwrectuYh6jFFvRYCflc90uInSLS1o2/s3M1dZFK838GSc8rJ410LY21/yig==",
   "success": true,
   "projectFilePath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Camila Vieira\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
