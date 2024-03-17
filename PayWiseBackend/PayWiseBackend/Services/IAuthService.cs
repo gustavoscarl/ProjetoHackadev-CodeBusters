@@ -1,5 +1,18 @@
-﻿namespace PayWiseBackend.Services;
+﻿using PayWiseBackend.Domain.DTOs;
+using PayWiseBackend.Domain.Models;
 
-public class IAuthService
+namespace PayWiseBackend.Services;
+
+public enum TokenType
 {
+    Access,
+    Refresh
+}
+
+public interface IAuthService
+{
+    Task<Cliente?> ValidateCredentials(LoginRequestDTO loginCredentials);
+    string GenerateToken(int clienteId, TokenType type);
+    string GenerateAccessToken(int clienteId);
+    string GenerateRefreshToken(int clienteId);
 }

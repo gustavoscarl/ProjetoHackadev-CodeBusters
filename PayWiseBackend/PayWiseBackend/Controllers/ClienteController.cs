@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
@@ -20,6 +21,7 @@ public class ClienteController : ControllerBase
         _mapper = mapper;
     }
 
+    [Authorize]
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

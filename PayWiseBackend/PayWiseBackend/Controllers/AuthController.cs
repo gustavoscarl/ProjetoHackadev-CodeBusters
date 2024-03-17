@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PayWiseBackend.Domain.Context;
+using PayWiseBackend.Domain.DTOs;
+using PayWiseBackend.Domain.Models;
+using PayWiseBackend.Services;
 
 namespace PayWiseBackend.Controllers;
 
@@ -10,14 +13,41 @@ public class AuthController : Controller
 {
     private readonly PaywiseDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IAuthService _service;
 
-    public AuthController(PaywiseDbContext context, IMapper mapper)
+
+    public AuthController(PaywiseDbContext context, IMapper mapper, IAuthService service)
     {
         _context = context;
         _mapper = mapper;
+        _service = service;
     }
 
-    /*public async Task<IActionResult> Autenticar()
+    [HttpPost]
+    public async Task<IActionResult> Autenticar(LoginRequestDTO loginCredentials)
     {
-    }*/
+        Cliente? cliente = await _service.ValidateCredentials(loginCredentials);
+        if (cliente is null)
+            return BadRequest(new { message = "Cliente não existe." });
+
+        string accessToken = _service.GenerateAccessToken(cliente.Id);
+        string refreshToken = _service.GenerateRefreshToken(cliente.Id);
+
+        Sessao sessao = new Sessao()
+        {
+            RefreshToken = refreshToken
+        };
+
+        var sessaoResult = await _context.Sessoes.AddAsync(sessao);
+        cliente.Sessao = sessaoResult.Entity;
+        await _context.SaveChangesAsync();
+
+        Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Strict
+        });
+
+        return Ok(new { accessToken });
+    }
 }
