@@ -171,7 +171,7 @@
                  formControlName="email">
                  <span *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched"
                  class="text-danger d-inline">
-                     <p *ngIf="cadastroForm.get('userData.email')?.getError('required')">Por favor, digite um email válido!</p>
+                     <p>Por favor, digite um email válido!</p>
                  </span>
             </div>
             <div class="row">
@@ -183,8 +183,13 @@
                      placeholder="Digite uma senha forte"
                      formControlName="password">
                      <span *ngIf="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched"
-                     class="text-danger d-inline">
-                         Por favor, digite um email válido!
+                     class="text-danger d-inline senha-error">
+                        <div *ngIf="cadastroForm.get('password')?.errors?.['senhaForte'] || cadastroForm.get('password')?.errors">
+                            <p>Digite uma senha contendo:</p>
+                            <p>Número.</p>
+                            <p>Letras maiúsculas e minúsculas.</p>
+                            <p>Com 6 dígitos no mínimo.</p>
+                        </div>
                      </span>
                 </div>
                 <div class="form-group col-md-6">
@@ -194,6 +199,11 @@
                      id="inputConfPassword" 
                      placeholder="Confirme a senha"
                      formControlName="confirm-password">
+                     <span *ngIf="cadastroForm.get('confirm-password')?.invalid && cadastroForm.get('confirm-password')?.touched"
+                     class="text-danger d-inline senha-error">
+                        <p *ngIf="cadastroForm.get('confirm-password')?.errors?.['required']">Digite a confirmação da senha.</p>
+                        <p *ngIf="cadastroForm.get('password')?.value != cadastroForm.get('confirm-password')?.value">As senhas diferem.</p>
+                     </span>
                 </div>
             </div>
         </div>

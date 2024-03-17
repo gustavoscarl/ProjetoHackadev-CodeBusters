@@ -6,6 +6,7 @@ import { EnderecoService } from '../servicos/endereco.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Endereco } from '../modelos/Endereco';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { criarSenhaForte } from '../validators/senhaforte';
 
 @Component({
   selector: 'app-cadastro',
@@ -102,12 +103,12 @@ export class CadastroComponent {
       'password': new FormControl(null,
           [
             Validators.required,
-            Validators.email
+            Validators.minLength(6),
+            criarSenhaForte(),
           ]),
       'confirm-password': new FormControl(null,
             [
               Validators.required,
-              Validators.email
             ]),
     });
   }
