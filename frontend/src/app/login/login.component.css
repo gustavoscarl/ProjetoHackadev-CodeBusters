@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+input:-webkit-autofill {
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}
+
 .logo {
   width: 100%;
   max-width: 300px;
@@ -160,6 +165,11 @@ input[type="password"] {
   .form-group input:focus {
     transition-duration: 300ms;
     outline: 1px solid #a484e8;
+  }
+
+  input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #383737 inset !important;
   }
 
   .background {
