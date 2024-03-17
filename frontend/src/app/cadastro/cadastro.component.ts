@@ -41,10 +41,10 @@ export class CadastroComponent {
   // Função que preenche os campos endereço
   preencherCamposEndereco():void{
     if(this.enderecoPorCep){
-      (document.getElementById('inputCity') as HTMLSelectElement).value = this.enderecoPorCep.localidade || '';
-      (document.getElementById('inputLogradouro') as HTMLSelectElement).value = this.enderecoPorCep.logradouro || '';
-      (document.getElementById('inputBairro') as HTMLSelectElement).value = this.enderecoPorCep.bairro || '';
-      (document.getElementById('inputState') as HTMLSelectElement).value = this.enderecoPorCep.uf || '';
+      this.cadastroForm.get('cidade')?.setValue(this.enderecoPorCep.localidade || '');
+      this.cadastroForm.get('logradouro')?.setValue(this.enderecoPorCep.logradouro || '');
+      this.cadastroForm.get('bairro')?.setValue(this.enderecoPorCep.bairro || '');
+      this.cadastroForm.get('estado')?.setValue(this.enderecoPorCep.uf || '');
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.
 
