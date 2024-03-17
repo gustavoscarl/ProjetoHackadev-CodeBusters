@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240317173720_AlterClienteRg")]
+    partial class AlterClienteRg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,8 +64,8 @@ namespace PayWiseBackend.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("varchar(12)");
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar(8)");
 
                     b.Property<int?>("SessaoId")
                         .HasColumnType("int");
@@ -189,7 +192,7 @@ namespace PayWiseBackend.Migrations
                     b.Property<int>("Estado")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Numero")
+                    b.Property<int>("Numero")
                         .HasColumnType("int");
 
                     b.Property<string>("Rua")
