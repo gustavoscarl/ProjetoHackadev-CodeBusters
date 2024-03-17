@@ -38,6 +38,8 @@ string? mySqlConnection = builder.Configuration.GetConnectionString("DefaultConn
 
 var app = builder.Build();
 
+app.UseCors();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
