@@ -15,6 +15,7 @@ import { criarSenhaForte } from '../validators/senhaforte';
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })
+
 export class CadastroComponent {
 
 
@@ -47,6 +48,8 @@ export class CadastroComponent {
     // Necessidade de um else caso nao tenha preenchido? A pensar.
 
   }
+
+  // Form
   cadastroForm!: FormGroup;
 
   ngOnInit() {
@@ -89,6 +92,16 @@ export class CadastroComponent {
           [
             Validators.required,
             Validators.pattern('^[a-zA-ZÀ-ú ]+$')
+          ]),
+      'identidade': new FormControl(null,
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]+$')
+        ]),
+        'cpf': new FormControl(null,
+          [
+            Validators.required,
+            Validators.pattern('^[0-9]+$')
           ]),
       'complemento': new FormControl(null,
             [
