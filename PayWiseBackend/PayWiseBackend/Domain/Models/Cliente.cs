@@ -12,13 +12,15 @@ public class Cliente : Entity
     [MaxLength(50)]
     public string Email { get; set; } = null!;
     [Required]
-    [StringLength(8)]
+    [MinLength(8)]
+    [StringLength(12)]
     public string Senha { get; set; } = null!;
     [Required]
     [StringLength(11)]
     public string Cpf { get; set; } = null!;
     [Required]
-    [StringLength(7)]
+    [MinLength(5)]
+    [StringLength(11)]
     public string Rg { get; set; } = null!;
     public bool TemConta { get; set; } = false;
     public bool TemCartao { get; set; } = false;
