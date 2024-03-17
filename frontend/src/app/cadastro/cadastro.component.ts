@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { EnderecoService } from '../servicos/endereco.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Endereco } from '../modelos/Endereco';
@@ -25,11 +25,11 @@ export class CadastroComponent {
   cep: FormControl = new FormControl('');
   enderecoPorCep: Endereco | undefined;
 
-  constructor(private servico:EnderecoService, private cadastroService: CadastroService){}
+  constructor(private servico:EnderecoService, private cadastroService: CadastroService, private route:Router){}
 
   // Função para obter o endereço e chamar a função que preenche após obter os endereços via API.
   obterEndereco():void{
-    this.servico.retornarEndereco(this.cep.value)
+    this.servico.retornarEndereco(this.cadastroForm.get('cep')?.value)
     .subscribe((retorno: Endereco | undefined) => { 
       this.enderecoPorCep = retorno;
       this.preencherCamposEndereco();
@@ -41,11 +41,10 @@ export class CadastroComponent {
   // Função que preenche os campos endereço
   preencherCamposEndereco():void{
     if(this.enderecoPorCep){
-      document.getElementById('inputCity')?.setAttribute('value', this.enderecoPorCep.localidade || '');
-      document.getElementById('inputLogradouro')?.setAttribute('value', this.enderecoPorCep.logradouro || '');
-      document.getElementById('inputBairro')?.setAttribute('value', this.enderecoPorCep.bairro || '');
-      document.getElementById('inputComplemento')?.setAttribute('value', this.enderecoPorCep.complemento || '');
-      (document.getElementById('inputState') as HTMLSelectElement).value = this.enderecoPorCep.uf || '';
+      this.cadastroForm.get('cidade')?.setValue(this.enderecoPorCep.localidade || '');
+      this.cadastroForm.get('logradouro')?.setValue(this.enderecoPorCep.logradouro || '');
+      this.cadastroForm.get('bairro')?.setValue(this.enderecoPorCep.bairro || '');
+      this.cadastroForm.get('estado')?.setValue(this.enderecoPorCep.uf || '');
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.
 
@@ -53,6 +52,7 @@ export class CadastroComponent {
 
   // Form
   cadastroForm!: FormGroup;
+  showAlert:boolean = false;
 
   ngOnInit() {
     this.cadastroForm = new FormGroup({
@@ -118,7 +118,7 @@ export class CadastroComponent {
       'password': new FormControl(null,
           [
             Validators.required,
-            Validators.minLength(6),
+            Validators.minLength(8),
             criarSenhaForte(),
           ]),
       'confirm-password': new FormControl(null,
@@ -128,10 +128,37 @@ export class CadastroComponent {
     });
   }
 
-  onSubmit():void {
-    this.cadastroService.cadastrarCliente(this.cadastroForm.value as Cadastro)
-    .subscribe (cadastro => {
-      console.log(cadastro)
-    })
+  onSubmit(): void {
+    console.log(this.cadastroForm)
+    this.cadastroForm.markAllAsTouched();
+    if (this.cadastroForm.valid) {
+      const cadastroData: Cadastro = {
+        nome: this.cadastroForm.get('name')?.value + this.cadastroForm.get('lastname')?.value,
+        email: this.cadastroForm.get('email')?.value,
+        senha: this.cadastroForm.get('password')?.value,
+        cpf: this.cadastroForm.get('cpf')?.value,
+        rg: this.cadastroForm.get('identidade')?.value,
+        endereco: {
+          id: this.cadastroForm.get('endereco.id')?.value,
+          rua: this.cadastroForm.get('logradouro')?.value,
+          numero: this.cadastroForm.get('numero')?.value,
+          bairro: this.cadastroForm.get('bairro')?.value,
+          complemento: this.cadastroForm.get('complemento')?.value,
+          cep: this.cadastroForm.get('cep')?.value,
+          cidade: this.cadastroForm.get('cidade')?.value,
+          estado: this.cadastroForm.get('estado')?.value,
+        }
+      };
+
+      this.cadastroService.cadastrarCliente(cadastroData)
+        .subscribe(cadastro => {
+          setTimeout(() => {
+            this.route.navigateByUrl('login')
+          }, 2500)
+          this.showAlert = true;
+          console.log(cadastro);
+          // Lógica de sucesso após o POST
+        });
+    }
   }
 }

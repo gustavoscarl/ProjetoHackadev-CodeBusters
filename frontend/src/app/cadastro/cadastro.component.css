@@ -10,6 +10,19 @@ a {
   text-decoration: none;
 }
 
+.alerta {
+  position: fixed;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: rgb(15, 158, 15);
+  padding: 10px;
+  border-radius: 5px;
+  border-top: 20px solid rgb(15, 158, 15);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .header {
   background-color: #b3b3b3;
   padding: 10px;

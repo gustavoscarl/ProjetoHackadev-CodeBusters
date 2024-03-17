@@ -8,18 +8,11 @@ import { Cadastro } from '../modelos/Cadastro';
 })
 export class CadastroService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Credentials': 'true',
-    }),
-    withCredentials: true
-  }
 
   constructor(private http: HttpClient) { }
 
   cadastrarCliente(cliente: Cadastro): Observable<Cadastro> {
-    const url = 'http://localhost:7085/clientes';
-    return this.http.post<Cadastro>(url, cliente, this.httpOptions);
+    const url = 'https://localhost:7085/clientes';
+    return this.http.post<Cadastro>(url, cliente);
   }
 }
