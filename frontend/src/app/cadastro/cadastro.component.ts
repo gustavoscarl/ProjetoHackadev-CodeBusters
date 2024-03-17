@@ -22,7 +22,6 @@ export class CadastroComponent {
 
 
   // Variavel CEP
-  cep: FormControl = new FormControl('');
   enderecoPorCep: Endereco | undefined;
 
   constructor(private servico:EnderecoService, private cadastroService: CadastroService, private route:Router){}
@@ -44,7 +43,6 @@ export class CadastroComponent {
       document.getElementById('inputCity')?.setAttribute('value', this.enderecoPorCep.localidade || '');
       document.getElementById('inputLogradouro')?.setAttribute('value', this.enderecoPorCep.logradouro || '');
       document.getElementById('inputBairro')?.setAttribute('value', this.enderecoPorCep.bairro || '');
-      document.getElementById('inputComplemento')?.setAttribute('value', this.enderecoPorCep.complemento || '');
       (document.getElementById('inputState') as HTMLSelectElement).value = this.enderecoPorCep.uf || '';
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.

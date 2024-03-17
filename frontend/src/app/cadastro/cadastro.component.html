@@ -42,7 +42,7 @@
                     <div class="form-group col-lg-2 col-md-3">
                         <label for="inputCep">CEP</label>
                         <input type="text" class="form-control" id="inputCep" 
-                        [formControl]="cep" 
+                        formControlName="cep" 
                         placeholder="96745-000"
                         mask="00000-000"
                         [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('cep')?.invalid && cadastroForm.get('cep')?.touched}">
