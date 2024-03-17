@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
@@ -19,6 +21,7 @@ public class ClienteController : ControllerBase
         _mapper = mapper;
     }
 
+    [Authorize]
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,6 +41,8 @@ public class ClienteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
+        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(novoCliente.Senha);
+        novoCliente.Senha = hashedPassword;
 
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
 

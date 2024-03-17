@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
@@ -20,6 +21,7 @@ public class HistoricoController : ControllerBase
         _mapper = mapper;
     }
 
+    [Authorize]
     [HttpGet("{contaId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

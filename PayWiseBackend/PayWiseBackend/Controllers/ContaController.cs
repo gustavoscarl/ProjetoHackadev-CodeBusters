@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
@@ -21,6 +22,7 @@ namespace PayWiseBackend.Controllers
             _mapper = mapper;
         }
 
+        [Authorize]
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -36,6 +38,7 @@ namespace PayWiseBackend.Controllers
             return Ok(new { contaResponse });
         }
 
+        [Authorize]
         [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -72,6 +75,7 @@ namespace PayWiseBackend.Controllers
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
         }
 
+        [Authorize]
         [HttpGet("saldo{contaId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,6 +90,7 @@ namespace PayWiseBackend.Controllers
             return Ok(new { saldo });
         }
 
+        [Authorize]
         [HttpPut("sacar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -119,6 +124,7 @@ namespace PayWiseBackend.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("depositar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -146,6 +152,7 @@ namespace PayWiseBackend.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("transferir")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
