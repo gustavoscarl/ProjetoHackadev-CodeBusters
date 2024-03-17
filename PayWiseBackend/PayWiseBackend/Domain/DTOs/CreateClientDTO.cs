@@ -15,7 +15,7 @@ namespace PayWiseBackend.Domain.DTOs
 
         [Required]
         [MinLength(8)]
-        [StringLength(8)]
+        [StringLength(12)]
         public string Senha { get; set; } = null!;
 
         [Required]
@@ -24,8 +24,8 @@ namespace PayWiseBackend.Domain.DTOs
         public string Cpf { get; set; } = null!;
 
         [Required]
-        [MinLength(7)]
-        [StringLength(7)]
+        [MinLength(5)]
+        [StringLength(11)]
         public string Rg { get; set; } = null!;
 
         [Required]
