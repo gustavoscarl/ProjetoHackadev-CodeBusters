@@ -6,7 +6,7 @@ html {
   background-color: #f0f0f0;
 }
 a {
-  color: #fff;
+  color: #ce2222;
   text-decoration: none;
 }
 
@@ -20,13 +20,22 @@ a {
 }
 
 h2 {
-  margin-left: 16px;
+  padding-top: 50px;
+  text-align: center;
 }
 
 h4 {
-  margin: 20px;
+  margin-bottom: 20px;
   padding: 16px;
   text-decoration: underline;
+}
+.senha-error p {
+  margin: 0px;
+  padding: 0px;
+}
+.login {
+  margin-top: 50px;
+  margin-bottom: 0px;
 }
 
 .container {
@@ -34,7 +43,7 @@ h4 {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-group > label {
@@ -102,6 +111,11 @@ h4 {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: black;
+  }
+
+  input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #383737 inset !important;
   }
 
   label {
