@@ -129,15 +129,9 @@ export class CadastroComponent {
   }
 
   onSubmit():void {
-    if (this.cadastroForm.valid) {
-      this.cadastroService.cadastrarCliente(this.cadastroForm.value as Cadastro)
-      .subscribe(retorno => {
-        console.log(retorno)
-      })
-    }
-    else {
-      console.log('Formulário inválido ou erro no servidor')
-    }
+    this.cadastroService.cadastrarCliente(this.cadastroForm.value as Cadastro)
+    .subscribe (cadastro => {
+      console.log(cadastro)
+    })
   }
-
 }
