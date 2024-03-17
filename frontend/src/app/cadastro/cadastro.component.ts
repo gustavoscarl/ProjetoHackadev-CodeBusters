@@ -32,8 +32,8 @@ export class CadastroComponent {
     this.servico.retornarEndereco(this.cep.value)
     .subscribe((retorno: Endereco | undefined) => { 
       this.enderecoPorCep = retorno;
-      this.preencherCamposEndereco();
       console.log(retorno);
+      this.preencherCamposEndereco();
     });
 
   }
@@ -41,10 +41,10 @@ export class CadastroComponent {
   // Função que preenche os campos endereço
   preencherCamposEndereco():void{
     if(this.enderecoPorCep){
-      document.getElementById('inputCity')?.setAttribute('value', this.enderecoPorCep.localidade || '');
-      document.getElementById('inputLogradouro')?.setAttribute('value', this.enderecoPorCep.logradouro || '');
-      document.getElementById('inputBairro')?.setAttribute('value', this.enderecoPorCep.bairro || '');
-      document.getElementById('inputComplemento')?.setAttribute('value', this.enderecoPorCep.complemento || '');
+      (document.getElementById('inputCity') as HTMLSelectElement).value = this.enderecoPorCep.localidade || '';
+      (document.getElementById('inputLogradouro') as HTMLSelectElement).value = this.enderecoPorCep.logradouro || '';
+      (document.getElementById('inputBairro') as HTMLSelectElement).value = this.enderecoPorCep.bairro || '';
+      (document.getElementById('inputComplemento') as HTMLSelectElement).value = this.enderecoPorCep.complemento || '';
       (document.getElementById('inputState') as HTMLSelectElement).value = this.enderecoPorCep.uf || '';
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.
