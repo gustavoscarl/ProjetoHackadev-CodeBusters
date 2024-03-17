@@ -5,9 +5,22 @@ html {
   font-family: "Inter", sans-serif;
   background-color: #f0f0f0;
 }
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}
+
 a {
   color: #ce2222;
   text-decoration: none;
+}
+
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
 }
 
 .alerta {
@@ -124,6 +137,13 @@ h4 {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: black;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
   }
 
   input:-webkit-autofill {
