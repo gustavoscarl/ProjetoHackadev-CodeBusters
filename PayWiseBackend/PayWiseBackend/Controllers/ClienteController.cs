@@ -2,6 +2,7 @@
 using BCrypt.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
@@ -39,8 +40,14 @@ public class ClienteController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public IActionResult Cadastrar([FromBody] CreateClientDTO novoCliente)
+    public async Task<IActionResult> Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
+
+        bool doesClientAlreadyExist = await _context.Clientes.AnyAsync(cliente => cliente.Cpf ==  novoCliente.Cpf || cliente.Rg == novoCliente.Rg);
+
+        if (doesClientAlreadyExist)
+            return Conflict(new { message = "Credenciais já cadastradas." });
+
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(novoCliente.Senha);
         novoCliente.Senha = hashedPassword;
 

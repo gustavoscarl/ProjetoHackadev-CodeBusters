@@ -24,6 +24,8 @@ public class AuthController : Controller
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Autenticar(LoginRequestDTO loginCredentials)
     {
         Cliente? cliente = await _service.ValidateCredentials(loginCredentials);

@@ -1,7 +1,12 @@
 <div *ngIf="showAlert" class="alerta position-fixed">
     Cadastro realizado com sucesso!
 </div>
-
+<div class="container pt-5 mt-1 d-flex text-start d-lg-none justify-content-start">
+    <div>
+      <a [routerLink]="['/login']"><img id="seta-dark" src="../../assets/historico/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/login']"><img id="seta-light" src="../../../assets/historico/seta-light.svg" alt=""></a>
+    </div>
+</div>
 <h2>Cadastro</h2>
 
 
