@@ -7,26 +7,28 @@ namespace PayWiseBackend.Domain.DTOs
     {
         [Required]
         [MaxLength(200)]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = null!;
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [Required]
         [MinLength(8)]
-        public string Senha { get; set; }
+        [StringLength(8)]
+        public string Senha { get; set; } = null!;
 
         [Required]
         [MinLength(11)]
-        [MaxLength(11)]
-        public string Cpf { get; set; }
+        [StringLength(11)]
+        public string Cpf { get; set; } = null!;
 
         [Required]
-        [MaxLength(20)]
-        public string Rg { get; set;}
+        [MinLength(7)]
+        [StringLength(7)]
+        public string Rg { get; set; } = null!;
 
         [Required]
-        public Endereco Endereco { get; set; }
+        public Endereco Endereco { get; set; } = null!;
     }
 }
