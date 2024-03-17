@@ -20,6 +20,6 @@ export class CadastroService {
 
   cadastrarCliente(cliente: Cadastro): Observable<Cadastro> {
     const url = 'https://localhost:7085/clientes';
-    return this.http.post<Cadastro>(url, cliente, this.httpOptions);
+    return this.http.post<Cadastro>(url, cliente);
   }
 }
