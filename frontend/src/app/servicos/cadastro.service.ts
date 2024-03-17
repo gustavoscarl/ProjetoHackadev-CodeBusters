@@ -8,13 +8,6 @@ import { Cadastro } from '../modelos/Cadastro';
 })
 export class CadastroService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Credentials': 'true',
-    }),
-    withCredentials: true
-  }
 
   constructor(private http: HttpClient) { }
 
