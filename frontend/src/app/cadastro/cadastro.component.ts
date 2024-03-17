@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { EnderecoService } from '../servicos/endereco.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Endereco } from '../modelos/Endereco';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { criarSenhaForte } from '../validators/senhaforte';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule, HttpClientModule, ReactiveFormsModule],
+  imports: [RouterModule, FormsModule, CommonModule, HttpClientModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.css'
 })
@@ -53,7 +55,7 @@ export class CadastroComponent {
         [
         Validators.required,
         Validators.pattern('^[a-zA-ZÀ-ú ]+$'),
-        Validators.minLength(3),
+        Validators.minLength(2),
       ]),
       'lastname': new FormControl(null, 
         [
@@ -91,7 +93,7 @@ export class CadastroComponent {
       'complemento': new FormControl(null,
             [
               Validators.required,
-              Validators.pattern('^[a-zA-ZÀ-ú ]+$')
+              Validators.pattern('^[a-zA-ZÀ-ú-0-9 ]+$')
             ]),
       'email': new FormControl(null,
         [
@@ -101,12 +103,12 @@ export class CadastroComponent {
       'password': new FormControl(null,
           [
             Validators.required,
-            Validators.email
+            Validators.minLength(6),
+            criarSenhaForte(),
           ]),
       'confirm-password': new FormControl(null,
             [
               Validators.required,
-              Validators.email
             ]),
     });
   }
