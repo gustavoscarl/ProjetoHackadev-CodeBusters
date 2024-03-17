@@ -8,6 +8,7 @@ import { Endereco } from '../modelos/Endereco';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { criarSenhaForte } from '../validators/senhaforte';
 import { CadastroService } from '../servicos/cadastro.service';
+import { Cadastro } from '../modelos/Cadastro';
 
 @Component({
   selector: 'app-cadastro',
@@ -127,14 +128,12 @@ export class CadastroComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit():void {
     if (this.cadastroForm.valid) {
-      this.cadastroService.cadastrarCliente(this.cadastroForm.value)
-      .subscribe(
-        retorno => {
-          console.log('Cliente cadastrado com sucesso', retorno)
-        }
-      )
+      this.cadastroService.cadastrarCliente(this.cadastroForm.value as Cadastro)
+      .subscribe(retorno => {
+        console.log(retorno)
+      })
     }
     else {
       console.log('Formulário inválido ou erro no servidor')
