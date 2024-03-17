@@ -10,6 +10,13 @@ a {
   text-decoration: none;
 }
 
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
+}
+
 .alerta {
   position: fixed;
   top: 2%;
@@ -124,6 +131,13 @@ h4 {
 @media (prefers-color-scheme: dark) {
   body {
     background-color: black;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
   }
 
   input:-webkit-autofill {
