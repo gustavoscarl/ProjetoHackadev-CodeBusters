@@ -36,8 +36,9 @@ public class ClienteController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public IActionResult Cadastrar(CreateClientDTO novoCliente)
+    public IActionResult Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
+
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
 
         var result = _context.Clientes.Add(clienteCadastrar);
