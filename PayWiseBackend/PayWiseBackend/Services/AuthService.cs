@@ -21,29 +21,34 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public string GenerateAccessToken(int clienteId)
+    public string GenerateAccessToken(int clienteId, int? contaId)
     {
-        string accessToken = GenerateToken(clienteId, TokenType.Access);
+        string accessToken = GenerateToken(clienteId, TokenType.Access, contaId);
         return accessToken;
     }
 
-    public string GenerateRefreshToken(int clienteId)
+    public string GenerateRefreshToken(int clienteId, int? contaId)
     {
-        string refreshToken = GenerateToken(clienteId, TokenType.Refresh);
+        string refreshToken = GenerateToken(clienteId, TokenType.Refresh, contaId);
         return refreshToken;
     }
 
-    public string GenerateToken(int clienteId, TokenType type)
+    public string GenerateToken(int clienteId, TokenType type, int? contaId)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
 
+        var claims = new List<Claim>
+        {
+            new Claim("clienteId", clienteId.ToString())
+        };
+
+        if (contaId != null)
+            claims.Add(new Claim("contaId", contaId.Value.ToString()));
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new Claim[]
-            {
-                    new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
-            }),
+            Subject = new ClaimsIdentity(claims),
             Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddMinutes(10),
             Issuer = _config["Jwt:issuer"],
             Audience = _config["Jwt:audience"],

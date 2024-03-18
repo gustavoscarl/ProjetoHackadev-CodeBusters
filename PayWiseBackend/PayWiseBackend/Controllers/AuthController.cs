@@ -32,8 +32,8 @@ public class AuthController : Controller
         if (cliente is null)
             return BadRequest(new { message = "Cliente não existe." });
 
-        string accessToken = _service.GenerateAccessToken(cliente.Id);
-        string refreshToken = _service.GenerateRefreshToken(cliente.Id);
+        string accessToken = _service.GenerateAccessToken(cliente.Id, cliente.TemConta ? cliente.ContaId : null);
+        string refreshToken = _service.GenerateRefreshToken(cliente.Id, cliente.TemConta ? cliente.ContaId : null);
 
         Sessao sessao = new Sessao()
         {

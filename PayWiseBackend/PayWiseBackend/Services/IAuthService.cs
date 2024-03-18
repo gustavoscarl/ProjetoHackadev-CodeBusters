@@ -12,8 +12,8 @@ public enum TokenType
 public interface IAuthService
 {
     Task<Cliente?> ValidateCredentials(LoginRequestDTO loginCredentials);
-    string GenerateToken(int clienteId, TokenType type);
-    string GenerateAccessToken(int clienteId);
-    string GenerateRefreshToken(int clienteId);
+    string GenerateToken(int clienteId, TokenType type, int? contaId);
+    string GenerateAccessToken(int clienteId, int? contaId);
+    string GenerateRefreshToken(int clienteId, int? contaId);
     int? GetClienteIdFromAccessToken(string accessToken);
 }
