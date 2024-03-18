@@ -134,7 +134,7 @@ namespace PayWiseBackend.Controllers
             Transacao transacao = new Transacao()
             {
                 Descricao = dadosTransacao.Descricao ?? string.Empty,
-                Horario = new DateTime(),
+                Horario = DateTime.Now,
                 Tipo = TransacaoTipo.DEPOSITO,
                 Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
