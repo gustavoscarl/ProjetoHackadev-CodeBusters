@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,26 +8,31 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private userCard: boolean = false;
 
-  constructor() {}
+  constructor(private http: HttpClient, private route: Router) {}
 
-  // Método para verificar se o usuário é somente de cartão
   isUserCard(): boolean {
     return this.userCard
   }
 
-  // // Método para verificar se o usuário é usuário de conta
-  // isUserAccount(): boolean {
-  //   return this.userAccount
-  // }
-
-  // Método para simular o login como usuário de cartão
   loginAsUserCard(): void {
     this.userCard = true;
   }
 
-  // // Método para simular o login como usuário de conta
-  // loginAsUserAccount(): void {
-  //   this.userAccount = false;
-  // }
+  guardarToken(tokenValue: string){
+    localStorage.setItem('token', tokenValue);
+  }
+
+  getToken():any{
+    return localStorage.getItem('token')
+  }
+
+  estaLogado(): boolean {
+    return !!localStorage.getItem('token')
+  }
+
+  logout():void{
+    localStorage.removeItem('token')
+    this.route.navigate(['login'])
+  }
 
 }
