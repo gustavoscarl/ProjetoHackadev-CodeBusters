@@ -1,0 +1,50 @@
+<div class="background">
+  <div class="container">
+    <img
+      src="../../assets/logotypes-login-cadastro/logopronta.svg"
+      alt="Logo do Banco"
+      class="logo"
+    />
+
+    <form>
+      <div>
+        <label>Cadastre os seguintes dados:</label>
+      </div>
+      <div class="form-group">
+        <label for="pix geral">PIN (4 dígitos):</label>
+        <input type="password" id="pin" name="pin" placeholder="****" />
+      </div>
+      <div class="form-group">
+        <label for="pix geral">Insira o valor de pix geral:</label>
+        <input
+          type="number"
+          id="pix-geral"
+          name="pix geral"
+          placeholder="Valor de pix geral"
+        />
+      </div>
+      <div class="form-group">
+        <label for="pix noturno">Insira o valor de pix noturno:</label>
+        <input
+          type="number"
+          id="pix-noturno"
+          name="pix noturno"
+          placeholder="Valor de pix noturno"
+        />
+      </div>
+
+      <div class="form-group">
+        <div class="btn-reset login-button"></div>
+        <a class="login-link" [routerLink]="['/criar-conta']"
+          >Cadastrar Conta</a
+        >
+      </div>
+
+      <div class="icon-container">
+        <a id="support-icon">
+          <i class="fa fa-comments" aria-hidden="true"></i>
+        </a>
+        <div id="support-menu" class="support-menu"></div>
+      </div>
+    </form>
+</div>
