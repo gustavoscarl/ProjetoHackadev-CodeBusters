@@ -1,128 +1,300 @@
-/* Estilos para telas grandes (computadores) */
-@media screen and (min-width: 768px) {
-  .container.desktop {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative; /* Adicionando posição relativa para container */
+}
+.form-container {
+  background-color: #f4f4f4;
+  background-image: url('../../assets/logotypes-login-cadastro/desktop-light.svg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 0 20px #bb44f3
+}
+
+
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"],
+button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bb44f3;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #7f53df;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #bb44f3;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #bb44f3;
+}
+
+
+@media only screen and (min-width: 768px) and (prefers-color-scheme: dark) {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    
+  }
+  
+  .container {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #b3b3b3;
+    margin: 50px auto;
+    position: relative; /* Adicionando posição relativa para container */
+  }
+  .form-container {
+    background-color: #f4f4f4;
+    background-image: url('../../assets/logotypes-login-cadastro/desktop-dark.svg');
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    box-shadow: 0 0 20px #bb44f3
   }
-
-  .container.desktop h1 {
-    color: #8a05be;
+  
+  
+  
+  h2 {
+    font-size: 24px;
     margin-bottom: 20px;
   }
-
-  .container.desktop .form-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .container.desktop .form-group {
+  
+  .input-group {
     margin-bottom: 20px;
   }
-
-  .container.desktop label {
+  
+  label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
   }
-
-  .container.desktop input[type="number"],
-  .container.desktop select {
+  
+  input[type="number"],
+  input[type="text"],
+  button {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #bb44f3;
     border-radius: 5px;
+    font-size: 16px;
     box-sizing: border-box;
   }
-
-  .container.desktop .btn-primary {
-    width: 100%;
-    padding: 10px;
-    background-color: #8a05be;
-    color: #b3b3b3;
-    border: none;
-    border-radius: 5px;
+  
+  button {
+    background-color: #7f53df;
+    color: black;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
   }
-
-  .container.desktop .btn-primary:hover {
-    background-color: #6e0477;
+  
+  button:hover {
+    background-color: #bb44f3;
   }
-
-  /* Oculta os estilos para telas menores */
-  .container.mobile {
-    display: none;
+  
+  input[type="number"]:focus,
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #bb44f3;
   }
 }
 
-/* Estilos para telas menores (dispositivos móveis) */
-@media screen and (max-width: 767px) {
-  .container.mobile {
-    max-width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #b3b3b3;
+@media only screen and (min-width: 481px) and (prefers-color-scheme: dark) {
+  .form-container {
+    background-color: #f4f4f4;
+    background-image: url('../../assets/logotypes-login-cadastro/desktop-dark.svg');
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centraliza o conteúdo */
+    padding: 40px;
+    box-shadow: 0 0 20px #bb44f3
+  }
+}
+/* Estilos para dispositivos móveis no modo light */
+@media only screen and (max-width: 480px) and (prefers-color-scheme: light) {
+  body {
+    background-color: #e5e5e5;
+    color: #000000;
   }
 
-  .container.mobile h1 {
-    color: #8a05be;
-    margin-bottom: 20px;
-  }
-
-  .container.mobile .form-container {
+  .container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
-  .container.mobile .form-group {
-    margin-bottom: 20px;
+  .form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5%;
+    box-shadow: 0 0 20px rgba(127, 83, 223, 0.1);
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-light.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: -10%;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
   }
 
-  .container.mobile label {
+  .input-group {
+    margin-bottom: 5%;
+  }
+
+  label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 2%;
   }
 
-  .container.mobile input[type="number"] {
+  input[type="number"],
+  input[type="text"],
+  button {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 3%;
+    border: 1px solid #bb44f3;
     border-radius: 5px;
+    font-size: 4vw;
     box-sizing: border-box;
+    margin-bottom: 5%;
+    text-align: center;
+    display: block;
+    margin: auto;
   }
 
-  .container.mobile .button-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centraliza os botões */
-  }
-
-  .container.mobile .button-group .btn {
-    width: 48%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #8a05be;
+  button {
+    background-color: #7f53df;
     color: #fff;
-    border: none;
-    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
   }
 
-  .container.mobile .btn-primary {
-    background-color: #8a05be;
+  button:hover {
+    background-color: #bb44f3;
   }
 
-  .container.mobile .button-group .btn:hover {
-    background-color: #6e0477;
+  .input-group input[type="number"],
+  .input-group input[type="text"] {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+/* Estilos para dispositivos móveis no modo dark */
+@media only screen and (max-width: 480px) and (prefers-color-scheme: dark) {
+  body {
+    background-color: #1e1e1e;
+    color: #ffffff;
   }
 
-  /* Oculta os estilos para telas grandes */
-  .container.desktop {
-    display: none;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-container {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 5%;
+    box-shadow: 0 0 20px rgba(127, 83, 223, 0.5);
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: -10%;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    box-shadow: 0 0 20px white
+
+  }
+
+  .input-group {
+    margin-bottom: 5%;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 2%;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  button {
+    width: 100%;
+    padding: 3%;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 4vw;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+    text-align: center;
+    display: block;
+    margin: auto;
+  }
+
+  button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .input-group input[type="number"],
+  .input-group input[type="text"] {
+    width: 100%;
+    margin: auto;
   }
 }

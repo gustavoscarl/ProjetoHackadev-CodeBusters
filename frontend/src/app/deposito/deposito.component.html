@@ -1,17 +1,32 @@
-<!-- Formulário de Depósito -->
+<div class="container">
+  <div class="form-container">
+    <h2>Depósito Bancário</h2>
+    <form [formGroup]="formulario" (submit)="enviar()">
+      <div class="input-group">
+        <label for="contaId">ID da Conta:</label>
+        <input type="number" id="contaId" formControlName="contaId" placeholder="Digite o ID da Conta" required>
+      </div>
+      <div class="input-group">
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" formControlName="valor" placeholder="Digite o valor a ser depositado" required>
+      </div>
+      <div class="input-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" formControlName="descricao" placeholder="Digite uma breve descrição (opcional)">
+      </div>
+      <button type="submit">Realizar Depósito</button>
+    </form>
+  </div>
+</div>
 
-<form [formGroup]="formulario" (submit)="enviar()">
-  <input type="number" formControlName="contaId" placeholder="ID da Conta">
-  <input type="number" formControlName="valor" placeholder="Valor">
-  <input type="text" formControlName="descricao" placeholder="Descrição">
-  <input type="submit" value="Enviar" />
-</form>
-
-<!-- Lista de Depósitos -->
-<table>
-  <tr *ngFor="let deposito of depositos">
-    <td>{{ deposito.descricao }}</td>
-    <td>{{ deposito.valor }}</td>
-    <td>{{ deposito.horario | date: 'dd/MM/yyyy' }}</td>
-  </tr>
-</table>
+ <!--<div class="list-container">
+    <h2>Lista de Depósitos</h2>
+    <table>
+      <tr *ngFor="let deposito of depositos">
+        <td>{{ deposito.descricao }}</td>
+        <td>{{ deposito.valor }}</td>
+        <td>{{ deposito.horario | date: 'dd/MM/yyyy' }}</td>
+      </tr>
+    </table>
+  </div>
+</div> -->
