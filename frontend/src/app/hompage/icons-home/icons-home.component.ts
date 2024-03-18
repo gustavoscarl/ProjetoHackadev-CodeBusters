@@ -10,7 +10,7 @@ import { ContaCriadaComponent } from '../../conta/conta-criada/conta-criada.comp
 @Component({
   selector: 'app-icons-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './icons-home.component.html',
   styleUrl: './icons-home.component.css'
 })
