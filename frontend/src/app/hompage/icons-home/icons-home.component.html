@@ -1,78 +1,87 @@
-<div class="icons-home col-md-12 d-flex mt-5 justify-content-xl-start">
-  <div class="row">
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/pagar.svg"
-          width="110"
-          height="110"
-          [routerLink]="['/deposito']"
-          alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
-        />
-      </div>
-      <p class="icons-sub-text">Pagar</p>
+<div [ngClass]="{ 'user-card': isUserCard, 'user-account': isUserAccount }">
+  <div class="options-home">
+    <div class="div-options-botao col-md-4">
+      <button class="btn-conta">
+        <span *ngIf="isUserCard">
+          <a class="link-estilo" [routerLink]="['/conta/criar-conta']">Criar conta</a>
+        </span>
+        <span *ngIf="!isUserCard">
+          <a class="link-estilo" [routerLink]="['./componentes/historico']">Acessar conta</a>
+        </span>
+      </button>
     </div>
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/receber.svg"
-          width="110"
-          height="110"
-          [routerLink]="['/deposito']"
-          alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
-        />
+    <div class="icons-home col-md-12 d-flex mt-5 justify-content-xl-start">
+      <div class="row">
+        <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/cartoes.svg"
+              id="somente-cartao"
+              width="110"
+              height="110"
+              alt="Ícone de celular e cartão de banco para referenciar a opção para cartões"
+            />
+          </div>
+          <p class="icons-sub-text">Cartões</p>
+        </div>
+        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/poupança.svg"
+              width="110"
+              height="110"
+              alt="Ícone de celular e moedas para referenciar a opção para poupança"
+            />
+          </div>
+          <p class="icons-sub-text">Poupança</p>
+        </div>
+        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/investimentos.svg"
+              width="110"
+              height="110"
+              alt="Ícone de computador com gráfico ascendente com símbolo de cifrão para referenciar a opção para investimentos"
+            />
+          </div>
+          <p class="icons-sub-text translate">Investimentos</p>
+        </div>
       </div>
-      <p class="icons-sub-text">Receber</p>
-    </div>
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/pix.svg"
-          width="110"
-          height="110"
-          [routerLink]="['/pix']"
-          alt="Ícone de QR code para referenciar a opção para pagamento via pix"
-        />
+      <div class="row">
+        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/pix.svg"
+              width="110"
+              height="110"
+              alt="Ícone de QR code para referenciar a opção para pagamento via pix"
+            />
+          </div>
+          <p class="icons-sub-text">Pix</p>
+        </div>
+        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/pagar.svg"
+              width="110"
+              height="110"
+              alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
+            />
+          </div>
+          <p class="icons-sub-text">Pagar</p>
+        </div>
+        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+          <div class="icons-sub-img">
+            <img
+              src="../../assets/img_icons/receber.svg"
+              width="110"
+              height="110"
+              alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
+            />
+          </div>
+          <p class="icons-sub-text">Receber</p>
+        </div>
       </div>
-
-      <p class="icons-sub-text">Pix</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/poupança.svg"
-          width="110"
-          height="110"
-          [routerLink]="['/deposito']"
-          alt="Ícone de celular e moedas para referenciar a opção para poupança"
-        />
-      </div>
-      <p class="icons-sub-text">Poupança</p>
-    </div>
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/cartoes.svg"
-          width="110"
-          height="110"
-          alt="Ícone de celular e cartão de banco para referenciar a opção para cartões"
-        />
-      </div>
-      <p class="icons-sub-text">Cartões</p>
-    </div>
-    <div class="icons-sub col-md-4 mx-2 md-mx-0 shadow-sm">
-      <div class="icons-sub-img">
-        <img
-          src="../../assets/img_icons/investimentos.svg"
-          width="110"
-          height="110"
-          alt="Ícone de computador com gráfico ascendente com símbolo de cifrão para referenciar a opção para investimentos"
-        />
-      </div>
-      <p class="icons-sub-text translate">Investimentos</p>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ public class Endereco : Entity
 {
     [MaxLength(50)]
     public string Rua { get; set; } = string.Empty;
-    public int Numero { get; set; }
+    public int? Numero { get; set; }
     [MaxLength(50)]
     public string Bairro { get; set; } = string.Empty;
     [MaxLength(200)]
