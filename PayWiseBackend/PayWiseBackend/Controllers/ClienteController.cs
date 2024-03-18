@@ -29,14 +29,14 @@ public class ClienteController : ControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<RetrieveClienteDTO> PegarPorId()
+    public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId()
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
         if (accessToken is null)
             return Unauthorized(new { message = "Cliente não autorizado." });
 
         int? clienteId = _service.GetClienteIdFromAccessToken(accessToken);
-        var buscaCliente = _context.Clientes.Find(clienteId);
+        var buscaCliente = await _context.Clientes.FindAsync(clienteId);
 
         if (buscaCliente is null)
             return NotFound(new { message = "Cliente não encontrada(o)" });
