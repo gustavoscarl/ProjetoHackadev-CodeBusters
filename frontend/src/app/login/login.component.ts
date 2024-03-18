@@ -45,10 +45,10 @@ export class LoginComponent {
           setTimeout(() => {
             this.route.navigateByUrl('home')
           }, 2500)
-          this.showAlert = true;
           console.log(login);
           // Lógica de sucesso após o POST
         });
     }
+    console.log(this.loginForm.value as Login)
   }
 }
