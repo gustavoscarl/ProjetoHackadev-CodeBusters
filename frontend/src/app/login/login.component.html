@@ -4,15 +4,14 @@
 <div class="background">
   <div class="container">
     <img src="../../assets/logotypes-login-cadastro/logopronta.svg" alt="Logo do Banco" class="logo">
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="cpf">CPF:</label>
         <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF"
         mask="000.000.000-00"
         formControlName="cpf"
         [ngClass]="{ 'border border-danger is-invalid': loginForm.get('cpf')?.invalid && loginForm.get('cpf')?.touched}">
-          <span *ngIf="loginForm.get('cpf')?.invalid && loginForm.get('cpf')?.touched"
-                      class="text-danger d-inline invalid-feedback text-start">
+          <span *ngIf="loginForm.get('cpf')?.invalid && loginForm.get('cpf')?.touched" class="text-danger d-inline invalid-feedback text-start">
                           <p *ngIf="loginForm.get('cpf')?.errors?.['required'] || loginForm.get('cpf')?.errors">Por favor, digite o CPF cadastrado.</p>
                           <p *ngIf="loginForm.get('cpf')?.errors?.['pattern']">Somente números são aceitos.</p>
             </span>
@@ -36,7 +35,9 @@
       </div>
       
       <div class="form-group">
-        <a class="login-link" [routerLink]="['/home']"><div class="btn-reset login-button">Login</div></a>
+        <input type="submit"
+        class="btn-reset login-button" 
+        value="Login"> 
         <div class="icon-container">
           <a id="support-icon">
             <i class="fa fa-comments" aria-hidden="true"></i>

@@ -10,7 +10,7 @@ public class LoginRequestDTO
     public string Cpf { get; set; } = null!;
     [Required]
     [MinLength(8)]
-    [MaxLength(12)]
+    [MaxLength(35)]
     public string Senha { get; set; } = null!;
 
 }

@@ -15,7 +15,7 @@ namespace PayWiseBackend.Domain.DTOs
 
         [Required]
         [MinLength(8)]
-        [StringLength(12)]
+        [StringLength(35)]
         public string Senha { get; set; } = null!;
 
         [Required]
