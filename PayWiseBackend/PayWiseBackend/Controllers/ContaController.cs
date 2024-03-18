@@ -89,7 +89,7 @@ namespace PayWiseBackend.Controllers
         }
 
         [Authorize]
-        [HttpGet("saldo{contaId:int}")]
+        [HttpGet("saldo/{contaId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<double>> ConsultarSaldo(int contaId)
@@ -138,7 +138,7 @@ namespace PayWiseBackend.Controllers
         }
 
         [Authorize]
-        [HttpPut("depositar")]
+        [HttpPut("depositar/{contaId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Depositar(int contaId, CreateTransacaoDepositoDTO dadosTransacao)
@@ -162,11 +162,11 @@ namespace PayWiseBackend.Controllers
             await _context.Transacoes.AddAsync(transacao);
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { saldo = conta.Saldo });
         }
 
         [Authorize]
-        [HttpPut("transferir")]
+        [HttpPut("transferir/{contaId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Transferir(int contaId, CreateTransacaoTransferenciaDTO dadosTransacao)
@@ -210,7 +210,7 @@ namespace PayWiseBackend.Controllers
             await _context.Transacoes.AddAsync(transacaoDestino);
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { saldo = conta.Saldo });
         }
 
     }

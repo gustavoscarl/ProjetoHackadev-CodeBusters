@@ -31,7 +31,7 @@ public class ClienteController : ControllerBase
         var buscaCliente = _context.Clientes.Find(id);
 
         if (buscaCliente is null)
-            return NotFound(new { message = "Cliente não encontrado" });
+            return NotFound(new { message = "Cliente não encontrada(o)" });
 
         var clienteResponse = _mapper.Map<RetrieveClienteDTO>(buscaCliente);
 
@@ -58,6 +58,6 @@ public class ClienteController : ControllerBase
 
         var clienteSalvo = result.Entity;
 
-        return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, new { message = "Cliente cadastrado."});
+        return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o)."});
     }
 }
