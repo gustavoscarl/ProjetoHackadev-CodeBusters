@@ -21,29 +21,34 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public string GenerateAccessToken(int clienteId)
+    public string GenerateAccessToken(int clienteId, int? contaId)
     {
-        string accessToken = GenerateToken(clienteId, TokenType.Access);
+        string accessToken = GenerateToken(clienteId, TokenType.Access, contaId);
         return accessToken;
     }
 
-    public string GenerateRefreshToken(int clienteId)
+    public string GenerateRefreshToken(int clienteId, int? contaId)
     {
-        string refreshToken = GenerateToken(clienteId, TokenType.Refresh);
+        string refreshToken = GenerateToken(clienteId, TokenType.Refresh, contaId);
         return refreshToken;
     }
 
-    public string GenerateToken(int clienteId, TokenType type)
+    public string GenerateToken(int clienteId, TokenType type, int? contaId)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
 
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
+        };
+
+        if (contaId != null)
+            claims.Add(new Claim("contaId", contaId.Value.ToString()));
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new Claim[]
-            {
-                    new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
-            }),
+            Subject = new ClaimsIdentity(claims),
             Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddMinutes(10),
             Issuer = _config["Jwt:issuer"],
             Audience = _config["Jwt:audience"],
@@ -52,6 +57,74 @@ public class AuthService : IAuthService
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+
+    public int? GetClienteIdFromAccessToken(string accessToken)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
+
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = _config["Jwt:issuer"],
+            ValidAudience = _config["Jwt:audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+
+        try
+        {
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
+
+            Claim clienteId = principal.FindFirst(ClaimTypes.NameIdentifier);
+            if (clienteId is null)
+                return null;
+
+            var clienteIdValue = Convert.ToInt32(clienteId.Value);
+
+            return clienteIdValue;
+        }
+        catch (Exception err)
+        {
+            return null;
+        }
+    }
+
+    public int? GetContaIdFromAccessToken(string accessToken)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
+
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = _config["Jwt:issuer"],
+            ValidAudience = _config["Jwt:audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+
+        try
+        {
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
+
+            Claim clienteId = principal.FindFirst("contaId");
+            if (clienteId is null)
+                return null;
+
+            var clienteIdValue = Convert.ToInt32(clienteId.Value);
+
+            return clienteIdValue;
+        }
+        catch (Exception err)
+        {
+            return null;
+        }
     }
 
     public async Task<Cliente?> ValidateCredentials(LoginRequestDTO loginCredentials)
