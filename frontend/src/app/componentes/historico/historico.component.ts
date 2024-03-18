@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, input } from '@angular/core';
-import { Transacao } from '../../modelo/Transacoes';
+import { Transacao } from '../../modelos/Transacoes';
 import { CommonModule } from '@angular/common';
 import { TransacaoComponent } from '../transacao/transacao.component';
 

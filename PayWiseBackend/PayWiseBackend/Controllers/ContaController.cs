@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
+using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
+using PayWiseBackend.Services;
 
 namespace PayWiseBackend.Controllers
 {
@@ -13,19 +16,27 @@ namespace PayWiseBackend.Controllers
     {
         private readonly PaywiseDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IAuthService _service;
 
-        public ContaController(PaywiseDbContext context, IMapper mapper)
+        public ContaController(PaywiseDbContext context, IMapper mapper, IAuthService service)
         {
             _context = context;
             _mapper = mapper;
+            _service = service;
         }
 
-        [HttpGet("{id:int}")]
+        [Authorize]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<RetrieveContaDTO>> PegarPorId(int id)
+        public async Task<ActionResult<RetrieveContaDTO>> PegarPorId()
         {
-            var conta = await _context.Contas.FindAsync(id);
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? contaId = _service.GetContaIdFromAccessToken(accessToken);
+            var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
                 return NotFound(new { message = "Conta não encontrada" });
@@ -35,24 +46,38 @@ namespace PayWiseBackend.Controllers
             return Ok(new { contaResponse });
         }
 
+        [Authorize]
         [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> CriarConta(int clienteId, CreateContaDTO novaConta)
+        public async Task<IActionResult> CriarConta(CreateContaDTO novaConta)
         {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? clienteId = _service.GetClienteIdFromAccessToken(accessToken);
+            if (clienteId is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
             var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == clienteId);
+
             if (cliente is null)
-            {
                 return NotFound(new { message = "Cliente não encontrado" });
-            }
 
             if (cliente.TemConta)
-            {
                 return BadRequest(new { message = "O cliente já possui uma conta" });
-            }
 
-            var contaCadastrar = _mapper.Map<Conta>(novaConta);
+            int numConta = int.Parse(await _context.Contas.MaxAsync(conta => conta.Numero) ?? "0000");
+            numConta += 1;
+            Conta contaCadastrar = new Conta()
+            {
+                Numero = numConta.ToString("D6"),
+                Pin = novaConta.Pin
+            };
+
             Historico historico = new Historico();
             contaCadastrar.Historico = historico;
 
@@ -61,18 +86,45 @@ namespace PayWiseBackend.Controllers
             cliente.Conta = contaCadastrada;
             cliente.TemConta = true;
 
-
             await _context.Historicos.AddAsync(historico);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
+            string novoAccessToken = _service.GenerateAccessToken(cliente.Id, contaCadastrada.Id);
+
+            return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, new { message = "Conta criada.", accessToken = novoAccessToken});
         }
 
+        [Authorize]
+        [HttpGet("saldo")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<double>> ConsultarSaldo()
+        {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? contaId = _service.GetContaIdFromAccessToken(accessToken);
+            Conta? conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe." });
+
+            double saldo = conta.Saldo;
+            return Ok(new { saldo });
+        }
+
+        [Authorize]
         [HttpPut("sacar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Sacar(int contaId, double valor)
+        public async Task<IActionResult> Sacar(CreateTransacaoSaqueDTO dadosTransacao)
         {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? contaId = _service.GetContaIdFromAccessToken(accessToken);
             var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
@@ -81,44 +133,70 @@ namespace PayWiseBackend.Controllers
             if (conta.Saldo <= 0)
                 return BadRequest(new { message = "Saldo insuficiente" });
 
-            conta.Saldo -= valor;
+            if (conta.Pin != dadosTransacao.Pin)
+                return BadRequest(new { message = "Senha PIN inválida" });
+
+            conta.Saldo -= dadosTransacao.Valor;
 
             Transacao transacao = new Transacao()
             {
-                Descricao = "description",
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
                 Horario = new DateTime(),
-                Tipo = "SAQUE",
-                Valor = valor,
+                Tipo = TransacaoTipo.SAQUE,
+                Valor = dadosTransacao.Valor,
+                HistoricoId = conta.HistoricoId
+            };
+            
+            await _context.Transacoes.AddAsync(transacao);
+
+            await _context.SaveChangesAsync();
+            return Ok(new { message = conta.Saldo });
+        }
+
+        [Authorize]
+        [HttpPut("depositar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Depositar(CreateTransacaoDepositoDTO dadosTransacao)
+        {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? contaId = _service.GetContaIdFromAccessToken(accessToken);
+            var conta = await _context.Contas.FindAsync(contaId);
+
+            if (conta is null)
+                return BadRequest(new { message = "Conta não existe" });
+
+            conta.Saldo += dadosTransacao.Valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
+                Horario = DateTime.Now,
+                Tipo = TransacaoTipo.DEPOSITO,
+                Valor = dadosTransacao.Valor,
                 HistoricoId = conta.HistoricoId
             };
 
             await _context.Transacoes.AddAsync(transacao);
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { saldo = conta.Saldo });
         }
 
-        [HttpPut("depositar")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Depositar(int contaId, double valor)
-        {
-            var conta = await _context.Contas.FindAsync(contaId);
-
-            if (conta is null)
-                return BadRequest(new { message = "Conta não existe" });
-
-            conta.Saldo += valor;
-
-            await _context.SaveChangesAsync();
-            return Ok();
-        }
-
+        [Authorize]
         [HttpPut("transferir")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Transferir(int contaId, int numeroContaDestino, double valor)
+        public async Task<IActionResult> Transferir(CreateTransacaoTransferenciaDTO dadosTransacao)
         {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? contaId = _service.GetContaIdFromAccessToken(accessToken);
             var conta = await _context.Contas.FindAsync(contaId);
 
             if (conta is null)
@@ -127,16 +205,38 @@ namespace PayWiseBackend.Controllers
             if (conta.Saldo <= 0)
                 return BadRequest(new { mesage = "Saldo insuficiente" });
 
-            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == numeroContaDestino);
+            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
 
             if (contaDestino is null)
                 return BadRequest(new { message = "Conta de destino inexistente" });
 
-            conta.Saldo -= valor;
-            contaDestino.Saldo += valor;
+            conta.Saldo -= dadosTransacao.Valor;
+            contaDestino.Saldo += dadosTransacao.Valor;
+
+            Transacao transacao = new Transacao()
+            {
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
+                Horario = new DateTime(),
+                Tipo = TransacaoTipo.TRANSFERENCIA,
+                Valor = dadosTransacao.Valor,
+                HistoricoId = conta.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacao);
+
+            Transacao transacaoDestino = new Transacao()
+            {
+                Descricao = dadosTransacao.Descricao ?? string.Empty,
+                Horario = new DateTime(),
+                Tipo = TransacaoTipo.TRANSFERENCIA,
+                Valor = dadosTransacao.Valor,
+                HistoricoId = contaDestino.HistoricoId
+            };
+
+            await _context.Transacoes.AddAsync(transacaoDestino);
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(new { saldo = conta.Saldo });
         }
 
     }

@@ -170,7 +170,12 @@
   }
 }
 
+.darkOrLightMode {
+  width: 30px;
+}
+
 .exibirSaldo {
+  /* box-sizing: border-box; */
   margin-top: 5px;
   margin-left: 140px;
   width: 30px;
@@ -178,6 +183,7 @@
   border: none;
   background: none;
 }
+
 .user-greetings-container,
 .user-balance-container {
   display: flex;

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Transacao } from '../../modelo/Transacoes';
+import { Transacao } from '../../modelos/Transacoes';
 import { CommonModule } from '@angular/common';
 
 @Component({

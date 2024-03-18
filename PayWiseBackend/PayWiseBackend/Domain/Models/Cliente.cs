@@ -1,11 +1,25 @@
-﻿namespace PayWiseBackend.Domain.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PayWiseBackend.Domain.Models;
 
 public class Cliente : Entity
 {
+    [Required]
+    [MaxLength(200)]
     public string Nome { get; set; } = null!;
+    [Required]
+    [EmailAddress]
+    [MaxLength(50)]
     public string Email { get; set; } = null!;
+    [Required]
+    [StringLength(150)]
     public string Senha { get; set; } = null!;
+    [Required]
+    [StringLength(11)]
     public string Cpf { get; set; } = null!;
+    [Required]
+    [MinLength(5)]
+    [StringLength(11)]
     public string Rg { get; set; } = null!;
     public bool TemConta { get; set; } = false;
     public bool TemCartao { get; set; } = false;

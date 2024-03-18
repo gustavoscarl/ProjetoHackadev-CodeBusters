@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {}
+    "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
+    "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "projectUniqueName": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
         "projectName": "PayWiseBackend",
-        "projectPath": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
-        "packagesPath": "C:\\Users\\Alan Eduardo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alan Eduardo\\Desktop\\projetoFinal\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
+        "projectPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "packagesPath": "C:\\Users\\Camila Vieira\\.nuget\\packages\\",
+        "outputPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Alan Eduardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Camila Vieira\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +22,6 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -49,9 +49,21 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Microsoft.AspNetCore.Components.QuickGrid": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -97,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
