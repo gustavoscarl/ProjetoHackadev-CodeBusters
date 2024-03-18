@@ -16,15 +16,17 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: ContainerComponentComponent},
   { path: 'cadastro', component: CadastroComponent},
-  {path: 'esquecer-senha', component: EsquecerSenhaComponent},
+  { path: 'esquecer-senha', component: EsquecerSenhaComponent},
   { path: 'historico', component: HistoricoComponent},
   { path: 'transacao', component: TransacaoComponent},
   { path: 'pix', component: PixComponent},
-  {path: 'deposito', component: DepositoComponent},
+  { path: 'deposito', component: DepositoComponent},
   { path: 'pin-pad', component: PinPadComponent }, // Rota para a tela de digitação do PIN
-  // Redireciona para 'login' se a rota é o caminho raiz ou não é reconhecida
-  { path: 'conta/criar-conta', component: CriarContaComponent},
-  { path: 'conta/conta-criada', component: ContaCriadaComponent},
+  { path: 'conta',
+  children: [
+    { path: 'criar-conta', component: CriarContaComponent },
+    { path: 'conta-criada', component: ContaCriadaComponent }
+  ]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
