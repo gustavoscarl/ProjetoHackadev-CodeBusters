@@ -9,6 +9,8 @@ import { EsquecerSenhaComponent } from './esquecer-senha/esquecer-senha.componen
 import { DepositoComponent } from './deposito/deposito.component';
 import { PixComponent } from './pix/pix.component';
 import { PinPadComponent } from './pin-pad/pin-pad.component';
+import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
+import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +23,8 @@ export const routes: Routes = [
   {path: 'deposito', component: DepositoComponent},
   { path: 'pin-pad', component: PinPadComponent }, // Rota para a tela de digitação do PIN
   // Redireciona para 'login' se a rota é o caminho raiz ou não é reconhecida
+  { path: 'conta/criar-conta', component: CriarContaComponent},
+  { path: 'conta/conta-criada', component: ContaCriadaComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];

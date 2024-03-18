@@ -1,3 +1,13 @@
+.btn-conta {
+  width: 180px;
+  margin: 0 auto;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #7f53df;
+  color: #FFFFFF;
+}
+
 .icons-home {
   display: flex;
   flex-wrap: wrap;
@@ -15,6 +25,7 @@
   transform: scale(1.05);
   transition-duration: 400ms;
   outline: 1px solid #6cb9a42f;
+  cursor: pointer;
 }
 
 .icons-sub {
@@ -39,6 +50,51 @@
   text-align: center;
   margin: 2px;
   margin-bottom: 20px; /* Ajuste para o espaçamento do texto dentro da div */
+}
+
+.user-card 
+.icons-sub
+img {
+  filter:blur(2.5px);
+}
+
+.user-card 
+.icons-sub
+{
+  cursor: not-allowed;
+}
+
+#somente-cartao {
+  filter: none;
+}
+
+.user-card
+.icons-sub:hover,
+.icons-sub:focus,
+.icons-sub:active {
+  -webkit-transform: none;
+  transform: none;
+  transition-duration: 0;
+  outline: none;
+}
+
+#somente-cartao,
+.icons-sub:hover,
+.icons-sub:focus,
+.icons-sub:active {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  transition-duration: 400ms;
+  outline: 1px solid #6cb9a42f;
+  cursor: pointer;
+}
+
+.options-home {
+  margin: 0 auto;
+}
+
+#somente-cartao {
+  filter: none;
 }
 
 .translate {
