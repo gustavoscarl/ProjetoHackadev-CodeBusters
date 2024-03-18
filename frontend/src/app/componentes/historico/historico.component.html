@@ -1,5 +1,4 @@
 <!-- HEADER -->
-<!-- <app-transacao (cadastrarTransacao)="realizarTrasacao($event)"> </app-transacao> -->
         <div class="col-12 mt-1 d-flex text-start d-lg-none justify-content-around">
             <div>
               <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/historico/seta-dark.svg" alt=""></a>
@@ -11,19 +10,18 @@
             </div>
           </div>
     <div class="container background">
-        <!-- LADO ESQUERDO DA PAGINA, COMENTADO PARA EU FOCAR NO HISTÓRICO -->
 
+        <!-- LADO ESQUERDO DA PAGINA -->
 
-
-        <div class="info">
+        <!-- <div class="info">
             <div class="gastosEganhos">
-                <div class="gastos">
+                <div class="gastos"> -->
                     <!-- <div class="gastos-esq">
                         <div class="detalhe"></div>
                         <div class="detalhe1"></div>
                         <div class="detalhe1"></div>
                     </div> -->
-                    <div class="vazia">
+                    <!-- <div class="vazia">
                         <p-chart type="bar" [data]="chartData" [options]="chartOptions" height="100px" width="200px"></p-chart>
 
                     </div>
@@ -37,13 +35,13 @@
                     </div>   
                 </div>
 
-                <div class="ganhos">
+                <div class="ganhos"> -->
                     <!-- <div class="ganhos-esq">
                         <div class="detalhe2"></div>
                         <div class="detalhe3"></div>
                         <div class="detalhe3"></div>
                     </div> -->
-                    <div class="vazia">
+                    <!-- <div class="vazia">
                         <p-chart type="bar" [data]="chartData" [options]="chartOptions" height="100px" width="200px"></p-chart>
                     </div>
                     <div class="ganhos-dir">
@@ -57,19 +55,18 @@
             </div>
 
                 
-                    <!-- <div class="search-bar">
+                    <div class="search-bar">
                         <input type="text" [(ngModel)]="searchTerm" placeholder="Pesquisar..." (input)="filterItems()" />
             <div class="icone">
                 <img src="../../../assets/historico/historico/calendario 1.svg" alt="Filtro calendario">
             </div>
-
         </div>
-    </div> -->
+    </div>  -->
     
     <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
  
     
-                 <div class="pesquisa">   
+    <!-- <div class="pesquisa">   
                         <div class="searchbool"   *ngIf="searchMade" >
                             <div class="cardItens transationcard" *ngFor="let item of filteredItems">
                                 <div class="resumo ">
@@ -108,7 +105,7 @@
                     <div class="icone">
                         <object type="image/svg+xml" data="../../../assets/calendario.svg"></object>
                     </div>
-            </div>
+            </div> -->
 
         
         <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->
@@ -150,4 +147,3 @@
                 </div>     
                 </div>
             </div>
-        </div> 

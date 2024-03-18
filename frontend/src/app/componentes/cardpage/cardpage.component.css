@@ -8,4 +8,25 @@
 }
 
 .cartao {
+    width: 300px;
+    height: 300px;
+}
+
+.info-pagina {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-texto {
+    width: 350px;
+    height: 350px;
+    background-color: rgb(130, 226, 255);
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 20px;
+    gap: 15px;
 }

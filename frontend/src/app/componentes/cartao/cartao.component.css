@@ -1,7 +1,6 @@
 .container {
     display: flex;
     align-items: center;
-    min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
 }
@@ -73,6 +72,7 @@
 
 .info-cartao {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     font-size: 16px;
     font-weight: 600;

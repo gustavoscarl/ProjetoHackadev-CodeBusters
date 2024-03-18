@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, input } from '@angular/core';
 import { Transacao } from '../../modelos/Transacoes';
 import { CommonModule } from '@angular/common';
-import { TransacaoComponent } from '../transacao/transacao.component';
-
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from 'primeng/chart';
 import { CalendarModule } from 'primeng/calendar';
@@ -13,7 +11,7 @@ import { HeaderComponent } from '../../header/header.component';
   selector: 'app-historico',
   standalone: true,
 
-  imports: [CommonModule, TransacaoComponent, FormsModule, ChartModule, CalendarModule, RouterModule, HeaderComponent],
+  imports: [CommonModule, FormsModule, ChartModule, CalendarModule, RouterModule, HeaderComponent],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
@@ -32,8 +30,6 @@ export class HistoricoComponent {
     { nome:'Amazon', descricao:'Campanha publici...', tipo:'Debito', valor:'R$ 15,00', contaDestino:111111, data:'2024-01-29'},
     { nome:'Code Busters', descricao:'Compra de aplicat...', tipo:'Credito', valor:'R$ 1000,00', contaDestino:222222, data:'2024-01-30'},
     { nome:'Amazon', descricao:'Campanha publici...', tipo:'Pix', valor:'R$ 120,00', contaDestino:123123, data:'2024-01-28'},
-    { nome:'Spotify', descricao:'Compra de aplicat...', tipo:'Debito', valor:'R$ 120,00', contaDestino:111111, data:'2024-01-29'},
-    { nome:'Code Busters', descricao:'Compra de aplicat...', tipo:'Credito', valor:'R$ 120,00', contaDestino:222222, data:'2024-01-30'},
     ];
 
   // FUNÇÃO QUE ADICIONA A TRANSAÇÃO NO VETOR DO HISTÓRICO.
