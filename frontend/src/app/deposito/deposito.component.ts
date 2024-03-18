@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DepositoService } from '../servicos/Deposito.Service'; // Importe o serviço de depósito
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-deposito',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './deposito.component.html',
   styleUrls: ['./deposito.component.css']
 })
-export class DepositoComponent implements OnInit {
+export class DepositoComponent {
+  formulario = new FormGroup({
+    contaId: new FormControl(''),
+    valor: new FormControl(''),
+    descricao: new FormControl('')
+  });
 
-  depositoForm: FormGroup;
+  depositos: any[] = []; // Seu array de depósitos aqui
 
-  constructor() {
-    this.depositoForm = new FormGroup({
-      tipoConta: new FormControl('corrente'),
-      valorDeposito: new FormControl(''),
-      contaOrigem: new FormControl('contaNubank'),
-      agendarDeposito: new FormControl(false),
-    });
+  constructor(private depositoService: DepositoService) { }
+
+  enviar(): void {
+    if (this.formulario.valid) {
+      this.depositoService
+        .depositar(this.formulario.value)
+        .subscribe(() => {
+          this.formulario.reset();
+          alert('Deposito realizado com sucesso!');
+        }, error => {
+          alert('Erro ao depositar:');
+        });
+    } else {
+      console.log('Formulário inválido!');
+    }
   }
-
-  ngOnInit(): void {
-  }
-
-  onSubmit(): void {
-    // TODO: Implementar a lógica de envio do formulário
-  }
-
 }
