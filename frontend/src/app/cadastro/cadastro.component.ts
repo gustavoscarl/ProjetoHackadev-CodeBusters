@@ -22,7 +22,6 @@ export class CadastroComponent {
 
 
   // Variavel CEP
-  cep: FormControl = new FormControl('');
   enderecoPorCep: Endereco | undefined;
 
   constructor(private servico:EnderecoService, private cadastroService: CadastroService, private route:Router){}
@@ -32,8 +31,8 @@ export class CadastroComponent {
     this.servico.retornarEndereco(this.cadastroForm.get('cep')?.value)
     .subscribe((retorno: Endereco | undefined) => { 
       this.enderecoPorCep = retorno;
-      this.preencherCamposEndereco();
       console.log(retorno);
+      this.preencherCamposEndereco();
     });
 
   }
