@@ -6,6 +6,7 @@ using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
+using PayWiseBackend.Services;
 
 namespace PayWiseBackend.Controllers
 {
@@ -15,11 +16,13 @@ namespace PayWiseBackend.Controllers
     {
         private readonly PaywiseDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IAuthService _service;
 
-        public ContaController(PaywiseDbContext context, IMapper mapper)
+        public ContaController(PaywiseDbContext context, IMapper mapper, IAuthService service)
         {
             _context = context;
             _mapper = mapper;
+            _service = service;
         }
 
         [Authorize]
@@ -41,11 +44,21 @@ namespace PayWiseBackend.Controllers
         [Authorize]
         [HttpPost("criar")]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> CriarConta(int clienteId, CreateContaDTO novaConta)
+        public async Task<IActionResult> CriarConta(CreateContaDTO novaConta)
         {
+            string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+            if (accessToken is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
+            int? clienteId = _service.GetClienteIdFromAccessToken(accessToken);
+            if (clienteId is null)
+                return Unauthorized(new { message = "Cliente não autorizado." });
+
             var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == clienteId);
+
             if (cliente is null)
                 return NotFound(new { message = "Cliente não encontrado" });
 
@@ -72,7 +85,7 @@ namespace PayWiseBackend.Controllers
             await _context.Historicos.AddAsync(historico);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, contaCadastrada);
+            return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, new { message = "Conta criada."});
         }
 
         [Authorize]

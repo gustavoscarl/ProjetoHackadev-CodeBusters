@@ -54,10 +54,10 @@ public class ClienteController : ControllerBase
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
 
         var result = _context.Clientes.Add(clienteCadastrar);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         var clienteSalvo = result.Entity;
 
-        return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, clienteSalvo);
+        return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, new { message = "Cliente cadastrado."});
     }
 }
