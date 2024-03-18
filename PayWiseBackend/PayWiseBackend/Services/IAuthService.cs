@@ -16,4 +16,5 @@ public interface IAuthService
     string GenerateAccessToken(int clienteId, int? contaId);
     string GenerateRefreshToken(int clienteId, int? contaId);
     int? GetClienteIdFromAccessToken(string accessToken);
+    int? GetContaIdFromAccessToken(string accessToken);
 }

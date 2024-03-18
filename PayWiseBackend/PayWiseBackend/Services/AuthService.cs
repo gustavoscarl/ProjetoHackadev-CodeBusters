@@ -40,7 +40,7 @@ public class AuthService : IAuthService
 
         var claims = new List<Claim>
         {
-            new Claim("clienteId", clienteId.ToString())
+            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
         };
 
         if (contaId != null)
@@ -80,6 +80,40 @@ public class AuthService : IAuthService
             ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
 
             Claim clienteId = principal.FindFirst(ClaimTypes.NameIdentifier);
+            if (clienteId is null)
+                return null;
+
+            var clienteIdValue = Convert.ToInt32(clienteId.Value);
+
+            return clienteIdValue;
+        }
+        catch (Exception err)
+        {
+            return null;
+        }
+    }
+
+    public int? GetContaIdFromAccessToken(string accessToken)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
+
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = _config["Jwt:issuer"],
+            ValidAudience = _config["Jwt:audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+
+        try
+        {
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
+
+            Claim clienteId = principal.FindFirst("contaId");
             if (clienteId is null)
                 return null;
 

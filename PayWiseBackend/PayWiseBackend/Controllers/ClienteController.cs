@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
+using PayWiseBackend.Services;
 
 namespace PayWiseBackend.Controllers;
 
@@ -15,20 +16,27 @@ public class ClienteController : ControllerBase
 {
     private readonly PaywiseDbContext _context;
     private readonly IMapper _mapper;
+    private readonly IAuthService _service;
 
-    public ClienteController(PaywiseDbContext context, IMapper mapper)
+    public ClienteController(PaywiseDbContext context, IMapper mapper, IAuthService service)
     {
         _context = context;
         _mapper = mapper;
+        _service = service;
     }
 
     [Authorize]
-    [HttpGet("{id:int}")]
+    [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<RetrieveClienteDTO> PegarPorId(int id)
+    public ActionResult<RetrieveClienteDTO> PegarPorId()
     {
-        var buscaCliente = _context.Clientes.Find(id);
+        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+        if (accessToken is null)
+            return Unauthorized(new { message = "Cliente não autorizado." });
+
+        int? clienteId = _service.GetClienteIdFromAccessToken(accessToken);
+        var buscaCliente = _context.Clientes.Find(clienteId);
 
         if (buscaCliente is null)
             return NotFound(new { message = "Cliente não encontrada(o)" });
