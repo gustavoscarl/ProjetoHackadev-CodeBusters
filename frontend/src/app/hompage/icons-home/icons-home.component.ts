@@ -1,11 +1,8 @@
-import { Component, OnInit, ModuleWithProviders } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { ContainerComponentComponent } from '../container-component/container-component.component';
-import { CriarContaComponent } from '../../conta/criar-conta/criar-conta.component';
-import { ContaCriadaComponent } from '../../conta/conta-criada/conta-criada.component';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-icons-home',

@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, Renderer2 } from '@angular/core';
 import { InputserviceService } from '../../servicos/inputservice.service';
 import { ChartModule } from 'primeng/chart';
 import { RouterLink } from '@angular/router';
@@ -69,7 +69,7 @@ export class UserBalanceComponent {
     }
   }
 
-  constructor(private inputService: InputserviceService) {
+  constructor(private inputService: InputserviceService, private renderer : Renderer2) {
     this.saldoAtual = this.inputService.saldoDoUsuario;
     this.userName = this.inputService.nomeDoUsuario;
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
