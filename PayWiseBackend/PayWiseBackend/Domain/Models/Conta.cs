@@ -17,7 +17,5 @@ public class Conta : Entity
     public int Pin { get; set; }
     public double LimitePixGeral { get; set; } = 1000.00;
     public double LimitePixNoturno { get; set; } = 1000.00;
-
-    public int HistoricoId { get; set; }
     public virtual Historico Historico { get; set; }
 }

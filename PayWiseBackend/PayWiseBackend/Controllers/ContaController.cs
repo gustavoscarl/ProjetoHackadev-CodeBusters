@@ -86,7 +86,6 @@ namespace PayWiseBackend.Controllers
             cliente.Conta = contaCadastrada;
             cliente.TemConta = true;
 
-            await _context.Historicos.AddAsync(historico);
             await _context.SaveChangesAsync();
 
             string novoAccessToken = _service.GenerateAccessToken(cliente.Id, contaCadastrada.Id);
@@ -125,12 +124,12 @@ namespace PayWiseBackend.Controllers
                 return Unauthorized(new { message = "Cliente não autorizado." });
 
             int? contaId = _service.GetContaIdFromAccessToken(accessToken);
-            var conta = await _context.Contas.FindAsync(contaId);
+            var conta = await _context.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Id == contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
 
-            if (conta.Saldo <= 0)
+            if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
                 return BadRequest(new { message = "Saldo insuficiente" });
 
             if (conta.Pin != dadosTransacao.Pin)
@@ -144,13 +143,12 @@ namespace PayWiseBackend.Controllers
                 Horario = new DateTime(),
                 Tipo = TransacaoTipo.SAQUE,
                 Valor = dadosTransacao.Valor,
-                HistoricoId = conta.HistoricoId
             };
-            
-            await _context.Transacoes.AddAsync(transacao);
+
+            conta.Historico.Transacoes.Add(transacao);
 
             await _context.SaveChangesAsync();
-            return Ok(new { message = conta.Saldo });
+            return Ok(new { saldo = conta.Saldo });
         }
 
         [Authorize]
@@ -164,7 +162,7 @@ namespace PayWiseBackend.Controllers
                 return Unauthorized(new { message = "Cliente não autorizado." });
 
             int? contaId = _service.GetContaIdFromAccessToken(accessToken);
-            var conta = await _context.Contas.FindAsync(contaId);
+            var conta = await _context.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Id == contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
@@ -177,10 +175,9 @@ namespace PayWiseBackend.Controllers
                 Horario = new DateTime(),
                 Tipo = TransacaoTipo.DEPOSITO,
                 Valor = dadosTransacao.Valor,
-                HistoricoId = conta.HistoricoId
             };
 
-            await _context.Transacoes.AddAsync(transacao);
+            conta.Historico.Transacoes.Add(transacao);
 
             await _context.SaveChangesAsync();
             return Ok(new { saldo = conta.Saldo });
@@ -197,15 +194,15 @@ namespace PayWiseBackend.Controllers
                 return Unauthorized(new { message = "Cliente não autorizado." });
 
             int? contaId = _service.GetContaIdFromAccessToken(accessToken);
-            var conta = await _context.Contas.FindAsync(contaId);
+            var conta = await _context.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Id == contaId);
 
             if (conta is null)
                 return BadRequest(new { message = "Conta não existe" });
 
-            if (conta.Saldo <= 0)
+            if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
                 return BadRequest(new { mesage = "Saldo insuficiente" });
 
-            var contaDestino = await _context.Contas.FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
+            var contaDestino = await _context.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
 
             if (contaDestino is null)
                 return BadRequest(new { message = "Conta de destino inexistente" });
@@ -219,10 +216,9 @@ namespace PayWiseBackend.Controllers
                 Horario = new DateTime(),
                 Tipo = TransacaoTipo.TRANSFERENCIA,
                 Valor = dadosTransacao.Valor,
-                HistoricoId = conta.HistoricoId
             };
 
-            await _context.Transacoes.AddAsync(transacao);
+            conta.Historico.Transacoes.Add(transacao);
 
             Transacao transacaoDestino = new Transacao()
             {
@@ -230,13 +226,15 @@ namespace PayWiseBackend.Controllers
                 Horario = new DateTime(),
                 Tipo = TransacaoTipo.TRANSFERENCIA,
                 Valor = dadosTransacao.Valor,
-                HistoricoId = contaDestino.HistoricoId
             };
 
-            await _context.Transacoes.AddAsync(transacaoDestino);
+            contaDestino.Historico.Transacoes.Add(transacaoDestino);
 
             await _context.SaveChangesAsync();
-            return Ok(new { saldo = conta.Saldo });
+
+            var saldo = conta.Saldo;
+
+            return Ok(new { saldo });
         }
 
     }
