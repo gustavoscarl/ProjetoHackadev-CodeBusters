@@ -11,5 +11,5 @@ public class Transacao : Entity
     [MaxLength(200)]
     public string? Descricao { get; set; }
     public int HistoricoId { get; set; }
-    public virtual Historico Historico { get; set; }
+    public virtual Historico? Historico { get; set; }
 }

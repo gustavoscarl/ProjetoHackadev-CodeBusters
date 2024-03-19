@@ -4,10 +4,10 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Domain.Profiles;
 
-public class ContaResponseProfile : Profile
+public class EnderecoProfile : Profile
 {
-    public ContaResponseProfile()
+    public EnderecoProfile()
     {
-        CreateMap<Conta, RetrieveContaDTO>();
+        CreateMap<CreateEnderecoDTO, Endereco>();
     }
 }

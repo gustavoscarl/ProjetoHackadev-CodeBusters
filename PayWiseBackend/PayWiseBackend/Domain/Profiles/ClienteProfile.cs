@@ -8,7 +8,10 @@ namespace PayWiseBackend.Domain.Profiles
     {
         public ClienteProfile() : base()
         {
-            CreateMap<CreateClientDTO, Cliente>();        
+            CreateMap<CreateClientDTO, Cliente>()
+                .ForMember(dest => dest.Endereco, opt => opt.MapFrom(src => src.Endereco));
+            CreateMap<Cliente, RetrieveClienteDTO>();
+
         }
     }
 }

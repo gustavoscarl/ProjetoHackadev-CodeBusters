@@ -1,9 +1,9 @@
 ﻿using PayWiseBackend.Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace PayWiseBackend.Domain.Models;
+namespace PayWiseBackend.Domain.DTOs;
 
-public class Endereco : Entity
+public class CreateEnderecoDTO
 {
     [MaxLength(50)]
     public string Rua { get; set; } = string.Empty;
@@ -17,7 +17,4 @@ public class Endereco : Entity
     [MaxLength(50)]
     public string Cidade { get; set; } = string.Empty;
     public Estado Estado { get; set; }
-    public DateTime CriadoEm { get; set; } = DateTime.Now;
-    public DateTime AtualizadoEm { get; set; } = DateTime.Now;
-    public virtual Cliente? Cliente { get; set; }
 }

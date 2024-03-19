@@ -3,4 +3,5 @@
 public class Sessao : Entity
 {
     public string RefreshToken { get; set; } = null!;
+    public virtual Cliente? Cliente { get; set; }
 }

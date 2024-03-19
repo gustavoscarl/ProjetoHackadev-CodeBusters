@@ -2,13 +2,12 @@
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
 
-
 namespace PayWiseBackend.Domain.Profiles;
 
-public class ClientResponseProfile : Profile
+public class TransacaoProfile : Profile
 {
-    public ClientResponseProfile()
+    public TransacaoProfile()
     {
-        CreateMap<Cliente, RetrieveClienteDTO>();
+        CreateMap<Transacao, RetrieveTransacaoDTO>();
     }
 }
