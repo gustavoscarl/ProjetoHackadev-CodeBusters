@@ -3,6 +3,7 @@ import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomePageService } from '../../servicos/homepage-conta.service';
+import { Cliente } from '../../modelos/Cliente';
 @Component({
   selector: 'app-icons-home',
   standalone: true,
@@ -12,24 +13,29 @@ import { HomePageService } from '../../servicos/homepage-conta.service';
 })
 
 export class IconsHomeComponent {
-  clienteData: any;
-  isUserAccount = true;
-  isUserCard = false;
+  clienteData: Cliente | undefined;
+  isUserCard?:boolean;
+  isUserAccount?:boolean;
+
+
 
   constructor(private contaService: HomePageService) { }
 
   ngOnInit() {
     this.contaService.pegarCliente().subscribe({
-      next: (data) => {
-        this.clienteData = data; 
-        console.log(data);
-      },
+      next: ((data: Cliente) => {
+        this.clienteData = data;
+        console.log(this.clienteData);
+        this.isUserCard = this.clienteData?.temCartao;
+        this.isUserAccount = this.clienteData?.temConta;
+      }),
       error: (error) => {
         console.error('Error fetching client data:', error);
-        // Handle errors, show messages, etc.
       }
     });
+    
   }
+  
   
 
 }
