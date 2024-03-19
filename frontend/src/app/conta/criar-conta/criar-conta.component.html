@@ -5,11 +5,18 @@
       <div>
         <h2 class="mb-3">Cadastre os seguintes dados:</h2>
       </div>
-      <div class="form-group">
-        <label for="pix geral">PIN (4 dígitos):</label>
+      <div class="form-group mb-1">
+        <label for="pin">PIN (4 dígitos):</label>
         <input type="password" 
         id="pin" 
         name="pin" 
+        placeholder="****" />
+      </div>
+      <div class="form-group">
+        <label for="pin-confirm">Confirmar PIN:</label>
+        <input type="password" 
+        id="pin-confirm" 
+        name="pin-confirm" 
         placeholder="****" />
       </div>
       <div class="form-group">
@@ -34,10 +41,7 @@
       </div>
 
       <div class="form-group">
-        <div class="btn-reset login-button"></div>
-        <a class="login-link" [routerLink]="['/criar-conta']"
-          >Cadastrar Conta</a
-        >
+        <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
       </div>
 
       <div class="icon-container">
