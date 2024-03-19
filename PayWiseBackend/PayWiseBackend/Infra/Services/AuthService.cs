@@ -108,11 +108,12 @@ public class AuthService : IAuthService
             };
             await _context.Sessoes.AddAsync(sessao);
         }
+        else
+        {
+            sessaoParaAtualizar.RefreshToken = refreshToken;
 
-        sessaoParaAtualizar!.RefreshToken = refreshToken;
-        _context.Sessoes.Update(sessaoParaAtualizar);
-
-        await _context.SaveChangesAsync();
+            _context.Sessoes.Update(sessaoParaAtualizar);
+        }
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)

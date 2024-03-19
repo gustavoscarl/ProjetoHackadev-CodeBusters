@@ -38,6 +38,9 @@ public class AuthController : Controller
 
         await _service.SalvarSessao(cliente.Id, refreshToken);
 
+        await _context.SaveChangesAsync();
+
+
         Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
         {
             HttpOnly = true,
