@@ -1,3 +1,6 @@
+<div *ngIf="showAlert" class="alerta position-fixed text-center">
+  Login realizado! Redirecionando...
+</div>
 <div class="background">
   <div class="container">
     <img src="../../assets/logotypes-login-cadastro/logopronta.svg" alt="Logo do Banco" class="logo">
@@ -44,6 +47,9 @@
         </div>
       </div>
     </form>
+    <div class="mensagem-erro d-none mb-3 text-danger">
+
+    </div>
     <div><a class="link-registro" [routerLink]="['/cadastro']">Ainda não tem uma conta? <span class="link-estilo">Registre-se</span></a></div>
   </div>
 </div>

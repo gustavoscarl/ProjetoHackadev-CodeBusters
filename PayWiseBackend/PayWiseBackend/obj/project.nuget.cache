@@ -1,8 +1,10 @@
 {
   "version": 2,
+
   "dgSpecHash": "qbOjc3jH0M494hCnsxE+EceFniGrwz6P3BBOj93k4P78s8cYIVr1ouxbwWgw1PaBqSu6GyJxLST8Vnry0teSYw==",
   "success": true,
   "projectFilePath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+
   "expectedPackageFiles": [
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Camila Vieira\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
