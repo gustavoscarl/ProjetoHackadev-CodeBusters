@@ -1,31 +1,31 @@
 <div class="background">
-  <div class="container">
-    <img
-      src="../../assets/logotypes-login-cadastro/logopronta.svg"
-      alt="Logo do Banco"
-      class="logo"
-    />
+  <div class="container col-lg-4 col-md-6">
 
-    <form>
+    <form class="border border-secondary rounded border-opacity-50 p-5">
       <div>
-        <label>Cadastre os seguintes dados:</label>
+        <h2 class="mb-3">Cadastre os seguintes dados:</h2>
       </div>
       <div class="form-group">
         <label for="pix geral">PIN (4 dígitos):</label>
-        <input type="password" id="pin" name="pin" placeholder="****" />
+        <input type="password" 
+        id="pin" 
+        name="pin" 
+        placeholder="****" />
       </div>
       <div class="form-group">
-        <label for="pix geral">Insira o valor de pix geral:</label>
+        <label for="pix-geral">Insira o valor de pix geral:</label>
         <input
+        class="form-control"
           type="number"
           id="pix-geral"
-          name="pix geral"
+          name="pix-geral"
           placeholder="Valor de pix geral"
         />
       </div>
       <div class="form-group">
         <label for="pix noturno">Insira o valor de pix noturno:</label>
         <input
+          class="form-control"
           type="number"
           id="pix-noturno"
           name="pix noturno"
