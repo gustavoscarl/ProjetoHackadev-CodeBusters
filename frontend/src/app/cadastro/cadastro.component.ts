@@ -132,7 +132,8 @@ export class CadastroComponent {
     this.cadastroForm.markAllAsTouched();
     if (this.cadastroForm.valid) {
       const cadastroData: Cadastro = {
-        nome: this.cadastroForm.get('name')?.value + ' ' + this.cadastroForm.get('lastname')?.value,
+        nome: this.cadastroForm.get('name')?.value,
+        sobrenome: this.cadastroForm.get('lastname')?.value,
         email: this.cadastroForm.get('email')?.value,
         senha: this.cadastroForm.get('password')?.value,
         cpf: this.cadastroForm.get('cpf')?.value,

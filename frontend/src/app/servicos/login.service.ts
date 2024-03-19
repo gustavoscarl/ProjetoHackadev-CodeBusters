@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   logarCliente(cliente: Login): Observable<Login> {
-    const url = 'https://localhost:7085/auth';
+    const url = 'http://localhost:5062/auth';
     return this.http.post<Login>(url, cliente);
   }
 }
