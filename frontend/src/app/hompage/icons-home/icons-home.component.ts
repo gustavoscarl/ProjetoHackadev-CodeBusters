@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomePageService } from '../../servicos/homepage-conta.service';
 import { Cliente } from '../../modelos/Cliente';
+import { InputserviceService } from '../../servicos/inputservice.service';
 @Component({
   selector: 'app-icons-home',
   standalone: true,
@@ -14,28 +15,26 @@ import { Cliente } from '../../modelos/Cliente';
 
 export class IconsHomeComponent {
   clienteData: Cliente | undefined;
-  isUserCard?:boolean;
   isUserAccount?:boolean;
+  userName?: string;
 
 
 
-  constructor(private contaService: HomePageService) { }
+  constructor(private contaService: HomePageService, private inputService: InputserviceService) { }
 
   ngOnInit() {
     this.contaService.pegarCliente().subscribe({
-      next: ((data: Cliente) => {
-        this.clienteData = data;
-        console.log(this.clienteData);
-        this.isUserCard = this.clienteData?.temCartao;
+      next: ((data: any) => {
+        this.clienteData = data.clienteResponse as Cliente;
         this.isUserAccount = this.clienteData?.temConta;
+        this.inputService.nomeDoUsuario = this.clienteData?.nome
+        this.inputService.temConta = this.clienteData?.temConta
+        this.inputService.enviarDadosProntos()
       }),
       error: (error) => {
         console.error('Error fetching client data:', error);
       }
     });
-    
   }
-  
-  
-
 }
+  
