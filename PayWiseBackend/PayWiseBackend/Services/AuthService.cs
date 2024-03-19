@@ -127,7 +127,7 @@ public class AuthService : IAuthService
         }
     }
 
-    public async Task<Cliente?> ValidateCredentials(LoginRequestDTO loginCredentials)
+    public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)
     {
         var cliente = await _context.Clientes.SingleOrDefaultAsync(cliente => cliente.Cpf == loginCredentials.Cpf);
 

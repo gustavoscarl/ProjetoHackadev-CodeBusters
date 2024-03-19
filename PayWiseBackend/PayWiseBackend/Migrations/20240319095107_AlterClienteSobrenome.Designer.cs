@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240319095107_AlterClienteSobrenome")]
+    partial class AlterClienteSobrenome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("AtualizadoEm")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<int?>("ContaId")
                         .HasColumnType("int");
 
@@ -40,9 +40,6 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
-
-                    b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DocumentoId")
                         .HasColumnType("int");
@@ -54,9 +51,6 @@ namespace PayWiseBackend.Migrations
 
                     b.Property<int>("EnderecoId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("EstaAtivo")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -124,9 +118,6 @@ namespace PayWiseBackend.Migrations
                     b.Property<DateTime>("DataModificacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool>("EstaAtiva")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<double>("LimitePixGeral")
                         .HasColumnType("double");
 
@@ -157,15 +148,9 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("AtualizadoEm")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("CpfImagem")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("RgImagem")
                         .IsRequired()
@@ -183,9 +168,6 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AtualizadoEm")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -206,9 +188,6 @@ namespace PayWiseBackend.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
-
-                    b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("Estado")
                         .HasColumnType("int");

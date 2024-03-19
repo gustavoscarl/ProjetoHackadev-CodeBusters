@@ -6,8 +6,11 @@ namespace PayWiseBackend.Domain.DTOs
     public class CreateClientDTO
     {
         [Required]
-        [MaxLength(200)]
+        [MaxLength(100)]
         public string Nome { get; set; } = null!;
+        [Required]
+        [MaxLength(150)]
+        public string Sobrenome { get; set; } = null!;
 
         [Required]
         [EmailAddress]
@@ -29,6 +32,6 @@ namespace PayWiseBackend.Domain.DTOs
         public string Rg { get; set; } = null!;
 
         [Required]
-        public Endereco Endereco { get; set; } = null!;
+        public CreateEnderecoDTO Endereco { get; set; } = null!;
     }
 }

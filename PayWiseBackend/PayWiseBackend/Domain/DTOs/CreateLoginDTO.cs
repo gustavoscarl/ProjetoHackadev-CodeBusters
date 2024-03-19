@@ -2,7 +2,7 @@
 
 namespace PayWiseBackend.Domain.DTOs;
 
-public class LoginRequestDTO
+public class CreateLoginDTO
 {
     [Required]
     [MinLength(11)]

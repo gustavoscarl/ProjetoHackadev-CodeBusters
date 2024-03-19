@@ -2,5 +2,5 @@
 
 public class RetrieveHistoricoDTO
 {
-    public List<RetrieveTransacaoDTO> Transacoes { get; set; }
+    public List<RetrieveTransacaoDTO> Transacoes { get; set; } = new();
 }
