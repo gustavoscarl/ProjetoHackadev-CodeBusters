@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
-using PayWiseBackend.Services;
+using PayWiseBackend.Infra.Services;
 
 namespace PayWiseBackend.Controllers;
 
@@ -16,13 +16,20 @@ public class ClienteController : ControllerBase
 {
     private readonly PaywiseDbContext _context;
     private readonly IMapper _mapper;
-    private readonly IAuthService _service;
+    private readonly IClienteService _clienteService;
+    private readonly IAuthService _authService;
 
-    public ClienteController(PaywiseDbContext context, IMapper mapper, IAuthService service)
+    public ClienteController(
+        PaywiseDbContext context,
+        IMapper mapper,
+        IAuthService authService,
+        IClienteService clienteService
+        )
     {
         _context = context;
         _mapper = mapper;
-        _service = service;
+        _authService = authService;
+        _clienteService = clienteService;
     }
 
     [Authorize]
@@ -35,13 +42,15 @@ public class ClienteController : ControllerBase
         if (accessToken is null)
             return Unauthorized(new { message = "Cliente não autorizado." });
 
-        int? clienteId = _service.GetClienteIdFromAccessToken(accessToken);
-        var buscaCliente = await _context.Clientes.FindAsync(clienteId);
+        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
 
-        if (buscaCliente is null)
-            return NotFound(new { message = "Cliente não encontrada(o)" });
+        if (clienteId is null)
+            return NotFound(new { message = "Cliente não encontrada(o)." });
 
-        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(buscaCliente);
+        var clienteResponse = await _clienteService.BuscarClientePorId(clienteId);
+
+        if (clienteResponse is null)
+            return NotFound(new { message = "Cliente não encontrada(o)." });
 
         return Ok(new { clienteResponse });
     }
@@ -51,21 +60,16 @@ public class ClienteController : ControllerBase
     public async Task<IActionResult> Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
 
-        bool doesClientAlreadyExist = await _context.Clientes.AnyAsync(cliente => cliente.Cpf ==  novoCliente.Cpf || cliente.Rg == novoCliente.Rg);
+        bool doesClientAlreadyExist = await _clienteService.CheckClienteCredentials(novoCliente.Cpf, novoCliente.Rg);
 
         if (doesClientAlreadyExist)
             return Conflict(new { message = "Credenciais já cadastradas." });
 
-        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(novoCliente.Senha);
-        novoCliente.Senha = hashedPassword;
+        string senhaHash = _authService.HashPassword(novoCliente.Senha);
+        novoCliente.Senha = senhaHash;
 
-        var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
+        var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
 
-        var result = _context.Clientes.Add(clienteCadastrar);
-        await _context.SaveChangesAsync();
-
-        var clienteSalvo = result.Entity;
-
-        return CreatedAtAction("PegarPorId", new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o)."});
+        return CreatedAtAction(nameof(PegarPorId), new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o)."});
     }
 }

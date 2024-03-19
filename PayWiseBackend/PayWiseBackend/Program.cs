@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PayWiseBackend.Domain.Context;
-using PayWiseBackend.Services;
+using PayWiseBackend.Infra.Services;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -28,6 +28,7 @@ builder.Services.AddDbContext<PaywiseDbContext>(options =>
 });
 
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IClienteService, ClienteService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

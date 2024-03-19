@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace PayWiseBackend.Services;
+namespace PayWiseBackend.Infra.Services;
 
 public class AuthService : IAuthService
 {
@@ -125,6 +125,12 @@ public class AuthService : IAuthService
         {
             return null;
         }
+    }
+
+    public string HashPassword(string senha)
+    {
+        var senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
+        return senhaHash;
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)
