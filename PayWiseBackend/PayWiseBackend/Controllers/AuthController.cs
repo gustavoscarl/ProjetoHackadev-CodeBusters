@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
@@ -32,17 +33,10 @@ public class AuthController : Controller
         if (cliente is null)
             return BadRequest(new { message = "Cliente não existe." });
 
-        string accessToken = _service.GenerateAccessToken(cliente.Id, cliente.TemConta ? cliente.ContaId : null);
-        string refreshToken = _service.GenerateRefreshToken(cliente.Id, cliente.TemConta ? cliente.ContaId : null);
+        string accessToken = _service.GenerateAccessToken(cliente.Id);
+        string refreshToken = _service.GenerateRefreshToken(cliente.Id);
 
-        Sessao sessao = new Sessao()
-        {
-            RefreshToken = refreshToken
-        };
-
-        var sessaoResult = await _context.Sessoes.AddAsync(sessao);
-        cliente.Sessao = sessaoResult.Entity;
-        await _context.SaveChangesAsync();
+        await _service.SalvarSessao(cliente.Id, refreshToken);
 
         Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
         {

@@ -33,21 +33,12 @@ public class ClienteController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet]
+    [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId()
+    public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId(int id)
     {
-        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
-        if (accessToken is null)
-            return Unauthorized(new { message = "Cliente não autorizado." });
-
-        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
-
-        if (clienteId is null)
-            return NotFound(new { message = "Cliente não encontrada(o)." });
-
-        var clienteResponse = await _clienteService.BuscarClientePorId(clienteId);
+        var clienteResponse = await _clienteService.BuscarClientePorId(id);
 
         if (clienteResponse is null)
             return NotFound(new { message = "Cliente não encontrada(o)." });
@@ -70,6 +61,6 @@ public class ClienteController : ControllerBase
 
         var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
 
-        return CreatedAtAction(nameof(PegarPorId), new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o)."});
+        return CreatedAtAction(nameof(PegarPorId), new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o).", cliente = clienteSalvo});
     }
 }

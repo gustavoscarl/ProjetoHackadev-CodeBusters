@@ -19,5 +19,6 @@ public class Endereco : Entity
     public Estado Estado { get; set; }
     public DateTime CriadoEm { get; set; } = DateTime.Now;
     public DateTime AtualizadoEm { get; set; } = DateTime.Now;
+    public int ClienteId { get; set; }
     public virtual Cliente? Cliente { get; set; }
 }

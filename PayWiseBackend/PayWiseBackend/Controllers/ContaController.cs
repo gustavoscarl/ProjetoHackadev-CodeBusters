@@ -25,7 +25,7 @@ namespace PayWiseBackend.Controllers
             _service = service;
         }
 
-        [Authorize]
+        /*[Authorize]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -88,7 +88,7 @@ namespace PayWiseBackend.Controllers
 
             await _context.SaveChangesAsync();
 
-            string novoAccessToken = _service.GenerateAccessToken(cliente.Id, contaCadastrada.Id);
+            string novoAccessToken = _service.GenerateAccessToken(cliente.Id);
 
             return CreatedAtAction(nameof(PegarPorId), new { contaCadastrada.Id }, new { message = "Conta criada.", accessToken = novoAccessToken});
         }
@@ -235,7 +235,7 @@ namespace PayWiseBackend.Controllers
             var saldo = conta.Saldo;
 
             return Ok(new { saldo });
-        }
+        }*/
 
     }
 }

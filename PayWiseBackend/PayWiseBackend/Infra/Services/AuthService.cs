@@ -21,19 +21,19 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public string GenerateAccessToken(int clienteId, int? contaId)
+    public string GenerateAccessToken(int clienteId)
     {
-        string accessToken = GenerateToken(clienteId, TokenType.Access, contaId);
+        string accessToken = GenerateToken(clienteId, TokenType.Access);
         return accessToken;
     }
 
-    public string GenerateRefreshToken(int clienteId, int? contaId)
+    public string GenerateRefreshToken(int clienteId)
     {
-        string refreshToken = GenerateToken(clienteId, TokenType.Refresh, contaId);
+        string refreshToken = GenerateToken(clienteId, TokenType.Refresh);
         return refreshToken;
     }
 
-    public string GenerateToken(int clienteId, TokenType type, int? contaId)
+    public string GenerateToken(int clienteId, TokenType type)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
@@ -42,9 +42,6 @@ public class AuthService : IAuthService
         {
             new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
         };
-
-        if (contaId != null)
-            claims.Add(new Claim("contaId", contaId.Value.ToString()));
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -93,44 +90,29 @@ public class AuthService : IAuthService
         }
     }
 
-    public int? GetContaIdFromAccessToken(string accessToken)
-    {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
-
-        var tokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = _config["Jwt:issuer"],
-            ValidAudience = _config["Jwt:audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(key)
-        };
-
-        try
-        {
-            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
-
-            Claim clienteId = principal.FindFirst("contaId");
-            if (clienteId is null)
-                return null;
-
-            var clienteIdValue = Convert.ToInt32(clienteId.Value);
-
-            return clienteIdValue;
-        }
-        catch (Exception err)
-        {
-            return null;
-        }
-    }
-
     public string HashPassword(string senha)
     {
         var senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
         return senhaHash;
+    }
+
+    public async Task SalvarSessao(int clienteId, string refreshToken)
+    {
+        var sessaoParaAtualizar = await _context.Sessoes.FirstOrDefaultAsync(s => s.ClienteId == clienteId);
+        if (sessaoParaAtualizar is null)
+        {
+            Sessao sessao = new Sessao()
+            {
+                RefreshToken = refreshToken,
+                ClienteId = clienteId,
+            };
+            await _context.Sessoes.AddAsync(sessao);
+        }
+
+        sessaoParaAtualizar!.RefreshToken = refreshToken;
+        _context.Sessoes.Update(sessaoParaAtualizar);
+
+        await _context.SaveChangesAsync();
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)

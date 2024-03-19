@@ -25,7 +25,7 @@ public class HistoricoController : ControllerBase
         _service = service;
     }
 
-    [Authorize]
+    /*[Authorize]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -46,5 +46,5 @@ public class HistoricoController : ControllerBase
         var historicoResponse = _mapper.Map<RetrieveHistoricoDTO>(historico);
 
         return Ok(new { historico =  historicoResponse });
-    }
+    }*/
 }
