@@ -5,8 +5,11 @@ namespace PayWiseBackend.Domain.Models;
 public class Cliente : Entity
 {
     [Required]
-    [MaxLength(200)]
+    [MaxLength(100)]
     public string Nome { get; set; } = null!;
+    [Required]
+    [MaxLength(150)]
+    public string Sobrenome { get; set; } = null!;
     [Required]
     [EmailAddress]
     [MaxLength(50)]
