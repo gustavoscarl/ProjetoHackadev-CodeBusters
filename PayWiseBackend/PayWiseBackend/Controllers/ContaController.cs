@@ -6,7 +6,7 @@ using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
-using PayWiseBackend.Services;
+using PayWiseBackend.Infra.Services;
 
 namespace PayWiseBackend.Controllers
 {
