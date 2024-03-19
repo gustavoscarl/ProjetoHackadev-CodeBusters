@@ -32,6 +32,6 @@ namespace PayWiseBackend.Domain.DTOs
         public string Rg { get; set; } = null!;
 
         [Required]
-        public Endereco Endereco { get; set; } = null!;
+        public CreateEnderecoDTO Endereco { get; set; } = null!;
     }
 }
