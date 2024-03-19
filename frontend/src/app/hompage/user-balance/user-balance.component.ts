@@ -3,6 +3,7 @@ import { InputserviceService } from '../../servicos/inputservice.service';
 import { ChartModule } from 'primeng/chart';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Inject({ providedIn: 'root' })
 
@@ -14,8 +15,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-balance.component.css'
 })
 export class UserBalanceComponent {
-  @Input() saldoAtual: number = 0;
-  @Input() userName!: string;
+  saldoAtual?: number = 0;
+  userName?: string;
+  temConta?: boolean;
+  dadosProntosSubscription: Subscription | undefined;
 
   chartData: any = {
     labels: ['Alimentação', 'Lazer', 'Educação', 'Viagens'],
@@ -70,14 +73,11 @@ export class UserBalanceComponent {
   }
 
   constructor(private inputService: InputserviceService, private renderer : Renderer2) {
-    this.saldoAtual = this.inputService.saldoDoUsuario;
-    this.userName = this.inputService.nomeDoUsuario;
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       this.isdarkMode = event.matches;
     });
   }
-    
-  
     saldoVisivel: boolean = true;
     isdarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -85,4 +85,17 @@ export class UserBalanceComponent {
     this.saldoVisivel = !this.saldoVisivel;
   }
 
+  ngOnInit() {
+    this.dadosProntosSubscription = this.inputService.dadosProntos$.subscribe(() => {
+      // Obtenha os dados quando estiverem prontos
+      this.saldoAtual = this.inputService.saldoDoUsuario;
+      this.userName = this.inputService.nomeDoUsuario;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.dadosProntosSubscription) {
+      this.dadosProntosSubscription.unsubscribe();
+    }
+  }
 }

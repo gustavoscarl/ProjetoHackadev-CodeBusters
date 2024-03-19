@@ -18,24 +18,26 @@
 </div>
 
 
-<div class="user-balance-container mt-5 col-lg-6">
+<div class="user-balance-container mt-5 col-lg-6" [ngClass]="{ 'align-items-center': !temConta}">
   <div class="col-5">
-    <div class="greeting">
-      <p class="custom-font">Olá, {{ userName }}!</p>
-      <p class="custom-font">Saldo Atual:</p>
+    <div class="greeting" [ngClass]="{ 'mt-0': !temConta}">
+      <p class="custom-font ">Olá, {{ userName }}!</p>
+      <p class="custom-font" *ngIf="temConta">Saldo Atual:</p>
     </div>
   </div>
 
   <div class="">
   <div>
     <!-- <p *ngIf="saldoVisivel">Saldo: R$ 1000,00</p> -->
-    <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo">
+    <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo"
+    *ngIf="temConta">
       <img class="darkOrLightMode" [src]="isdarkMode ? (saldoVisivel ? 'assets/user-balance/eye-solid-dark-mode.png' : 'assets/user-balance/eye-slash-solid-dark-mode.png') : (saldoVisivel ? 'assets/user-balance/eye-solid-light-mode.svg' : 'assets/user-balance/eye-slash-solid-light-mode.svg')" alt="Ícone para tema escuro">
     </button>
   </div>
 
     <div class="">
-      <p class="saldo-atual custom-font">R$ {{ saldoAtual }}</p>
+      <p class="saldo-atual custom-font"  *ngIf="temConta">R$ {{ saldoAtual }}</p>
+      <p class="saldo-atual custom-font text-center" *ngIf="!temConta">Crie sua Conta Bancária ou Cartão!</p>
     </div>
   </div>
 </div>
