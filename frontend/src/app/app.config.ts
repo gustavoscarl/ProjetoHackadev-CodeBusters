@@ -1,13 +1,20 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, withInterceptors,provideHttpClient, withFetch, HttpClientModule } from '@angular/common/http';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { TokenInterceptor } from './servicos/interceptors/tokeninterceptor.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    importProvidersFrom(BrowserModule, HttpClientModule),
     provideRouter(routes), 
     provideClientHydration(), 
     provideHttpClient(withFetch()),
