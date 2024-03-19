@@ -17,4 +17,6 @@ public class Endereco : Entity
     [MaxLength(50)]
     public string Cidade { get; set; } = string.Empty;
     public Estado Estado { get; set; }
+    public DateTime CriadoEm { get; set; } = DateTime.Now;
+    public DateTime AtualizadoEm { get; set; } = DateTime.Now;
 }
