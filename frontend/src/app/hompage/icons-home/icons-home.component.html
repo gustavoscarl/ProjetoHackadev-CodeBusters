@@ -1,11 +1,11 @@
-<div [ngClass]="{ 'user-card': isUserCard, 'user-account': isUserAccount }">
+<div [ngClass]="{ 'user-card': !isUserAccount, 'user-account': isUserAccount }">
   <div class="options-home">
     <div class="div-options-botao text-center col-lg-8 pt-5">
       <button class="btn-conta">
-        <span *ngIf="isUserCard">
+        <span *ngIf="!isUserAccount">
           <a class="link-estilo" [routerLink]="['/conta/criar-conta']">Criar conta</a>
         </span>
-        <span *ngIf="!isUserCard">
+        <span *ngIf="isUserAccount">
           <a class="link-estilo" [routerLink]="['./componentes/historico']">Acessar conta</a>
         </span>
       </button>
