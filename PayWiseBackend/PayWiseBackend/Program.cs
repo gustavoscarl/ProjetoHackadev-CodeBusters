@@ -24,7 +24,7 @@ builder.Services.AddCors(options =>
 var stringDeConexao = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<PaywiseDbContext>(options =>
 {
-    options.UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
+    options.UseLazyLoadingProxies().UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
 });
 
 builder.Services.AddTransient<IAuthService, AuthService>();
