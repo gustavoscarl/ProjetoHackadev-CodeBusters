@@ -4,9 +4,9 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Domain.Profiles;
 
-public class TransacaoResponseProfile : Profile
+public class TransacaoProfile : Profile
 {
-    public TransacaoResponseProfile()
+    public TransacaoProfile()
     {
         CreateMap<Transacao, RetrieveTransacaoDTO>();
     }

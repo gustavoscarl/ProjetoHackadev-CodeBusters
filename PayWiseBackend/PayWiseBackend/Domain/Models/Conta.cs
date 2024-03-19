@@ -19,4 +19,5 @@ public class Conta : Entity
     public double LimitePixGeral { get; set; } = 1000.00;
     public double LimitePixNoturno { get; set; } = 1000.00;
     public virtual Historico Historico { get; set; } = new();
+    public virtual Cliente? Cliente { get; set; }
 }
