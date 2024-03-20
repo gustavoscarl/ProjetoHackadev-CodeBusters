@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
+using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Infra.Services;
@@ -69,5 +70,69 @@ public class ContaService : IContaService
     {
         var historico = await _context.Historicos.FirstOrDefaultAsync(h => h.ContaId == contaId);
         return historico;
+    }
+
+    public async Task Sacar(Conta conta, CreateTransacaoSaqueDTO dadosTransacao)
+    {
+        conta.Saldo -= dadosTransacao.Valor;
+
+        Transacao transacao = new Transacao()
+        {
+            Descricao = dadosTransacao.Descricao ?? string.Empty,
+            Horario = new DateTime(),
+            Tipo = TransacaoTipo.SAQUE,
+            Valor = dadosTransacao.Valor,
+        };
+        await _context.SaveChangesAsync();
+        await CadastrarTransacao(conta, transacao);
+    }
+
+    public async Task Depositar(Conta conta, CreateTransacaoDepositoDTO dadosTransacao)
+    {
+        conta.Saldo += dadosTransacao.Valor;
+
+        Transacao transacao = new Transacao()
+        {
+            Descricao = dadosTransacao.Descricao ?? string.Empty,
+            Horario = DateTime.Now,
+            Tipo = TransacaoTipo.DEPOSITO,
+            Valor = dadosTransacao.Valor,
+        };
+        await _context.SaveChangesAsync();
+        await CadastrarTransacao(conta, transacao);
+
+    }
+
+    public async Task Transferencia(Conta conta, Conta contaDestino, CreateTransacaoTransferenciaDTO dadosTransacao)
+    {
+        conta.Saldo -= dadosTransacao.Valor;
+        contaDestino.Saldo += dadosTransacao.Valor;
+        await _context.SaveChangesAsync();
+
+        Transacao transacao = new Transacao()
+        {
+            Descricao = dadosTransacao.Descricao ?? string.Empty,
+            Horario = new DateTime(),
+            Tipo = TransacaoTipo.TRANSFERENCIA,
+            Valor = dadosTransacao.Valor,
+        };
+
+        await CadastrarTransacao(conta, transacao);
+
+        Transacao transacaoDestino = new Transacao()
+        {
+            Descricao = dadosTransacao.Descricao ?? string.Empty,
+            Horario = new DateTime(),
+            Tipo = TransacaoTipo.TRANSFERENCIA,
+            Valor = dadosTransacao.Valor,
+        };
+
+        await CadastrarTransacao(contaDestino, transacaoDestino);
+    }
+
+    public async Task CadastrarTransacao(Conta conta, Transacao transacao)
+    {
+        conta.Historico.Transacoes.Add(transacao);
+        await _context.SaveChangesAsync();
     }
 }

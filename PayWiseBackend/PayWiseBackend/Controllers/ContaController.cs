@@ -112,7 +112,7 @@ public class ContaController : ControllerBase
 
         int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
 
-        var conta = await _contaService.BuscarContaPorId(contaId);
+        Conta? conta = await _contaService.BuscarContaPorId(contaId);
 
         if (conta is null)
             return BadRequest(new { message = "Conta não existe" });
@@ -123,19 +123,8 @@ public class ContaController : ControllerBase
         if (conta.Pin != dadosTransacao.Pin)
             return BadRequest(new { message = "Senha PIN inválida" });
 
-        conta.Saldo -= dadosTransacao.Valor;
+        await _contaService.Sacar(conta, dadosTransacao);
 
-        Transacao transacao = new Transacao()
-        {
-            Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
-            Tipo = TransacaoTipo.SAQUE,
-            Valor = dadosTransacao.Valor,
-        };
-
-        conta.Historico.Transacoes.Add(transacao);
-
-        await _context.SaveChangesAsync();
         return Ok(new { saldo = conta.Saldo });
     }
 
@@ -153,19 +142,8 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe" });
 
-        conta.Saldo += dadosTransacao.Valor;
-
-        Transacao transacao = new Transacao()
-        {
-            Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = DateTime.Now,
-            Tipo = TransacaoTipo.DEPOSITO,
-            Valor = dadosTransacao.Valor,
-        };
-
-        conta.Historico.Transacoes.Add(transacao);
-
-        await _context.SaveChangesAsync();
+        await _contaService.Depositar(conta, dadosTransacao);
+        
         return Ok(new { saldo = conta.Saldo });
     }
 
@@ -191,30 +169,7 @@ public class ContaController : ControllerBase
         if (contaDestino is null)
             return BadRequest(new { message = "Conta de destino inexistente" });
 
-        conta.Saldo -= dadosTransacao.Valor;
-        contaDestino.Saldo += dadosTransacao.Valor;
-
-        Transacao transacao = new Transacao()
-        {
-            Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
-            Tipo = TransacaoTipo.TRANSFERENCIA,
-            Valor = dadosTransacao.Valor,
-        };
-
-        conta.Historico.Transacoes.Add(transacao);
-
-        Transacao transacaoDestino = new Transacao()
-        {
-            Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
-            Tipo = TransacaoTipo.TRANSFERENCIA,
-            Valor = dadosTransacao.Valor,
-        };
-
-        contaDestino.Historico.Transacoes.Add(transacaoDestino);
-
-        await _context.SaveChangesAsync();
+        await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
 
         var saldo = conta.Saldo;
 

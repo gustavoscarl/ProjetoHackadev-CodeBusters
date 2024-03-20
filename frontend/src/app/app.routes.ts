@@ -10,10 +10,19 @@ import { PixComponent } from './pix/pix.component';
 import { PinPadComponent } from './pin-pad/pin-pad.component';
 import { CardpageComponent } from './componentes/cardpage/cardpage.component';
 import { authGuard } from './guards/auth.guard';
+import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
+import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: ContainerComponentComponent, canActivate: [authGuard]},
+  {
+    path: 'conta',
+    children: [
+      { path: 'criar-conta', component: CriarContaComponent },
+      { path: 'criada', component: ContaCriadaComponent }
+    ]
+  },
   { path: 'cadastro', component: CadastroComponent},
   { path: 'esquecer-senha', component: EsquecerSenhaComponent},
   { path: 'historico', component: HistoricoComponent},

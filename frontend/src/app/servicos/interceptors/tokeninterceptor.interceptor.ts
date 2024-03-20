@@ -21,7 +21,6 @@ export class TokenInterceptor implements HttpInterceptor {
     if (token) {
       const cloned = req.clone({
         setHeaders: {
-          'chocolate': 'banofe',
           'Authorization': `Bearer ${token}`,
         },
       });

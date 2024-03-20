@@ -1,6 +1,15 @@
 /* Estilos padrão */
 .container {
   text-align: center;
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
 }
 
 .logo {
@@ -93,9 +102,14 @@ input[type="password"] {
 }
 
 /* Estilos para telas menores */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
   .link-sair {
     margin-right: 10px;
+  }
+
+  .container {
+    padding-top: 125px;
+    padding-bottom: 125px;
   }
 
   .background {
@@ -145,6 +159,13 @@ input[type="password"] {
   body {
     background-color: black;
     color: #fff;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
   }
 
   .form-group input {
