@@ -1,7 +1,15 @@
+
 <div class="background">
+  <div class="container col-lg-4 col-md-6 pt-5 pb-0 mt-1 d-flex text-start d-lg-none justify-content-start">
+    <div>
+      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta/seta-light.svg" alt=""></a>
+    </div>
+  </div>
   <div class="container col-lg-4 col-md-6">
 
-    <form class="border border-secondary rounded border-opacity-50 p-5">
+    
+    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm">
       <div>
         <h2 class="mb-3">Cadastre os seguintes dados:</h2>
       </div>
@@ -19,27 +27,6 @@
         name="pin-confirm" 
         placeholder="****" />
       </div>
-      <div class="form-group">
-        <label for="pix-geral">Insira o valor de pix geral:</label>
-        <input
-        class="form-control"
-          type="number"
-          id="pix-geral"
-          name="pix-geral"
-          placeholder="Valor de pix geral"
-        />
-      </div>
-      <div class="form-group">
-        <label for="pix noturno">Insira o valor de pix noturno:</label>
-        <input
-          class="form-control"
-          type="number"
-          id="pix-noturno"
-          name="pix noturno"
-          placeholder="Valor de pix noturno"
-        />
-      </div>
-
       <div class="form-group">
         <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
       </div>

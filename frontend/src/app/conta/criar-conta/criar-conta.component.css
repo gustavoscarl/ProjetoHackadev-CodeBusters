@@ -5,6 +5,13 @@
   padding-bottom: 200px;
 }
 
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
+}
+
 .logo {
   width: 100%;
   max-width: 300px;
@@ -152,6 +159,13 @@ input[type="password"] {
   body {
     background-color: black;
     color: #fff;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
   }
 
   .form-group input {
