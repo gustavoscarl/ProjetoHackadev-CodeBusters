@@ -12,7 +12,7 @@ export class CriarContaService {
   constructor(private http: HttpClient) { }
 
   cadastrarConta(conta: CriarConta): Observable<CriarConta> {
-    const url = 'https://localhost:7085/contas/criar';
+    const url = 'https://localhost:5062/contas/criar';
     return this.http.post<CriarConta>(url, conta);
   }
 }
