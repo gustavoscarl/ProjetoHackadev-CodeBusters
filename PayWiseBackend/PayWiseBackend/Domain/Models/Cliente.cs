@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PayWiseBackend.Domain.DTOs;
+using System.ComponentModel.DataAnnotations;
 
 namespace PayWiseBackend.Domain.Models;
 

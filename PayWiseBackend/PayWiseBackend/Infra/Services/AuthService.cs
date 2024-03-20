@@ -21,27 +21,30 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public string GenerateAccessToken(int clienteId)
+    public string GenerateAccessToken(int clienteId, int? contaId)
     {
-        string accessToken = GenerateToken(clienteId, TokenType.Access);
+        string accessToken = GenerateToken(clienteId, TokenType.Access, contaId);
         return accessToken;
     }
 
-    public string GenerateRefreshToken(int clienteId)
+    public string GenerateRefreshToken(int clienteId, int? contaId)
     {
-        string refreshToken = GenerateToken(clienteId, TokenType.Refresh);
+        string refreshToken = GenerateToken(clienteId, TokenType.Refresh, contaId);
         return refreshToken;
     }
 
-    public string GenerateToken(int clienteId, TokenType type)
+    public string GenerateToken(int clienteId, TokenType type, int? contaId)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
+            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString()),
         };
+
+        if (contaId.HasValue)
+            claims.Add(new Claim("contaId", contaId.Value.ToString()));
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
@@ -90,6 +93,41 @@ public class AuthService : IAuthService
         }
     }
 
+    public int? GetContaIdFromAccessToken(string accessToken)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
+
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = _config["Jwt:issuer"],
+            ValidAudience = _config["Jwt:audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+
+        try
+        {
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
+
+            Claim contaId = principal.Claims.FirstOrDefault(claim => claim.Type == "contaId");
+
+            if (contaId is null)
+                return null;
+
+            var contaIdValue = Convert.ToInt32(contaId.Value);
+
+            return contaIdValue;
+        }
+        catch (Exception err)
+        {
+            return null;
+        }
+    }
+
     public string HashPassword(string senha)
     {
         var senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
@@ -114,6 +152,8 @@ public class AuthService : IAuthService
 
             _context.Sessoes.Update(sessaoParaAtualizar);
         }
+        await _context.SaveChangesAsync();
+
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)

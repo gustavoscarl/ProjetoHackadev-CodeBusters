@@ -33,13 +33,10 @@ public class AuthController : Controller
         if (cliente is null)
             return BadRequest(new { message = "Cliente não existe." });
 
-        string accessToken = _service.GenerateAccessToken(cliente.Id);
-        string refreshToken = _service.GenerateRefreshToken(cliente.Id);
+        string accessToken = _service.GenerateAccessToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);
+        string refreshToken = _service.GenerateRefreshToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);
 
         await _service.SalvarSessao(cliente.Id, refreshToken);
-
-        await _context.SaveChangesAsync();
-
 
         Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
         {

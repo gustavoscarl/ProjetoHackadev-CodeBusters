@@ -12,10 +12,11 @@ public enum TokenType
 public interface IAuthService
 {
     Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials);
-    string GenerateToken(int clienteId, TokenType type);
-    string GenerateAccessToken(int clienteId);
-    string GenerateRefreshToken(int clienteId);
+    string GenerateToken(int clienteId, TokenType type, int? contaId);
+    string GenerateAccessToken(int clienteId, int? contaId);
+    string GenerateRefreshToken(int clienteId, int? contaId);
     int? GetClienteIdFromAccessToken(string accessToken);
+    int? GetContaIdFromAccessToken(string accessToken);
     string HashPassword(string senha);
     Task SalvarSessao(int ClienteId, string refreshToken);
 }
