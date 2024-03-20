@@ -48,7 +48,7 @@ public class ContaController : ControllerBase
         var conta = await _contaService.BuscarContaPorId(contaId);
 
         if (conta is null)
-            return NotFound(new { message = "Conta não encontrada." });
+            return NotFound(new { message = "Cliente não possui conta." });
 
         if (!conta.EstaAtiva)
             return NotFound(new { message = "Cliente não possui conta." });
@@ -68,7 +68,7 @@ public class ContaController : ControllerBase
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
+        int? clienteId = _authService.GetClienteIdFromToken(accessToken);
 
         var cliente = await _clienteService.BuscarClientePorId(clienteId);
 
@@ -90,7 +90,7 @@ public class ContaController : ControllerBase
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
+        int? clienteId = _authService.GetClienteIdFromToken(accessToken);
         int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
 
         var cliente = await _clienteService.BuscarClientePorId(clienteId);

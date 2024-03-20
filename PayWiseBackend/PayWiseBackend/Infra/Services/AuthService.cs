@@ -59,7 +59,7 @@ public class AuthService : IAuthService
         return tokenHandler.WriteToken(token);
     }
 
-    public int? GetClienteIdFromAccessToken(string accessToken)
+    public int? GetClienteIdFromToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_config["Jwt:key"]);
@@ -77,7 +77,7 @@ public class AuthService : IAuthService
 
         try
         {
-            ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
+            ClaimsPrincipal principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
 
             Claim clienteId = principal.FindFirst(ClaimTypes.NameIdentifier);
             if (clienteId is null)
