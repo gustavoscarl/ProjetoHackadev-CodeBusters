@@ -39,18 +39,15 @@ public class ClienteController : ControllerBase
     public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId()
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
-        if (accessToken is null)
-            return Unauthorized(new { message = "Cliente não autorizado." });
 
-        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
+        int? id = _authService.GetClienteIdFromAccessToken(accessToken);
 
-        if (clienteId is null)
+        var cliente = await _clienteService.BuscarClientePorId(id);
+
+        if (cliente is null)
             return NotFound(new { message = "Cliente não encontrada(o)." });
 
-        var clienteResponse = await _clienteService.BuscarClientePorId(clienteId);
-
-        if (clienteResponse is null)
-            return NotFound(new { message = "Cliente não encontrada(o)." });
+        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
 
         return Ok(new { clienteResponse });
     }
@@ -70,6 +67,6 @@ public class ClienteController : ControllerBase
 
         var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
 
-        return CreatedAtAction(nameof(PegarPorId), new { clienteSalvo.Id }, new { message = "Cliente cadastrada(o)."});
+        return CreatedAtAction(nameof(PegarPorId), new { message = "Cliente cadastrada(o).", cliente = clienteSalvo});
     }
 }

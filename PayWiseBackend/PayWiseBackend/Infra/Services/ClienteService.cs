@@ -21,11 +21,10 @@ public class ClienteService : IClienteService
         _mapper = mapper;
     }
 
-    public async Task<RetrieveClienteDTO> BuscarClientePorId(int? clienteId)
+    public async Task<Cliente> BuscarClientePorId(int? clienteId)
     {
         var cliente = await _context.Clientes.FindAsync(clienteId);
-        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
-        return clienteResponse;
+        return cliente;
     }
 
     public async Task<RetrieveClienteDTO> CadastrarCliente(CreateClientDTO novoCliente)

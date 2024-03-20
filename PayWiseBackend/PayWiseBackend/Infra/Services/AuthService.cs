@@ -40,10 +40,10 @@ public class AuthService : IAuthService
 
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString())
+            new Claim(ClaimTypes.NameIdentifier, clienteId.ToString()),
         };
 
-        if (contaId != null)
+        if (contaId.HasValue)
             claims.Add(new Claim("contaId", contaId.Value.ToString()));
 
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -113,13 +113,14 @@ public class AuthService : IAuthService
         {
             ClaimsPrincipal principal = tokenHandler.ValidateToken(accessToken, tokenValidationParameters, out SecurityToken validatedToken);
 
-            Claim clienteId = principal.FindFirst("contaId");
-            if (clienteId is null)
+            Claim contaId = principal.Claims.FirstOrDefault(claim => claim.Type == "contaId");
+
+            if (contaId is null)
                 return null;
 
-            var clienteIdValue = Convert.ToInt32(clienteId.Value);
+            var contaIdValue = Convert.ToInt32(contaId.Value);
 
-            return clienteIdValue;
+            return contaIdValue;
         }
         catch (Exception err)
         {
@@ -131,6 +132,28 @@ public class AuthService : IAuthService
     {
         var senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
         return senhaHash;
+    }
+
+    public async Task SalvarSessao(int clienteId, string refreshToken)
+    {
+        var sessaoParaAtualizar = await _context.Sessoes.FirstOrDefaultAsync(s => s.ClienteId == clienteId);
+        if (sessaoParaAtualizar is null)
+        {
+            Sessao sessao = new Sessao()
+            {
+                RefreshToken = refreshToken,
+                ClienteId = clienteId,
+            };
+            await _context.Sessoes.AddAsync(sessao);
+        }
+        else
+        {
+            sessaoParaAtualizar.RefreshToken = refreshToken;
+
+            _context.Sessoes.Update(sessaoParaAtualizar);
+        }
+        await _context.SaveChangesAsync();
+
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)

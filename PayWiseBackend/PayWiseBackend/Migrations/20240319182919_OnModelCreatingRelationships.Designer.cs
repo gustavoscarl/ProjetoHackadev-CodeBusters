@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -11,9 +12,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations
 {
     [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240319182919_OnModelCreatingRelationships")]
+    partial class OnModelCreatingRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +233,7 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ContaId")
+                    b.Property<int?>("ContaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -360,9 +363,7 @@ namespace PayWiseBackend.Migrations
                 {
                     b.HasOne("PayWiseBackend.Domain.Models.Conta", "Conta")
                         .WithOne("Historico")
-                        .HasForeignKey("PayWiseBackend.Domain.Models.Historico", "ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Historico", "ContaId");
 
                     b.Navigation("Conta");
                 });

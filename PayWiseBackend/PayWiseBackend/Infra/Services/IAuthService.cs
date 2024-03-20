@@ -18,4 +18,5 @@ public interface IAuthService
     int? GetClienteIdFromAccessToken(string accessToken);
     int? GetContaIdFromAccessToken(string accessToken);
     string HashPassword(string senha);
+    Task SalvarSessao(int ClienteId, string refreshToken);
 }
