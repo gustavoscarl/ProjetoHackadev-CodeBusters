@@ -42,10 +42,12 @@ public class ClienteController : ControllerBase
 
         int? id = _authService.GetClienteIdFromAccessToken(accessToken);
 
-        var clienteResponse = await _clienteService.BuscarClientePorId(id);
+        var cliente = await _clienteService.BuscarClientePorId(id);
 
-        if (clienteResponse is null)
+        if (cliente is null)
             return NotFound(new { message = "Cliente não encontrada(o)." });
+
+        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
 
         return Ok(new { clienteResponse });
     }
