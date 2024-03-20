@@ -154,10 +154,9 @@ export class CadastroComponent {
         .subscribe(cadastro => {
           setTimeout(() => {
             this.route.navigateByUrl('login')
-          }, 2500)
+          }, 1000)
           this.showAlert = true;
           console.log(cadastro);
-          // Lógica de sucesso após o POST
         });
     }
   }

@@ -9,7 +9,7 @@
   <div class="container col-lg-4 col-md-6">
 
     
-    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm">
+    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="pinForm" (ngSubmit)="onSubmit()">
       <div>
         <h2 class="mb-3">Cadastre os seguintes dados:</h2>
       </div>
@@ -18,14 +18,18 @@
         <input type="password" 
         id="pin" 
         name="pin" 
-        placeholder="****" />
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin"/>
       </div>
       <div class="form-group">
         <label for="pin-confirm">Confirmar PIN:</label>
         <input type="password" 
         id="pin-confirm" 
         name="pin-confirm" 
-        placeholder="****" />
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin-confirm"/>
       </div>
       <div class="form-group">
         <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
