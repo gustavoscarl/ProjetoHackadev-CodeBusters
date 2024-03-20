@@ -1,16 +1,27 @@
-<div class="container">
+<div class="container col-md-6">
   <div class="form-container">
     <h2>Depósito Bancário</h2>
-    <form [formGroup]="formulario" (submit)="enviar()">
+    <form [formGroup]="formulario" (submit)="enviar()" class="">
       <div class="input-group">
         <label for="valor">Valor:</label>
-        <input type="number" id="valor" formControlName="valor" placeholder="Digite o valor a ser depositado" required>
+        <input type="tel"
+        class="rounded shadow-sm"
+         currencyMask
+         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
+         id="valor" 
+         formControlName="valor" 
+         placeholder="Digite o valor a ser depositado" 
+         required>
       </div>
       <div class="input-group">
         <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" formControlName="descricao" placeholder="Digite uma breve descrição (opcional)">
+        <input type="text"
+        class="rounded shadow-sm" 
+        id="descricao" 
+        formControlName="descricao" 
+        placeholder="Digite uma breve descrição (opcional)">
       </div>
-      <button type="submit">Realizar Depósito</button>
+      <button class="shadow-sm mt-5" type="submit">Realizar Depósito</button>
     </form>
   </div>
 </div>

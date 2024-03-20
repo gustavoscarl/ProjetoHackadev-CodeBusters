@@ -5,13 +5,14 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SaldoService } from '../../servicos/saldo.service';
+import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 
 @Inject({ providedIn: 'root' })
 
 @Component({
   selector: 'app-user-balance',
   standalone: true,
-  imports: [ChartModule, RouterLink, CommonModule],
+  imports: [ChartModule, RouterLink, CommonModule, NgxCurrencyDirective],
   templateUrl: './user-balance.component.html',
   styleUrl: './user-balance.component.css'
 })
