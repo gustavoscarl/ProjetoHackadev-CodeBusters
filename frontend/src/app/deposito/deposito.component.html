@@ -3,10 +3,6 @@
     <h2>Depósito Bancário</h2>
     <form [formGroup]="formulario" (submit)="enviar()">
       <div class="input-group">
-        <label for="contaId">ID da Conta:</label>
-        <input type="number" id="contaId" formControlName="contaId" placeholder="Digite o ID da Conta" required>
-      </div>
-      <div class="input-group">
         <label for="valor">Valor:</label>
         <input type="number" id="valor" formControlName="valor" placeholder="Digite o valor a ser depositado" required>
       </div>
