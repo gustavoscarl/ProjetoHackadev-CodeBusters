@@ -57,26 +57,32 @@ public class AuthController : Controller
         return Ok(new { accessToken });
     }
 
-    [Authorize]
     [HttpPost("refresh")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> RefrescarToken()
     {
-        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+        string? refreshToken = Request.Cookies["RefreshToken"];
 
-        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
-        int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
+        if (refreshToken is null)
+            return Unauthorized(new { message = "Cliente não autorizada(o)." });
+
+        int? clienteId = _authService.GetClienteIdFromToken(refreshToken);
 
         Cliente? cliente = await _clienteService.BuscarClientePorId(clienteId);
-        Conta? conta = await _contaService.BuscarContaPorId(contaId);
 
         if (cliente is null)
-            return BadRequest(new { message = "Cliente não autorizada(o)." });
-        if (conta is null)
-            return BadRequest(new { message = "Cliente não autorizada(o)." });
+            return BadRequest(new { message = "Cliente não existe." });
 
-        string novoAccessToken = _authService.GenerateAccessToken(cliente.Id, conta.Id);
+        string novoAccessToken;
+
+        if (cliente.TemConta)
+        {
+            novoAccessToken = _authService.GenerateAccessToken(cliente.Id, cliente.Conta.Id);
+        } else
+        {
+            novoAccessToken = _authService.GenerateAccessToken(cliente.Id, null);
+        }
 
         return Ok(new { accessToken = novoAccessToken });
     }
