@@ -8,7 +8,13 @@ namespace PayWiseBackend.Domain.Profiles
     {
         public ClienteProfile() : base()
         {
-            CreateMap<CreateClientDTO, Cliente>();        
+            CreateMap<CreateClientDTO, Cliente>()
+                .ForMember(dest => dest.Endereco, opt => opt.MapFrom(src => src.Endereco));
+            CreateMap<Cliente, RetrieveClienteDTO>()
+                .ForMember(dest => dest.ContaId, opt => {
+                    opt.PreCondition(src => src.Conta != null && src.Conta.EstaAtiva);
+                    opt.MapFrom(src => src.Conta.Id);
+                });
         }
     }
 }

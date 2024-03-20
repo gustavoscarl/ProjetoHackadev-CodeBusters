@@ -72,6 +72,9 @@ export class CadastroComponent {
         Validators.required,
         Validators.pattern('^[0-9]+$')
         ]),
+        'estado': new FormControl(null, [
+          Validators.required
+        ]),
       'cidade': new FormControl(null, 
           [
             Validators.required,
@@ -132,7 +135,8 @@ export class CadastroComponent {
     this.cadastroForm.markAllAsTouched();
     if (this.cadastroForm.valid) {
       const cadastroData: Cadastro = {
-        nome: this.cadastroForm.get('name')?.value + this.cadastroForm.get('lastname')?.value,
+        nome: this.cadastroForm.get('name')?.value,
+        sobrenome: this.cadastroForm.get('lastname')?.value,
         email: this.cadastroForm.get('email')?.value,
         senha: this.cadastroForm.get('password')?.value,
         cpf: this.cadastroForm.get('cpf')?.value,
@@ -145,7 +149,7 @@ export class CadastroComponent {
           complemento: this.cadastroForm.get('complemento')?.value,
           cep: this.cadastroForm.get('cep')?.value,
           cidade: this.cadastroForm.get('cidade')?.value,
-          estado: this.cadastroForm.get('estado')?.value,
+          estado: Number(this.cadastroForm.get('estado')?.value || null),
         }
       };
 
@@ -153,10 +157,9 @@ export class CadastroComponent {
         .subscribe(cadastro => {
           setTimeout(() => {
             this.route.navigateByUrl('login')
-          }, 2500)
+          }, 1000)
           this.showAlert = true;
           console.log(cadastro);
-          // Lógica de sucesso após o POST
         });
     }
   }

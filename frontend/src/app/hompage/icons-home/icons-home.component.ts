@@ -1,12 +1,10 @@
-import { Component, OnInit, ModuleWithProviders } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { ContainerComponentComponent } from '../container-component/container-component.component';
-import { CriarContaComponent } from '../../conta/criar-conta/criar-conta.component';
-import { ContaCriadaComponent } from '../../conta/conta-criada/conta-criada.component';
-
+import { RouterModule } from '@angular/router';
+import { HomePageService } from '../../servicos/homepage-conta.service';
+import { Cliente } from '../../modelos/Cliente';
+import { InputserviceService } from '../../servicos/inputservice.service';
 @Component({
   selector: 'app-icons-home',
   standalone: true,
@@ -15,14 +13,28 @@ import { ContaCriadaComponent } from '../../conta/conta-criada/conta-criada.comp
   styleUrl: './icons-home.component.css'
 })
 
-export class IconsHomeComponent implements OnInit {
-  isUserCard: boolean = false;
-  isUserAccount: boolean = true;
+export class IconsHomeComponent {
+  clienteData: Cliente | undefined;
+  isUserAccount?:boolean;
+  userName?: string;
 
-  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.isUserCard = this.authService.isUserCard();
+
+  constructor(private contaService: HomePageService, private inputService: InputserviceService) { }
+
+  ngOnInit() {
+    this.contaService.pegarCliente().subscribe({
+      next: ((data: any) => {
+        this.clienteData = data.clienteResponse as Cliente;
+        this.isUserAccount = this.clienteData?.temConta;
+        this.inputService.nomeDoUsuario = this.clienteData?.nome
+        this.inputService.temConta = this.clienteData?.temConta
+        this.inputService.enviarDadosProntos()
+      }),
+      error: (error) => {
+        console.error('Error fetching client data:', error);
+      }
+    });
   }
-
 }
+  

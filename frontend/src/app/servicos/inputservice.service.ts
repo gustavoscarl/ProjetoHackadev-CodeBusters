@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,17 @@ import { Injectable } from '@angular/core';
 
 export class InputserviceService {
   title = 'frontend';
-  //Criando nome de usuario
-  nomeDoUsuario: string = 'João';
-  // Criando saldo do usuario
-  saldoDoUsuario: number = 20000;
+
+  private dadosProntos = new Subject<boolean>();
+
+  dadosProntos$ = this.dadosProntos.asObservable();
+
+  enviarDadosProntos() {
+    this.dadosProntos.next(true);
+  }
+
+  temConta?:boolean
+  nomeDoUsuario?: string;
+  saldoDoUsuario?: number;
   constructor() { }
 }

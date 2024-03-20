@@ -18,6 +18,9 @@ namespace PayWiseBackend.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -30,29 +33,29 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ContaId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
-                    b.Property<int?>("DocumentoId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
+                    b.Property<bool>("EstaAtivo")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Rg")
                         .IsRequired()
@@ -64,8 +67,10 @@ namespace PayWiseBackend.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
-                    b.Property<int?>("SessaoId")
-                        .HasColumnType("int");
+                    b.Property<string>("Sobrenome")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
                     b.Property<bool>("TemCartao")
                         .HasColumnType("tinyint(1)");
@@ -73,20 +78,7 @@ namespace PayWiseBackend.Migrations
                     b.Property<bool>("TemConta")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("TentativaLoginId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ContaId");
-
-                    b.HasIndex("DocumentoId");
-
-                    b.HasIndex("EnderecoId");
-
-                    b.HasIndex("SessaoId");
-
-                    b.HasIndex("TentativaLoginId");
 
                     b.ToTable("Clientes");
                 });
@@ -104,14 +96,17 @@ namespace PayWiseBackend.Migrations
                         .HasMaxLength(4)
                         .HasColumnType("varchar(4)");
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataAbertura")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("DataModificacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("HistoricoId")
-                        .HasColumnType("int");
+                    b.Property<bool>("EstaAtiva")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<double>("LimitePixGeral")
                         .HasColumnType("double");
@@ -132,7 +127,8 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HistoricoId");
+                    b.HasIndex("ClienteId")
+                        .IsUnique();
 
                     b.ToTable("Contas");
                 });
@@ -145,15 +141,27 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CpfImagem")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("RgImagem")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId")
+                        .IsUnique();
 
                     b.ToTable("Documentos");
                 });
@@ -165,6 +173,9 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -181,10 +192,16 @@ namespace PayWiseBackend.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Complemento")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("Estado")
                         .HasColumnType("int");
@@ -199,6 +216,9 @@ namespace PayWiseBackend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId")
+                        .IsUnique();
+
                     b.ToTable("Enderecos");
                 });
 
@@ -210,7 +230,13 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ContaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ContaId")
+                        .IsUnique();
 
                     b.ToTable("Historicos");
                 });
@@ -223,11 +249,17 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RefreshToken")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId")
+                        .IsUnique();
 
                     b.ToTable("Sessoes");
                 });
@@ -240,6 +272,9 @@ namespace PayWiseBackend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("EstaBloqueado")
                         .HasColumnType("tinyint(1)");
 
@@ -250,6 +285,9 @@ namespace PayWiseBackend.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId")
+                        .IsUnique();
 
                     b.ToTable("TentativasLogin");
                 });
@@ -285,50 +323,70 @@ namespace PayWiseBackend.Migrations
                     b.ToTable("Transacoes");
                 });
 
-            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente", b =>
-                {
-                    b.HasOne("PayWiseBackend.Domain.Models.Conta", "Conta")
-                        .WithMany()
-                        .HasForeignKey("ContaId");
-
-                    b.HasOne("PayWiseBackend.Domain.Models.Documento", "Documento")
-                        .WithMany()
-                        .HasForeignKey("DocumentoId");
-
-                    b.HasOne("PayWiseBackend.Domain.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PayWiseBackend.Domain.Models.Sessao", "Sessao")
-                        .WithMany()
-                        .HasForeignKey("SessaoId");
-
-                    b.HasOne("PayWiseBackend.Domain.Models.TentativaLogin", "TentativaLogin")
-                        .WithMany()
-                        .HasForeignKey("TentativaLoginId");
-
-                    b.Navigation("Conta");
-
-                    b.Navigation("Documento");
-
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Sessao");
-
-                    b.Navigation("TentativaLogin");
-                });
-
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Conta", b =>
                 {
-                    b.HasOne("PayWiseBackend.Domain.Models.Historico", "Historico")
-                        .WithMany()
-                        .HasForeignKey("HistoricoId")
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
+                        .WithOne("Conta")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Conta", "ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Historico");
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Documento", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
+                        .WithOne("Documento")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Documento", "ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Endereco", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
+                        .WithOne("Endereco")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Endereco", "ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Conta", "Conta")
+                        .WithOne("Historico")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Historico", "ContaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conta");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
+                        .WithOne("Sessao")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Sessao", "ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.TentativaLogin", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
+                        .WithOne("TentativaLogin")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.TentativaLogin", "ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Transacao", b =>
@@ -340,6 +398,26 @@ namespace PayWiseBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("Historico");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Cliente", b =>
+                {
+                    b.Navigation("Conta");
+
+                    b.Navigation("Documento");
+
+                    b.Navigation("Endereco")
+                        .IsRequired();
+
+                    b.Navigation("Sessao");
+
+                    b.Navigation("TentativaLogin");
+                });
+
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Conta", b =>
+                {
+                    b.Navigation("Historico")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>

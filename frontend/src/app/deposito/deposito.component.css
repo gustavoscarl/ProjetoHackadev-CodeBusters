@@ -1,37 +1,107 @@
-/* Estilos para telas grandes (computadores) */
-@media screen and (min-width: 768px) {
-  .container.desktop {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative; /* Adicionando posição relativa para container */
+}
+.form-container {
+  background-color: #f4f4f4;
+  background-image: url("../../assets/logotypes-login-cadastro/desktop-light.svg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 0 20px #bb44f3;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="text"],
+button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bb44f3;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #7f53df;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #bb44f3;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #bb44f3;
+}
+
+@media only screen and (min-width: 768px) and (prefers-color-scheme: dark) {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .container {
     max-width: 800px;
     margin: 50px auto;
     position: relative; /* Adicionando posição relativa para container */
   }
   .form-container {
     background-color: #f4f4f4;
-    background-image: url('../../assets/logotypes-login-cadastro/desktop-dark.svg');
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 0 20px #bb44f3
+    box-shadow: 0 0 20px #bb44f3;
   }
-  
-  
-  
+
   h2 {
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
+
   .input-group {
     margin-bottom: 20px;
   }
-  
+
   label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
   }
-  
+
   input[type="number"],
   input[type="text"],
   button {
@@ -42,7 +112,7 @@
     font-size: 16px;
     box-sizing: border-box;
   }
-  
+
   button {
     background-color: #7f53df;
     color: black;
@@ -50,11 +120,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   button:hover {
     background-color: #bb44f3;
   }
-  
+
   input[type="number"]:focus,
   input[type="text"]:focus {
     outline: none;
@@ -65,12 +135,12 @@
 @media only screen and (min-width: 481px) and (prefers-color-scheme: dark) {
   .form-container {
     background-color: #f4f4f4;
-    background-image: url('../../assets/logotypes-login-cadastro/desktop-dark.svg');
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 0 20px #bb44f3
+    box-shadow: 0 0 20px #bb44f3;
   }
 }
 /* Estilos para dispositivos móveis no modo light */
@@ -173,8 +243,7 @@
     max-width: 400px;
     text-align: center;
     margin: auto;
-    box-shadow: 0 0 20px white
-
+    box-shadow: 0 0 20px white;
   }
 
   .input-group {
