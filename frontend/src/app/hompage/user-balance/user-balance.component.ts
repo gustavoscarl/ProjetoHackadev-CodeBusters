@@ -89,7 +89,11 @@ export class UserBalanceComponent {
     this.dadosProntosSubscription = this.inputService.dadosProntos$.subscribe(() => {
       // Obtenha os dados quando estiverem prontos
       this.saldoAtual = this.inputService.saldoDoUsuario;
+      if (!this.saldoAtual) {
+        this.saldoAtual = 0;
+      }
       this.userName = this.inputService.nomeDoUsuario;
+      this.temConta = this.inputService.temConta;
     });
   }
 
