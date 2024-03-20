@@ -14,4 +14,5 @@ public interface IContaService
     Task Depositar(Conta conta, CreateTransacaoDepositoDTO dadosTransacao);
     Task Transferencia(Conta conta, Conta contaDestino, CreateTransacaoTransferenciaDTO dadosTransacao);
     Task CadastrarTransacao(Conta conta, Transacao transacao);
+    Task DeleteConta(Cliente cliente, Conta conta);
 }

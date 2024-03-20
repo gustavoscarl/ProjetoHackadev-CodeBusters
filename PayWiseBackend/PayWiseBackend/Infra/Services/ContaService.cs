@@ -135,4 +135,13 @@ public class ContaService : IContaService
         conta.Historico.Transacoes.Add(transacao);
         await _context.SaveChangesAsync();
     }
+
+    public async Task DeleteConta(Cliente cliente, Conta conta)
+    {
+        cliente.TemConta = false;
+
+        conta.EstaAtiva = false;
+
+        await _context.SaveChangesAsync();
+    }
 }

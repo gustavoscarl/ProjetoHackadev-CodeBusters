@@ -50,6 +50,9 @@ public class ContaController : ControllerBase
         if (conta is null)
             return NotFound(new { message = "Conta não encontrada." });
 
+        if (!conta.EstaAtiva)
+            return NotFound(new { message = "Cliente não possui conta." });
+
         var contaResponse = _mapper.Map<RetrieveContaDTO>(conta);
 
         return Ok(new { conta = contaResponse });
@@ -80,6 +83,31 @@ public class ContaController : ControllerBase
         string newAccessToken = _authService.GenerateAccessToken(cliente.Id, contaResponse.Id);
 
         return CreatedAtAction(nameof(PegarPorId), new { message = "Conta criada.", conta = contaResponse, accessToken = newAccessToken});
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeletarConta()
+    {
+        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+        int? clienteId = _authService.GetClienteIdFromAccessToken(accessToken);
+        int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
+
+        var cliente = await _clienteService.BuscarClientePorId(clienteId);
+        if (cliente is null)
+            return NotFound(new { message = "Cliente não encontrada(o)." });
+
+        if (!cliente.TemConta)
+            return NotFound(new { message = "Cliente não possui conta." });
+
+        var conta = await _contaService.BuscarContaPorId(contaId);
+
+        if (conta is null)
+            return BadRequest(new { message = "Cliente não possui conta." });
+
+        await _contaService.DeleteConta(cliente, conta);
+
+        return Ok(new { message = "Conta desativada." });
     }
 
     [Authorize]
