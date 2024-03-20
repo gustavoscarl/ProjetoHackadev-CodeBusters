@@ -11,4 +11,5 @@ public class RetrieveClienteDTO
     public bool TemConta { get; set; }
     public bool TemCartao { get; set; }
     public int? ContaId { get; set; }
+    public string? ContaUrl { get; set; }
 }

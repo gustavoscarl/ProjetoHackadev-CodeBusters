@@ -29,6 +29,8 @@ builder.Services.AddDbContext<PaywiseDbContext>(options =>
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IClienteService, ClienteService>();
+builder.Services.AddTransient<IContaService, ContaService>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
