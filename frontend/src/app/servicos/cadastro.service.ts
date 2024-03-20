@@ -12,7 +12,7 @@ export class CadastroService {
   constructor(private http: HttpClient) { }
 
   cadastrarCliente(cliente: Cadastro): Observable<Cadastro> {
-    const url = 'http://localhost:5062/contas';
+    const url = 'http://localhost:5062/clientes';
     return this.http.post<Cadastro>(url, cliente);
   }
 }
