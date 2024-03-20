@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PayWiseBackend.Domain.Context;
-using PayWiseBackend.Services;
+using PayWiseBackend.Infra.Services;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -24,10 +24,13 @@ builder.Services.AddCors(options =>
 var stringDeConexao = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<PaywiseDbContext>(options =>
 {
-    options.UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
+    options.UseLazyLoadingProxies().UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
 });
 
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IClienteService, ClienteService>();
+builder.Services.AddTransient<IContaService, ContaService>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -75,8 +78,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

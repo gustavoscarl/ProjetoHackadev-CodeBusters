@@ -1,7 +1,7 @@
 ﻿using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
 
-namespace PayWiseBackend.Services;
+namespace PayWiseBackend.Infra.Services;
 
 public enum TokenType
 {
@@ -11,10 +11,12 @@ public enum TokenType
 
 public interface IAuthService
 {
-    Task<Cliente?> ValidateCredentials(LoginRequestDTO loginCredentials);
+    Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials);
     string GenerateToken(int clienteId, TokenType type, int? contaId);
     string GenerateAccessToken(int clienteId, int? contaId);
     string GenerateRefreshToken(int clienteId, int? contaId);
     int? GetClienteIdFromAccessToken(string accessToken);
     int? GetContaIdFromAccessToken(string accessToken);
+    string HashPassword(string senha);
+    Task SalvarSessao(int ClienteId, string refreshToken);
 }

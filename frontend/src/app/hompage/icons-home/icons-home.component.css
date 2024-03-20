@@ -5,7 +5,19 @@
   border: none;
   border-radius: 15px;
   background-color: #7f53df;
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+.link-estilo {
+  color: #110825;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-estilo:hover,
+.link-registro:hover {
+  color: #5626be;
+  transition-duration: 300ms;
 }
 
 .icons-home {
@@ -52,24 +64,27 @@
   margin-bottom: 20px; /* Ajuste para o espaçamento do texto dentro da div */
 }
 
-.user-card 
-.icons-sub
-img {
-  filter:blur(2.5px);
+.user-card .icons-sub img {
+  filter: blur(2.5px);
 }
 
-.user-card 
-.icons-sub
-{
+.user-card .icons-sub {
   cursor: not-allowed;
+}
+
+#cartoes {
+  cursor: pointer;
+}
+
+#cartoes-img:hover {
+  transform: scale(1.05);
 }
 
 #somente-cartao {
   filter: none;
 }
 
-.user-card
-.icons-sub:hover,
+.user-card .icons-sub:hover,
 .icons-sub:focus,
 .icons-sub:active {
   -webkit-transform: none;

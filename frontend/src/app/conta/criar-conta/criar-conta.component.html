@@ -1,43 +1,38 @@
+
 <div class="background">
-  <div class="container">
-    <img
-      src="../../assets/logotypes-login-cadastro/logopronta.svg"
-      alt="Logo do Banco"
-      class="logo"
-    />
+  <div class="container col-lg-4 col-md-6 pt-5 pb-0 mt-1 d-flex text-start d-lg-none justify-content-start">
+    <div>
+      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta/seta-light.svg" alt=""></a>
+    </div>
+  </div>
+  <div class="container col-lg-4 col-md-6">
 
-    <form>
+    
+    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="pinForm" (ngSubmit)="onSubmit()">
       <div>
-        <label>Cadastre os seguintes dados:</label>
+        <h2 class="mb-3">Cadastre os seguintes dados:</h2>
+      </div>
+      <div class="form-group mb-1">
+        <label for="pin">PIN (4 dígitos):</label>
+        <input type="password" 
+        id="pin" 
+        name="pin" 
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin"/>
       </div>
       <div class="form-group">
-        <label for="pix geral">PIN (4 dígitos):</label>
-        <input type="password" id="pin" name="pin" placeholder="****" />
+        <label for="pin-confirm">Confirmar PIN:</label>
+        <input type="password" 
+        id="pin-confirm" 
+        name="pin-confirm" 
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin-confirm"/>
       </div>
       <div class="form-group">
-        <label for="pix geral">Insira o valor de pix geral:</label>
-        <input
-          type="number"
-          id="pix-geral"
-          name="pix geral"
-          placeholder="Valor de pix geral"
-        />
-      </div>
-      <div class="form-group">
-        <label for="pix noturno">Insira o valor de pix noturno:</label>
-        <input
-          type="number"
-          id="pix-noturno"
-          name="pix noturno"
-          placeholder="Valor de pix noturno"
-        />
-      </div>
-
-      <div class="form-group">
-        <div class="btn-reset login-button"></div>
-        <a class="login-link" [routerLink]="['/criar-conta']"
-          >Cadastrar Conta</a
-        >
+        <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
       </div>
 
       <div class="icon-container">
