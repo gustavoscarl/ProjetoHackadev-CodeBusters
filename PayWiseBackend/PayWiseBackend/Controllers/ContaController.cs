@@ -128,7 +128,7 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe." });
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -156,7 +156,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Sacar(conta, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -177,7 +177,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Depositar(conta, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -206,7 +206,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }

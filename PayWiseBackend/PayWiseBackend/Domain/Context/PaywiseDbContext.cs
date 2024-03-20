@@ -36,10 +36,18 @@ public class PaywiseDbContext : DbContext
             .WithOne(historico => historico.Conta)
             .HasForeignKey<Historico>(historico => historico.ContaId);
 
+        modelBuilder.Entity<Conta>()
+            .Property(conta => conta.Saldo)
+            .HasColumnType("decimal(19,4)");
+
         modelBuilder.Entity<Historico>()
             .HasMany(historico => historico.Transacoes)
             .WithOne(transacao => transacao.Historico)
             .HasForeignKey(transacao => transacao.HistoricoId);
+
+        modelBuilder.Entity<Transacao>()
+            .Property(transacao => transacao.Valor)
+            .HasColumnType("decimal(19,2)");
     }
 
     public DbSet<Cliente> Clientes { get; set; }
