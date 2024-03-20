@@ -8,4 +8,5 @@ public class RetrieveTransacaoDTO
     public DateTime Horario { get; set; }
     public double Valor { get; set; }
     public string? Descricao { get; set; }
+    public string? TransacaoUrl { get; set; }
 }

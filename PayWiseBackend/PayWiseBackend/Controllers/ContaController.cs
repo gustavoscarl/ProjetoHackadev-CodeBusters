@@ -105,6 +105,9 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Cliente não possui conta." });
 
+        if (conta.Saldo > 0)
+            return BadRequest(new { message = "Não é possível desativar conta com saldo." });
+
         await _contaService.DeleteConta(cliente, conta);
 
         return Ok(new { message = "Conta desativada." });
@@ -153,7 +156,9 @@ public class ContaController : ControllerBase
 
         await _contaService.Sacar(conta, dadosTransacao);
 
-        return Ok(new { saldo = conta.Saldo });
+        double saldo = conta.Saldo;
+
+        return Ok(new { saldo });
     }
 
     [Authorize]
@@ -171,8 +176,10 @@ public class ContaController : ControllerBase
             return BadRequest(new { message = "Conta não existe" });
 
         await _contaService.Depositar(conta, dadosTransacao);
-        
-        return Ok(new { saldo = conta.Saldo });
+
+        double saldo = conta.Saldo;
+
+        return Ok(new { saldo });
     }
 
     [Authorize]
@@ -199,7 +206,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
 
-        var saldo = conta.Saldo;
+        double saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
