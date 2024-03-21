@@ -1,6 +1,6 @@
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserBalanceComponent } from './hompage/user-balance/user-balance.component';
 import { ContainerComponentComponent } from './hompage/container-component/container-component.component';
 import { IconsHomeComponent } from "./hompage/icons-home/icons-home.component";

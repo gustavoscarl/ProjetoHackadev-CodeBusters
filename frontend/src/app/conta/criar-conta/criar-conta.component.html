@@ -11,7 +11,7 @@
     
     <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="pinForm" (ngSubmit)="onSubmit()">
       <div>
-        <h2 class="mb-3">Cadastre os seguintes dados:</h2>
+        <h2 class="mb-3 titulo-cadastro">Cadastre os seguintes dados:</h2>
       </div>
       <div class="form-group mb-1">
         <label for="pin">PIN (4 dígitos):</label>
@@ -32,7 +32,7 @@
         formControlName="pin-confirm"/>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
+        <button type="submit" class="btn-cadastrar">Cadastrar Conta</button>
       </div>
 
       <div class="icon-container">

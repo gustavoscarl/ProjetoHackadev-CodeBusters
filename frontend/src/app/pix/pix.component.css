@@ -1,3 +1,21 @@
+.alerta {
+  position: fixed;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: rgb(15, 158, 15);
+  padding: 10px;
+  border-radius: 5px;
+  border-top: 20px solid rgb(15, 158, 15);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.transacao-pix {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .imagens-container {
   display: flex;
   justify-content: space-between;
@@ -28,20 +46,26 @@
 }
 
 .titulo {
-  margin-top: 50px;
-  margin-left: 43%;
   margin-bottom: 30px;
+  flex-direction: column;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .imagem-container {
   margin-right: 20px;
 }
 
-.imagem-icone {
-  width: 50px;
-  height: auto;
+.img-logo {
+  width: 100px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input-pix {
+  margin-bottom: 10px;
+  text-align: start;
 }
 
 h1 {
@@ -53,6 +77,7 @@ h1 {
 h2 {
   color: #64ced9;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .transacao-pix-form {
@@ -86,7 +111,7 @@ button {
   margin-bottom: 20px;
   padding: 10px;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 10px;
   outline: none;
 }
 
@@ -98,6 +123,7 @@ button {
   background-color: #7f53df;
   color: #fff;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
   width: 20%;
 }
@@ -127,12 +153,6 @@ button:active {
   .imagem-esquerda {
     margin-left: 30px;
     transition: all 0.3s ease;
-  }
-
-  .titulo {
-    margin-top: 50px;
-    margin-left: 20px;
-    margin-bottom: 20px;
   }
 
   .imagem-container {
