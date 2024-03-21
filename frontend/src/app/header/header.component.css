@@ -194,6 +194,7 @@ header {
   font-size: 20px;
   margin-left: 26px;
   font-weight: 400;
+  transition: 0.4s ease-in-out;
 }
 
 .desktop_menu ul li:hover {

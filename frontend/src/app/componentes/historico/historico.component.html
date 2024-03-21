@@ -22,7 +22,7 @@
                 <p> Quarta, 30 de jan. </p>
             </div>
             
-    <div class="transationcard" *ngFor="let t of transacoes">
+    <div class="transationcard" *ngFor="let dado of dados.transacoes">
         <div class="cardItens">
             <div class="resumo">
 
@@ -31,15 +31,15 @@
                             <img src="../../../assets/historico/Shop.svg" alt="">
                         </div>
                         <div class="textoCard">
-                            <p>  {{ t.nome  }}  </p>
-                            <p>  {{ t.descricao  }}  </p>
+                            <p>  {{ dado.tipo  }}       </p>
+                            <p>  {{ dado.descricao  }}  </p>
                          </div>
                     </div>
                         
                 <div class="valor">
                     <div class="infoCardDir">
-                        <span> {{ t.valor }} </span>
-                        <span> {{ t.tipo  }}  </span>
+                        <span> {{ dado.valor | currency:'BRL' }}     </span>
+                        <span> {{ dado.horario | date: 'medium' }}  </span>
                     </div>
                     <div class="iconeDir">
                         <img src="../../../assets/historico/CashCoin.svg" alt="">
