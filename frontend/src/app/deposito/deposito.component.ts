@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DepositoService } from '../servicos/Deposito.Service'; // Importe o serviço de depósito
 import { CommonModule } from '@angular/common';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-deposito',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxCurrencyDirective],
   templateUrl: './deposito.component.html',
   styleUrls: ['./deposito.component.css']
 })

@@ -40,10 +40,14 @@ export class CadastroComponent {
   // Função que preenche os campos endereço
   preencherCamposEndereco():void{
     if(this.enderecoPorCep){
+      const ufSelecionada = this.enderecoPorCep.uf;
+      const estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
+      const indiceEstado = estados.findIndex(estado => estado === ufSelecionada);
+
       this.cadastroForm.get('cidade')?.setValue(this.enderecoPorCep.localidade || '');
       this.cadastroForm.get('logradouro')?.setValue(this.enderecoPorCep.logradouro || '');
       this.cadastroForm.get('bairro')?.setValue(this.enderecoPorCep.bairro || '');
-      this.cadastroForm.get('estado')?.setValue(this.enderecoPorCep.uf || '');
+      this.cadastroForm.get('estado')?.setValue(indiceEstado);
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.
 
@@ -71,6 +75,9 @@ export class CadastroComponent {
         [
         Validators.required,
         Validators.pattern('^[0-9]+$')
+        ]),
+        'estado': new FormControl(null, [
+          Validators.required
         ]),
       'cidade': new FormControl(null, 
           [
@@ -146,7 +153,7 @@ export class CadastroComponent {
           complemento: this.cadastroForm.get('complemento')?.value,
           cep: this.cadastroForm.get('cep')?.value,
           cidade: this.cadastroForm.get('cidade')?.value,
-          estado: this.cadastroForm.get('estado')?.value,
+          estado: Number(this.cadastroForm.get('estado')?.value || null),
         }
       };
 

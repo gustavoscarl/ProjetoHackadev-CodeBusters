@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { CriarContaService } from '../../servicos/criarconta.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CriarConta } from '../../modelos/CriarConta';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-criar-conta',
@@ -31,7 +32,8 @@ pinForm!: FormGroup
 
 
   }
-  constructor(private contaService:CriarContaService) {}
+  constructor(private contaService:CriarContaService, private authService: AuthService, private route: Router) {}
+
   onSubmit(): void {
     console.log(this.pinForm)
     this.pinForm?.markAllAsTouched();
@@ -40,8 +42,17 @@ pinForm!: FormGroup
         pin: this.pinForm.get('pin')?.value
       }
       this.contaService.cadastrarConta(pinData)
-        .subscribe(retorno => {
-          console.log(retorno);
+        .subscribe({
+          next: (retorno: any) => {
+            this.authService.guardarToken(retorno.accessToken)
+            this.pinForm.reset();
+            setTimeout(() => {
+              this.route.navigate(['/home']);
+            }, 1200);
+          },
+          error: (error) => {
+            console.log(error);
+          }
         });
     }
   }
