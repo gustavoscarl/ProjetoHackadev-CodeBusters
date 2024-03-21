@@ -3,9 +3,9 @@ using PayWiseBackend.Domain.Models;
 
 namespace PayWiseBackend.Domain.Context;
 
-public class PaywiseDbContext : DbContext
+public class PaywiseDbContextSqlite : DbContext
 {
-    public PaywiseDbContext(DbContextOptions<PaywiseDbContext> options) : base(options) { }
+    public PaywiseDbContextSqlite(DbContextOptions<PaywiseDbContextSqlite> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

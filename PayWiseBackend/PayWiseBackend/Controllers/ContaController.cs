@@ -14,21 +14,21 @@ namespace PayWiseBackend.Controllers;
 [ApiController]
 public class ContaController : ControllerBase
 {
-    private readonly PaywiseDbContext _context;
+    private readonly PaywiseDbContextSqlite _contextSqlite;
     private readonly IMapper _mapper;
     private readonly IAuthService _authService;
     private readonly IClienteService _clienteService;
     private readonly IContaService _contaService;
 
     public ContaController(
-        PaywiseDbContext context, 
+        PaywiseDbContextSqlite contextSqlite, 
         IMapper mapper, 
         IAuthService authService,
         IClienteService clienteService,
         IContaService contaService
         )
     {
-        _context = context;
+        _contextSqlite = contextSqlite;
         _mapper = mapper;
         _authService = authService;
         _clienteService = clienteService;
@@ -128,7 +128,7 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe." });
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -156,7 +156,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Sacar(conta, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -177,7 +177,7 @@ public class ContaController : ControllerBase
 
         await _contaService.Depositar(conta, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
@@ -199,14 +199,14 @@ public class ContaController : ControllerBase
         if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
             return BadRequest(new { mesage = "Saldo insuficiente" });
 
-        var contaDestino = await _context.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
+        var contaDestino = await _contextSqlite.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
 
         if (contaDestino is null)
             return BadRequest(new { message = "Conta de destino inexistente" });
 
         await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
 
-        double saldo = conta.Saldo;
+        decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
     }
