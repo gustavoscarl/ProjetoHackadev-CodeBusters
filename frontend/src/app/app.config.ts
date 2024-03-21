@@ -6,6 +6,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { HTTP_INTERCEPTORS, withInterceptors,provideHttpClient, withFetch, HttpClientModule } from '@angular/common/http';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { TokenInterceptor } from './servicos/interceptors/tokeninterceptor.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
       multi: true
     },
     importProvidersFrom(BrowserModule, HttpClientModule),
-    provideRouter(routes), 
+    provideRouter(routes),
     provideClientHydration(), 
     provideHttpClient(withFetch()),
     provideEnvironmentNgxMask()]
