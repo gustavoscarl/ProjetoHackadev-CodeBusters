@@ -8090,23 +8090,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gustavo\\.nuget\\packages\\": {},
+    "C:\\Users\\Camila Vieira\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+      "projectUniqueName": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
       "projectName": "PayWiseBackend",
-      "projectPath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
-      "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
+      "projectPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+      "packagesPath": "C:\\Users\\Camila Vieira\\.nuget\\packages\\",
+      "outputPath": "F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gustavo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Camila Vieira\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8209,5 +8209,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache F:\\1newProjects\\csharp\\paywise\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

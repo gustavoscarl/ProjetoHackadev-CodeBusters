@@ -66,6 +66,17 @@ public class ContaService : IContaService
 
     }
 
+    public async Task<Conta?> BuscarContaPorNumero(string numeroConta)
+    {
+        var conta = await _contextSqlite.Contas.FirstOrDefaultAsync(conta => conta.Numero == numeroConta);
+
+        if (conta is null)
+            return null;
+
+        return conta;
+
+    }
+
     public async Task<Historico> BuscarHistoricoDaConta(int? contaId)
     {
         var historico = await _contextSqlite.Historicos.FirstOrDefaultAsync(h => h.ContaId == contaId);

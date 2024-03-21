@@ -199,7 +199,7 @@ public class ContaController : ControllerBase
         if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
             return BadRequest(new { mesage = "Saldo insuficiente" });
 
-        var contaDestino = await _contextSqlite.Contas.Include(c => c.Historico).FirstOrDefaultAsync(c => c.Numero == dadosTransacao.ContaDestino);
+        var contaDestino = await _contaService.BuscarContaPorNumero(dadosTransacao.ContaDestino);
 
         if (contaDestino is null)
             return BadRequest(new { message = "Conta de destino inexistente" });

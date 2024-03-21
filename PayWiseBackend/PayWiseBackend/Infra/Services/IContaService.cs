@@ -9,6 +9,7 @@ public interface IContaService
 {
     Task<RetrieveContaDTO> CadastrarConta(int clienteId, CreateContaDTO novaConta);
     Task<Conta?> BuscarContaPorId(int? contaId);
+    Task<Conta?> BuscarContaPorNumero(string numeroConta);
     Task<Historico> BuscarHistoricoDaConta(int? contaId);
     Task Sacar(Conta conta, CreateTransacaoSaqueDTO dadosTransacao);
     Task Depositar(Conta conta, CreateTransacaoDepositoDTO dadosTransacao);
