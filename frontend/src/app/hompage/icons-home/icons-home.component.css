@@ -8,6 +8,10 @@
   color: #ffffff;
 }
 
+a {
+  text-decoration: none;
+}
+
 .link-estilo {
   color: #110825;
   font-weight: bold;
