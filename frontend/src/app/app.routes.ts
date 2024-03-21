@@ -11,6 +11,7 @@ import { CardpageComponent } from './componentes/cardpage/cardpage.component';
 import { authGuard } from './guards/auth.guard';
 import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
 import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
+import { HistoricoPageComponent } from './componentes/historico-page/historico-page.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,7 +25,7 @@ export const routes: Routes = [
   },
   { path: 'cadastro', component: CadastroComponent},
   { path: 'esquecer-senha', component: EsquecerSenhaComponent},
-  { path: 'historico', component: HistoricoComponent},
+  { path: 'historico', component: HistoricoPageComponent},
   { path: 'pix', component: PixComponent},
   { path: 'deposito', component: DepositoComponent},
   { path: 'pin-pad', component: PinPadComponent },

@@ -1,7 +1,9 @@
-<nav id="navbar" class="d-none d-lg-flex">
+<!-- HEADER ALEXANDRE -->
+
+<!-- <nav id="navbar" class="d-none d-lg-flex">
     <div class="navbar-container" [class.dark-mode]="darkMode">
 
-        <!-- Lodo do header -->
+         Lodo do header 
         <a [routerLink]="['/home']"><img id="logo-img" [src]="getImagePath()" alt="logo" class="logo"></a>
 
         <ul class="navbar-itens d-flex place">
@@ -22,7 +24,35 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
 
 <!--Botão Entrar da tela de login
 <button (click)="visibilidadeTexto()">Entrar</button> -->
+
+
+<!-- HEADER COM MENU -->
+
+<header>
+    <div class="container">
+        <div class="row">
+           <div class="col-sm-3 col-3">
+                <div class="logo-container">
+                    <img [src]="getImagePath()" alt="Logo PayWise" class="logo">
+                </div>
+           </div>
+           <div class="col-md-9 col-sm-9 col-9  text-end">
+                <div class="menu-icon" (click)="openMenu()">
+                    <i class="{{menu_icon}}"></i>
+                </div>
+                <div class="desktop_menu" [class.mobile-menu]="menuValue">
+                    <ul>
+                        <li (click)="closeMenu()">Home</li>
+                        <li (click)="closeMenu()">Histórico</li>
+                        <li (click)="closeMenu()">Cartão</li>
+                        <li (click)="closeMenu()">Depósito</li>
+                    </ul>
+                </div>
+           </div>
+        </div>
+    </div>
+</header>
