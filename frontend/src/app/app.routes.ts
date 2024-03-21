@@ -11,7 +11,6 @@ import { CardpageComponent } from './componentes/cardpage/cardpage.component';
 import { authGuard } from './guards/auth.guard';
 import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
 import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
-import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +29,6 @@ export const routes: Routes = [
   { path: 'deposito', component: DepositoComponent},
   { path: 'pin-pad', component: PinPadComponent },
   { path: 'cartao', component: CardpageComponent },
-  { path: 'sidenav', component: SidenavComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
