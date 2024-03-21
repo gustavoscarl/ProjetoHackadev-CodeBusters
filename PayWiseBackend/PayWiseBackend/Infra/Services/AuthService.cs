@@ -12,12 +12,12 @@ namespace PayWiseBackend.Infra.Services;
 
 public class AuthService : IAuthService
 {
-    private readonly PaywiseDbContext _context;
+    private readonly PaywiseDbContextSqlite _contextSqlite;
     private readonly IConfiguration _config;
 
-    public AuthService(PaywiseDbContext context, IConfiguration config)
+    public AuthService(PaywiseDbContextSqlite contextSqlite, IConfiguration config)
     {
-        _context = context;
+        _contextSqlite = contextSqlite;
         _config = config;
     }
 
@@ -49,7 +49,7 @@ public class AuthService : IAuthService
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddMinutes(10),
+            Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddSeconds(60),
             Issuer = _config["Jwt:issuer"],
             Audience = _config["Jwt:audience"],
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -136,7 +136,7 @@ public class AuthService : IAuthService
 
     public async Task SalvarSessao(int clienteId, string refreshToken)
     {
-        var sessaoParaAtualizar = await _context.Sessoes.FirstOrDefaultAsync(s => s.ClienteId == clienteId);
+        var sessaoParaAtualizar = await _contextSqlite.Sessoes.FirstOrDefaultAsync(s => s.ClienteId == clienteId);
         if (sessaoParaAtualizar is null)
         {
             Sessao sessao = new Sessao()
@@ -144,21 +144,21 @@ public class AuthService : IAuthService
                 RefreshToken = refreshToken,
                 ClienteId = clienteId,
             };
-            await _context.Sessoes.AddAsync(sessao);
+            await _contextSqlite.Sessoes.AddAsync(sessao);
         }
         else
         {
             sessaoParaAtualizar.RefreshToken = refreshToken;
 
-            _context.Sessoes.Update(sessaoParaAtualizar);
+            _contextSqlite.Sessoes.Update(sessaoParaAtualizar);
         }
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
 
     }
 
     public async Task<Cliente?> ValidateCredentials(CreateLoginDTO loginCredentials)
     {
-        var cliente = await _context.Clientes.SingleOrDefaultAsync(cliente => cliente.Cpf == loginCredentials.Cpf);
+        var cliente = await _contextSqlite.Clientes.SingleOrDefaultAsync(cliente => cliente.Cpf == loginCredentials.Cpf);
 
         if (cliente is null)
         {

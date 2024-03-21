@@ -7,10 +7,10 @@ using PayWiseBackend.Domain.Context;
 
 #nullable disable
 
-namespace PayWiseBackend.Migrations
+namespace PayWiseBackend.Migrations.SqliteMigrations
 {
-    [DbContext(typeof(PaywiseDbContext))]
-    partial class PaywiseDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PaywiseDbContextSqlite))]
+    partial class PaywiseDbContextSqliteModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
