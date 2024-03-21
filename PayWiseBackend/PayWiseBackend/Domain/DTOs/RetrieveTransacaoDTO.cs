@@ -6,7 +6,7 @@ public class RetrieveTransacaoDTO
 {
     public TransacaoTipo Tipo { get; set; }
     public DateTime Horario { get; set; }
-    public double Valor { get; set; }
+    public decimal Valor { get; set; }
     public string? Descricao { get; set; }
     public string? TransacaoUrl { get; set; }
 }

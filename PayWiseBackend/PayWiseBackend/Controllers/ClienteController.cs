@@ -40,7 +40,7 @@ public class ClienteController : ControllerBase
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
-        int? id = _authService.GetClienteIdFromAccessToken(accessToken);
+        int? id = _authService.GetClienteIdFromToken(accessToken);
 
         var cliente = await _clienteService.BuscarClientePorId(id);
 

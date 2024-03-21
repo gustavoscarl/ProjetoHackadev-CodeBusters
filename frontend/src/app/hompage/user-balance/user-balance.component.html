@@ -22,7 +22,8 @@
   <div class="col-5">
     <div class="greeting" [ngClass]="{ 'mt-0': !temConta}">
       <p class="custom-font ">Olá, {{ userName }}!</p>
-      <p class="custom-font" *ngIf="temConta">Saldo Atual:</p>
+      <p class="custom-font"
+       *ngIf="temConta">Saldo Atual:</p>
     </div>
   </div>
 
@@ -36,7 +37,8 @@
   </div>
 
     <div class="">
-      <p class="saldo-atual custom-font"  *ngIf="temConta">R$ {{ saldoAtual }}</p>
+      <p class="saldo-atual custom-font"        
+      *ngIf="temConta">{{ saldoAtual | currency: 'BRL' }}</p>
       <p class="saldo-atual custom-font text-center" *ngIf="!temConta">Crie sua Conta Bancária ou Cartão!</p>
     </div>
   </div>
