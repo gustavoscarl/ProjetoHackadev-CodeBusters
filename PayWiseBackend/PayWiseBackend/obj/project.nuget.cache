@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9H8d9IJMJC/qFHmi2WzaibyCjdzlbuPeYJHsR7DKRPdbbYJKp/0tiA0FODPvfsx7JIJgRQl9uErQgktC2BAzUw==",
+  "dgSpecHash": "0lH+44tKZeKp3yT/Aqlz43DN4XiADP+nLvupk9Ej8fREsv7ncNOBXJsG/97gqYJ0gLpVKjy7viJ2YCrYj1DWBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+  "projectFilePath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\paywisebackend\\PayWiseBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gustavo\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
