@@ -14,19 +14,16 @@ namespace PayWiseBackend.Controllers;
 [ApiController]
 public class ClienteController : ControllerBase
 {
-    private readonly PaywiseDbContext _context;
     private readonly IMapper _mapper;
     private readonly IClienteService _clienteService;
     private readonly IAuthService _authService;
 
     public ClienteController(
-        PaywiseDbContext context,
         IMapper mapper,
         IAuthService authService,
         IClienteService clienteService
         )
     {
-        _context = context;
         _mapper = mapper;
         _authService = authService;
         _clienteService = clienteService;
