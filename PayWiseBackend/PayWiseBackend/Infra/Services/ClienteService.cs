@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
@@ -9,21 +8,21 @@ namespace PayWiseBackend.Infra.Services;
 
 public class ClienteService : IClienteService
 {
-    private readonly PaywiseDbContext _context;
+    private readonly PaywiseDbContextSqlite _contextSqlite;
     private readonly IMapper _mapper;
 
     public ClienteService(
-        PaywiseDbContext context,
+        PaywiseDbContextSqlite contextSqlite,
         IMapper mapper
         )
     {
-        _context = context;
+        _contextSqlite = contextSqlite;
         _mapper = mapper;
     }
 
     public async Task<Cliente> BuscarClientePorId(int? clienteId)
     {
-        var cliente = await _context.Clientes.FindAsync(clienteId);
+        var cliente = await _contextSqlite.Clientes.FindAsync(clienteId);
         return cliente;
     }
 
@@ -31,8 +30,8 @@ public class ClienteService : IClienteService
     {
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
 
-        var result = _context.Clientes.Add(clienteCadastrar);
-        await _context.SaveChangesAsync();
+        var result = _contextSqlite.Clientes.Add(clienteCadastrar);
+        await _contextSqlite.SaveChangesAsync();
 
         var cliente = result.Entity;
 
@@ -43,7 +42,7 @@ public class ClienteService : IClienteService
     public async Task<bool> CheckClienteCredentials(string cpf, string rg)
     {
         
-        bool doesClienteAlreadyExist = await _context.Clientes.AnyAsync(cliente => cliente.Cpf == cpf || cliente.Rg == rg);
+        bool doesClienteAlreadyExist = await _contextSqlite.Clientes.AnyAsync(cliente => cliente.Cpf == cpf || cliente.Rg == rg);
         if (doesClienteAlreadyExist)
             return true;
 
