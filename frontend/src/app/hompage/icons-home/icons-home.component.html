@@ -71,17 +71,29 @@
           </div>
           <p class="icons-sub-text">Pagar</p>
         </div>
-        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
-          <div class="icons-sub-img">
-            <img
-              src="../../assets/img_icons/receber.svg"
-              width="110"
-              height="110"
-              alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
-            />
+        <!-- // DEPÓSITO -->
+          <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+            <div *ngIf="!isUserAccount" class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/receber.svg"
+                width="110"
+                height="110"
+                alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
+              />
+            </div>
+            <a class="btn"*ngIf="isUserAccount" [routerLink]="['/deposito']">
+            <div class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/receber.svg"
+                width="110"
+                height="110"
+                alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
+              />
+            </div>
+          </a>
+            <p class="icons-sub-text">Depositar</p>
           </div>
-          <p class="icons-sub-text">Receber</p>
-        </div>
+
       </div>
     </div>
   </div>

@@ -4,18 +4,20 @@ import { ChartModule } from 'primeng/chart';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { SaldoService } from '../../servicos/saldo.service';
+import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 
 @Inject({ providedIn: 'root' })
 
 @Component({
   selector: 'app-user-balance',
   standalone: true,
-  imports: [ChartModule, RouterLink, CommonModule],
+  imports: [ChartModule, RouterLink, CommonModule, NgxCurrencyDirective],
   templateUrl: './user-balance.component.html',
   styleUrl: './user-balance.component.css'
 })
 export class UserBalanceComponent {
-  saldoAtual?: number = 0;
+  saldoAtual?: number;
   userName?: string;
   temConta?: boolean;
   dadosProntosSubscription: Subscription | undefined;
@@ -72,7 +74,7 @@ export class UserBalanceComponent {
     }
   }
 
-  constructor(private inputService: InputserviceService, private renderer : Renderer2) {
+  constructor(private inputService: InputserviceService, private renderer : Renderer2, private saldoService: SaldoService) {
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       this.isdarkMode = event.matches;
@@ -88,12 +90,20 @@ export class UserBalanceComponent {
   ngOnInit() {
     this.dadosProntosSubscription = this.inputService.dadosProntos$.subscribe(() => {
       // Obtenha os dados quando estiverem prontos
-      this.saldoAtual = this.inputService.saldoDoUsuario;
-      if (!this.saldoAtual) {
-        this.saldoAtual = 0;
-      }
       this.userName = this.inputService.nomeDoUsuario;
       this.temConta = this.inputService.temConta;
+    });
+    this.saldoService.getSaldo()
+    .subscribe({
+      next: ((data: any) => {
+        console.log(data)
+        this.saldoAtual = data.saldo
+        this.inputService.saldoDoUsuario = data.saldo
+        this.inputService.enviarDadosProntos()
+      }),
+      error: (error) => {
+        console.error('Error fetching client data:', error);
+      }
     });
   }
 
