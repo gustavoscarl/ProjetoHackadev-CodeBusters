@@ -1,0 +1,45 @@
+
+<div class="background">
+  <div class="container col-lg-4 col-md-6 pt-5 pb-0 mt-1 d-flex text-start d-lg-none justify-content-start">
+    <div>
+      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta/seta-light.svg" alt=""></a>
+    </div>
+  </div>
+  <div class="container col-lg-4 col-md-6">
+
+    
+    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="pinForm" (ngSubmit)="onSubmit()">
+      <div>
+        <h2 class="mb-3">Cadastre os seguintes dados:</h2>
+      </div>
+      <div class="form-group mb-1">
+        <label for="pin">PIN (4 dígitos):</label>
+        <input type="password" 
+        id="pin" 
+        name="pin" 
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin"/>
+      </div>
+      <div class="form-group">
+        <label for="pin-confirm">Confirmar PIN:</label>
+        <input type="password" 
+        id="pin-confirm" 
+        name="pin-confirm" 
+        placeholder="0000" 
+        mask="0000"
+        formControlName="pin-confirm"/>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>
+      </div>
+
+      <div class="icon-container">
+        <a id="support-icon">
+          <i class="fa fa-comments" aria-hidden="true"></i>
+        </a>
+        <div id="support-menu" class="support-menu"></div>
+      </div>
+    </form>
+</div>

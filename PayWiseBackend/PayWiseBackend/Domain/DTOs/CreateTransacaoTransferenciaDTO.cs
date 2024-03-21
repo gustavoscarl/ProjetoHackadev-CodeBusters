@@ -1,9 +1,15 @@
-﻿namespace PayWiseBackend.Domain.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PayWiseBackend.Domain.DTOs;
 
 public class CreateTransacaoTransferenciaDTO
 {
-    public double Valor { get; set; }
+    [Required]
+    public decimal Valor { get; set; }
+    [MaxLength(200)]
     public string? Descricao { get; set; }
+    [Required]
     public int Pin { get; set; }
-    public int ContaDestino { get; set; }
+    [Required]
+    public string ContaDestino { get; set; } = null!;
 }

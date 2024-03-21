@@ -8,7 +8,9 @@ namespace PayWiseBackend.Domain.Profiles
     {
         public ContaProfile() : base()
         {
-            CreateMap<CreateContaDTO, Conta>();        
+            CreateMap<CreateContaDTO, Conta>();  
+            CreateMap<Conta, RetrieveContaDTO>();
+
         }
     }
 }
