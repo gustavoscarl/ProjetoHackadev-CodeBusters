@@ -18,6 +18,10 @@ a {
   text-decoration: none;
 }
 
+#transferencia {
+  transform: translateX(-8px);
+}
+
 .link-estilo:hover,
 .link-registro:hover {
   color: #5626be;
