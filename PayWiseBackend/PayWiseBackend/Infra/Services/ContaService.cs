@@ -179,4 +179,16 @@ public class ContaService : IContaService
 
         await _contextSqlite.SaveChangesAsync();
     }
+
+    public async Task<RetrieveContaLimitesDTO> AlterarLimitesConta(Conta conta, UpdateContaLimitesDTO novoLimite)
+    {
+        conta.LimitePixGeral = novoLimite.LimitePixGeral;
+        conta.LimitePixNoturno = novoLimite.LimitePixNoturno;
+        conta.DataModificacao = DateTime.Now;
+        _contextSqlite.Contas.Update(conta);
+        await _contextSqlite.SaveChangesAsync();
+
+        var contaResponse = _mapper.Map<RetrieveContaLimitesDTO>(conta);
+        return contaResponse;
+    }
 }
