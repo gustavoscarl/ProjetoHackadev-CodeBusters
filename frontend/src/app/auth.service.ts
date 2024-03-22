@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable, map } from 'rxjs';
+import { TokenApiModel } from './modelos/token-api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,18 +29,24 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  guardarRefreshToken(tokenValue: string){
+    this.cookie.set('RefreshToken', tokenValue)
+  }
+
   getRefreshToken(){
     return this.cookie.get('RefreshToken')
   }
 
-  renovarToken(token: string){
-    const httpOptions ={
-      withCredentials: true,
+  renewToken(): Observable<any> {
+    const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }
-    return this.http.post<any>(`http://localhost:5062/auth/refresh`, token, httpOptions)
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      }),
+      withCredentials: true
+    };
+
+    return this.http.post<any>('http://localhost:5062/auth/refresh', {}, httpOptions);
   }
 
 
@@ -48,6 +56,7 @@ export class AuthService {
 
   logout():void{
     localStorage.removeItem('token')
+    this.cookie.delete('RefreshToken')
     this.route.navigate(['login'])
   }
 
