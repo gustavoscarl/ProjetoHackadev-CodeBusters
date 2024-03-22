@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JI+YnIEsvol6xzOFBXZUFR36k9Z7ZIrMOrz23BetyCk3PPTRCwaxR8oYp/rf055+LOvpxbWEHYr3r0SuoCUm+A==",
+  "dgSpecHash": "e+BV8V5qC/zpEOH5hNTTNxhOj2XuXOaCApnLbZI3g9yWJHKpTB+jMGyGHSvqcwsyM/VJLqZCCQshuelYDOBucw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
   "expectedPackageFiles": [
@@ -84,7 +84,7 @@
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.24\\microsoft.codeanalysis.razor.6.0.24.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.8.0\\microsoft.codeanalysis.scripting.common.4.8.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.8.0\\microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512",
-    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.3\\microsoft.data.sqlite.core.8.0.3.nupkg.sha512",
+    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.2\\microsoft.data.sqlite.core.8.0.2.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.diasymreader\\2.0.0\\microsoft.diasymreader.2.0.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\8.0.2\\microsoft.dotnet.scaffolding.shared.8.0.2.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.3\\microsoft.entityframeworkcore.8.0.3.nupkg.sha512",
@@ -93,8 +93,8 @@
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.3\\microsoft.entityframeworkcore.design.8.0.3.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\8.0.2\\microsoft.entityframeworkcore.proxies.8.0.2.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.3\\microsoft.entityframeworkcore.relational.8.0.3.nupkg.sha512",
-    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.3\\microsoft.entityframeworkcore.sqlite.8.0.3.nupkg.sha512",
-    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.3\\microsoft.entityframeworkcore.sqlite.core.8.0.3.nupkg.sha512",
+    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.2\\microsoft.entityframeworkcore.sqlite.8.0.2.nupkg.sha512",
+    "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.2\\microsoft.entityframeworkcore.sqlite.core.8.0.2.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.3\\microsoft.entityframeworkcore.tools.8.0.3.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
@@ -177,5 +177,12 @@
     "C:\\Users\\Gustavo\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "C:\\Users\\Gustavo\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

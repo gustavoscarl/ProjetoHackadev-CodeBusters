@@ -13,22 +13,16 @@ namespace PayWiseBackend.Controllers;
 [Route("/auth")]
 public class AuthController : Controller
 {
-    private readonly PaywiseDbContext _context;
-    private readonly IMapper _mapper;
     private readonly IAuthService _authService;
     private readonly IClienteService _clienteService;
     private readonly IContaService _contaService;
 
     public AuthController(
-        PaywiseDbContext context, 
-        IMapper mapper, 
         IAuthService authService,
         IClienteService clienteService,
         IContaService contaService
         )
     {
-        _context = context;
-        _mapper = mapper;
         _authService = authService;
         _clienteService = clienteService;
         _contaService = contaService;

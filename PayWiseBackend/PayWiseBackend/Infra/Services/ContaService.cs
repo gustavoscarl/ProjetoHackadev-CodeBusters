@@ -9,23 +9,23 @@ namespace PayWiseBackend.Infra.Services;
 
 public class ContaService : IContaService
 {
-    private readonly PaywiseDbContext _context;
+    private readonly PaywiseDbContextSqlite _contextSqlite;
     private readonly IMapper _mapper;
     private readonly IClienteService _clienteService;
 
     public ContaService(
-        PaywiseDbContext context,
+        PaywiseDbContextSqlite contextSqlite,
         IMapper mapper,
         IClienteService clienteService
         )
     {
-        _context = context;
+        _contextSqlite = contextSqlite;
         _mapper = mapper;
         _clienteService = clienteService;
     }
     public async Task<RetrieveContaDTO> CadastrarConta(int clienteId, CreateContaDTO novaConta)
     {
-        int numConta = int.Parse(await _context.Contas.MaxAsync(conta => conta.Numero) ?? "0000");
+        int numConta = int.Parse(await _contextSqlite.Contas.MaxAsync(conta => conta.Numero) ?? "0000");
         numConta += 1;
         Conta contaCadastrar = new Conta()
         {
@@ -33,8 +33,8 @@ public class ContaService : IContaService
             Pin = novaConta.Pin,
             ClienteId = clienteId
         };
-        var result = await _context.Contas.AddAsync(contaCadastrar);
-        await _context.SaveChangesAsync();
+        var result = await _contextSqlite.Contas.AddAsync(contaCadastrar);
+        await _contextSqlite.SaveChangesAsync();
 
         var contaCadastrada = result.Entity;
 
@@ -43,12 +43,12 @@ public class ContaService : IContaService
             ContaId = contaCadastrada.Id
         };
 
-        await _context.Historicos.AddAsync(historico);
+        await _contextSqlite.Historicos.AddAsync(historico);
 
-        var cliente = await _context.Clientes.FindAsync(clienteId);
+        var cliente = await _contextSqlite.Clientes.FindAsync(clienteId);
         cliente!.TemConta = true;
 
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
 
         var contaResponse = _mapper.Map<RetrieveContaDTO>(contaCadastrada);
 
@@ -57,7 +57,7 @@ public class ContaService : IContaService
 
     public async Task<Conta?> BuscarContaPorId(int? contaId)
     {
-        var conta = await _context.Contas.FindAsync(contaId);
+        var conta = await _contextSqlite.Contas.FindAsync(contaId);
 
         if (conta is null)
             return null;
@@ -68,7 +68,7 @@ public class ContaService : IContaService
 
     public async Task<Historico> BuscarHistoricoDaConta(int? contaId)
     {
-        var historico = await _context.Historicos.FirstOrDefaultAsync(h => h.ContaId == contaId);
+        var historico = await _contextSqlite.Historicos.FirstOrDefaultAsync(h => h.ContaId == contaId);
         return historico;
     }
 
@@ -83,7 +83,7 @@ public class ContaService : IContaService
             Tipo = TransacaoTipo.SAQUE,
             Valor = dadosTransacao.Valor,
         };
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
         await CadastrarTransacao(conta, transacao);
     }
 
@@ -98,7 +98,7 @@ public class ContaService : IContaService
             Tipo = TransacaoTipo.DEPOSITO,
             Valor = dadosTransacao.Valor,
         };
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
         await CadastrarTransacao(conta, transacao);
 
     }
@@ -107,7 +107,7 @@ public class ContaService : IContaService
     {
         conta.Saldo -= dadosTransacao.Valor;
         contaDestino.Saldo += dadosTransacao.Valor;
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
 
         Transacao transacao = new Transacao()
         {
@@ -133,7 +133,7 @@ public class ContaService : IContaService
     public async Task CadastrarTransacao(Conta conta, Transacao transacao)
     {
         conta.Historico.Transacoes.Add(transacao);
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
     }
 
     public async Task DeleteConta(Cliente cliente, Conta conta)
@@ -142,6 +142,6 @@ public class ContaService : IContaService
 
         conta.EstaAtiva = false;
 
-        await _context.SaveChangesAsync();
+        await _contextSqlite.SaveChangesAsync();
     }
 }

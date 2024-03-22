@@ -22,10 +22,14 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 var stringDeConexao = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<PaywiseDbContext>(options =>
+builder.Services.AddDbContext<PaywiseDbContextSqlite>(options =>
+    options.UseLazyLoadingProxies().UseSqlite(stringDeConexao)
+);
+//MySQL
+/*builder.Services.AddDbContext<PaywiseDbContext>(options =>
 {
     options.UseLazyLoadingProxies().UseMySql(stringDeConexao, ServerVersion.AutoDetect(stringDeConexao));
-});
+});*/
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IClienteService, ClienteService>();
@@ -44,6 +48,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:issuer"],
             ValidAudience = builder.Configuration["Jwt:audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"])),
+            ClockSkew = TimeSpan.Zero
         };
     })
     .AddCookie(options =>
@@ -65,8 +70,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
-
-string? mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
 var app = builder.Build();
 
