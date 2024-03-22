@@ -21,4 +21,5 @@ public class Conta : Entity
     public virtual Historico Historico { get; set; } = new();
     public int ClienteId { get; set; }
     public virtual Cliente? Cliente { get; set; }
+    public string NumeroConta { get; internal set; }
 }

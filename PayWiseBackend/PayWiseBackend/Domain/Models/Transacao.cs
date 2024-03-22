@@ -12,4 +12,7 @@ public class Transacao : Entity
     public string? Descricao { get; set; }
     public int HistoricoId { get; set; }
     public virtual Historico Historico { get; set; } = new();
+    public object TipoTransacao { get; internal set; }
+    public object TipoOperacao { get; internal set; }
+    public int ContaId { get; internal set; }
 }
