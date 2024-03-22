@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "1F9qQX8nUMKhX4+3nnjwbQfOR3EWec3kCxsiSNz61sqURHLiLAgvDOqw+eD9I2mo4PGvxoiCOVG2w9z6tFYvnQ==",
+=======
+  "dgSpecHash": "5+XMlSLbgrfAu61tVKkQCFjtwr+t8mJA9wbtWlE9kesg82N6xNL3FIWyROeQESp6gn4j8fc7d4GFvvilUoODhA==",
+>>>>>>> main
   "success": true,
   "projectFilePath": "C:\\Users\\dayan\\OneDrive\\Documentos\\Cursos\\Programacao\\SharpCoders\\Github\\Projeto_CodeBusters\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
   "expectedPackageFiles": [
@@ -84,7 +88,10 @@
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.codeanalysis.razor\\6.0.24\\microsoft.codeanalysis.razor.6.0.24.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.codeanalysis.scripting.common\\4.8.0\\microsoft.codeanalysis.scripting.common.4.8.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.8.0\\microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.2\\microsoft.data.sqlite.core.8.0.2.nupkg.sha512",
+=======
+>>>>>>> main
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.diasymreader\\2.0.0\\microsoft.diasymreader.2.0.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.dotnet.scaffolding.shared\\8.0.2\\microsoft.dotnet.scaffolding.shared.8.0.2.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.3\\microsoft.entityframeworkcore.8.0.3.nupkg.sha512",
@@ -93,8 +100,11 @@
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.3\\microsoft.entityframeworkcore.design.8.0.3.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\8.0.2\\microsoft.entityframeworkcore.proxies.8.0.2.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.3\\microsoft.entityframeworkcore.relational.8.0.3.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.2\\microsoft.entityframeworkcore.sqlite.8.0.2.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\8.0.2\\microsoft.entityframeworkcore.sqlite.core.8.0.2.nupkg.sha512",
+=======
+>>>>>>> main
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\8.0.3\\microsoft.entityframeworkcore.tools.8.0.3.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
@@ -139,10 +149,13 @@
     "C:\\Users\\dayan\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\8.0.1\\pomelo.entityframeworkcore.mysql.8.0.1.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\dayan\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.6\\sqlitepclraw.provider.e_sqlite3.2.1.6.nupkg.sha512",
+=======
+>>>>>>> main
     "C:\\Users\\dayan\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
@@ -163,7 +176,10 @@
     "C:\\Users\\dayan\\.nuget\\packages\\system.formats.asn1\\6.0.0\\system.formats.asn1.6.0.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\dayan\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+=======
+>>>>>>> main
     "C:\\Users\\dayan\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\system.reflection.metadataloadcontext\\7.0.0\\system.reflection.metadataloadcontext.7.0.0.nupkg.sha512",
     "C:\\Users\\dayan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

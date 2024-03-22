@@ -1,6 +1,7 @@
 /* Estilos padrão */
 .container {
   text-align: center;
+  padding-bottom: 30px;
 }
 
 body {
@@ -29,7 +30,7 @@ input:-webkit-autofill {
 
 .logo {
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
   height: auto;
   margin-bottom: 20px;
 }
@@ -69,6 +70,7 @@ input[type="password"] {
   color: #a484e8;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
 }
 
 .link-registro {
@@ -82,14 +84,14 @@ input[type="password"] {
   text-decoration: none;
 }
 
-.login-button {
-  width: 50%;
+.btn-login {
+  width: 75%;
   padding: 10px;
   margin: 0 auto;
-  background-color: #7f53df;
+  background-color: #7f53df !important;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -201,7 +203,7 @@ input[type="password"] {
 
   .link-estilo:hover,
   .link-registro:hover {
-    color: #7f53df;
+    color: #cbbceb;
     transition-duration: 300ms;
   }
 
@@ -210,9 +212,10 @@ input[type="password"] {
     outline: 1px solid #a484e8;
   }
 
-  .login-button:hover {
+  .btn-login:hover {
     color: #cbbceb;
     transition-duration: 300ms;
+    transform: scale(1.05);
   }
 }
 
@@ -247,9 +250,10 @@ input[type="password"] {
     outline: 1px solid #a484e8;
   }
 
-  .login-button:hover {
+  .btn-login:hover {
     color: #cbbceb;
     transition-duration: 300ms;
+    transform: scale(1.05);
   }
 
   .background {

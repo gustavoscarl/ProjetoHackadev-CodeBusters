@@ -8096,11 +8096,15 @@
     "version": "1.0.0",
     "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
       "projectUniqueName": "C:\\Users\\dayan\\OneDrive\\Documentos\\Cursos\\Programacao\\SharpCoders\\Github\\Projeto_CodeBusters\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
       "projectName": "PayWiseBackend",
       "projectPath": "C:\\Users\\dayan\\OneDrive\\Documentos\\Cursos\\Programacao\\SharpCoders\\Github\\Projeto_CodeBusters\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
       "packagesPath": "C:\\Users\\dayan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dayan\\OneDrive\\Documentos\\Cursos\\Programacao\\SharpCoders\\Github\\Projeto_CodeBusters\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
+<<<<<<< HEAD
 =======
       "projectUniqueName": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
       "projectName": "PayWiseBackend",
@@ -8108,6 +8112,8 @@
       "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Gustavo\\Desktop\\IMATECH\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
 >>>>>>> 4053ef40d8ecdbfc5022fa743d21118793acbd40
+=======
+>>>>>>> main
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dayan\\AppData\\Roaming\\NuGet\\NuGet.Config"

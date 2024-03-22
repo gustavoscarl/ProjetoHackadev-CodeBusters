@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { DepositoService } from '../servicos/Deposito.Service'; // Importe o serviço de depósito
+import { DepositoService } from '../servicos/deposito.service'; // Importe o serviço de depósito
 import { CommonModule } from '@angular/common';
 import { NgxCurrencyDirective } from 'ngx-currency';
 

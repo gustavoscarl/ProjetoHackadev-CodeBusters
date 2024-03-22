@@ -20,7 +20,6 @@ import { Cadastro } from '../modelos/Cadastro';
 
 export class CadastroComponent {
 
-
   // Variavel CEP
   enderecoPorCep: Endereco | undefined;
 

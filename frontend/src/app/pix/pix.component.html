@@ -61,6 +61,7 @@
     </span>
   </div>
 
+<<<<<<< HEAD
   <div class="form-group">
     <label for="chavePix" class="label">Chave PIX</label>
     <input
@@ -104,3 +105,82 @@
     />
   </div>
 </form>
+=======
+  <form [formGroup]="pixForm" class="transacao-pix-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="valor" class="label">Valor</label>
+      <input
+        type="number"
+        id="valor"
+        class="input-pix"
+        name="valor"
+        placeholder="R$ 0,00"
+        [(ngModel)]="valor"
+        required
+        formControlName="pixForm"
+        [ngClass]="{
+          'border border-danger is-invalid':
+          pixForm.get('valor')?.invalid &&
+          pixForm.get('valor')?.touched
+        }"
+      />
+      <span *ngIf="
+        pixForm.get('valor')?.invalid &&
+        pixForm.get('valor')?.touched
+      "
+      class="text-danger d-inline invalid-feedback"
+      >
+      <p *ngIf="pixForm.get('valor')?.errors?.['required']">Insira um valor válido.</p>
+      <p *ngIf="pixForm.get('valor')?.errors?.['pattern']">Somente números são aceitos.</p>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="chavePix" class="label">Chave PIX</label>
+      <input
+        type="text"
+        id="chavePix"
+        class="input-pix"
+        name="chavePix"
+        placeholder="Insira a chave PIX"
+        required
+        formControlName="pixForm"
+        [(ngModel)]="chavePix"
+        [ngClass]="{
+          'border border-danger is-invalid':
+          pixForm.get('chavePix')?.invalid && pixForm.get('chavePix')?.touched
+        }"
+      />
+      <span *ngIf="
+        pixForm.get('chavePix')?.invalid && pixForm.get('chavePix')?.touched
+      "
+      class="text-danger d-inline invalid-feedback"
+      >
+        <p *ngIf="pixForm.get('chavePix')?.errors?.['required']">Digite uma chave Pix válida.</p>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="descricao" class="label">Descrição:</label>
+      <textarea
+        id="descricao"
+        name="descricao"
+        placeholder="Insira uma descrição para esta transação pix"
+        [(ngModel)]="descricao"
+      ></textarea>
+    </div>
+
+    <a href="#">
+      <button type="submit">Enviar valor</button>
+    </a>
+
+    <div>
+      <img
+        src="../../assets/pix/Line 1.svg"
+        alt=" Imagem de uma linha"
+        class="linha"
+      />
+    </div>
+  </form>
+</div>
+>>>>>>> main

@@ -17,6 +17,19 @@
   margin-right: 20px;
 }
 
+.user-created {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.usar-conta {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7f53df;
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -58,14 +71,14 @@ input[type="password"] {
   text-decoration: none;
 }
 
-.login-button {
-  width: 50%;
+.btn-acessar {
+  width: 30%;
   padding: 10px;
   margin: 0 auto;
   background-color: #7f53df;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -181,8 +194,9 @@ input[type="password"] {
     outline: 1px solid #a484e8;
   }
 
-  .login-button:hover {
+  .btn-acessar:hover {
     color: #cbbceb;
+    transform: scale(1.05);
     transition-duration: 300ms;
   }
 }
@@ -218,7 +232,7 @@ input[type="password"] {
     outline: 1px solid #a484e8;
   }
 
-  .login-button:hover {
+  .btn-acessar:hover {
     color: #cbbceb;
     transition-duration: 300ms;
   }

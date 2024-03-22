@@ -3,4 +3,8 @@ export interface Pix {
     valor?:number;
     chavePix?:string;
     descricao?:string;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
