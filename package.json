@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jwt-decode": "^4.0.0",
     "ngx-cookie-service": "^17.1.0"
   }
 }
