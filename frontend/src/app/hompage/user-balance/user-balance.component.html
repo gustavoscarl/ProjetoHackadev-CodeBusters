@@ -32,13 +32,16 @@
     <!-- <p *ngIf="saldoVisivel">Saldo: R$ 1000,00</p> -->
     <button (click)="toggleSaldoVisibilidade()" class="exibirSaldo"
     *ngIf="temConta">
-      <img class="darkOrLightMode" [src]="isdarkMode ? (saldoVisivel ? 'assets/user-balance/eye-solid-dark-mode.png' : 'assets/user-balance/eye-slash-solid-dark-mode.png') : (saldoVisivel ? 'assets/user-balance/eye-solid-light-mode.svg' : 'assets/user-balance/eye-slash-solid-light-mode.svg')" alt="Ícone para tema escuro">
+      <img class="darkOrLightMode" [src]="isdarkMode ? (saldoVisivel ? 'assets/user-balance/eye-solid-dark-mode.png' : 'assets/user-balance/eye-slash-solid-dark-mode.png') : (saldoVisivel ? 'assets/user-balance/eye-solid-light-mode.svg' : 'assets/user-balance/eye-slash-solid-light-mode.svg')" (click)="alternarExibicaoSaldo()" alt="Ícone para tema escuro">
     </button>
   </div>
 
     <div class="">
-      <p class="saldo-atual custom-font"        
-      *ngIf="temConta">{{ saldoAtual | currency: 'BRL' }}</p>
+      <!-- <p class="saldo-atual custom-font"        
+      *ngIf="temConta">{{ saldoAtual | currency: 'BRL' }}</p> -->
+      <p class="saldo-atual custom-font" *ngIf="valorVisivel">Saldo: {{ saldoAtual }}</p>
+      <p class="saldo-atual custom-font" *ngIf="!valorVisivel">Saldo: ---</p>
+      
       <p class="saldo-atual custom-font text-center" *ngIf="!temConta">Crie sua Conta Bancária ou Cartão!</p>
     </div>
   </div>
