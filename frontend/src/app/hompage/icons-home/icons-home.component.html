@@ -20,6 +20,7 @@
               id="somente-cartao"
               width="110"
               height="110"
+              [routerLink]="['/cartao']"
               alt="Ícone de celular e cartão de banco para referenciar a opção para cartões"
             />
           </div>
@@ -55,6 +56,7 @@
               src="../../assets/img_icons/pix.svg"
               width="110"
               height="110"
+              [routerLink]="['/pix']"
               alt="Ícone de QR code para referenciar a opção para pagamento via pix"
             />
           </div>
@@ -66,6 +68,7 @@
               src="../../assets/img_icons/pagar.svg"
               width="110"
               height="110"
+              [routerLink]="['/pix']"
               alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
             />
           </div>
@@ -81,7 +84,7 @@
                 alt="Ícone de celular, nota e moedas para referenciar a opção para recebimento"
               />
             </div>
-            <a class="btn"*ngIf="isUserAccount" [routerLink]="['/deposito']">
+            <a *ngIf="isUserAccount" [routerLink]="['/deposito']">
             <div class="icons-sub-img">
               <img
                 src="../../assets/img_icons/receber.svg"
