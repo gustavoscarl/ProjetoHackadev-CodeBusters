@@ -6,4 +6,5 @@ export interface Cliente {
   temConta?: boolean;
   temCartao?: boolean;
   contaId?: number | null;
+  contaUrl?: string;
 }
