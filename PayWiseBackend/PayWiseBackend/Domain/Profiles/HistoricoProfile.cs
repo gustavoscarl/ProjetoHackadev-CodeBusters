@@ -8,7 +8,7 @@ public class HistoricoProfile : Profile
 {
     public HistoricoProfile()
     {
-        CreateMap<Historico, RetrieveHistoricoDTO>()
-            .ForMember(dest => dest.Transacoes, opt => opt.MapFrom(src => src.Transacoes));
+        CreateMap<IEnumerable<Transacao>, RetrieveHistoricoDTO>()
+            .ForMember(dest => dest.Transacoes, opt => opt.MapFrom(src => src));
     }
 }
