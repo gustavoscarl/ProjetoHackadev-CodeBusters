@@ -83,6 +83,32 @@ public class ContaController : ControllerBase
         return CreatedAtAction(nameof(PegarPorId), new { message = "Conta criada.", conta = contaResponse, accessToken = newAccessToken});
     }
 
+    [HttpPut("alterar/limites")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<RetrieveContaLimitesDTO>> AlterarLimites(UpdateContaLimitesDTO novoLimite)
+    {
+        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+
+        int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
+
+        var conta = await _contaService.BuscarContaPorId(contaId);
+
+        if (conta is null)
+            return BadRequest(new { message = "Cliente não possui conta." });
+
+        if(!conta.EstaAtiva)
+            return BadRequest(new { message = "Cliente não possui conta." });
+
+        if (conta.Pin != novoLimite.Pin)
+            return BadRequest(new { message = "Senha PIN inválida." });
+
+        var contaResponse = await _contaService.AlterarLimitesConta(conta, novoLimite);
+
+        return Ok(new { limites = contaResponse });
+
+    }
+
     [HttpDelete]
     public async Task<IActionResult> DeletarConta()
     {
@@ -126,6 +152,9 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe." });
 
+        if (!conta.EstaAtiva)
+            return BadRequest(new { message = "Conta não existe." });
+
         decimal saldo = conta.Saldo;
 
         return Ok(new { saldo });
@@ -144,6 +173,9 @@ public class ContaController : ControllerBase
         Conta? conta = await _contaService.BuscarContaPorId(contaId);
 
         if (conta is null)
+            return BadRequest(new { message = "Conta não existe" });
+
+        if(!conta.EstaAtiva)
             return BadRequest(new { message = "Conta não existe" });
 
         if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
@@ -173,6 +205,9 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe" });
 
+        if(!conta.EstaAtiva)
+            return BadRequest(new { message = "Conta não existe" });
+
         await _contaService.Depositar(conta, dadosTransacao);
 
         decimal saldo = conta.Saldo;
@@ -194,12 +229,18 @@ public class ContaController : ControllerBase
         if (conta is null)
             return BadRequest(new { message = "Conta não existe" });
 
+        if(!conta.EstaAtiva)
+            return BadRequest(new { message = "Conta não existe" });
+
         if (conta.Saldo <= 0 || conta.Saldo < dadosTransacao.Valor)
             return BadRequest(new { mesage = "Saldo insuficiente" });
 
         var contaDestino = await _contaService.BuscarContaPorNumero(dadosTransacao.ContaDestino);
 
         if (contaDestino is null)
+            return BadRequest(new { message = "Conta de destino inexistente" });
+
+        if(!contaDestino.EstaAtiva)
             return BadRequest(new { message = "Conta de destino inexistente" });
 
         await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
