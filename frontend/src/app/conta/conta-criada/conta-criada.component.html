@@ -6,7 +6,7 @@
       <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta-criada/seta-light.svg" alt=""></a>
     </div>
   </div>
-  <div class="container col-lg-4 col-md-6 pb-5 mt-lg-5">
+  <div class="container col-md-6 pb-5 mt-lg-5">
 
     <section class="border border-bottom-0 border-secondary rounded-top border-opacity-50 p-5 shadow-sm text-start">    
       <div>
@@ -28,7 +28,7 @@
         <h3 class="text-start mb-4">Altere seus Limites de Segurança:</h3>
       </div>
       <div class="form-group mb-1 text-start">
-        <label for="pix-geral">Valor Máximo de Pix (0 para desativado):</label>
+        <label for="pix-geral">Valor Máximo de Pix Diurno (Limite de R$50.000,00):</label>
         <input type="tel"
         class="col-sm-5 col-12 p-2 rounded mb-3"
         currencyMask
@@ -39,7 +39,7 @@
         formControlName="pix-geral"/>
       </div>
       <div class="form-group text-start">
-        <label for="pix-noturno">Valor Máximo de Pix Noturno (0 para desativado):</label>
+        <label for="pix-noturno">Valor Máximo de Pix Noturno (Limite de R$50.000,00):</label>
         <input type="tel" 
         currencyMask
         placeholder="R$ 0,00"
@@ -56,5 +56,9 @@
       <div class="form-group mt-5">
         <button type="submit" class="btn-reset login-button">Alterar Limites</button>
       </div>
+      <div class="mensagem-erro d-none mb-3 text-danger">
+
+      </div>
     </form>
+
 </div>

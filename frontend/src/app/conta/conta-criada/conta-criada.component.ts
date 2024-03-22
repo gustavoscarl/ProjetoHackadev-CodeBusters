@@ -8,6 +8,7 @@ import { MudarContaService } from '../../servicos/mudar-conta.service';
 import { ContaInfoService } from '../../servicos/getcontainfo.service';
 import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-conta-criada',
@@ -43,6 +44,7 @@ export class ContaCriadaComponent {
   constructor(private contaService:MudarContaService, private authService: AuthService, private route: Router, private contaInfoService: ContaInfoService) {}
 
   onSubmit(): void {
+    document.querySelector('.mensagem-erro')?.classList.add('d-none')
     console.log(this.changeAccountForm)
     this.changeAccountForm?.markAllAsTouched();
     if (this.changeAccountForm?.valid) {
@@ -55,18 +57,38 @@ export class ContaCriadaComponent {
       }
       
       this.contaService.alterarConta(mudarContaData)
+      .pipe(
+        catchError((error: any) => {
+          if (error.status === 400) {
+            // Erro 400: Pin incorreto
+            this.mostrarMensagemDeErro('Pin incorreto, verifique suas credenciais.');
+          } else {
+            console.error('Erro ao alterar conta:', error);
+          }
+          return throwError(error); // Reenvia o erro para ser tratado posteriormente
+        })
+      )
         .subscribe({
           next: (retorno: any) => {
             console.log(retorno)
             this.changeAccountForm.reset();
-            // setTimeout(() => {
-            //   this.route.navigate(['/home']);
-            // }, 1200);
+            setTimeout(() => {
+              this.route.navigate(['/home']);
+            }, 1200);
           },
           error: (error) => {
             console.log(error);
           }
         });
+    }
+  }
+
+
+  mostrarMensagemDeErro(mensagem: string): void {
+    const mensagemErroElemento = document.querySelector('.mensagem-erro');
+    if (mensagemErroElemento) {
+      mensagemErroElemento.textContent = mensagem;
+      mensagemErroElemento.classList.remove('d-none');
     }
   }
 }
