@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 input:-webkit-autofill {
   -webkit-text-fill-color: black !important;
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
@@ -162,7 +167,7 @@ input[type="password"] {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: black;
+    background-color: #000;
     color: #fff;
   }
 

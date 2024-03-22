@@ -35,7 +35,7 @@ public class ClienteController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId()
     {
-        string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
+        string accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? id = _authService.GetClienteIdFromToken(accessToken);
 
@@ -51,6 +51,7 @@ public class ClienteController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
 
@@ -58,9 +59,6 @@ public class ClienteController : ControllerBase
 
         if (doesClientAlreadyExist)
             return Conflict(new { message = "Credenciais já cadastradas." });
-
-        string senhaHash = _authService.HashPassword(novoCliente.Senha);
-        novoCliente.Senha = senhaHash;
 
         var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
 

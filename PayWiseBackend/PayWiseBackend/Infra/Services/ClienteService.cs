@@ -9,25 +9,33 @@ namespace PayWiseBackend.Infra.Services;
 public class ClienteService : IClienteService
 {
     private readonly PaywiseDbContextSqlite _contextSqlite;
+    private readonly IAuthService _authService;
     private readonly IMapper _mapper;
 
     public ClienteService(
         PaywiseDbContextSqlite contextSqlite,
+        IAuthService authService,
         IMapper mapper
         )
     {
         _contextSqlite = contextSqlite;
+        _authService = authService;
         _mapper = mapper;
     }
 
-    public async Task<Cliente> BuscarClientePorId(int? clienteId)
+    public async Task<Cliente?> BuscarClientePorId(int? clienteId)
     {
         var cliente = await _contextSqlite.Clientes.FindAsync(clienteId);
+        if (cliente is null)
+            return null;
         return cliente;
     }
 
     public async Task<RetrieveClienteDTO> CadastrarCliente(CreateClientDTO novoCliente)
     {
+        string senhaHash = _authService.HashPassword(novoCliente.Senha);
+        novoCliente.Senha = senhaHash;
+
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
 
         var result = _contextSqlite.Clientes.Add(clienteCadastrar);
@@ -36,6 +44,7 @@ public class ClienteService : IClienteService
         var cliente = result.Entity;
 
         var clienteSalvo = _mapper.Map<RetrieveClienteDTO>(cliente);
+
         return clienteSalvo;
     }
 
