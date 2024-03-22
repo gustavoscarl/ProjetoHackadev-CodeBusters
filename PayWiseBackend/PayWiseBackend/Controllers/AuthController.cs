@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
 using PayWiseBackend.Infra.Services;
@@ -12,30 +15,27 @@ public class AuthController : Controller
 {
     private readonly IAuthService _authService;
     private readonly IClienteService _clienteService;
-    private readonly IMapper _mapper;
     private readonly IContaService _contaService;
 
     public AuthController(
         IAuthService authService,
         IClienteService clienteService,
-        IMapper mapper,
         IContaService contaService
         )
     {
         _authService = authService;
         _clienteService = clienteService;
-        _mapper = mapper;
         _contaService = contaService;
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<AuthResponseDTO>> Autenticar(CreateLoginDTO loginCredentials)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Autenticar(CreateLoginDTO loginCredentials)
     {
         Cliente? cliente = await _authService.ValidateCredentials(loginCredentials);
         if (cliente is null)
-            return Unauthorized(new { message = "Credenciais inválidas." });
+            return BadRequest(new { message = "Cliente não existe." });
 
         string accessToken = _authService.GenerateAccessToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);
         string refreshToken = _authService.GenerateRefreshToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);
@@ -48,15 +48,13 @@ public class AuthController : Controller
             SameSite = SameSiteMode.Strict
         });
 
-        AuthResponseDTO authResponse = new() { AccessToken = accessToken };
-
-        return Ok(authResponse);
+        return Ok(new { accessToken });
     }
 
     [HttpPost("refresh")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<AuthResponseDTO>> RefrescarToken()
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RefrescarToken()
     {
         string? refreshToken = Request.Cookies["RefreshToken"];
 
@@ -68,7 +66,7 @@ public class AuthController : Controller
         Cliente? cliente = await _clienteService.BuscarClientePorId(clienteId);
 
         if (cliente is null)
-            return Unauthorized(new { message = "Cliente não existe." });
+            return BadRequest(new { message = "Cliente não existe." });
 
         string novoAccessToken;
 
@@ -80,9 +78,7 @@ public class AuthController : Controller
             novoAccessToken = _authService.GenerateAccessToken(cliente.Id, null);
         }
 
-        AuthResponseDTO authResponse = new() { AccessToken = novoAccessToken };
-
-        return Ok(authResponse);
+        return Ok(new { accessToken = novoAccessToken });
     }
 
 }

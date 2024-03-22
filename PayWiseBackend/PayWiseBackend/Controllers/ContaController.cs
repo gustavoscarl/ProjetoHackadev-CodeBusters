@@ -36,7 +36,7 @@ public class ContaController : ControllerBase
     [Authorize]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponseDTO))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<RetrieveContaDTO>> PegarPorId()
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
@@ -53,43 +53,39 @@ public class ContaController : ControllerBase
 
         var contaResponse = _mapper.Map<RetrieveContaDTO>(conta);
 
-        return Ok(contaResponse);
+        return Ok(new { conta = contaResponse });
     }
 
     [Authorize]
     [HttpPost("criar")]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<CreateContaResponseDTO>> CriarConta(CreateContaDTO novaConta)
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> CriarConta(CreateContaDTO novaConta)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? clienteId = _authService.GetClienteIdFromToken(accessToken);
 
-        if (!clienteId.HasValue)
-            return Unauthorized(new { message = "Cliente não autorizada(o)." });
-
         var cliente = await _clienteService.BuscarClientePorId(clienteId);
 
         if(cliente is null)
-            return Unauthorized(new { message = "Cliente não autorizada(o)." });
+            return NotFound(new { message = "Cliente não encontrada(o)." });
 
         if (cliente.TemConta)
             return BadRequest(new { message = "Cliente já possui uma conta." });
 
-        var conta = await _contaService.CadastrarConta(cliente.Id, novaConta);
+        var contaResponse = await _contaService.CadastrarConta(cliente.Id, novaConta);
 
-        string newAccessToken = _authService.GenerateAccessToken(cliente.Id, conta.Id);
-        var contaResponse = _mapper.Map<CreateContaResponseDTO>((conta, newAccessToken));
+        string newAccessToken = _authService.GenerateAccessToken(cliente.Id, contaResponse.Id);
 
-        return CreatedAtAction(nameof(PegarPorId), contaResponse);
+        return CreatedAtAction(nameof(PegarPorId), new { message = "Conta criada.", conta = contaResponse, accessToken = newAccessToken});
     }
 
     [HttpPut("alterar/limites")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<RetrieveContaLimitesDTO>> AlterarLimites(UpdateContaLimitesDTO novoLimite)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
@@ -105,33 +101,28 @@ public class ContaController : ControllerBase
             return BadRequest(new { message = "Cliente não possui conta." });
 
         if (conta.Pin != novoLimite.Pin)
-            return Unauthorized(new { message = "Senha PIN inválida." });
+            return BadRequest(new { message = "Senha PIN inválida." });
 
-        var limiteResponse = await _contaService.AlterarLimitesConta(conta, novoLimite);
+        var contaResponse = await _contaService.AlterarLimitesConta(conta, novoLimite);
 
-        return Ok(limiteResponse);
+        return Ok(new { limites = contaResponse });
 
     }
 
     [HttpDelete]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<DeleteAccountResponseDTO>> DeletarConta()
+    public async Task<IActionResult> DeletarConta()
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? clienteId = _authService.GetClienteIdFromToken(accessToken);
         int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
 
-        if (!clienteId.HasValue)
-            return Unauthorized(new { message = "Cliente não autorizada(o)." });
-
         var cliente = await _clienteService.BuscarClientePorId(clienteId);
         if (cliente is null)
             return NotFound(new { message = "Cliente não encontrada(o)." });
 
         if (!cliente.TemConta)
-            return BadRequest(new { message = "Cliente não possui conta." });
+            return NotFound(new { message = "Cliente não possui conta." });
 
         var conta = await _contaService.BuscarContaPorId(contaId);
 
@@ -143,16 +134,14 @@ public class ContaController : ControllerBase
 
         await _contaService.DeleteConta(cliente, conta);
 
-        var deleteAccountResponse = new DeleteAccountResponseDTO();
-
-        return Ok(deleteAccountResponse);
+        return Ok(new { message = "Conta desativada." });
     }
 
     [Authorize]
     [HttpGet("saldo")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<RetrieveSaldoDTO>> ConsultarSaldo()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<double>> ConsultarSaldo()
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
@@ -166,17 +155,16 @@ public class ContaController : ControllerBase
         if (!conta.EstaAtiva)
             return BadRequest(new { message = "Conta não existe." });
 
-        var saldo = _mapper.Map<RetrieveSaldoDTO>(conta);
+        decimal saldo = conta.Saldo;
 
-        return Ok(saldo);
+        return Ok(new { saldo });
     }
 
     [Authorize]
     [HttpPut("sacar")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<RetrieveSaldoDTO>> Sacar(CreateTransacaoSaqueDTO dadosTransacao)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Sacar(CreateTransacaoSaqueDTO dadosTransacao)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
@@ -194,20 +182,20 @@ public class ContaController : ControllerBase
             return BadRequest(new { message = "Saldo insuficiente" });
 
         if (conta.Pin != dadosTransacao.Pin)
-            return Unauthorized(new { message = "Senha PIN inválida" });
+            return BadRequest(new { message = "Senha PIN inválida" });
 
         await _contaService.Sacar(conta, dadosTransacao);
 
-        var saldo = _mapper.Map<RetrieveSaldoDTO>(conta);
+        decimal saldo = conta.Saldo;
 
-        return Ok(saldo);
+        return Ok(new { saldo });
     }
 
     [Authorize]
     [HttpPut("depositar")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<RetrieveSaldoDTO>> Depositar(CreateTransacaoDepositoDTO dadosTransacao)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Depositar(CreateTransacaoDepositoDTO dadosTransacao)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
@@ -222,16 +210,16 @@ public class ContaController : ControllerBase
 
         await _contaService.Depositar(conta, dadosTransacao);
 
-        var saldo = _mapper.Map<RetrieveSaldoDTO>(conta);
+        decimal saldo = conta.Saldo;
 
-        return Ok(saldo);
+        return Ok(new { saldo });
     }
 
     [Authorize]
     [HttpPut("transferir")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<RetrieveSaldoDTO>> Transferir(CreateTransacaoTransferenciaDTO dadosTransacao)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Transferir(CreateTransacaoTransferenciaDTO dadosTransacao)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
@@ -257,16 +245,16 @@ public class ContaController : ControllerBase
 
         await _contaService.Transferencia(conta, contaDestino, dadosTransacao);
 
-        var saldo = _mapper.Map<RetrieveSaldoDTO>(conta);
+        decimal saldo = conta.Saldo;
 
-        return Ok(saldo);
+        return Ok(new { saldo });
     }
 
     [Authorize]
     [HttpGet("historico")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponseDTO))]
-    public async Task<ActionResult<RetrieveHistoricoDTO>> PegarHistorico(
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PegarHistorico(
         [FromQuery(Name = "from")] DateTime? from,
         [FromQuery(Name = "to")] DateTime? to
         )
@@ -274,12 +262,10 @@ public class ContaController : ControllerBase
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
-        if (!contaId.HasValue)
-            return NotFound(new { message = "Conta inexistente." });
 
         var historicoResponse = await _contaService.BuscarHistoricoDaConta(contaId, from, to);
 
-        return Ok(historicoResponse);
+        return Ok(new { historico = historicoResponse });
     }
 
 }

@@ -9,6 +9,7 @@ import { ContaInfoService } from '../../servicos/getcontainfo.service';
 import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
 import { catchError, throwError } from 'rxjs';
+import { InfoConta } from '../../modelos/InfoConta';
 
 @Component({
   selector: 'app-conta-criada',
@@ -19,8 +20,13 @@ import { catchError, throwError } from 'rxjs';
 })
 export class ContaCriadaComponent {
   changeAccountForm!: FormGroup
+  numeroConta?: any;
+  numeroAgencia?: any;
 
   ngOnInit() {
+
+    this.getInfoAccount();
+
     this.changeAccountForm = new FormGroup({
       'pix-geral': new FormControl(null, 
         [
@@ -42,6 +48,19 @@ export class ContaCriadaComponent {
   }
 
   constructor(private contaService:MudarContaService, private authService: AuthService, private route: Router, private contaInfoService: ContaInfoService) {}
+
+  getInfoAccount(){
+    this.contaInfoService.getInformacoes().subscribe({
+      next: ((data: InfoConta) => {
+        console.log(data)
+        this.numeroAgencia = data.agencia;
+        this.numeroConta = data.numero;
+      }),
+      error: (error) => {
+        console.error('Error fetching client data:', error);
+      }
+    });
+  }
 
   onSubmit(): void {
     document.querySelector('.mensagem-erro')?.classList.add('d-none')
