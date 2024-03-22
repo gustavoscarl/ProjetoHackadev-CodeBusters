@@ -130,6 +130,11 @@ export class CadastroComponent {
               confirmarSenha('password')
             ]),
     });
+
+
+    this.cadastroForm.get('password')?.valueChanges.subscribe(() => {
+      this.cadastroForm.get('confirm-password')?.updateValueAndValidity();
+    });
   }
 
   onSubmit(): void {
