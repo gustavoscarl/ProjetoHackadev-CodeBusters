@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.card {
+.cartao {
     width: 500px;
     height: 300px;
     cursor: pointer;
@@ -139,6 +139,6 @@
     transform: rotateY(180deg);
 }
 
-.card:hover .card-inner{
+.cartao:hover .card-inner{
     transform: rotateY(-180deg);
 }
