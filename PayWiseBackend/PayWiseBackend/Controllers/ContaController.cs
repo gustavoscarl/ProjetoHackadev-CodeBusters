@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
-using PayWiseBackend.Domain.Enum;
 using PayWiseBackend.Domain.Models;
 using PayWiseBackend.Infra.Services;
 
@@ -215,15 +213,16 @@ public class ContaController : ControllerBase
     [HttpGet("historico")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> PegarHistorico()
+    public async Task<IActionResult> PegarHistorico(
+        [FromQuery(Name = "from")] DateTime? from,
+        [FromQuery(Name = "to")] DateTime? to
+        )
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? contaId = _authService.GetContaIdFromAccessToken(accessToken);
 
-        var historico = await _contaService.BuscarHistoricoDaConta(contaId);
-
-        var historicoResponse = _mapper.Map<RetrieveHistoricoDTO>(historico);
+        var historicoResponse = await _contaService.BuscarHistoricoDaConta(contaId, from, to);
 
         return Ok(new { historico = historicoResponse });
     }

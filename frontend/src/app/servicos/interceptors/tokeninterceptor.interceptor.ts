@@ -21,14 +21,19 @@ export class TokenInterceptor implements HttpInterceptor {
   ): any {
     const token = this.authService.getToken();
 
-    if (token) {
       const cloned = req.clone({
         setHeaders: {
           'Authorization': `Bearer ${token}`,
         },
+        
       });
       console.log('Intercepting!');
-       return next.handle(cloned)}}}
+      return next.handle(cloned)
+    }
+    
+
+  }
+
 //         catchError((err:any) =>{
 //           if (err instanceof HttpErrorResponse && err.status === 401 ){
             
