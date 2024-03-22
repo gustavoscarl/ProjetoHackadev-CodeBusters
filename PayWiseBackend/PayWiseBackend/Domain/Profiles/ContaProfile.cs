@@ -10,6 +10,7 @@ namespace PayWiseBackend.Domain.Profiles
         {
             CreateMap<CreateContaDTO, Conta>();  
             CreateMap<Conta, RetrieveContaDTO>();
+            CreateMap<Conta, RetrieveContaLimitesDTO>();
 
         }
     }
