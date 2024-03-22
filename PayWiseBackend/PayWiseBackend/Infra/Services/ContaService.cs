@@ -66,10 +66,45 @@ public class ContaService : IContaService
 
     }
 
-    public async Task<Historico> BuscarHistoricoDaConta(int? contaId)
+    public async Task<Conta?> BuscarContaPorNumero(string numeroConta)
+    {
+        var conta = await _contextSqlite.Contas.FirstOrDefaultAsync(conta => conta.Numero == numeroConta);
+
+        if (conta is null)
+            return null;
+
+        return conta;
+
+    }
+
+    public async Task<RetrieveHistoricoDTO> BuscarHistoricoDaConta(int? contaId, DateTime? from, DateTime? to)
     {
         var historico = await _contextSqlite.Historicos.FirstOrDefaultAsync(h => h.ContaId == contaId);
-        return historico;
+
+        DateTime agora = DateTime.Now, de, ate;
+        de = new DateTime(agora.Year, agora.Month, 1);
+        ate = de.AddMonths(1);
+        IEnumerable<Transacao>? transacoes;
+        
+        if(from.HasValue && to.HasValue)
+        {
+            transacoes = historico
+            .Transacoes
+            .Where(t => t.Horario >= from && t.Horario <= to);
+        }
+        else if (from.HasValue && !to.HasValue)
+        {
+            transacoes = historico.Transacoes.Where(t => t.Horario == from.Value);
+        }
+        else
+        {
+            transacoes = historico
+            .Transacoes
+            .Where(t => t.Horario >= de && t.Horario < ate);
+        }
+
+        var historicoResponse = _mapper.Map<RetrieveHistoricoDTO>(transacoes);
+        return historicoResponse;
     }
 
     public async Task Sacar(Conta conta, CreateTransacaoSaqueDTO dadosTransacao)
@@ -79,7 +114,7 @@ public class ContaService : IContaService
         Transacao transacao = new Transacao()
         {
             Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
+            Horario = DateTime.Now,
             Tipo = TransacaoTipo.SAQUE,
             Valor = dadosTransacao.Valor,
         };
@@ -112,7 +147,7 @@ public class ContaService : IContaService
         Transacao transacao = new Transacao()
         {
             Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
+            Horario = DateTime.Now,
             Tipo = TransacaoTipo.TRANSFERENCIA,
             Valor = dadosTransacao.Valor,
         };
@@ -122,7 +157,7 @@ public class ContaService : IContaService
         Transacao transacaoDestino = new Transacao()
         {
             Descricao = dadosTransacao.Descricao ?? string.Empty,
-            Horario = new DateTime(),
+            Horario = DateTime.Now,
             Tipo = TransacaoTipo.TRANSFERENCIA,
             Valor = dadosTransacao.Valor,
         };
