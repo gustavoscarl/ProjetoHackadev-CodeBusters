@@ -2,47 +2,63 @@
 <div class="background">
   <div class="container col-lg-4 col-md-6 pt-5 pb-0 mt-1 d-flex text-start d-lg-none justify-content-start pb-5">
     <div>
-      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta/seta-dark.svg" alt=""></a>
-      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta/seta-light.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta-criada/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta-criada/seta-light.svg" alt=""></a>
     </div>
   </div>
-  <div class="container col-lg-4 col-md-6">
+  <div class="container col-md-6 pb-5 mt-lg-5">
 
-    <section class="border border-secondary rounded border-opacity-50 p-5 shadow-sm">    
+    <section class="border border-bottom-0 border-secondary rounded-top border-opacity-50 p-5 shadow-sm text-start">    
       <div>
-        <h2 class="mb-3">Você pode alterar os seguintes dados:</h2>
+        <h3 class="mb-4 text-center">Seus Dados:</h3>
       </div>
       <div class="form-group mb-1">
-
+        <h5>Número da Conta:</h5>
+        <p class="ms-3">11244</p>
+      </div>
+      <div class="form-group mb-1">
+        <h5>Número da Agência:</h5>
+        <p class="ms-3">0056</p>
       </div>
     </section>
 
     
-    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="changeAccountForm" (ngSubmit)="onSubmit()">
+    <form class="border border-top-0 border-secondary rounded-bottom border-opacity-50 p-5 pt-0 shadow-sm" [formGroup]="changeAccountForm" (ngSubmit)="onSubmit()">
       <div>
-        <h2 class="mb-3">Altere seus limites de segurança:</h2>
+        <h3 class="text-start mb-4">Altere seus Limites de Segurança:</h3>
       </div>
-      <div class="input-group mb-1">
-        <label for="pix-geral">Valor Máximo de Pix (0 para desativado):</label>
+      <div class="form-group mb-1 text-start">
+        <label for="pix-geral">Valor Máximo de Pix Diurno (Limite de R$50.000,00):</label>
         <input type="tel"
-        class="form-control"
+        class="col-sm-5 col-12 p-2 rounded mb-3"
         currencyMask
+        placeholder="R$ 0,00"
         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
         id="pix-geral" 
         name="pix-geral" 
         formControlName="pix-geral"/>
       </div>
-      <div class="input-group">
-        <label for="pix-noturno">Valor Máximo de Pix Noturno (0 para desativado):</label>
+      <div class="form-group text-start">
+        <label for="pix-noturno">Valor Máximo de Pix Noturno (Limite de R$50.000,00):</label>
         <input type="tel" 
         currencyMask
+        placeholder="R$ 0,00"
+        class="col-sm-5 col-12 p-2 rounded"
         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
         id="pix-noturno" 
         name="pix-noturno" 
         formControlName="pix-noturno"/>
       </div>
-      <div class="form-group">
+      <div class="form-group mt-3 text-start">
+        <label for="pin">Confirmar PIN</label>
+        <input type="password" class="col-sm-4 col-12 p-2 rounded" name="pin" id="pin" mask="0000" placeholder="0000" formControlName="pin">
+      </div>
+      <div class="form-group mt-5">
         <button type="submit" class="btn-reset login-button">Alterar Limites</button>
       </div>
+      <div class="mensagem-erro d-none mb-3 text-danger">
+
+      </div>
     </form>
+
 </div>
