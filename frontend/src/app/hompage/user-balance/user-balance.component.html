@@ -5,14 +5,14 @@
     </div>
 
     <div class="col-auto">
-      <a [routerLink]="['/login']"><img src="assets/user-balance/vetor.svg" alt="Vetor" class="vetor img-fluid" /></a>
+      <!-- <a [routerLink]="['/login']"><img src="assets/user-balance/vetor.svg" alt="Vetor" class="vetor img-fluid" /></a> -->
       <!-- <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="vetor img-fluid"></p-chart> -->
-      <div class="col-auto">
+      <!-- <div class="col-auto"> -->
         <!-- <p-chart type="bar" [data]="chartData" [options]="chartOptions" class="light-img img-fluid"></p-chart> -->
-        <a [routerLink]="['/login']"><img src="assets/user-balance/vetor-I.svg" alt="Light Image"
-            class="light-img img-fluid" /></a>
-      </div>
-      
+        <!-- <a [routerLink]="['/login']"><img src="assets/user-balance/vetor-I.svg" alt="Light Image"
+            class="light-img img-fluid" /></a> -->
+      <!-- </div> -->
+          <a role=button (click)="logout()" class="link-secondary pe-auto">Sair</a>
     </div>
   </div>
 </div>
@@ -39,8 +39,8 @@
     <div class="">
       <!-- <p class="saldo-atual custom-font"        
       *ngIf="temConta">{{ saldoAtual | currency: 'BRL' }}</p> -->
-      <p class="saldo-atual custom-font" *ngIf="valorVisivel">Saldo: {{ saldoAtual | currency: 'BRL' }}</p>
-      <p class="saldo-atual custom-font" *ngIf="!valorVisivel">Saldo: ---</p>
+      <p class="saldo-atual custom-font" *ngIf="valorVisivel  && temConta">Saldo: {{ saldoAtual | currency: 'BRL' }}</p>
+      <p class="saldo-atual custom-font" *ngIf="!valorVisivel && temConta">Saldo: ---</p>
       
       <p class="saldo-atual custom-font text-center" *ngIf="!temConta">Crie sua Conta Bancária ou Cartão!</p>
     </div>
