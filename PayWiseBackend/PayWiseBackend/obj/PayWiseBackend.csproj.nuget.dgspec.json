@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alxdr\\OneDrive\\Área de Trabalho\\gitClonePayWise 21-03-2024\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {}
+    "D:\\SharpCoders\\CODEBUSTER\\PayWise3\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alxdr\\OneDrive\\Área de Trabalho\\gitClonePayWise 21-03-2024\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
+    "D:\\SharpCoders\\CODEBUSTER\\PayWise3\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alxdr\\OneDrive\\Área de Trabalho\\gitClonePayWise 21-03-2024\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "projectUniqueName": "D:\\SharpCoders\\CODEBUSTER\\PayWise3\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
         "projectName": "PayWiseBackend",
-        "projectPath": "C:\\Users\\alxdr\\OneDrive\\Área de Trabalho\\gitClonePayWise 21-03-2024\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
-        "packagesPath": "C:\\Users\\alxdr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alxdr\\OneDrive\\Área de Trabalho\\gitClonePayWise 21-03-2024\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
+        "projectPath": "D:\\SharpCoders\\CODEBUSTER\\PayWise3\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\PayWiseBackend.csproj",
+        "packagesPath": "C:\\Users\\psbra\\.nuget\\packages\\",
+        "outputPath": "D:\\SharpCoders\\CODEBUSTER\\PayWise3\\ProjetoHackadev-CodeBusters\\PayWiseBackend\\PayWiseBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\alxdr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\psbra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -122,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

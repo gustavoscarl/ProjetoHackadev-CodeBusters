@@ -1,12 +1,11 @@
 .container {
     display: flex;
     align-items: center;
-    min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
 }
 
-.card {
+.cartao {
     width: 500px;
     height: 300px;
     cursor: pointer;
@@ -73,6 +72,7 @@
 
 .info-cartao {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     font-size: 16px;
     font-weight: 600;
@@ -139,6 +139,6 @@
     transform: rotateY(180deg);
 }
 
-.card:hover .card-inner{
+.cartao:hover .card-inner{
     transform: rotateY(-180deg);
 }
