@@ -8,13 +8,19 @@ import { Login } from '../modelos/Login';
 })
 export class LoginService {
 
-  
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': 'true',
+    }),
+    withCredentials: true
+  }
 
   constructor(private http: HttpClient) { }
 
   logarCliente(cliente: Login): Observable<Login> {
     const url = 'http://localhost:5062/auth';
-    return this.http.post<Login>(url, cliente);
+    return this.http.post<Login>(url, cliente, this.httpOptions);
   }
 }

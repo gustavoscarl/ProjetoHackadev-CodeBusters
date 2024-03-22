@@ -6,6 +6,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { Login } from '../modelos/Login';
 import { LoginService } from '../servicos/login.service';
 import { AuthService } from '../auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,7 +17,7 @@ import { AuthService } from '../auth.service';
 
 export class LoginComponent {
 
-  constructor (private authService: AuthService, private loginService: LoginService, private route: Router) {}
+  constructor (private http: HttpClient ,private authService: AuthService, private loginService: LoginService, private route: Router) {}
 
   // Form
   loginForm!: FormGroup;
@@ -36,6 +37,9 @@ export class LoginComponent {
       ]),
     })
   }
+
+
+  
 
   onSubmit(): void {
     const mensagemErroElemento = document.querySelector('.mensagem-erro');

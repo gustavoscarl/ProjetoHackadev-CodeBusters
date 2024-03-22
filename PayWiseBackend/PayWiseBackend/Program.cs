@@ -48,6 +48,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:issuer"],
             ValidAudience = builder.Configuration["Jwt:audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"])),
+            ClockSkew = TimeSpan.Zero
         };
     })
     .AddCookie(options =>
