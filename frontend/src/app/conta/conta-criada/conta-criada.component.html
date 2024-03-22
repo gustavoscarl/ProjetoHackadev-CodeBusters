@@ -1,27 +1,48 @@
+
 <div class="background">
-    <div class="container">
-      <img src="../../assets/logotypes-login-cadastro/logopronta.svg" alt="Logo do Banco" class="logo">
-      <form>
-        <div>
-          <label>Cadastre os seguintes dados:</label>
-        </div>
-        <div class="conta-criada">
-          <p for="user-created">Usuário criado com sucesso!</p>
-        </div>
-        <div class="conta-criada">
-          <p for="pix geral">Comece já a usar sua conta</p>
-        </div>
-        
-        <div class="conta-criada">
-          <div class="btn-reset login-button">
-            <a class="login-link" [routerLink]="['/home']">Acessar Conta</a></div>
-          <div class="icon-container">
-            <a id="support-icon">
-              <i class="fa fa-comments" aria-hidden="true"></i>
-            </a>
-            <div id="support-menu" class="support-menu">
-            </div>
-          </div>
-        </div>
-      </form>
+  <div class="container col-lg-4 col-md-6 pt-5 pb-0 mt-1 d-flex text-start d-lg-none justify-content-start pb-5">
+    <div>
+      <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta/seta-dark.svg" alt=""></a>
+      <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta/seta-light.svg" alt=""></a>
+    </div>
   </div>
+  <div class="container col-lg-4 col-md-6">
+
+    <section class="border border-secondary rounded border-opacity-50 p-5 shadow-sm">    
+      <div>
+        <h2 class="mb-3">Você pode alterar os seguintes dados:</h2>
+      </div>
+      <div class="form-group mb-1">
+
+      </div>
+    </section>
+
+    
+    <form class="border border-secondary rounded border-opacity-50 p-5 shadow-sm" [formGroup]="changeAccountForm" (ngSubmit)="onSubmit()">
+      <div>
+        <h2 class="mb-3">Altere seus limites de segurança:</h2>
+      </div>
+      <div class="input-group mb-1">
+        <label for="pix-geral">Valor Máximo de Pix (0 para desativado):</label>
+        <input type="tel"
+        class="form-control"
+        currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
+        id="pix-geral" 
+        name="pix-geral" 
+        formControlName="pix-geral"/>
+      </div>
+      <div class="input-group">
+        <label for="pix-noturno">Valor Máximo de Pix Noturno (0 para desativado):</label>
+        <input type="tel" 
+        currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
+        id="pix-noturno" 
+        name="pix-noturno" 
+        formControlName="pix-noturno"/>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-reset login-button">Alterar Limites</button>
+      </div>
+    </form>
+</div>

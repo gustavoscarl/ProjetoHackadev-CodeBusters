@@ -85,12 +85,12 @@ input[type="password"] {
   cursor: pointer;
 }
 
-.background {
+/* .background {
   background-image: url("../../../assets/logotypes-login-cadastro/desktop-light.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -100px;
-}
+} */
 
 /* Estilos para telas menores */
 @media only screen and (max-width: 480px) {
@@ -98,12 +98,12 @@ input[type="password"] {
     margin-right: 10px;
   }
 
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: -60px;
-  }
+  } */
   .icon-container {
     bottom: 20px; /* Alterado para ficar abaixo do botão de login */
     right: 20px;
@@ -120,25 +120,25 @@ input[type="password"] {
     right: 30px;
   }
 
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: fixed;
     background-position-y: -100px;
-  }
+  } */
 }
 
 @media only screen and (min-width: 567px) {
   .icon-container {
     right: 50px;
   }
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -100px;
-  }
+  } */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -162,13 +162,13 @@ input[type="password"] {
     outline: 1px solid #a484e8;
   }
 
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/mobile-dark.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -100px;
     background-color: black;
-  }
+  } */
 
   .link-estilo:hover,
   .link-registro:hover {
@@ -223,26 +223,26 @@ input[type="password"] {
     transition-duration: 300ms;
   }
 
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/desktop-light.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -200px;
     background-color: #e5e5e5;
-  }
+  } */
 }
 
 @media screen and (min-width: 768px) and (prefers-color-scheme: dark) {
-  .background {
+  /* .background {
     background-image: url("../../../assets/logotypes-login-cadastro/desktop-dark.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -400px;
     background-color: black;
-  }
+  } */
 }
 
-@media screen and (min-width: 768px) and (prefers-color-scheme: light) {
+/* @media screen and (min-width: 768px) and (prefers-color-scheme: light) {
   .background {
     background-position-y: -400px;
   }
@@ -253,4 +253,4 @@ input[type="password"] {
     background-image: url("../../../assets/logotypes-login-cadastro/mobile-light.svg");
     background-position-y: -150px;
   }
-}
+} */

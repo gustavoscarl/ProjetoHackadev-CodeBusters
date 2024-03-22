@@ -34,14 +34,14 @@ html {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #000;
-    color: #fff;
+    background-color: #141414 !important;
+    color: #fff !important;
   }
 }
 
 @media (prefers-color-scheme: light) {
   body {
-    background-color: #e5e5e5;
-    color: #000000;
+    background-color: #e5e5e5 !important;
+    color: #000000 !important;
   }
 }
