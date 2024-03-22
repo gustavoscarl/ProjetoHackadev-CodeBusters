@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 })
 export class HomePageService {
 
-  private url: string = 'https://localhost:7085'; // URL do serviço de depósitos
+  private url: string = 'https://localhost:5062'; // URL do serviço de depósitos
 
 
 
