@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Endereco } from '../modelos/Endereco';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { criarSenhaForte } from '../validators/senhaforte';
+import { confirmarSenha } from '../validators/confirmasenha';
 import { CadastroService } from '../servicos/cadastro.service';
 import { Cadastro } from '../modelos/Cadastro';
 
@@ -126,6 +127,7 @@ export class CadastroComponent {
       'confirm-password': new FormControl(null,
             [
               Validators.required,
+              confirmarSenha('password')
             ]),
     });
   }

@@ -12,8 +12,8 @@ export class MudarContaService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarConta(conta: MudarConta): Observable<MudarConta> {
-    const url = 'http://localhost:5062/contas/mudar';
+  alterarConta(conta: MudarConta): Observable<MudarConta> {
+    const url = 'https://localhost:7085/contas/alterar/limites';
     return this.http.put<MudarConta>(url, conta);
   }
 }
