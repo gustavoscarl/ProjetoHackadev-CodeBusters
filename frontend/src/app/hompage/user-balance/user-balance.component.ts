@@ -21,6 +21,11 @@ export class UserBalanceComponent {
   userName?: string;
   temConta?: boolean;
   dadosProntosSubscription: Subscription | undefined;
+  valorVisivel: boolean = true;
+
+  alternarExibicaoSaldo(): void {
+    this.valorVisivel = !this.valorVisivel;
+  }
 
   chartData: any = {
     labels: ['Alimentação', 'Lazer', 'Educação', 'Viagens'],
