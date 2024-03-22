@@ -46,10 +46,12 @@
                 </div>
                 <div class="desktop_menu" [class.mobile-menu]="menuValue">
                     <ul>
-                        <li (click)="closeMenu()" [routerLink]="['/home']" >Home</li>
-                        <li (click)="closeMenu()" [routerLink]="['/historico']" id="historico">Histórico</li>
-                        <li (click)="closeMenu()" [routerLink]="['/cartao']" >Cartão</li>
-                        <li (click)="closeMenu()" [routerLink]="['/deposito']" >Depósito</li>
+                        <li (click)="closeMenu()" [routerLink]="['/home']" >     Home</li>
+                        <li (click)="closeMenu()" [routerLink]="['/historico']"> Histórico</li>
+                        <li (click)="closeMenu()" [routerLink]="['/cartao']">    Cartão</li>
+                        <li (click)="closeMenu()" [routerLink]="['/deposito']">  Depósito</li>
+                        <li (click)="closeMenu()" [routerLink]="['/transfer']">  Transferência</li>
+                        <li (click)="closeMenu()" [routerLink]="['/saque']">     Saque</li>
                     </ul>
                 </div>
            </div>
