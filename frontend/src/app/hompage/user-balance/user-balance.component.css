@@ -226,6 +226,7 @@
   letter-spacing: 0em;
   margin-top: 20px;
   font-size: 20px;
+  white-space: nowrap;
 }
 
 .saldo-atual {
