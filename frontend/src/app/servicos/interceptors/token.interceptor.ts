@@ -25,30 +25,48 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
-    const decodedToken = jwtDecode(token);
+
+    if (!token) {
+      return next.handle(request); // Sem token, prossegue com a requisição normalmente
+    }
+
+    if(token) {
+      const cloned = request.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
+      return next.handle(cloned)
+    }
+
+    const decodedToken: any = jwtDecode(token);
     const tokenExpirationTime = decodedToken && decodedToken.exp ? decodedToken.exp * 1000 : 0;
     const currentTime = Date.now();
     const timeRemaining = tokenExpirationTime - currentTime;
     const isAboutToExpire = timeRemaining <= 3000;
 
-    const cloned = request.clone({
-      setHeaders: {
-        'Authorization': `Bearer ${token}`,
-      },
-      withCredentials: true,
-    })
-
     if (isAboutToExpire) {
-      this.http.post('http://localhost:5062/auth/refresh', {}).subscribe({
-      next: (data: any) => {
-        console.log('Data refreshed', data)
-        localStorage.setItem('token',data.accessToken)
-      },
-      error: (error) => console.error('Error refreshing data', error)
-    });
+      return this.authService.renewToken().pipe(
+        switchMap((data: TokenApiModel) => {
+          this.authService.guardarToken(data.accessToken);
+          const clonedReq = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${data.accessToken}`,
+            },
+            withCredentials: true,
+          });
+          return next.handle(clonedReq);
+        }),
+        catchError((error) => {
+          console.error('Error refreshing token:', error);
+          this.authService.logout();
+          return throwError('Token renewal failed');
+        })
+      );
     }
 
-    return next.handle(cloned)
-    
+    // Se o token não está próximo da expiração, prossegue com a requisição normalmente
+    return next.handle(request);
   }
 }

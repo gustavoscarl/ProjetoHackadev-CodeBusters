@@ -30,11 +30,6 @@ export class ContaCriadaComponent {
         Validators.required 
       ])})
 
-      this.contaInfoService.getInformacoes().subscribe({
-        next: (retorno: any) => {
-
-        }
-      })
 
     }
 

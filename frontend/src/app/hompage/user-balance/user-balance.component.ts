@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SaldoService } from '../../servicos/saldo.service';
 import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
+import { AuthService } from '../../auth.service';
 
 @Inject({ providedIn: 'root' })
 
@@ -79,7 +80,7 @@ export class UserBalanceComponent {
     }
   }
 
-  constructor(private inputService: InputserviceService, private renderer : Renderer2, private saldoService: SaldoService) {
+  constructor(private inputService: InputserviceService, private renderer : Renderer2, private saldoService: SaldoService, private authService: AuthService) {
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       this.isdarkMode = event.matches;
@@ -90,6 +91,10 @@ export class UserBalanceComponent {
 
   toggleSaldoVisibilidade() {
     this.saldoVisivel = !this.saldoVisivel;
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   ngOnInit() {
