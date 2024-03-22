@@ -13,8 +13,22 @@ import { filter } from 'rxjs';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  
+  
   darkMode: boolean;
+  
+  menuValue:boolean = false;
+  menu_icon:string = 'bi bi-list';
+
+  openMenu() {
+    this.menuValue = !this.menuValue;
+    this.menu_icon = (this.menu_icon === 'bi bi-list') ? 'bi bi-x' : 'bi bi-list';
+  }
+
+  closeMenu(){
+    this.menuValue = false;
+    this.menu_icon = 'bi bi-list';
+  }
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: Router) {
     // Define se o histórico deve ser exibido com base na rota atual
