@@ -1,17 +1,37 @@
 <div class="container col-md-6">
   <div class="form-container">
+    <!-- Se houver um alerta a ser mostrado -->
+    <div *ngIf="showAlert" class="alert alert-success" role="alert">
+      Depósito realizado com sucesso!
+    </div>
+
     <h2>Depósito Bancário</h2>
-    <form [formGroup]="formulario" (submit)="enviar()" class="">
+    <form [formGroup]="depositoForm" (submit)="onSubmit()" class="">
       <div class="input-group">
         <label for="valor">Valor:</label>
         <input type="tel"
         class="rounded shadow-sm"
          currencyMask
-         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
+         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false,  max: 50000 }" 
          id="valor" 
          formControlName="valor" 
          placeholder="Digite o valor a ser depositado" 
-         required>
+         [ngClass]="{
+          'border border-danger is-invalid':
+            depositoForm.get('valor')?.invalid && depositoForm.get('valor')?.touched
+        }"
+      />
+      <span
+        *ngIf="depositoForm.get('valor')?.invalid && depositoForm.get('valor')?.touched"
+        class="text-danger d-inline invalid-feedback"
+      >
+        <p *ngIf="depositoForm.get('valor')?.errors?.['required']">
+          Insira um valor válido.
+        </p>
+        <p *ngIf="depositoForm.get('valor')?.errors?.['pattern']">
+          Somente números são aceitos.
+        </p>
+      </span>
       </div>
       <div class="input-group">
         <label for="descricao">Descrição:</label>
