@@ -25,6 +25,9 @@ export class HeaderService {
   private updateMenuItems(url: string) {
     if (url.startsWith('/login')) {[
       {name: "home", route: "/home" },
+      {name: "Home", route: "/home" },
+      {name: "Sua Conta", route: "/conta/criada" },
+      {name: "Pix", route: "/pix" },
     ]}
     if (url.startsWith('/home')) {
       this.menuItemsSubject.next([
@@ -37,7 +40,7 @@ export class HeaderService {
     }
     if (url.startsWith('/cartao')) {
       this.menuItemsSubject.next([
-      {name: "home", route: "/home" },
+      {name: "Home", route: "/home" },
       { name: "Sua Conta", route: "/conta/criada" },
       { name: "Pix", route: "/pix" },
       { name: "Histórico", route: "/historico" },
@@ -45,5 +48,4 @@ export class HeaderService {
     ]);
     }  
   }
-
-};
+}
