@@ -4,4 +4,3 @@ docker-compose.yml
 _ReSharper.*
 bin
 obj
-paywise_dev.db

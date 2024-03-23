@@ -191,11 +191,4 @@ public class ContaService : IContaService
         var contaResponse = _mapper.Map<RetrieveContaLimitesDTO>(conta);
         return contaResponse;
     }
-
-    public async Task<RetrieveContaDTO> BuscarContaDTOPorId(int? contaId)
-    {
-        var conta = await BuscarContaDTOPorId(contaId);
-        var contaResponse = _mapper.Map<RetrieveContaDTO>(conta);
-        return contaResponse;
-    }
 }

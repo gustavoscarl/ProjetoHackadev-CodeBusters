@@ -44,6 +44,8 @@ pinForm!: FormGroup
       this.contaService.cadastrarConta(pinData)
         .subscribe({
           next: (retorno: any) => {
+            console.log(retorno)
+            this.authService.guardarToken(retorno.accessToken)
             this.pinForm.reset();
             setTimeout(() => {
               this.route.navigate(['/home']);
