@@ -5,6 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, NavigationStart, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { HeaderService } from '../servicos/header.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -30,7 +31,7 @@ export class HeaderComponent {
     this.menu_icon = 'bi bi-list';
   }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: Router) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private route: Router, public headerService: HeaderService) {
     // Define se o histórico deve ser exibido com base na rota atual
     this.exibirHistorico = this.deveExibirHistorico();
     this.exibirHome = this.deveExibirHome();
