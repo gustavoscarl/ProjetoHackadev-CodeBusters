@@ -50,6 +50,10 @@ input[type="text"] {
   border-radius: 5px;
 }
 
+#excluir {
+  margin-top: 100px;
+}
+
 .links-container {
   text-align: left;
 }

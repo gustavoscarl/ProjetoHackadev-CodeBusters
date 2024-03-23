@@ -40,7 +40,7 @@
       <!-- <p class="saldo-atual custom-font"        
       *ngIf="temConta">{{ saldoAtual | currency: 'BRL' }}</p> -->
       <p class="saldo-atual custom-font" *ngIf="valorVisivel  && temConta">{{ saldoAtual | currency: 'BRL' }}</p>
-      <p class="saldo-atual custom-font" *ngIf="!valorVisivel && temConta">Saldo: ---</p>
+      <p class="saldo-atual custom-font" *ngIf="!valorVisivel && temConta">---</p>
       
       <p class="saldo-atual custom-font text-center" *ngIf="!temConta">Crie sua Conta Bancária ou Cartão!</p>
     </div>

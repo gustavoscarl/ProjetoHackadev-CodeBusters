@@ -16,4 +16,9 @@ export class MudarContaService {
     const url = 'https://localhost:7085/contas/alterar/limites';
     return this.http.put<MudarConta>(url, conta);
   }
+
+  excluirConta(): any{
+    const url = 'https://localhost:7085/contas'
+    return this.http.delete(url)
+  }
 }

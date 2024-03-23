@@ -28,9 +28,9 @@ export class IconsHomeComponent {
         console.log(data)
         this.clienteData = data;
         console.log(this.clienteData)
-        this.isUserAccount = this.clienteData.clienteResponse.temConta;
-        this.inputService.nomeDoUsuario = this.clienteData.clienteResponse.nome
-        this.inputService.temConta = this.clienteData.clienteResponse.temConta
+        this.isUserAccount = this.clienteData.temConta;
+        this.inputService.nomeDoUsuario = this.clienteData.nome
+        this.inputService.temConta = this.clienteData.temConta
         this.inputService.enviarDadosProntos()
       }),
       error: (error) => {
