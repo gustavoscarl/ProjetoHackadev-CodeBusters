@@ -51,10 +51,10 @@ export class ContaCriadaComponent {
 
   getInfoAccount(){
     this.contaInfoService.getInformacoes().subscribe({
-      next: ((data: InfoConta) => {
+      next: ((data: any) => {
         console.log(data)
-        this.numeroAgencia = data.agencia;
-        this.numeroConta = data.numero;
+        this.numeroAgencia = data.conta.agencia;
+        this.numeroConta = data.conta.numero;
       }),
       error: (error) => {
         console.error('Error fetching client data:', error);
@@ -68,8 +68,6 @@ export class ContaCriadaComponent {
     this.changeAccountForm?.markAllAsTouched();
     if (this.changeAccountForm?.valid) {
       let mudarContaData: MudarConta = {
-        // pin: this.changeAccountForm.get('pin')?.value || '',
-        // limites: {
         limitePixGeral: this.changeAccountForm.get('pix-geral')?.value,
         limitePixNoturno: this.changeAccountForm.get('pix-noturno')?.value,
         pin: this.changeAccountForm.get('pin')?.value

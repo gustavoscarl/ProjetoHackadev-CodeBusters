@@ -9,24 +9,17 @@ import { TokenApiModel } from './modelos/token-api.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private userCard: boolean = false;
+
 
   constructor(private http: HttpClient, private route: Router, private cookie: CookieService) {}
 
-  isUserCard(): boolean {
-    return this.userCard
-  }
-
-  loginAsUserCard(): void {
-    this.userCard = true;
-  }
 
   guardarToken(tokenValue: string){
-    localStorage.setItem('token', tokenValue);
+    this.cookie.set('token', tokenValue);
   }
 
   getToken():any{
-    return localStorage.getItem('token')
+    return this.cookie.get('token')
   }
 
   guardarRefreshToken(tokenValue: string){
@@ -51,13 +44,14 @@ export class AuthService {
 
 
   estaLogado(): boolean {
-    return !!localStorage.getItem('token')
+    return !!this.cookie.get('token')
   }
 
   logout():void{
-    localStorage.removeItem('token')
-    this.cookie.delete('RefreshToken')
-    this.route.navigate(['login'])
+    this.cookie.deleteAll();
+    this.cookie.delete('token');
+    this.cookie.delete('RefreshToken');
+    this.route.navigate(['login']);
   }
 
 }
