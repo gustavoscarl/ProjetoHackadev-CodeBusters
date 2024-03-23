@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PayWiseBackend.Domain.Context;
+using PayWiseBackend.Domain.Context.ContextResults;
 using PayWiseBackend.Domain.DTOs;
 using PayWiseBackend.Domain.Models;
 
@@ -23,7 +24,7 @@ public class ClienteService : IClienteService
         _mapper = mapper;
     }
 
-    public async Task<RetrieveClienteDTO> BuscarClienteDTOPorId(int? clienteId)
+    public async Task<RetrieveClienteDTO> BuscarClienteDTOPorId(int clienteId)
     {
         var cliente = await BuscarClientePorId(clienteId);
         var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
@@ -38,21 +39,26 @@ public class ClienteService : IClienteService
         return cliente;
     }
 
-    public async Task<CreateClienteResponseDTO> CadastrarCliente(CreateClientDTO novoCliente)
+    public async Task<IContextResult<Cliente>> CadastrarCliente(CreateClientDTO novoCliente)
     {
         string senhaHash = _authService.HashPassword(novoCliente.Senha);
         novoCliente.Senha = senhaHash;
 
         var clienteCadastrar = _mapper.Map<Cliente>(novoCliente);
+        try
+        {
+            var result = _contextSqlite.Clientes.Add(clienteCadastrar);
+            await _contextSqlite.SaveChangesAsync();
 
-        var result = _contextSqlite.Clientes.Add(clienteCadastrar);
-        await _contextSqlite.SaveChangesAsync();
+            var cliente = result.Entity;
 
-        var cliente = result.Entity;
-
-        var clienteSalvo = _mapper.Map<CreateClienteResponseDTO>(cliente);
-
-        return clienteSalvo;
+            return ContextResult<Cliente>.ResultadoSucesso(cliente);
+        }
+        catch (Exception _)
+        {
+            return ContextResult<Cliente>.ResultadoFalha("Falha ao salvar no banco");
+        }
+        
     }
 
     public async Task<bool> CheckClienteCredentials(string cpf, string rg)

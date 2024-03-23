@@ -35,12 +35,15 @@ public class InvestimentoService : IInvestimentoService
         return investimentoResponse;
     }
 
-    public async Task<RetrieveInvestimentoDTO> CriarInvestimento(int contaId, CreateInvestimentoDTO novoInvestimento)
+    public async Task<RetrieveInvestimentoDTO> CriarInvestimento(Conta conta, CreateInvestimentoDTO novoInvestimento)
     {
+        conta.Saldo -= novoInvestimento.Valor;
+
         var investimento = _mapper.Map<Investimento>(novoInvestimento);
-        investimento.ContaId = contaId;
+        investimento.ContaId = conta.Id;
 
         var investimentoResult = await _contextSqlite.Investimentos.AddAsync(investimento);
+
 
         await _contextSqlite.SaveChangesAsync();
 
