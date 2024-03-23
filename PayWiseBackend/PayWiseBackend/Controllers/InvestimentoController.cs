@@ -37,6 +37,9 @@ public class InvestimentoController : ControllerBase
 
         var investimento = await _investimentoService.BuscarInvestimento(contaId);
 
+        if (investimento is null)
+            return NotFound(new { message = "Cliente não possui investimento." });
+
         return Ok(investimento);
     }
 
@@ -53,7 +56,13 @@ public class InvestimentoController : ControllerBase
         if (contaId is null)
             return NotFound(new { message = "Cliente não possui conta." });
 
-        if (novoInvestimento.Tempo < DateTime.Now.AddMonths(1))
+        if (novoInvestimento.Valor <= 100)
+            return BadRequest(new { message = "É necessário investir um valor." });
+
+        novoInvestimento.Tempo = novoInvestimento.Tempo.Date;
+        var proximoMes = DateTime.Now.AddMonths(1).Date;
+
+        if (novoInvestimento.Tempo < proximoMes)
             return BadRequest(new { message = "Investimento deve ser de pelo menos um mês." });
 
         var investimentoResponse = await _investimentoService.CriarInvestimento(contaId.Value, novoInvestimento);
