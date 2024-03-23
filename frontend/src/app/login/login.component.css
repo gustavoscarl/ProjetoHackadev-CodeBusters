@@ -43,6 +43,7 @@ input:-webkit-autofill {
 
 .form-group {
   margin-bottom: 20px;
+  position: relative;
 }
 
 label {
@@ -114,6 +115,19 @@ input[type="password"] {
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -100px;
+}
+
+.exibirSenha {
+  border: none;
+  background: none;
+  top: 40px;
+  position: absolute;
+  right: 10px;
+}
+
+.darkOrLightMode {
+  height: 15px;
+  width: auto;
 }
 
 /* Estilos para telas menores */
@@ -214,6 +228,17 @@ input[type="password"] {
     color: #cbbceb;
     transition-duration: 300ms;
   }
+
+  .exibirSenha {
+    border: none;
+    background: none;
+    align-items: end;
+  }
+  
+  .darkOrLightMode {
+    height: 15px;
+    width: auto;    
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -258,6 +283,17 @@ input[type="password"] {
     background-repeat: no-repeat;
     background-position-y: -200px;
     background-color: #e5e5e5;
+  }
+
+  .exibirSenha {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .darkOrLightMode {
+    height: 15px;
+    width: auto;
   }
 }
 
