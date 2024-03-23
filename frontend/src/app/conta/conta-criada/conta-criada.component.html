@@ -53,12 +53,39 @@
         <label for="pin">Confirmar PIN</label>
         <input type="password" class="col-sm-4 col-12 p-2 rounded" name="pin" id="pin" mask="0000" placeholder="0000" formControlName="pin">
       </div>
-      <div class="form-group mt-5">
+      <div class="form-group mt-5 mb-5">
         <button type="submit" class="btn-reset login-button">Alterar Limites</button>
+
+      </div>
+      <div id="excluir" class="form-group">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Excluir Conta
+        </button>
       </div>
       <div class="mensagem-erro d-none mb-3 text-danger">
 
       </div>
+
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Deseja excluir a conta permanentemente?</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-black text-start">
+                Ao excluir sua conta, você não terá mais acesso a mesma, porém suas transações estarão gravadas em nosso sistema. <br>Lembre-se que seu saldo tem que ser R$0,00 para conseguir excluir.
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button (click)="excluir()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </form>
 
 </div>
