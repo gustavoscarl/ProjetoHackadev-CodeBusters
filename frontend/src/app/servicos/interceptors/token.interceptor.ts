@@ -25,11 +25,11 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
-    const decodedToken: any = jwtDecode(token);
-    const tokenExpirationTime = decodedToken && decodedToken.exp ? decodedToken.exp * 1000 : 0;
-    const currentTime = Date.now();
-    const timeRemaining = tokenExpirationTime - currentTime;
-    const isAboutToExpire = timeRemaining <= 2000;
+    // const decodedToken: any = jwtDecode(token);
+    // const tokenExpirationTime = decodedToken && decodedToken.exp ? decodedToken.exp * 1000 : 0;
+    // const currentTime = Date.now();
+    // const timeRemaining = tokenExpirationTime - currentTime;
+    // const isAboutToExpire = timeRemaining <= 2000;
 
     if (!token) {
       const cloned = request.clone({
