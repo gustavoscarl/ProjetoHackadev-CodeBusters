@@ -19,7 +19,6 @@ export class HomePageService {
 
   pegarCliente(): Observable<any> {
     let token: string = this.auth.getToken();
-    console.log(token)
     return this.http.get<any>(`${this.url}/clientes`);
     
   }

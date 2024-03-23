@@ -28,7 +28,7 @@ export class DepositoComponent {
       'valor': new FormControl(null,
         [
           Validators.required,
-          Validators.pattern('^([.\\d]{1,60})$'),
+          Validators.pattern('^[(([\\d]{1,3})(\\,([\\d]{1,2}))?)$'),
           Validators.minLength(1),
         ]),
         'descricao': new FormControl(null,
@@ -69,8 +69,15 @@ export class DepositoComponent {
 
 
   onSubmit(): void {
+    this.depositoForm.markAllAsTouched();
+
     if (this.depositoForm.valid) {
-      this.depositoService.depositar(this.depositoForm.value)
+      const depositoData: Deposito = {
+        valor: this.depositoForm.get('valor')?.value,
+        descricao: this.depositoForm.get('descricao')?.value,
+      };
+
+      this.depositoService.depositar(depositoData)
         .subscribe( {
           next: () => {
           this.depositoForm.reset();
@@ -83,5 +90,13 @@ export class DepositoComponent {
     } else {
       alert('Formulário inválido!');
     }
+  }
+
+  // Função para criar o validador de valor mínimo
+  minValueValidator(minValue: number) {
+    return (control: { value: string; }) => {
+      const value = parseFloat(control.value);
+      return value >= minValue ? null : { minValue: { min: minValue } };
+    };
   }
 }

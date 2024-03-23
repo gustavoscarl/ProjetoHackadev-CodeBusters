@@ -165,19 +165,28 @@
   }
 } */
 
-/* HEADER MENU */
+/* HEADER MENU HAMBURGUER */
 
 header {
   width: 100%;
   height: 55px;
   padding: 5px;
-  z-index: 999;
+  z-index: 2;
+}
+
+li > a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .logo {
   width: 100px;
   cursor: pointer;
   margin-top: -27px;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .desktop_menu {
@@ -210,7 +219,7 @@ header {
   display: none;
 }
 
-/* Tamanho da tela onde o menu fica dinamico */
+/* Tamanho da tela onde o menu fica hamburguer */
 
 @media screen and (min-width: 128px) and (max-width: 900px) {
   .desktop_menu {
@@ -239,5 +248,17 @@ header {
   .mobile-menu {
     right: 0;
     transition: 0.4s ease-in-out;
+  }
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+  header {
+    background: #2a194e;
+  }
+
+  .desktop_menu {
+    background: #2a194e;
   }
 }

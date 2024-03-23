@@ -59,21 +59,18 @@ export class PixComponent {
         descricao: this.pixForm.get('descricao')?.value,
       };
   
-    // this.pixService.efetuarPix(pixData)
-    //   .subscribe((pix: Pix) => {
-    //     this.showAlert = true;
-    //     console.log(pix);
-    //   });
-    // };
-  
-    this.pixService.efetuarPix(pixData)
-      .subscribe((pix: Pix) => {
-        setTimeout(() => {
-          this.route.navigateByUrl('pix')
-        }, 1000)
-        this.showAlert = true;
-        console.log(pix);
-      });
+      this.pixService.depositar(pixData)
+        .subscribe( {
+          next: () => {
+          this.pixForm.reset();
+          alert('Deposito realizado com sucesso!');
+        }, 
+        error: () => {
+          alert('Erro ao depositar.');
+        }
+        });
+    } else {
+      alert('Formulário inválido!');
     }
   }
 

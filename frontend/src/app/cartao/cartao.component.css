@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cartao {
+  width: 500px;
+  height: 300px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, #84e8cb, #c4aff0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chip {
+  width: 80px;
+}
+
+.visa {
+  width: 80px;
+}
+
+.mapa-img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.num-cartao {
+  display: flex;
+  justify-content: space-between;
+  font-size: 35px;
+  font-weight: 500;
+  margin-top: 150px;
+}
+
+.num-cartao > p {
+  color: antiquewhite;
+}
+
+.info-cartao {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: -25px;
+}
+
+.info-cartao > p {
+  color: antiquewhite;
+}
+
+.barra {
+  background: #222;
+  margin-left: -30px;
+  margin-right: -30px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.cartao-cvv {
+  display: flex;
+  margin-top: 20px;
+}
+
+.cartao-cvv div {
+  flex: 1;
+}
+
+.cartao-cvv img {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  margin-top: -4px;
+}
+
+.cartao-cvv p {
+  background: #fff;
+  color: #000;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 10px 20px;
+}
+
+.texto-cartao {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+
+.assinatura {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  font-weight: 500;
+}
+
+.assinatura img {
+  display: flex;
+  margin-top: -40px;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.cartao:hover .card-inner {
+  transform: rotateY(-180deg);
+}

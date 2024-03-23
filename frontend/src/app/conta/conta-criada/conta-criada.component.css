@@ -3,6 +3,20 @@
   text-align: center;
 }
 
+#seta-light {
+  display: block;
+}
+#seta-dark {
+  display: none;
+}
+
+input,
+textarea {
+  background-color: #262626;
+  color: #fff;
+  border: none;
+}
+
 .logo {
   width: 100%;
   max-width: 300px;
@@ -28,13 +42,16 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+#excluir {
+  margin-top: 100px;
 }
 
 .links-container {
@@ -145,6 +162,13 @@ input[type="password"] {
   body {
     background-color: black;
     color: #fff;
+  }
+
+  #seta-light {
+    display: none;
+  }
+  #seta-dark {
+    display: block;
   }
 
   .form-group input {

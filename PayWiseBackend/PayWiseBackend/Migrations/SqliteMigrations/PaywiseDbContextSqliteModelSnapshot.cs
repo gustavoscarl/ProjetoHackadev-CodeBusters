@@ -227,6 +227,32 @@ namespace PayWiseBackend.Migrations.SqliteMigrations
                     b.ToTable("Historicos");
                 });
 
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Investimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ContaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Taxa")
+                        .HasColumnType("decimal(19,4)");
+
+                    b.Property<DateTime>("Tempo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(19,4)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContaId")
+                        .IsUnique();
+
+                    b.ToTable("Investimentos");
+                });
+
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
                 {
                     b.Property<int>("Id")
@@ -347,6 +373,17 @@ namespace PayWiseBackend.Migrations.SqliteMigrations
                     b.Navigation("Conta");
                 });
 
+            modelBuilder.Entity("PayWiseBackend.Domain.Models.Investimento", b =>
+                {
+                    b.HasOne("PayWiseBackend.Domain.Models.Conta", "Conta")
+                        .WithOne("Investimento")
+                        .HasForeignKey("PayWiseBackend.Domain.Models.Investimento", "ContaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conta");
+                });
+
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Sessao", b =>
                 {
                     b.HasOne("PayWiseBackend.Domain.Models.Cliente", "Cliente")
@@ -398,6 +435,8 @@ namespace PayWiseBackend.Migrations.SqliteMigrations
                 {
                     b.Navigation("Historico")
                         .IsRequired();
+
+                    b.Navigation("Investimento");
                 });
 
             modelBuilder.Entity("PayWiseBackend.Domain.Models.Historico", b =>

@@ -30,14 +30,14 @@
 <button (click)="visibilidadeTexto()">Entrar</button> -->
 
 
-<!-- HEADER COM MENU -->
+<!-- HEADER COM MENU HAMBURGUER-->
 
 <header>
     <div class="container">
         <div class="row">
            <div class="col-sm-3 col-3">
                 <div class="logo-container">
-                    <img [src]="getImagePath()" alt="Logo PayWise" class="logo">
+                    <img [src]="getImagePath()" alt="Logo PayWise" class="logo" [routerLink]="['/home']">
                 </div>
            </div>
            <div class="col-md-9 col-sm-9 col-9  text-end">
@@ -46,10 +46,9 @@
                 </div>
                 <div class="desktop_menu" [class.mobile-menu]="menuValue">
                     <ul>
-                        <li (click)="closeMenu()" [routerLink]="['/home']" >Home</li>
-                        <li (click)="closeMenu()" [routerLink]="['/historico']" id="historico">Histórico</li>
-                        <li (click)="closeMenu()" [routerLink]="['/cartao']" >Cartão</li>
-                        <li (click)="closeMenu()" [routerLink]="['/deposito']" >Depósito</li>
+                        <li *ngFor="let item of headerService.menuItems$ | async">
+                            <a [routerLink]="item.route"> {{ item.name }} </a>
+                        </li>
                     </ul>
                 </div>
            </div>

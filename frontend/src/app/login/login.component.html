@@ -1,8 +1,8 @@
 <div *ngIf="showAlert" class="alerta position-fixed text-center">
   Login realizado! Redirecionando...
 </div>
-<div class="background">
-  <div class="container">
+<div class="background pb-5">
+  <div class="container pb-5">
     <img src="../../assets/logotypes-login-cadastro/logopronta.svg" alt="Logo do Banco" class="logo">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container col-md-6 col-lg-4">
       <div class="form-group">

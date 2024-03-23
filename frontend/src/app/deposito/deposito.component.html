@@ -1,9 +1,9 @@
 <div class="container col-md-6">
   <div class="form-container">
     <!-- Se houver um alerta a ser mostrado -->
-    <div *ngIf="showAlert" class="alert alert-success" role="alert">
+    <!-- <div *ngIf="showAlert" class="alert alert-success" role="alert">
       Depósito realizado com sucesso!
-    </div>
+    </div> -->
 
     <h2>Depósito Bancário</h2>
     <form [formGroup]="depositoForm" (submit)="onSubmit()" class="">

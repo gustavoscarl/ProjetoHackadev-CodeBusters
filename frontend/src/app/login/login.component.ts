@@ -57,8 +57,8 @@ export class LoginComponent {
           }, 1200);
         },
         error: (error) => {
-          if (error.status === 400) {
-            this.mostrarMensagemDeErro('Credenciais inválidas. Por favor, verifique seus dados ou realize o Cadastro.');
+          if (error.status === 404) {
+            this.mostrarMensagemDeErro('Credenciais inválidas. Por favor, verifique seus dados ou realize o Cadastro.')
           }
         }
       });

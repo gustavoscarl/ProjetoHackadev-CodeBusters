@@ -1,0 +1,51 @@
+<!-- HEADER -->
+        <!-- <div class="col-12 mt-1 d-flex text-start d-lg-none justify-content-around">
+            <div>
+              <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/historico/seta-dark.svg" alt=""></a>
+              <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/historico/seta-light.svg" alt=""></a>
+            </div>
+            <div>
+              <img id="lupa-dark" src="../../assets/historico/lupa-dark.svg" alt="">
+              <img id="lupa-light" src="../../../assets/historico/lupa-light.svg" alt="">
+            </div>
+          </div> -->
+
+<div class="container background">
+
+    <!-- LADO ESQUERDO DA PAGINA
+    <app-resumo-hist></app-resumo-hist> -->
+
+    <!-- LADO DIREITO DA PAGINA - HISTÓRICO DE TRANSAÇÕES -->  
+    <div class="historico">
+            <!-- CARD HISTÓRICO DE TRANSAÇÕES -->
+            <div class="data">
+                <p> Histórico de Transações </p>
+            </div>
+            
+    <div class="transationcard" *ngFor="let dado of dados.transacoes">
+        <div class="cardItens">
+            <div class="resumo">
+
+                    <div class="resumoDir">
+                        <div id="img">
+                            <img src="../../../assets/historico/Shop.svg" alt="">
+                        </div>
+                        <div class="textoCard">
+                            <p>  {{ dado.tipo  }}       </p>
+                            <p>  {{ dado.descricao  }}  </p>
+                         </div>
+                    </div>
+                        
+                <div class="valor">
+                    <div class="infoCardDir">
+                        <span> {{ dado.valor | currency:'BRL' }}     </span>
+                        <span> {{ dado.horario | date: 'medium' }}  </span>
+                    </div>
+                    <div class="iconeDir">
+                        <img src="../../../assets/historico/CashCoin.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>

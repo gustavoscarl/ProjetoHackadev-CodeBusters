@@ -37,7 +37,20 @@ public class PaywiseDbContextSqlite : DbContext
             .HasForeignKey<Historico>(historico => historico.ContaId);
 
         modelBuilder.Entity<Conta>()
+            .HasOne(conta => conta.Investimento)
+            .WithOne(investimento => investimento.Conta)
+            .HasForeignKey<Investimento>(investimento => investimento.ContaId);
+
+        modelBuilder.Entity<Conta>()
             .Property(conta => conta.Saldo)
+            .HasColumnType("decimal(19,4)");
+
+        modelBuilder.Entity<Investimento>()
+            .Property(investimento => investimento.Valor)
+            .HasColumnType("decimal(19,4)");
+
+        modelBuilder.Entity<Investimento>()
+            .Property(investimento => investimento.Taxa)
             .HasColumnType("decimal(19,4)");
 
         modelBuilder.Entity<Historico>()
@@ -58,4 +71,5 @@ public class PaywiseDbContextSqlite : DbContext
     public DbSet<Conta> Contas { get; set; }
     public DbSet<Transacao> Transacoes { get; set; }
     public DbSet<Historico> Historicos { get; set; }
+    public DbSet<Investimento> Investimentos { get; set; }
 }
