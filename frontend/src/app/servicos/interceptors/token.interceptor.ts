@@ -25,9 +25,20 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
+    // const decodedToken: any = jwtDecode(token);
+    // const tokenExpirationTime = decodedToken && decodedToken.exp ? decodedToken.exp * 1000 : 0;
+    // const currentTime = Date.now();
+    // const timeRemaining = tokenExpirationTime - currentTime;
+    // const isAboutToExpire = timeRemaining <= 2000;
 
     if (!token) {
-      return next.handle(request); // Sem token, prossegue com a requisição normalmente
+      const cloned = request.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
+      return next.handle(cloned);
     }
 
     if(token) {
@@ -40,31 +51,28 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(cloned)
     }
 
-    const decodedToken: any = jwtDecode(token);
-    const tokenExpirationTime = decodedToken && decodedToken.exp ? decodedToken.exp * 1000 : 0;
-    const currentTime = Date.now();
-    const timeRemaining = tokenExpirationTime - currentTime;
-    const isAboutToExpire = timeRemaining <= 3000;
 
-    if (isAboutToExpire) {
-      return this.authService.renewToken().pipe(
-        switchMap((data: TokenApiModel) => {
-          this.authService.guardarToken(data.accessToken);
-          const clonedReq = request.clone({
-            setHeaders: {
-              Authorization: `Bearer ${data.accessToken}`,
-            },
-            withCredentials: true,
-          });
-          return next.handle(clonedReq);
-        }),
-        catchError((error) => {
-          console.error('Error refreshing token:', error);
-          this.authService.logout();
-          return throwError('Token renewal failed');
-        })
-      );
-    }
+
+    // if (token && isAboutToExpire) {
+    //   return this.authService.renewToken().pipe(
+    //     switchMap((data: any) => {
+    //       console.log(data)
+    //       this.authService.guardarToken(data);
+    //       const clonedReq = request.clone({
+    //         setHeaders: {
+    //           Authorization: `Bearer ${data.accessToken}`,
+    //         },
+    //         withCredentials: true,
+    //       });
+    //       return next.handle(clonedReq);
+    //     }),
+    //     catchError((error) => {
+    //       console.error('Error refreshing token:', error);
+    //       this.authService.logout();
+    //       return throwError('Token renewal failed');
+    //     })
+    //   );
+    // }
 
     // Se o token não está próximo da expiração, prossegue com a requisição normalmente
     return next.handle(request);
