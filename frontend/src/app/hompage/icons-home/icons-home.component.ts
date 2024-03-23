@@ -14,7 +14,7 @@ import { InputserviceService } from '../../servicos/inputservice.service';
 })
 
 export class IconsHomeComponent {
-  clienteData: Cliente | undefined;
+  clienteData: any | undefined;
   isUserAccount?:boolean;
   userName?: string;
 
@@ -24,13 +24,13 @@ export class IconsHomeComponent {
 
   ngOnInit() {
     this.contaService.pegarCliente().subscribe({
-      next: ((data: Cliente) => {
+      next: ((data: any) => {
         console.log(data)
-        this.clienteData = data as Cliente;
+        this.clienteData = data;
         console.log(this.clienteData)
-        this.isUserAccount = this.clienteData?.temConta;
-        this.inputService.nomeDoUsuario = this.clienteData?.nome
-        this.inputService.temConta = this.clienteData?.temConta
+        this.isUserAccount = this.clienteData.clienteResponse.temConta;
+        this.inputService.nomeDoUsuario = this.clienteData.clienteResponse.nome
+        this.inputService.temConta = this.clienteData.clienteResponse.temConta
         this.inputService.enviarDadosProntos()
       }),
       error: (error) => {
