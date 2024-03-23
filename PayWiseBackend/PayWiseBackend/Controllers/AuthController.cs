@@ -46,7 +46,7 @@ public class AuthController : Controller
         {
             HttpOnly = true,
             SameSite = SameSiteMode.Strict,
-            Expires = DateTime.Now.AddSeconds(10)
+            Expires = DateTime.Now.AddHours(1)
         });
 
         AuthResponseDTO authResponse = new() { AccessToken = accessToken };

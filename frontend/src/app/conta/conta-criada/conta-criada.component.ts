@@ -53,8 +53,8 @@ export class ContaCriadaComponent {
     this.contaInfoService.getInformacoes().subscribe({
       next: ((data: any) => {
         console.log(data)
-        this.numeroAgencia = data.conta.agencia;
-        this.numeroConta = data.conta.numero;
+        this.numeroAgencia = data.agencia;
+        this.numeroConta = data.numero;
       }),
       error: (error) => {
         console.error('Error fetching client data:', error);
