@@ -6,6 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { PixService } from '../servicos/pix.service';
 import { Pix } from '../modelos/Pix'
+=======
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-pix',

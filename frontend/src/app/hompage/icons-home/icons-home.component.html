@@ -37,38 +37,61 @@
           </div>
           <p class="icons-sub-text">Saque</p>
         </div>
-        <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
-          <div class="icons-sub-img">
-            <img
-              src="../../assets/img_icons/investimentos.svg"
-              width="110"
-              height="110"
-              alt="Ícone de computador com gráfico ascendente com símbolo de cifrão para referenciar a opção para investimentos"
-            />
+
+<!-- INVESTIMENTOS -->
+          <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
+            <a *ngIf="isUserAccount" [routerLink]="['/investimento']">
+              <div class="icons-sub-img">
+                <img
+                  src="../../assets/img_icons/investimentos.svg"
+                  width="110"
+                  height="110"
+                  alt="Ícone de computador com gráfico ascendente com símbolo de cifrão para referenciar a opção para investimentos"
+                />
+              </div>
+            </a>
+            <div *ngIf="!isUserAccount" class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/investimentos.svg"
+                width="110"
+                height="110"
+                alt="Ícone de computador com gráfico ascendente com símbolo de cifrão para referenciar a opção para investimentos"
+              />
+            </div>
+            <p class="icons-sub-text translate">Investimentos</p>
           </div>
-          <p class="icons-sub-text translate">Investimentos</p>
-        </div>
+
       </div>
+      <!-- PIX -->
       <div class="row">
         <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
-          <div class="icons-sub-img">
+          <div *ngIf="!isUserAccount" class="icons-sub-img">
             <img
               src="../../assets/img_icons/pix.svg"
               width="110"
               height="110"
-              [routerLink]="['/pix']"
               alt="Ícone de QR code para referenciar a opção para pagamento via pix"
             />
           </div>
+          <a *ngIf="isUserAccount" [routerLink]="['/pix']">
+            <div class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/pix.svg"
+                width="110"
+                height="110"
+                alt="Ícone de QR code para referenciar a opção para pagamento via pix"
+              />
+            </div>
+          </a>
           <p class="icons-sub-text">Pix</p>
         </div>
+        <!-- Transferencia -->
         <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
           <div *ngIf="!isUserAccount" class="icons-sub-img">
             <img
               src="../../assets/img_icons/pagar.svg"
               width="110"
               height="110"
-              [routerLink]="['/pix']"
               alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
             />
           </div>
@@ -84,6 +107,7 @@
           </a>
           <p class="icons-sub-text text-start" id="transferencia">Transferência</p>
         </div>
+
         <!-- // DEPÓSITO -->
           <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
             <div *ngIf="!isUserAccount" class="icons-sub-img">
