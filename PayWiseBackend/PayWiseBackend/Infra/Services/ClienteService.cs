@@ -23,6 +23,13 @@ public class ClienteService : IClienteService
         _mapper = mapper;
     }
 
+    public async Task<RetrieveClienteDTO> BuscarClienteDTOPorId(int? clienteId)
+    {
+        var cliente = await BuscarClientePorId(clienteId);
+        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
+        return clienteResponse;
+    }
+
     public async Task<Cliente?> BuscarClientePorId(int? clienteId)
     {
         var cliente = await _contextSqlite.Clientes.FindAsync(clienteId);
@@ -31,7 +38,7 @@ public class ClienteService : IClienteService
         return cliente;
     }
 
-    public async Task<RetrieveClienteDTO> CadastrarCliente(CreateClientDTO novoCliente)
+    public async Task<CreateClienteResponseDTO> CadastrarCliente(CreateClientDTO novoCliente)
     {
         string senhaHash = _authService.HashPassword(novoCliente.Senha);
         novoCliente.Senha = senhaHash;
@@ -43,7 +50,7 @@ public class ClienteService : IClienteService
 
         var cliente = result.Entity;
 
-        var clienteSalvo = _mapper.Map<RetrieveClienteDTO>(cliente);
+        var clienteSalvo = _mapper.Map<CreateClienteResponseDTO>(cliente);
 
         return clienteSalvo;
     }

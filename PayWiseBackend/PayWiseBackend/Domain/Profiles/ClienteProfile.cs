@@ -15,6 +15,8 @@ namespace PayWiseBackend.Domain.Profiles
                     opt.PreCondition(src => src.Conta != null && src.Conta.EstaAtiva);
                     opt.MapFrom(src => src.Conta.Id);
                 });
+            CreateMap<Cliente, CreateClienteResponseDTO>()
+                .ForMember(dest => dest.Cliente, opt => opt.MapFrom(src => src));
         }
     }
 }
