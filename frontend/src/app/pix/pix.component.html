@@ -1,3 +1,8 @@
+<div class="container col-md-6">
+  <div class="form-container">
+    <div *ngIf="showAlert" class="alerta position-fixed">
+      Pix efetuado com sucesso!
+    </div>
 <div class="transacao-pix">
   <div class="imagens-container">
     <div class="imagem-esquerda">
@@ -5,43 +10,125 @@
         <img src="../../assets/pix/ArrowLeftCircleFill.svg" alt="Imagem Esquerda" class="imagem" />
       </a>
     </div>
-    <div class="imagem-direita">
-      <img src="../../assets/pix/Search.svg" alt="Imagem Direita" class="imagem" />
+  <div class="transacao-pix">
+    <div class="imagens-container">
+      <div class="imagem-esquerda">
+        <a href="#" id="botao-esquerda">
+          <img
+            src="../../assets/pix/ArrowLeftCircleFill.svg"
+            alt="Imagem Esquerda"
+            class="imagem"
+          />
+        </a>
     </div>
+      <div class="imagem-direita">
+        <img
+          src="../../assets/pix/Search.svg"
+          alt="Imagem Direita"
+          class="imagem"
+        />
+      </div>
   </div>
 
   <div class="titulo">
     <div class="imagem-container">
-      <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
+      <img
+        src="../../assets/pix/Rectangle 16.svg "
+        alt="imagem do icone"
+        class="img-logo"
+      />
     </div>
     <div class="texto-container">
-      <h1>NOVA</h1>
-      <h2>TRANSAÇÃO</h2>
+      <h2>Nova Transação</h2>
     </div>
   </div>
 
-  <form class="transacao-pix-form" (ngSubmit)="realizarTransacaoPix()">
+  <form
+    [formGroup]="pixForm"
+    class="transacao-pix-form"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="form-group">
-      <label for="valor" class="label">Valor:</label>
-      <input type="number" id="valor" name="valor" [(ngModel)]="valor" required />
+      <label for="valor" class="label">Valor</label>
+      <input
+        type="text"
+        id="valor"
+        class="input-pix"
+        currencyMask
+         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }"
+        name="valor"
+        placeholder="R$ 0,00"
+        mask="0,00"
+        formControlName="valor"
+        [ngClass]="{
+          'border border-danger is-invalid':
+            pixForm.get('valor')?.invalid && pixForm.get('valor')?.touched
+        }"
+      />
+      <span
+        *ngIf="pixForm.get('valor')?.invalid && pixForm.get('valor')?.touched"
+        class="text-danger d-inline invalid-feedback"
+      >
+        <p *ngIf="pixForm.get('valor')?.errors?.['required']">
+          Insira um valor válido.
+        </p>
+        <p *ngIf="pixForm.get('valor')?.errors?.['pattern']">
+          Somente números são aceitos.
+        </p>
+      </span>
     </div>
 
     <div class="form-group">
-      <label for="chavePix" class="label">Chave PIX:</label>
-      <input type="text" id="chavePix" name="chavePix" [(ngModel)]="chavePix" required />
+      <label for="chavePix" class="label">Chave PIX</label>
+      <input
+        type="text"
+        id="chavePix"
+        class="input-pix"
+        name="chavePix"
+        placeholder="Insira a chave PIX"
+        formControlName="chavePix"
+        [ngClass]="{
+          'border border-danger is-invalid':
+            pixForm.get('chavePix')?.invalid && pixForm.get('chavePix')?.touched
+        }"
+      />
+      <span
+        *ngIf="
+          pixForm.get('chavePix')?.invalid && pixForm.get('chavePix')?.touched
+        "
+        class="text-danger d-inline invalid-feedback"
+      >
+        <p *ngIf="pixForm.get('chavePix')?.errors?.['required']">
+          Digite uma chave Pix válida.
+        </p>
+        <p *ngIf="pixForm.get('chavePix')?.errors?.['pattern']">
+          Somente são aceitos letras, números e os caracteres &commat; - &UnderBar; &period;
+        </p>
+      </span>
     </div>
 
     <div class="form-group">
       <label for="descricao" class="label">Descrição:</label>
-      <textarea id="descricao" name="descricao" [(ngModel)]="descricao"></textarea>
+      <textarea
+        id="descricao"
+        name="descricao"
+        placeholder="Insira uma descrição para esta transação pix"
+        formControlName="descricao"
+      ></textarea>
     </div>
 
     <a href="#">
-      <button type="submit">ENVIAR VALOR</button>
+      <button type="submit">Enviar valor</button>
     </a>
 
     <div>
-      <img src="../../assets/pix/Line 1.svg" alt=" Imagem de uma linha" class="linha" />
+      <img
+        src="../../assets/pix/Line 1.svg"
+        alt=" Imagem de uma linha"
+        class="linha"
+      />
     </div>
   </form>
+  </div>
+  </div>
 </div>
