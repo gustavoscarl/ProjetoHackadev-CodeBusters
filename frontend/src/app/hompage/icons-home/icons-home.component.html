@@ -63,7 +63,7 @@
           <p class="icons-sub-text">Pix</p>
         </div>
         <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
-          <div class="icons-sub-img">
+          <div *ngIf="!isUserAccount" class="icons-sub-img">
             <img
               src="../../assets/img_icons/pagar.svg"
               width="110"
@@ -72,6 +72,16 @@
               alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
             />
           </div>
+          <a *ngIf="isUserAccount" [routerLink]="['/transfer']">
+            <div class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/pagar.svg"
+                width="110"
+                height="110"
+                alt="Ícone de nota trocando de mão para referenciar a opção de pagamento"
+              />
+            </div>
+          </a>
           <p class="icons-sub-text text-start" id="transferencia">Transferência</p>
         </div>
         <!-- // DEPÓSITO -->

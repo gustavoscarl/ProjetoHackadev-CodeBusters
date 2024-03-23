@@ -32,27 +32,27 @@ public class ClienteController : ControllerBase
     [Authorize]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
     public async Task<ActionResult<RetrieveClienteDTO>> PegarPorId()
     {
         string accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
 
         int? id = _authService.GetClienteIdFromToken(accessToken);
+        if (!id.HasValue)
+            return Unauthorized(new { message = "Cliente não autorizada(o)." });
 
-        var cliente = await _clienteService.BuscarClientePorId(id);
+        var clienteResponse = await _clienteService.BuscarClienteDTOPorId(id);
 
-        if (cliente is null)
-            return NotFound(new { message = "Cliente não encontrada(o)." });
+        if (clienteResponse is null)
+            return Unauthorized(new { message = "Cliente não autorizada(o)." });
 
-        var clienteResponse = _mapper.Map<RetrieveClienteDTO>(cliente);
-
-        return Ok(new { clienteResponse });
+        return Ok(clienteResponse);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<IActionResult> Cadastrar([FromBody] CreateClientDTO novoCliente)
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ErrorResponseDTO))]
+    public async Task<ActionResult<CreateClienteResponseDTO>> Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
 
         bool doesClientAlreadyExist = await _clienteService.CheckClienteCredentials(novoCliente.Cpf, novoCliente.Rg);
@@ -62,6 +62,6 @@ public class ClienteController : ControllerBase
 
         var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
 
-        return CreatedAtAction(nameof(PegarPorId), new { message = "Cliente cadastrada(o).", cliente = clienteSalvo});
+        return CreatedAtAction(nameof(PegarPorId), clienteSalvo);
     }
 }
