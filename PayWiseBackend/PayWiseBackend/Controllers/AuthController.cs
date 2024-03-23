@@ -30,12 +30,12 @@ public class AuthController : Controller
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponseDTO))]
     public async Task<ActionResult<AuthResponseDTO>> Autenticar(CreateLoginDTO loginCredentials)
     {
         Cliente? cliente = await _authService.ValidateCredentials(loginCredentials);
         if (cliente is null)
-            return Unauthorized(new { message = "Credenciais inválidas." });
+            return NotFound(new { message = "Credenciais inválidas." });
 
         string accessToken = _authService.GenerateAccessToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);
         string refreshToken = _authService.GenerateRefreshToken(cliente.Id, cliente.TemConta ? cliente.Conta.Id : null);

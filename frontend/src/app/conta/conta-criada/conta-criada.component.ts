@@ -8,7 +8,7 @@ import { MudarContaService } from '../../servicos/mudar-conta.service';
 import { ContaInfoService } from '../../servicos/getcontainfo.service';
 import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
-import { Subscription, catchError, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { InfoConta } from '../../modelos/InfoConta';
 
 @Component({
@@ -22,9 +22,20 @@ export class ContaCriadaComponent {
   changeAccountForm!: FormGroup
   numeroConta?: any;
   numeroAgencia?: any;
-  private subscription: Subscription = new Subscription();
 
   ngOnInit() {
+
+ 
+      this.contaInfoService.getInformacoes().subscribe({
+        next: ((data: any) => {
+          console.log(data)
+          this.numeroAgencia = data.agencia;
+          this.numeroConta = data.numero;
+        }),
+        error: (error) => {
+          console.error('Error fetching client data:', error);
+        }
+      })
 
     this.changeAccountForm = new FormGroup({
       'pix-geral': new FormControl(null, 
@@ -46,15 +57,9 @@ export class ContaCriadaComponent {
 
   }
 
-  constructor(private contaService:MudarContaService, private authService: AuthService, private route: Router, private contaInfoService: ContaInfoService) {
-
-  }
+  constructor(private contaService:MudarContaService, private authService: AuthService, private route: Router, private contaInfoService: ContaInfoService) {}
 
 
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
   onSubmit(): void {
     document.querySelector('.mensagem-erro')?.classList.add('d-none')
@@ -91,8 +96,6 @@ export class ContaCriadaComponent {
             console.log(error);
           }
         });
-    } else {
-      this.mostrarMensagemDeErro('Preencha o formulário corretamente.')
     }
   }
 
