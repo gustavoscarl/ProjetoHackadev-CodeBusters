@@ -49,7 +49,7 @@ public class AuthService : IAuthService
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddDays(2),
+            Expires = type == TokenType.Refresh ? DateTime.UtcNow.AddDays(1) : DateTime.UtcNow.AddHours(1),
             Issuer = _config["Jwt:issuer"],
             Audience = _config["Jwt:audience"],
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
