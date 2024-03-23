@@ -3,8 +3,8 @@
 //     O código foi gerado por uma ferramenta.
 //     Versão de Tempo de Execução:4.0.30319.42000
 //
-//     As altera��es ao arquivo poder�o causar comportamento incorreto e ser�o perdidas se
-//     o c�digo for gerado novamente.
+//     As alterações ao arquivo poderão causar comportamento incorreto e serão perdidas se
+//     o código for gerado novamente.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PayWiseBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b9b5229173413b32c29fd4159202f59fdea949f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9dd5774117346c28e4697b74b40ba293ae3be43c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PayWiseBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PayWiseBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
