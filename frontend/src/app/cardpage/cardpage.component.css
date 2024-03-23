@@ -1,0 +1,39 @@
+* {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e5e5;
+  margin: 0;
+  padding: 0;
+}
+
+.cartao {
+  width: 300px;
+  height: 300px;
+}
+
+.info-pagina {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-texto {
+  width: 350px;
+  height: 350px;
+  background-color: rgb(130, 226, 255);
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 20px;
+  gap: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    background-color: #141414;
+  }
+}
