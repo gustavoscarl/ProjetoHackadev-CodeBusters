@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayWiseBackend.Domain.Context;
 
@@ -10,9 +11,11 @@ using PayWiseBackend.Domain.Context;
 namespace PayWiseBackend.Migrations.SqliteMigrations
 {
     [DbContext(typeof(PaywiseDbContextSqlite))]
-    partial class PaywiseDbContextSqliteModelSnapshot : ModelSnapshot
+    [Migration("20240323151732_AlterInvestimento")]
+    partial class AlterInvestimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
