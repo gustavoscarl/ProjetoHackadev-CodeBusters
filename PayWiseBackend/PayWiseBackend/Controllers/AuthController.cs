@@ -45,7 +45,8 @@ public class AuthController : Controller
         Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
         {
             HttpOnly = true,
-            SameSite = SameSiteMode.Strict
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTime.Now.AddSeconds(10)
         });
 
         AuthResponseDTO authResponse = new() { AccessToken = accessToken };
