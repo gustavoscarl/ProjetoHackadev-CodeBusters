@@ -13,7 +13,6 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 })
 export class DepositoComponent {
   formulario = new FormGroup({
-    contaId: new FormControl(''),
     valor: new FormControl(''),
     descricao: new FormControl('')
   });
@@ -24,6 +23,7 @@ export class DepositoComponent {
 
   enviar(): void {
     if (this.formulario.valid) {
+      console.log(this.formulario.value)
       this.depositoService
         .depositar(this.formulario.value)
         .subscribe(() => {

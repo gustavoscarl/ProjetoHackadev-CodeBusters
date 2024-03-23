@@ -24,8 +24,10 @@ export class IconsHomeComponent {
 
   ngOnInit() {
     this.contaService.pegarCliente().subscribe({
-      next: ((data: any) => {
-        this.clienteData = data.clienteResponse as Cliente;
+      next: ((data: Cliente) => {
+        console.log(data)
+        this.clienteData = data as Cliente;
+        console.log(this.clienteData)
         this.isUserAccount = this.clienteData?.temConta;
         this.inputService.nomeDoUsuario = this.clienteData?.nome
         this.inputService.temConta = this.clienteData?.temConta
