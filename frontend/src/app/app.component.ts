@@ -10,13 +10,14 @@ import { LoginComponent } from './login/login.component';
 import { Component } from '@angular/core';
 import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
 import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
+import { InvestimentosComponent } from './investimentos/investimentos.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [CommonModule, RouterOutlet, UserBalanceComponent, ContainerComponentComponent, IconsHomeComponent, HeaderComponent, LoginComponent, ContaCriadaComponent, CriarContaComponent],
+    imports: [CommonModule, RouterOutlet, UserBalanceComponent, ContainerComponentComponent, IconsHomeComponent, HeaderComponent, LoginComponent, ContaCriadaComponent, CriarContaComponent, InvestimentosComponent],
     providers: [AuthService]
 })
 

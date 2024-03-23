@@ -14,6 +14,7 @@ import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.componen
 import { HistoricoPageComponent } from './componentes/historico-page/historico-page.component';
 import { TransferenciaComponent } from './componentes/transferencia/transferencia.component';
 import { SaqueComponent } from './componentes/saque/saque.component';
+import { InvestimentosComponent } from './investimentos/investimentos.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'cartao', component: CardpageComponent },
   { path: 'transfer', component: TransferenciaComponent },
   { path: 'saque', component: SaqueComponent },
+  { path: 'investimento', component: InvestimentosComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];

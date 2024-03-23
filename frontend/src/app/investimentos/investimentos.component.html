@@ -1,0 +1,36 @@
+<div class="transacao-pix">
+  <div class="imagens-container">
+    <div class="imagem-esquerda">
+      <a [routerLink]="['/home']" id="botao-esquerda">
+        <img src="../../assets/pix/ArrowLeftCircleFill.svg" alt="Imagem Esquerda" class="imagem" />
+      </a>
+    </div>
+  </div>
+
+  <div class="titulo">
+    <div class="imagem-container">
+      <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
+    </div>
+    <div class="texto-container">
+      <h1>REALIZAR</h1>
+      <h2>TRANSFERENCIA</h2>
+    </div>
+  </div>
+
+  <form class="transacao-pix-form" (ngSubmit)="realizarInvestimento()">
+    <div class="form-group">
+      <label for="valor" class="label">Valor:</label>
+      <input type="number" id="valor" name="valor" placeholder="Exemplo: R$20,00" required />
+    </div>
+
+    <div class="form-group">
+      <label for="chavePix" class="label">Número da Conta Destino:</label>
+      <input type="text" id="chavePix" name="chavePix" placeholder="Exemplo: 0001" required />
+    </div>
+
+    <a href="#">
+      <button type="submit">FAZER INVESTIMENTO</button>
+    </a>
+
+  </form>
+</div>
