@@ -50,7 +50,7 @@ export class TransferenciaComponent {
       this.transferService.transferir(this.transferForm.value)
       .subscribe(retorno => {
         setTimeout(() => {
-          this.route.navigateByUrl('login')
+          this.route.navigateByUrl('home')
         }, 1000)
         console.log(retorno);
       });

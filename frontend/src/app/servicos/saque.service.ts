@@ -20,7 +20,7 @@ export class SaqueService {
   constructor(private http: HttpClient) { }
 
   efetuarSaque(saque: Saque): Observable<Saque> {
-    const url = 'http://localhost:5062/auth';
-    return this.http.post<Saque>(url, saque, this.httpOptions);
+    const url = 'http://localhost:5062/contas/sacar';
+    return this.http.put<Saque>(url, saque, this.httpOptions);
   }
 }

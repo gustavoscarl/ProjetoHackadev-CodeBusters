@@ -175,7 +175,7 @@ public class ContaController : ControllerBase
     [HttpPut("sacar")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ErrorResponseDTO))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponseDTO))]
     public async Task<ActionResult<RetrieveSaldoDTO>> Sacar(CreateTransacaoSaqueDTO dadosTransacao)
     {
         string? accessToken = HttpContext.Request.Headers["Authorization"].ToString().Split(' ')[1];
@@ -194,7 +194,7 @@ public class ContaController : ControllerBase
             return BadRequest(new { message = "Saldo insuficiente" });
 
         if (conta.Pin != dadosTransacao.Pin)
-            return Unauthorized(new { message = "Senha PIN inválida" });
+            return BadRequest(new { message = "Senha PIN inválida" });
 
         await _contaService.Sacar(conta, dadosTransacao);
 

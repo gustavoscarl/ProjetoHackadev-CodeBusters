@@ -24,13 +24,19 @@
        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000, min: 0.01 }" />
     </div>
     <div class="form-group">
-      <label for="pin" class="label">Confirmar PIN:</label>
-      <input type="number" id="pin" name="pin" placeholder="0000" formControlName="pin"  />
+      <label for="chave-pix" class="label">Chave PIX Destino:</label>
+      <input type="text" id="chave-pix" name="chave-pix" placeholder="Sua Chave Pix Aqui!"/>
     </div>
+    <div class="form-group">
+      <label for="pin" class="label">Confirmar PIN:</label>
+      <input type="password" id="pin" name="pin" placeholder="0000" mask="0000" formControlName="pin"  />
+    </div>
+
     <div class="form-group">
       <label for="descricao" class="label">Descrição:</label>
       <textarea id="descricao" name="descricao" placeholder="Escreva alguma descrição sobre o saque." formControlName="descricao"></textarea>
     </div>
+    
 
     <a href="#">
       <button type="submit">SACAR VALOR</button>

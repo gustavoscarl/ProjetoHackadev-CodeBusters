@@ -23,7 +23,7 @@ export class SaqueComponent {
         [
         Validators.required,
       ]),
-      'descricao': new FormControl(null),
+      'descricao': new FormControl(""),
       'pin': new FormControl(null,
         [
         Validators.required,
@@ -32,14 +32,20 @@ export class SaqueComponent {
   }
 
   ordenarSaque(): void {
-    if(this.saqueForm.valid){
+    if (this.saqueForm.valid) {
       this.saqueService.efetuarSaque(this.saqueForm.value)
-      .subscribe(retorno => {
-        setTimeout(() => {
-          this.route.navigateByUrl('login')
-        }, 1000)
-        console.log(retorno);
-      });
+        .subscribe(
+          retorno => {
+            setTimeout(() => {
+              this.route.navigateByUrl('home');
+            }, 1000);
+            console.log(retorno);
+          },
+          error => {
+            console.log(error)
+            alert('Erro ao efetuar saque: ' + error.error.message);
+          }
+        );
     }
   }
 }
