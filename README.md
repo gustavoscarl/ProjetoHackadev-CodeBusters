@@ -48,31 +48,31 @@ Projeto Hackadev realizado no Bootcamp Sharp Coders da Imã Tech em parceria com
 
 <div align="center" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.875rem;">
 <div>
-<img src="https://avatars.githubusercontent.com/u/96749239?v=4" height="100" style="display:block; margin-top:.5rem" />
+<img src="https://avatars.githubusercontent.com/u/96749239?v=4" height="100" style="display:block; margin-top:.5rem" /><br>
 <a href="https://github.com/AlanEduardoCruz">Alan Eduardo</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/137793024?v=4" height="100" style="display:block; margin-top:.5rem" />
+<img src="https://avatars.githubusercontent.com/u/137793024?v=4" height="100" style="display:block; margin-top:.5rem" /><br>
 <a href="https://github.com/AlxdPaiva">Alexandre Paiva</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/101590857?v=4/" height="100" style="display:block; margin-top:.5rem"/>
+<img src="https://avatars.githubusercontent.com/u/101590857?v=4/" height="100" style="display:block; margin-top:.5rem"/><br>
 <a href="https://github.com/CamilaSBVieira">Camila Vieira</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/110201520?v=4" height="100" style="display:block; margin-top:.5rem"/>
+<img src="https://avatars.githubusercontent.com/u/110201520?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
 <a href="https://github.com/daytrevisan">Dayane Trevisan</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/104864916?v=4" height="100" style="display:block; margin-top:.5rem"/>
+<img src="https://avatars.githubusercontent.com/u/104864916?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
 <a href="https://github.com/E-A-D-S">Eduardo Santos</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/104444836?v=4" height="100" style="display:block; margin-top:.5rem"/>
+<img src="https://avatars.githubusercontent.com/u/104444836?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
 <a href="https://github.com/gustavoscarl">Gustavo Lucianelli</a>
 </div>
 <div>
-<img src="https://avatars.githubusercontent.com/u/86315467?v=4" height="100" style="display:block; margin-top:.5rem"/>
+<img src="https://avatars.githubusercontent.com/u/86315467?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
 <a href="https://github.com/Psbrandes">Pedro Brandes</a>
 </div>
 </div>
