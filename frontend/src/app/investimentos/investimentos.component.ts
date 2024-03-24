@@ -25,7 +25,7 @@ formInvestimento!: FormGroup;
 constructor(private investimentoService: InvestimentosService, private route: Router) {}
 
 ngOnInit() {
-  this.investimentoService.getInformacoesInvestimento()
+ 
 
   this.formInvestimento = new FormGroup({
     'valor': new FormControl(null, 

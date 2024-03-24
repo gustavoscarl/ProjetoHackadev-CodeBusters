@@ -37,5 +37,5 @@ export const routes: Routes = [
   { path: 'saque', component: SaqueComponent },
   { path: 'investimento', component: InvestimentosComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: '/login' }
 ];
