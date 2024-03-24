@@ -21,6 +21,11 @@
         placeholder="0000" 
         mask="0000"
         formControlName="pin"/>
+        <span *ngIf="pinForm.get('pin')?.invalid && pinForm.get('pin')?.touched"
+        class="text-danger d-inline invalid-feedback">
+            <p *ngIf="pinForm.get('pin')?.errors?.['minlength']">Por favor, digite um PIN com 4 números.</p>
+            <p *ngIf="pinForm.get('pin')?.errors?.['pattern']">Somente números são aceitos.</p>
+        </span>
       </div>
       <div class="form-group">
         <label for="pin-confirm">Confirmar PIN:</label>
@@ -30,6 +35,10 @@
         placeholder="0000" 
         mask="0000"
         formControlName="pin-confirm"/>
+        <span *ngIf="pinForm.get('pin-confirm')?.invalid && pinForm.get('pin-confirm')?.touched"
+        class="text-danger d-inline invalid-feedback">
+            <p *ngIf="pinForm.get('pin')?.value != pinForm.get('pin-confirm')?.value">Por favor, digite o mesmo PIN.</p>
+        </span>
       </div>
       <div class="form-group">
         <button type="submit" class="btn-reset login-button">Cadastrar Conta</button>

@@ -38,10 +38,7 @@ export class TransferenciaComponent {
         [
         Validators.required,
       ]),
-      'descricao': new FormControl(null, 
-        [
-        Validators.required,
-      ]),
+      'descricao': new FormControl("")
     })
   }
 
@@ -49,11 +46,14 @@ export class TransferenciaComponent {
     if (this.transferForm.valid) {
       this.transferService.transferir(this.transferForm.value)
       .subscribe(retorno => {
-        setTimeout(() => {
+          alert('Transferência realizada com sucesso!')
           this.route.navigateByUrl('home')
-        }, 1000)
-        console.log(retorno);
-      });
+        }, error => {
+          alert(`Erro ao transferir: ${error.error.message}`);
+        });
+    } else {
+      console.log('Formulário inválido!');
+      }
     }
   }
-}
+

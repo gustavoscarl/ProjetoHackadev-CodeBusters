@@ -157,7 +157,7 @@ input[type="password"] {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: black;
+    background-color: #141414;
     color: #fff;
   }
 
@@ -188,7 +188,7 @@ input[type="password"] {
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -100px;
-    background-color: black;
+    background-color: #141414;
   }
 
   .link-estilo:hover,
@@ -259,7 +259,7 @@ input[type="password"] {
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -400px;
-    background-color: black;
+    background-color: #141414;
   }
 }
 

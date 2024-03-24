@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DepositoService } from '../servicos/Deposito.Service'; // Importe o serviço de depósito
 import { CommonModule } from '@angular/common';
 import { NgxCurrencyDirective } from 'ngx-currency';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-deposito',
@@ -20,7 +20,7 @@ export class DepositoComponent {
 
   depositos: any[] = []; // Seu array de depósitos aqui
 
-  constructor(private depositoService: DepositoService) { }
+  constructor(private depositoService: DepositoService, private route: Router) { }
 
   enviar(): void {
     if (this.formulario.valid) {
@@ -30,8 +30,11 @@ export class DepositoComponent {
         .subscribe(() => {
           this.formulario.reset();
           alert('Deposito realizado com sucesso!');
+          setTimeout(() => {
+            this.route.navigate(['home'])
+          }, 250);
         }, error => {
-          alert('Erro ao depositar:');
+          alert(`Erro ao depositar:${error.error.message}`);
         });
     } else {
       console.log('Formulário inválido!');

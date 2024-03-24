@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CriarConta } from '../../modelos/CriarConta';
 import { AuthService } from '../../auth.service';
+import { confirmarSenha } from '../../validators/confirmasenha';
 
 @Component({
   selector: 'app-criar-conta',
@@ -27,7 +28,8 @@ pinForm!: FormGroup
       ]),
       'pin-confirm': new FormControl(null, 
         [
-        Validators.required 
+        Validators.required,
+        confirmarSenha('pin')
       ])})
 
 
@@ -47,12 +49,13 @@ pinForm!: FormGroup
             console.log(retorno)
             this.authService.guardarToken(retorno.accessToken)
             this.pinForm.reset();
+            alert('Conta cadastrada!')
             setTimeout(() => {
               this.route.navigate(['/home']);
             }, 1200);
           },
           error: (error) => {
-            console.log(error);
+            alert(`Erro: ${error.error.message}`);
           }
         });
     }

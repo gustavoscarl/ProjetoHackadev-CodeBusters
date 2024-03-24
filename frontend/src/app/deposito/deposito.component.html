@@ -15,7 +15,7 @@
         <input type="tel"
         class="rounded shadow-sm"
          currencyMask
-         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 }" 
+         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000 , min: 0.01}" 
          id="valor" 
          formControlName="valor" 
          placeholder="Digite o valor a ser depositado" 
