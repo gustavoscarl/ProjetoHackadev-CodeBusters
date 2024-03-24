@@ -44,6 +44,7 @@ ngOnInit() {
 
   this.investimentoService.getInformacoesInvestimento()
       .pipe(
+        take(1),
         catchError((error) => {
           if (error.status === 404) {
             this.temInvestimento = false;

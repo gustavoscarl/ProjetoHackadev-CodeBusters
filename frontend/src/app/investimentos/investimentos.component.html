@@ -22,7 +22,7 @@
       <p>Seu valor investido é: {{investimento.valor | currency:'BRL'}}</p>
     </div>
     <div>
-      <p>Você poderá retirar em: {{(investimento.tempo) | date}}</p>
+      <p>Você receberá automaticamente em: {{(investimento.tempo) | date}}</p>
     </div>
     <div class="form-group">
       <p>Seu valor a ser retornado é: {{investimento.valor + investimento.valor * 0.02 | currency:'BRL'}}</p>
