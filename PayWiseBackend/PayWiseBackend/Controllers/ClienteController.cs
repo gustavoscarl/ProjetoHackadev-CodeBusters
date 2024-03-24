@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
-using BCrypt.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PayWiseBackend.Domain.Context;
 using PayWiseBackend.Domain.DTOs;
-using PayWiseBackend.Domain.Models;
 using PayWiseBackend.Infra.Services;
 
 namespace PayWiseBackend.Controllers;
@@ -41,7 +37,7 @@ public class ClienteController : ControllerBase
         if (!id.HasValue)
             return Unauthorized(new { message = "Cliente não autorizada(o)." });
 
-        var clienteResponse = await _clienteService.BuscarClienteDTOPorId(id);
+        var clienteResponse = await _clienteService.BuscarClienteDTOPorId(id.Value);
 
         if (clienteResponse is null)
             return Unauthorized(new { message = "Cliente não autorizada(o)." });
@@ -55,13 +51,20 @@ public class ClienteController : ControllerBase
     public async Task<ActionResult<CreateClienteResponseDTO>> Cadastrar([FromBody] CreateClientDTO novoCliente)
     {
 
-        bool doesClientAlreadyExist = await _clienteService.CheckClienteCredentials(novoCliente.Cpf, novoCliente.Rg);
+        bool clientAlreadyExists = await _clienteService.CheckClienteCredentials(novoCliente.Cpf, novoCliente.Rg);
 
-        if (doesClientAlreadyExist)
+        if (clientAlreadyExists)
             return Conflict(new { message = "Credenciais já cadastradas." });
 
-        var clienteSalvo = await _clienteService.CadastrarCliente(novoCliente);
+        var clienteCadastrado = await _clienteService.CadastrarCliente(novoCliente);
+        if (clienteCadastrado.Sucesso)
+        {
+            var clienteResponse = _mapper.Map<CreateClienteResponseDTO>(clienteCadastrado.Data);
 
-        return CreatedAtAction(nameof(PegarPorId), clienteSalvo);
+            return CreatedAtAction(nameof(PegarPorId), clienteResponse);
+        }
+        else
+            return BadRequest(new { message = clienteCadastrado.MensagemDeErro });
+
     }
 }
