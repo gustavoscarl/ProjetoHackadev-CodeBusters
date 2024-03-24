@@ -16,38 +16,52 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class LoginComponent {
-
-  constructor (private http: HttpClient ,private authService: AuthService, private loginService: LoginService, private route: Router) {}
-
+  senhaVisivel: boolean = false;
+  
+  constructor (private http: HttpClient ,private authService: AuthService, private loginService: LoginService, private route: Router) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.isdarkMode = event.matches;
+    });
+  }
+  isdarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  senhaVisibilidade() {
+    this.senhaVisivel = !this.senhaVisivel;
+  }
+  
+  alternarExibicaoSenha(): void {
+    this.senhaVisivel = !this.senhaVisivel;
+  }
+  
   // Form
   loginForm!: FormGroup;
   showAlert:boolean = false;
-
+  
   ngOnInit() {
     this.loginForm = new FormGroup({
       'cpf': new FormControl(null, 
         [
-        Validators.required,
-        Validators.pattern('^[0-9]+$'),
-        Validators.minLength(11),
+          Validators.required,
+          Validators.pattern('^[0-9]+$'),
+          Validators.minLength(11),
       ]),
       'senha': new FormControl(null, 
         [
-        Validators.required,
-      ]),
-    })
-  }
-
-
-  
-
-  onSubmit(): void {
-    const mensagemErroElemento = document.querySelector('.mensagem-erro');
-  
-    this.loginForm.markAllAsTouched();
-    if (this.loginForm.valid) { 
-      this.loginService.logarCliente(this.loginForm.value as Login).subscribe({
-        next: (retorno: any) => {
+          Validators.required,
+        ]),
+      })
+    }
+    
+    
+    
+    
+    onSubmit(): void {
+      const mensagemErroElemento = document.querySelector('.mensagem-erro');
+      
+      this.loginForm.markAllAsTouched();
+      if (this.loginForm.valid) { 
+        this.loginService.logarCliente(this.loginForm.value as Login).subscribe({
+          next: (retorno: any) => {
           this.authService.guardarToken(retorno.accessToken)
           mensagemErroElemento?.classList.add('d-none');
           this.loginForm.reset();
@@ -64,7 +78,7 @@ export class LoginComponent {
       });
     }
   }
-
+  
   mostrarMensagemDeErro(mensagem: string): void {
     const mensagemErroElemento = document.querySelector('.mensagem-erro');
     if (mensagemErroElemento) {
