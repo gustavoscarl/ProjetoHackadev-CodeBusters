@@ -39,6 +39,7 @@ export class HeaderComponent {
     this.route.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
+      this.loginHeader();
       this.exibirHome = this.deveExibirHome();
       this.exibirHistorico = this.deveExibirHistorico();
     });
@@ -78,6 +79,11 @@ export class HeaderComponent {
     exibirHistorico:boolean = false;
 
     // Funções para exibir ou ocultar o texto
+    loginHeader(): void {
+      this.exibirHome = !this.route.url.includes('/login'); // Hide 'Home' when the route is '/login'
+      this.exibirHistorico = false; // Always hide 'Historico' in the login route
+    }
+
     deveExibirHome():boolean{
       return this.route.url === '/home';
     }

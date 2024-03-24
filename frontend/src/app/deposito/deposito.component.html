@@ -1,4 +1,12 @@
+<div class="pt-5 pb-5 m-5 ps-5 d-flex text-start justify-content-start">
+  <div>
+    <a [routerLink]="['/home']"><img id="seta-dark" src="../../assets/conta-criada/seta-dark.svg" alt=""></a>
+    <a [routerLink]="['/home']"><img id="seta-light" src="../../../assets/conta-criada/seta-light.svg" alt=""></a>
+  </div>
+</div>
 <div class="container col-md-6">
+
+
   <div class="form-container">
     <h2>Depósito Bancário</h2>
     <form [formGroup]="formulario" (submit)="enviar()" class="">

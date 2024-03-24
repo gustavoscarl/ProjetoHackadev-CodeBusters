@@ -10,225 +10,225 @@
   margin-bottom: 20px;
 }
 
-  .forgot-password-text{
-    margin-top: -70px;
-    padding: 30px;
+.forgot-password-text {
+  margin-top: -70px;
+  padding: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid purple;
+  border-radius: 20px;
+}
+
+.links-container {
+  text-align: left;
+}
+
+button {
+  width: 25%;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: #7f53df;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.icon-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.icon-container a {
+  display: inline-block;
+}
+
+.icon-container i {
+  font-size: 40px;
+  color: #7f53df;
+  cursor: pointer;
+}
+
+/* Estilos para telas menores */
+@media only screen and (max-width: 480px) {
+  .link-sair {
+    margin-right: 10px;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: left;
-    font-weight: bold;
+
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: -60px;
   }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid purple;
-    border-radius: 20px;
-  }
-  
-  .links-container {
-    text-align: left;
-  }
-  
-  button {
-    width: 25%;
-    padding: 10px;
-    margin: 0 auto;
-    background-color: #7f53df;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
   .icon-container {
-    position: fixed;
-    bottom: 20px;
+    bottom: 20px; /* Alterado para ficar abaixo do botão de login */
     right: 20px;
   }
-  
-  .icon-container a {
-    display: inline-block;
-  }
-  
+
   .icon-container i {
-    font-size: 40px;
+    font-size: 30px;
+  }
+}
+
+/* Estilos para telas médias */
+@media only screen and (max-width: 560px) {
+  .icon-container {
+    right: 30px;
+  }
+
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-position-y: -100px;
+  }
+}
+
+@media only screen and (min-width: 567px) {
+  .icon-container {
+    right: 50px;
+  }
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: #fff;
+  }
+
+  .form-group input {
+    background-color: #353535;
+    border: 1px solid #000;
+    color: #fff;
+  }
+
+  .form-group input::placeholder {
+    color: #868686;
+  }
+
+  .form-group input:focus {
+    transition-duration: 300ms;
+    outline: 1px solid #a484e8;
+  }
+
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-dark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
+    background-color: #141414;
+  }
+
+  .link-estilo:hover,
+  .link-registro:hover {
     color: #7f53df;
-    cursor: pointer;
+    transition-duration: 300ms;
   }
-  
-  /* Estilos para telas menores */
-  @media only screen and (max-width: 480px) {
-    .link-sair {
-      margin-right: 10px;
-    }
-  
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position-y: -60px;
-    }
-    .icon-container {
-      bottom: 20px; /* Alterado para ficar abaixo do botão de login */
-      right: 20px;
-    }
-  
-    .icon-container i {
-      font-size: 30px;
-    }
+
+  .form-group input:focus {
+    transition-duration: 300ms;
+    outline: 1px solid #a484e8;
   }
-  
-  /* Estilos para telas médias */
-  @media only screen and (max-width: 560px) {
-    .icon-container {
-      right: 30px;
-    }
-  
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: fixed;
-      background-position-y: -100px;
-    }
+
+  .login-button:hover {
+    color: #cbbceb;
+    transition-duration: 300ms;
   }
-  
-  @media only screen and (min-width: 567px) {
-    .icon-container {
-      right: 50px;
-    }
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: -100px;
-    }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #e5e5e5;
+    color: #000000;
   }
-  
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: black;
-      color: #fff;
-    }
-  
-    .form-group input {
-      background-color: #353535;
-      border: 1px solid #000;
-      color: #fff;
-    }
-  
-    .form-group input::placeholder {
-      color: #868686;
-    }
-  
-    .form-group input:focus {
-      transition-duration: 300ms;
-      outline: 1px solid #a484e8;
-    }
-  
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/mobile-dark.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: -100px;
-      background-color: black;
-    }
-  
-    .link-estilo:hover,
-    .link-registro:hover {
-      color: #7f53df;
-      transition-duration: 300ms;
-    }
-  
-    .form-group input:focus {
-      transition-duration: 300ms;
-      outline: 1px solid #a484e8;
-    }
-  
-    .login-button:hover {
-      color: #cbbceb;
-      transition-duration: 300ms;
-    }
+
+  .form-group input {
+    color: #000;
   }
-  
-  @media (prefers-color-scheme: light) {
-    body {
-      background-color: #e5e5e5;
-      color: #000000;
-    }
-  
-    .form-group input {
-      color: #000;
-    }
-  
-    .link-estilo {
-      color: #3c1b83;
-    }
-  
-    .link-registro {
-      font-weight: bold;
-      text-decoration: none;
-      color: #3c1b83;
-    }
-  
-    .link-estilo:hover,
-    .link-registro:hover {
-      color: #7f53df;
-      transition-duration: 300ms;
-    }
-  
-    .form-group input:focus {
-      transition-duration: 300ms;
-      outline: 1px solid #a484e8;
-    }
-  
-    .login-button:hover {
-      color: #cbbceb;
-      transition-duration: 300ms;
-    }
-  
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/desktop-light.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: -100px;
-      background-color: #e5e5e5;
-    }
+
+  .link-estilo {
+    color: #3c1b83;
   }
-  
-  @media screen and (min-width: 768px) and (prefers-color-scheme: dark) {
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: -100px;
-      background-color: black;
-    }
+
+  .link-registro {
+    font-weight: bold;
+    text-decoration: none;
+    color: #3c1b83;
   }
-  
-  @media screen and (min-width: 768px) and (max-width: 1197px) and (prefers-color-scheme: light) {
-    .background {
-      background-position-y: -100px;
-    }
+
+  .link-estilo:hover,
+  .link-registro:hover {
+    color: #7f53df;
+    transition-duration: 300ms;
   }
-  
-  @media screen and (min-width: 1198px) and (max-width: 1440px) and (prefers-color-scheme: light) {
-    .background {
-      background-position-y: -350px;
-    }
+
+  .form-group input:focus {
+    transition-duration: 300ms;
+    outline: 1px solid #a484e8;
   }
-  
-  @media screen and (min-width: 1441px) and (max-width: 1558px) and (prefers-color-scheme: light) {
-    .background {
-      background-position-y: -400px;
-    }
+
+  .login-button:hover {
+    color: #cbbceb;
+    transition-duration: 300ms;
   }
+
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-light.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
+    background-color: #e5e5e5;
+  }
+}
+
+@media screen and (min-width: 768px) and (prefers-color-scheme: dark) {
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/desktop-dark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -100px;
+    background-color: #141414;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1197px) and (prefers-color-scheme: light) {
+  .background {
+    background-position-y: -100px;
+  }
+}
+
+@media screen and (min-width: 1198px) and (max-width: 1440px) and (prefers-color-scheme: light) {
+  .background {
+    background-position-y: -350px;
+  }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 1558px) and (prefers-color-scheme: light) {
+  .background {
+    background-position-y: -400px;
+  }
+}
 
 @media screen and (min-width: 1559px) and (max-width: 1825px) {
   .background {
@@ -299,29 +299,24 @@
   }
 }
 
-  @media screen and (min-width: 2556px) and (max-width: 2650px) and (prefers-color-scheme: light) {
-    .background {
-      background-position-y: -900px;
-      background-size: cover;
-      background-repeat: no-repeat;
-
-
-    }
+@media screen and (min-width: 2556px) and (max-width: 2650px) and (prefers-color-scheme: light) {
+  .background {
+    background-position-y: -900px;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
+}
 
-  @media screen and (min-width: 2651px) and (prefers-color-scheme: light) {
-    .background {
-      background-position-y: -950px;
-      background-size: cover;
-      background-repeat: no-repeat;
-
-
-    }
+@media screen and (min-width: 2651px) and (prefers-color-scheme: light) {
+  .background {
+    background-position-y: -950px;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
-  @media screen and (max-width: 668px) and (prefers-color-scheme: light) {
-    .background {
-      background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
-      background-position-y: -150px;
-    }
+}
+@media screen and (max-width: 668px) and (prefers-color-scheme: light) {
+  .background {
+    background-image: url("../../assets/logotypes-login-cadastro/mobile-light.svg");
+    background-position-y: -150px;
   }
-  
+}

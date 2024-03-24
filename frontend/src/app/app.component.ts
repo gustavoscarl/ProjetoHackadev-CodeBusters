@@ -1,4 +1,4 @@
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { UserBalanceComponent } from './hompage/user-balance/user-balance.component';
@@ -22,4 +22,9 @@ import { InvestimentosComponent } from './investimentos/investimentos.component'
 })
 
 export class AppComponent {
+    constructor(private router: Router) {}
+
+    isLoginPage(): boolean {
+      return this.router.url === '/login' || this.router.url === '/esquecer-senha' || this.router.url === '/cadastro';
+    }
 }

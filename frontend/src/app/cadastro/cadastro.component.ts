@@ -10,6 +10,7 @@ import { criarSenhaForte } from '../validators/senhaforte';
 import { confirmarSenha } from '../validators/confirmasenha';
 import { CadastroService } from '../servicos/cadastro.service';
 import { Cadastro } from '../modelos/Cadastro';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-cadastro',
@@ -161,13 +162,30 @@ export class CadastroComponent {
       };
 
       this.cadastroService.cadastrarCliente(cadastroData)
-        .subscribe(cadastro => {
-          setTimeout(() => {
-            this.route.navigateByUrl('login')
-          }, 1000)
-          this.showAlert = true;
-          console.log(cadastro);
-        });
+      .pipe(
+        catchError((error) => {
+          if (error.status === 409) {
+            this.mostrarMensagemDeErro('Usuário já cadastrado.');
+            // Ou você pode exibir a mensagem em um alerta, modal, etc.
+          }
+          return throwError(error); // Repassa o erro para o próximo manipulador de erro
+        })
+      )
+      .subscribe(cadastro => {
+        setTimeout(() => {
+          this.route.navigateByUrl('login')
+        }, 1000)
+        this.showAlert = true;
+        console.log(cadastro);
+      });
+    }
+  }
+
+  mostrarMensagemDeErro(mensagem: string): void {
+    const mensagemErroElemento = document.querySelector('.mensagem-erro');
+    if (mensagemErroElemento) {
+      mensagemErroElemento.textContent = mensagem;
+      mensagemErroElemento.classList.remove('d-none');
     }
   }
 }
