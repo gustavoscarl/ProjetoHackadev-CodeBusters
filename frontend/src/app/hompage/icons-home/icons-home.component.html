@@ -37,7 +37,7 @@
               alt="Ícone de celular e moedas para referenciar a opção para poupança"
             />
           </div>
-          <a [routerLink]="['/saque']">
+          <a *ngIf="isUserAccount"[routerLink]="['/saque']">
             <div class="icons-sub-img">
               <img
                 src="../../assets/img_icons/poupança.svg"
@@ -147,3 +147,4 @@
     </div>
   </div>
 </div>
+

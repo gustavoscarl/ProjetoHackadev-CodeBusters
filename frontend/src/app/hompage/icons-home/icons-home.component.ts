@@ -20,6 +20,7 @@ export class IconsHomeComponent {
 
 
 
+
   constructor(private contaService: HomePageService, private inputService: InputserviceService) { }
 
   ngOnInit() {
