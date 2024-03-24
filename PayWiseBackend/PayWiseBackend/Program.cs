@@ -35,6 +35,7 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IClienteService, ClienteService>();
 builder.Services.AddTransient<IContaService, ContaService>();
 builder.Services.AddTransient<IInvestimentoService, InvestimentoService>();
+builder.Services.AddTransient<ITransferenciaPixService, TransferenciaPixService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
