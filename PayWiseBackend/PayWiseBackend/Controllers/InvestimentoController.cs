@@ -12,14 +12,16 @@ public class InvestimentoController : ControllerBase
 
     private readonly IAuthService _authService;
     private readonly IInvestimentoService _investimentoService;
+    private readonly IContaService _contaService;
 
     public InvestimentoController(
         IAuthService authService, 
-        IInvestimentoService investimentoService
-        )
+        IInvestimentoService investimentoService,
+        IContaService contaService)
     {
         _authService = authService;
         _investimentoService = investimentoService;
+        _contaService = contaService;
     }
 
     [Authorize]
@@ -56,8 +58,8 @@ public class InvestimentoController : ControllerBase
         if (contaId is null)
             return NotFound(new { message = "Cliente não possui conta." });
 
-        if (novoInvestimento.Valor <= 100)
-            return BadRequest(new { message = "É necessário investir um valor." });
+        if (novoInvestimento.Valor < 100)
+            return BadRequest(new { message = "O investimento mínimo é de R$ 100.00." });
 
         novoInvestimento.Tempo = novoInvestimento.Tempo.Date;
         var proximoMes = DateTime.Now.AddMonths(1).Date;
@@ -65,9 +67,13 @@ public class InvestimentoController : ControllerBase
         if (novoInvestimento.Tempo < proximoMes)
             return BadRequest(new { message = "Investimento deve ser de pelo menos um mês." });
 
-        var investimentoResponse = await _investimentoService.CriarInvestimento(contaId.Value, novoInvestimento);
-        return CreatedAtAction(nameof(PegarPorId), investimentoResponse);
+        var conta = await _contaService.BuscarContaPorId(contaId);
 
+        if (conta.Saldo < novoInvestimento.Valor)
+            return BadRequest(new { message = "Conta com saldo insuficiente." });
+
+        var investimentoResponse = await _investimentoService.CriarInvestimento(conta, novoInvestimento);
+        return CreatedAtAction(nameof(PegarPorId), investimentoResponse);
 
     }
 }
