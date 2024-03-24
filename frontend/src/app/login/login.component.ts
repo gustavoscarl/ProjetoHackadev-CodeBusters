@@ -19,11 +19,11 @@ export class LoginComponent {
   senhaVisivel: boolean = false;
   
   constructor (private http: HttpClient ,private authService: AuthService, private loginService: LoginService, private route: Router) {
-    // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-    //   this.isdarkMode = event.matches;
-    // });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.isdarkMode = event.matches;
+    });
   }
-  // isdarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  isdarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   
   senhaVisibilidade() {
     this.senhaVisivel = !this.senhaVisivel;
