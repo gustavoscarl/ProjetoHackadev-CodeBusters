@@ -87,7 +87,7 @@ realizarInvestimento() {
       () => {
         this.formInvestimento.reset();
         alert('Investimento realizado com sucesso!');
-        this.route.navigate(['login'])
+        this.route.navigate(['home'])
       },
       (error) => {
         alert('Erro ao realizar investimento: ' + error.message);
