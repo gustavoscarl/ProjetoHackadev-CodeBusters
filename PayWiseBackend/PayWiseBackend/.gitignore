@@ -4,3 +4,4 @@ docker-compose.yml
 _ReSharper.*
 bin
 obj
+PayWiseBackend/PayWiseBackend/paywise_dev.db
