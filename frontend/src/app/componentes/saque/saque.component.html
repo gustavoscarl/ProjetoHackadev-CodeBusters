@@ -1,37 +1,40 @@
-<div class="transacao-pix">
-    <div class="imagens-container">
-      <div class="imagem-esquerda">
-        <a href="/home" id="botao-esquerda">
-          <img src="../../assets/pix/ArrowLeftCircleFill.svg" alt="Imagem Esquerda" class="imagem" />
-        </a>
-      </div>
-    </div>
-  
-    <div class="titulosaque">
-      <div class="imagem-container">
-        <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
-      </div>
-      <div class="texto-container">
-        <h1>ORDEM DE</h1>
-        <h2>SAQUE</h2>
-      </div>
-    </div>
-  
-    <form class="transacao-pix-form" (ngSubmit)="ordenarSaque()">
-      <div class="form-group">
-        <label for="valor" class="label">Valor:</label>
-        <input type="number" id="valor" name="valor" placeholder="Digite o valor que deseja sacar de sua conta." [(ngModel)]="valor" required />
-      </div>
-    
-      <div class="form-group">
-        <label for="descricao" class="label">Descrição:</label>
-        <textarea id="descricao" name="descricao" placeholder="Escreva alguma descrição sobre o saque." [(ngModel)]="descricao"></textarea>
-      </div>
-  
-      <a href="#">
-        <button type="submit">SACAR VALOR</button>
+<div class="transacao-pix ooii">
+  <div class="imagens-container">
+    <div class="imagem-esquerda">
+      <a href="/home" id="botao-esquerda">
+        <img src="../../assets/pix/ArrowLeftCircleFill.svg" alt="Imagem Esquerda" class="imagem" />
       </a>
-
-    </form>
+    </div>
   </div>
-  
+  <div class="titulosaque">
+    <div class="imagem-container">
+      <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
+    </div>
+    <div class="texto-container">
+      <h1>ORDEM DE</h1>
+      <h2>SAQUE</h2>
+    </div>
+  </div>
+
+  <form class="transacao-pix-form" (ngSubmit)="ordenarSaque()" [formGroup]="saqueForm">
+    <div class="form-group">
+      <label for="valor" class="label">Valor:</label>
+      <input type="tel" id="valor" name="valor" placeholder="Digite o valor que deseja sacar de sua conta." formControlName="valor"
+       currencyMask 
+       [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, max: 50000, min: 0.01 }" />
+    </div>
+    <div class="form-group">
+      <label for="pin" class="label">Confirmar PIN:</label>
+      <input type="number" id="pin" name="pin" placeholder="0000" formControlName="pin"  />
+    </div>
+    <div class="form-group">
+      <label for="descricao" class="label">Descrição:</label>
+      <textarea id="descricao" name="descricao" placeholder="Escreva alguma descrição sobre o saque." formControlName="descricao"></textarea>
+    </div>
+
+    <a href="#">
+      <button type="submit">SACAR VALOR</button>
+    </a>
+
+  </form>
+</div>

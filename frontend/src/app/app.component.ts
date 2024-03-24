@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 import { ContaCriadaComponent } from './conta/conta-criada/conta-criada.component';
 import { CriarContaComponent } from './conta/criar-conta/criar-conta.component';
 import { InvestimentosComponent } from './investimentos/investimentos.component';
-import { SaqueComponent } from './saque/saque.component';
+import { SaqueComponent } from './componentes/saque/saque.component';
 
 @Component({
     selector: 'app-root',

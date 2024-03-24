@@ -4,6 +4,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
 import { AuthService } from '../../auth.service';
 import { TransferenciaService } from '../../servicos/transferencia.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-transferencia',
@@ -19,7 +20,7 @@ export class TransferenciaComponent {
   contaDestino: number | undefined;
   descricao: string | undefined;
 
-  constructor(private authService: AuthService, private transferService: TransferenciaService) { }
+  constructor(private authService: AuthService, private transferService: TransferenciaService, private route: Router) { }
 
   
     
@@ -49,7 +50,7 @@ export class TransferenciaComponent {
       this.transferService.transferir(this.transferForm.value)
       .subscribe(retorno => {
         setTimeout(() => {
-          // this.route.navigateByUrl('login')
+          this.route.navigateByUrl('login')
         }, 1000)
         console.log(retorno);
       });
