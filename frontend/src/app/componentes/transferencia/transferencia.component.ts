@@ -4,12 +4,12 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
 import { AuthService } from '../../auth.service';
 import { TransferenciaService } from '../../servicos/transferencia.service';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-transferencia',
   standalone: true,
-  imports: [FormsModule, NgxCurrencyDirective , NgxMaskDirective, ReactiveFormsModule],
+  imports: [FormsModule, NgxCurrencyDirective , NgxMaskDirective, ReactiveFormsModule, RouterModule],
   templateUrl: './transferencia.component.html',
   styleUrl: './transferencia.component.css'
 })

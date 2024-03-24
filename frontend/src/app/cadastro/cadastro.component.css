@@ -6,6 +6,43 @@ html {
   background-color: #f0f0f0;
 }
 
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.exibirSenhaCadastro {
+  border: none;
+  background: none;
+  top: 31px;
+  position: absolute;
+  right: 45px;
+}
+
+.exibirSenhaCadastro {
+  border: none;
+  background: none;
+  align-items: end;
+}
+
+.darkOrLightMode {
+  height: 15px;
+  width: auto;
+}
+
+.exibirConfirmaçãoSenhaCadastro {
+  border: none;
+  background: none;
+  top: 31px;
+  position: absolute;
+  right: 45px;
+}
+
+.darkOrLightMode {
+  height: 15px;
+  width: auto;
+}
+
 input:-webkit-autofill {
   -webkit-text-fill-color: black !important;
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
@@ -135,6 +172,17 @@ h4 {
 }
 
 @media (prefers-color-scheme: dark) {
+  .exibirSenhaCadastro {
+    border: none;
+    background: none;
+    align-items: end;
+  }
+
+  .darkOrLightMode {
+    height: 15px;
+    width: auto;
+  }
+
   body {
     background-color: black;
   }

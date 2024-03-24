@@ -21,12 +21,33 @@ import { catchError, throwError } from 'rxjs';
 })
 
 export class CadastroComponent {
+  senhaCadastroVisivel: boolean = false;
+  confirmacaoSenhaCadastroVisivel: boolean = false;
+
+  isdarkModeSenha: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  isdarkModeConfirmacaoSenha: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  alternarExibicaoSenha(): void {
+    this.senhaCadastroVisivel = !this.senhaCadastroVisivel;
+  }
+
+  alternarExibicaoConfirmacaoSenha(): void {
+    this.confirmacaoSenhaCadastroVisivel = !this.confirmacaoSenhaCadastroVisivel;
+  }
 
 
   // Variavel CEP
   enderecoPorCep: Endereco | undefined;
 
-  constructor(private servico:EnderecoService, private cadastroService: CadastroService, private route:Router){}
+  constructor(private servico:EnderecoService, private cadastroService: CadastroService, private route:Router){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.isdarkModeSenha = event.matches;
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      this.isdarkModeConfirmacaoSenha = event.matches;
+    });
+  }
 
   // Função para obter o endereço e chamar a função que preenche após obter os endereços via API.
   obterEndereco():void{

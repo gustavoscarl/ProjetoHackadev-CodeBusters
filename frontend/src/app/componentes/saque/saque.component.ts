@@ -3,12 +3,12 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgxMaskDirective } from 'ngx-mask';
 import { SaqueService } from '../../servicos/saque.service';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-saque',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgxCurrencyDirective, NgxMaskDirective],
+  imports: [FormsModule, ReactiveFormsModule, NgxCurrencyDirective, NgxMaskDirective, RouterModule],
   templateUrl: './saque.component.html',
   styleUrl: './saque.component.css'
 })
