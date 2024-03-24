@@ -279,7 +279,7 @@ public class ContaController : ControllerBase
 
         var historicoResponse = await _contaService.BuscarHistoricoDaConta(contaId, from, to);
 
-        return Ok(historicoResponse);
+        return Ok(new { historico = historicoResponse });
     }
 
 }

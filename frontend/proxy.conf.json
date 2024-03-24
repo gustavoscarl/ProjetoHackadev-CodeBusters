@@ -1,7 +1,0 @@
-{
-  "/viacep": {
-    "target": "http://viacep.com.br",
-    "secure": false,
-    "changeOrigin": true
-  }
-}

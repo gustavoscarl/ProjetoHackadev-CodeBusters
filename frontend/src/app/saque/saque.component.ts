@@ -16,20 +16,20 @@ export class SaqueComponent {
   constructor() { }
 
   ngOnInit(){
-    this.saqueForm = new FormGroup({
-      'valor': new FormControl(null, 
-        [
-        Validators.required,
-      ]),
-      'tempo': new FormControl(null, 
-        [
-        Validators.required,
-      ]),
-      'pin': new FormControl(null,
-        [
-        Validators.required,
-      ])
-    })
+    // this.saqueForm = new FormGroup({
+    //   'valor': new FormControl(null, 
+    //     [
+    //     Validators.required,
+    //   ]),
+    //   'tempo': new FormControl(null, 
+    //     [
+    //     Validators.required,
+    //   ]),
+    //   'pin': new FormControl(null,
+    //     [
+    //     Validators.required,
+    //   ])
+    // })
   }
 
   ordenarSaque(): void {
