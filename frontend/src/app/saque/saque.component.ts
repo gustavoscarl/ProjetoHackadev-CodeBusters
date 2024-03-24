@@ -1,24 +1,39 @@
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgxCurrencyDirective } from 'ngx-currency';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-saque',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgxCurrencyDirective, NgxMaskDirective],
   templateUrl: './saque.component.html',
   styleUrl: './saque.component.css'
 })
 export class SaqueComponent {
-  
-  valor: number | undefined;
-  descricao: string | undefined;
-  data:number = Date.now();
+  saqueForm!: FormGroup
 
   constructor() { }
 
+  ngOnInit(){
+    this.saqueForm = new FormGroup({
+      'valor': new FormControl(null, 
+        [
+        Validators.required,
+      ]),
+      'tempo': new FormControl(null, 
+        [
+        Validators.required,
+      ]),
+      'pin': new FormControl(null,
+        [
+        Validators.required,
+      ])
+    })
+  }
+
   ordenarSaque(): void {
 
-    console.log('Saque em conta realizado:', { valor: this.valor, descricao: this.descricao, dia: this.data });
 
   }
 }

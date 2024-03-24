@@ -26,8 +26,10 @@
           </div>
           <p class="icons-sub-text" id="cartoes">Cartões</p>
         </div>
+        <!-- SAQUE -->
+
         <div class="icons-sub icons-user-card col-md-4 mx-2 md-mx-0 shadow-sm">
-          <div class="icons-sub-img">
+          <div *ngIf="!isUserAccount" class="icons-sub-img">
             <img
               src="../../assets/img_icons/poupança.svg"
               width="110"
@@ -35,6 +37,16 @@
               alt="Ícone de celular e moedas para referenciar a opção para poupança"
             />
           </div>
+          <a [routerLink]="['/saque']">
+            <div class="icons-sub-img">
+              <img
+                src="../../assets/img_icons/poupança.svg"
+                width="110"
+                height="110"
+                alt="Ícone de celular e moedas para referenciar a opção para poupança"
+              />
+            </div>
+          </a>
           <p class="icons-sub-text">Saque</p>
         </div>
 

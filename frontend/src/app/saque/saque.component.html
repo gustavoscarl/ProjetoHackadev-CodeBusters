@@ -1,12 +1,12 @@
 <div class="transacao-pix">
-    <div class="imagens-container">
+    <div class="imagens-container ms-5">
       <div class="imagem-esquerda">
         <a href="/home" id="botao-esquerda">
           <img src="../../assets/pix/ArrowLeftCircleFill.svg" alt="Imagem Esquerda" class="imagem" />
         </a>
       </div>
     </div>
-  
+  das
     <div class="titulosaque">
       <div class="imagem-container">
         <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
@@ -17,15 +17,18 @@
       </div>
     </div>
   
-    <form class="transacao-pix-form" (ngSubmit)="ordenarSaque()">
+    <form class="transacao-pix-form" (ngSubmit)="ordenarSaque()" [formGroup]="saqueForm">
       <div class="form-group">
         <label for="valor" class="label">Valor:</label>
-        <input type="number" id="valor" name="valor" placeholder="Digite o valor que deseja sacar de sua conta." [(ngModel)]="valor" required />
+        <input type="number" id="valor" name="valor" placeholder="Digite o valor que deseja sacar de sua conta." formControlName="valor" />
       </div>
-    
+      <div class="form-group">
+        <label for="pin" class="label">Confirmar PIN:</label>
+        <input type="number" id="pin" name="pin" placeholder="0000" formControlName="pin"  />
+      </div>
       <div class="form-group">
         <label for="descricao" class="label">Descrição:</label>
-        <textarea id="descricao" name="descricao" placeholder="Escreva alguma descrição sobre o saque." [(ngModel)]="descricao"></textarea>
+        <textarea id="descricao" name="descricao" placeholder="Escreva alguma descrição sobre o saque." ></textarea>
       </div>
   
       <a href="#">

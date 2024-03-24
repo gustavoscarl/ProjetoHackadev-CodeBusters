@@ -21,6 +21,10 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
     const refresh = this.authService.getRefreshToken();
 
+    if (req.url.includes('https://viacep.com.br/')) {
+      return next.handle(req); // Não intercepta a requisição
+    }
+
     const cloned = req.clone({
       setHeaders: {
         'Authorization': `Bearer ${token}`,

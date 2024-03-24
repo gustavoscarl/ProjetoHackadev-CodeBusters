@@ -32,7 +32,7 @@ export class CadastroComponent {
   obterEndereco():void{
     this.servico.retornarEndereco(this.cadastroForm.get('cep')?.value)
     .subscribe((retorno: Endereco | undefined) => { 
-      // this.enderecoPorCep = retorno;
+      this.enderecoPorCep = retorno;
       console.log(retorno);
       this.preencherCamposEndereco();
     });
@@ -42,10 +42,14 @@ export class CadastroComponent {
   // Função que preenche os campos endereço
   preencherCamposEndereco():void{
     if(this.enderecoPorCep){
-      (document.getElementById('inputCity') as HTMLSelectElement).value = this.enderecoPorCep.localidade || '';
-      (document.getElementById('inputLogradouro') as HTMLSelectElement).value = this.enderecoPorCep.logradouro || '';
-      (document.getElementById('inputBairro') as HTMLSelectElement).value = this.enderecoPorCep.bairro || '';
-      (document.getElementById('inputState') as HTMLSelectElement).value = this.enderecoPorCep.uf || '';
+      const ufSelecionada = this.enderecoPorCep.uf;
+      const estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
+      const indiceEstado = estados.findIndex(estado => estado === ufSelecionada);
+
+      this.cadastroForm.get('cidade')?.setValue(this.enderecoPorCep.localidade);
+      this.cadastroForm.get('logradouro')?.setValue(this.enderecoPorCep.logradouro);
+      this.cadastroForm.get('bairro')?.setValue(this.enderecoPorCep.bairro);
+      this.cadastroForm.get('estado')?.setValue(indiceEstado);
     };
     // Necessidade de um else caso nao tenha preenchido? A pensar.
 
@@ -165,7 +169,7 @@ export class CadastroComponent {
       .pipe(
         catchError((error) => {
           if (error.status === 409) {
-            this.mostrarMensagemDeErro('Usuário já cadastrado.');
+            this.mostrarMensagemDeErro('Usuário já existe.');
             // Ou você pode exibir a mensagem em um alerta, modal, etc.
           }
           return throwError(error); // Repassa o erro para o próximo manipulador de erro

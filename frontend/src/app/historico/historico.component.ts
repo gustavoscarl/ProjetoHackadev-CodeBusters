@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
 export class HistoricoComponent implements OnInit {
 
 httpClient = inject(HttpClient);
-dados: any = { transacoes: []};
+dados: any;
 
 
   ngOnInit() {
@@ -30,10 +30,10 @@ dados: any = { transacoes: []};
   }
 
     pegarTransacoes() {
-      this.httpClient.get('https://localhost:7085/contas/historico')
+      this.httpClient.get('http://localhost:5062/contas/historico')
       .subscribe((data: any) => {
         console.log(data);
-        this.dados = data.historico;
+        this.dados = data.transacoes;
         console.log(this.dados);
       })
   }
