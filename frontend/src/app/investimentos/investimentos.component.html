@@ -12,20 +12,50 @@
       <img src="../../assets/pix/Rectangle 16.svg " alt="imagem do icone" class="imagem-icone" />
     </div>
     <div class="texto-container">
-      <h1>REALIZAR</h1>
-      <h2>TRANSFERENCIA</h2>
+      <h1 *ngIf="!temInvestimento">REALIZAR</h1>
+      <h2><span *ngIf="temInvestimento">SEU </span>INVESTIMENTO</h2>
     </div>
   </div>
 
-  <form class="transacao-pix-form" (ngSubmit)="realizarInvestimento()">
+  <div *ngIf="temInvestimento" class="fs-4 transacao-pix-form">
+    <div class="form-group">
+      <p>Seu valor investido é: {{investimento.valor | currency:'BRL'}}</p>
+    </div>
+    <div>
+      <p>Você poderá retirar em: {{(investimento.tempo) | date}}</p>
+    </div>
+    <div class="form-group">
+      <p>Seu valor a ser retornado é: {{investimento.valor + investimento.valor * 0.02 | currency:'BRL'}}</p>
+    </div>
+  </div>
+
+  <form *ngIf="!temInvestimento" class="transacao-pix-form" [formGroup]="formInvestimento" (ngSubmit)="realizarInvestimento()">
     <div class="form-group">
       <label for="valor" class="label">Valor:</label>
-      <input type="number" id="valor" name="valor" placeholder="Exemplo: R$20,00" required />
+      <input type="tel" 
+      id="valor" 
+      name="valor" 
+      placeholder="Exemplo: R$20,00" 
+      currencyMask 
+      formControlName="valor"
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', allowNegative: false, min: 100, max: 50000 }" 
+      required />
     </div>
 
     <div class="form-group">
-      <label for="chavePix" class="label">Número da Conta Destino:</label>
-      <input type="text" id="chavePix" name="chavePix" placeholder="Exemplo: 0001" required />
+      <label for="tempo" class="label">Meses</label>
+      <select id="tempo" 
+      class="form-control"
+      formControlName="tempo">
+          <option selected>1</option>
+          <option value="0">2</option>
+          <option value="1">3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="pin" class="label">Confirmar PIN:</label>
+      <input type="password" id="pin" name="pin" placeholder="Exemplo: 0001" mask="0000" formControlName="pin" required />
     </div>
 
     <a href="#">
