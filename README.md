@@ -81,8 +81,17 @@ Projeto Hackadev realizado no Bootcamp Sharp Coders da Imã Tech em parceria com
 
 Para rodar a aplicação na sua máquina:
 
-1. Abrir a solução **PayWiseBackEnd** no Visual Studio ou VS Code
-2. Digitar o comando:
+1. Abrir a solução **PayWiseBackEnd** no Visual Studio
+2. Clicar com o botão direito do mouse na pasta do projeto (dentro do Visual Studio) e clicar em **Gerenciar Segredos do Usuário**
+3. Copiar o json a seguir para o arquivo aberto (secrets.json)
+```
+{
+    "Jwt:issuer": "http://localhost:5062",
+    "Jwt:audience": "http://localhost:4200",
+    "Jwt:key": "sldjflsdrojlkj987jlkjljljl465498815dsfdseur92"
+}
+```
+5. Digitar o comando:
 ```
 dotnet ef database update -c PaywiseDbContextSqlite
 ```
