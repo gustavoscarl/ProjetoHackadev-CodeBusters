@@ -15,7 +15,7 @@
     <div class="container text-start mt-5">
         <div class="form-row border border-secondary rounded border-opacity-50 p-5">
             <h4 class="indigo">Informações Pessoais</h4>
-            <div class="row  mb-5 pt-1">
+            <div class="row pt-1">
                 <div class="form-group col-md-5">
                     <label for="inputNome">Nome</label>
                     <input type="text" class="form-control"
@@ -42,7 +42,87 @@
                     </span>
                 </div>
             </div>
-            <div>
+            <div class="row  mt-4">
+                <div class="form-group col-md-5 col-lg-4">
+                    <label for="inputCpf">CPF</label>
+                    <input type="text" class="form-control" id="inputCpf"
+                    placeholder="000.000.000-00"
+                    mask="000.000.000-00"
+                    formControlName="cpf"
+                    [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('cpf')?.invalid && cadastroForm.get('cpf')?.touched}">
+                    <span *ngIf="cadastroForm.get('cpf')?.invalid && cadastroForm.get('cpf')?.touched"
+                    class="text-danger d-inline invalid-feedback">
+                        <p *ngIf="cadastroForm.get('cpf')?.errors?.['required']">Digite um CPF.</p>
+                        <p *ngIf="cadastroForm.get('cpf')?.errors?.['pattern']">Somente números são aceitos.</p>
+                    </span>
+                </div>
+                <div class="form-group col-md-5 col-lg-4">
+                    <label for="inputId">Identidade</label>
+                    <input type="text" 
+                    class="form-control" 
+                    id="inputId" 
+                    placeholder="Documento de identidade"
+                    formControlName="identidade"
+                    [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('identidade')?.invalid && cadastroForm.get('identidade')?.touched}">
+                    <span *ngIf="cadastroForm.get('identidade')?.invalid && cadastroForm.get('identidade')?.touched"
+                    class="text-danger d-inline invalid-feedback">
+                        <p *ngIf="cadastroForm.get('identidade')?.errors?.['required']">Digite um número de identidade.</p>
+                        <p *ngIf="cadastroForm.get('identidade')?.errors?.['pattern']">Somente números são aceitos.</p>
+                    </span>
+                </div>
+            </div>
+        
+        <div class="form-group col-md-8 mt-3">
+            <label for="inputEmail">Email</label>
+            <input type="email"
+             class="form-control" 
+             id="inputEmail" 
+             placeholder="Ex: exemplo@dominio.com"
+             formControlName="email"
+             [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched}">
+             <span *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched"
+             class="text-danger d-inline invalid-feedback">
+                 <p>Por favor, digite um email válido!</p>
+             </span>
+        </div>
+        <div class="row mb-5 pb-5">
+            <div class="form-group col-md-6">
+                <label for="inputPassword">Senha</label>
+                <input type="password"
+                 class="form-control" 
+                 id="inputPassword" 
+                 placeholder="Digite uma senha forte"
+                 formControlName="password"
+                 [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched}">
+                 <span *ngIf="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched"
+                 class="text-danger d-inline invalid-feedback senha-error">
+                    <div *ngIf="cadastroForm.get('password')?.errors?.['senhaForte'] || cadastroForm.get('password')?.errors">
+                        <p>Digite uma senha contendo:</p>
+                        <p>Número.</p>
+                        <p>Letras maiúsculas e minúsculas.</p>
+                        <p>Com 8 dígitos no mínimo.</p>
+                    </div>
+                 </span>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword">Confirmação Senha</label>
+                <input type="password"
+                 class="form-control" 
+                 id="inputConfPassword" 
+                 placeholder="Confirme a senha"
+                 formControlName="confirm-password"
+                 [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('confirm-password')?.invalid && cadastroForm.get('confirm-password')?.touched}">
+                 <span *ngIf="cadastroForm.get('confirm-password')?.invalid && cadastroForm.get('confirm-password')?.touched"
+                 class="text-danger d-inline invalid-feedback senha-error">
+                    <p *ngIf="cadastroForm.get('confirm-password')?.errors?.['required']">Digite a confirmação da senha.</p>
+                    <p *ngIf="cadastroForm.get('password')?.value != cadastroForm.get('confirm-password')?.value">As senhas diferem.</p>
+                 </span>
+            </div>
+        </div>
+            <div class="mt-5 pt-2">
+                <div>
+                    <h4 class="indigo">Endereço</h4>
+                </div>
                 <div class="row">
                     <div class="form-group col-lg-2 col-md-3">
                         <label for="inputCep">CEP</label>
@@ -165,87 +245,8 @@
                         </span>
                     </div>
                 </div>
-                <div class="row  mt-4">
-                    <div class="form-group col-md-5 col-lg-4">
-                        <label for="inputCpf">CPF</label>
-                        <input type="text" class="form-control" id="inputCpf"
-                        placeholder="000.000.000-00"
-                        mask="000.000.000-00"
-                        formControlName="cpf"
-                        [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('cpf')?.invalid && cadastroForm.get('cpf')?.touched}">
-                        <span *ngIf="cadastroForm.get('cpf')?.invalid && cadastroForm.get('cpf')?.touched"
-                        class="text-danger d-inline invalid-feedback">
-                            <p *ngIf="cadastroForm.get('cpf')?.errors?.['required']">Digite um CPF.</p>
-                            <p *ngIf="cadastroForm.get('cpf')?.errors?.['pattern']">Somente números são aceitos.</p>
-                        </span>
-                    </div>
-                    <div class="form-group col-md-5 col-lg-4">
-                        <label for="inputId">Identidade</label>
-                        <input type="text" 
-                        class="form-control" 
-                        id="inputId" 
-                        placeholder="Documento de identidade"
-                        formControlName="identidade"
-                        [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('identidade')?.invalid && cadastroForm.get('identidade')?.touched}">
-                        <span *ngIf="cadastroForm.get('identidade')?.invalid && cadastroForm.get('identidade')?.touched"
-                        class="text-danger d-inline invalid-feedback">
-                            <p *ngIf="cadastroForm.get('identidade')?.errors?.['required']">Digite um número de identidade.</p>
-                            <p *ngIf="cadastroForm.get('identidade')?.errors?.['pattern']">Somente números são aceitos.</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
 
-            <div>
-                <h4 class="indigo login">Login</h4>
-            </div>
-            <div class="form-group col-md-8 mt-3">
-                <label for="inputEmail">Email</label>
-                <input type="email"
-                 class="form-control" 
-                 id="inputEmail" 
-                 placeholder="Ex: exemplo@dominio.com"
-                 formControlName="email"
-                 [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched}">
-                 <span *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched"
-                 class="text-danger d-inline invalid-feedback">
-                     <p>Por favor, digite um email válido!</p>
-                 </span>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="inputPassword">Senha</label>
-                    <input type="password"
-                     class="form-control" 
-                     id="inputPassword" 
-                     placeholder="Digite uma senha forte"
-                     formControlName="password"
-                     [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched}">
-                     <span *ngIf="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched"
-                     class="text-danger d-inline invalid-feedback senha-error">
-                        <div *ngIf="cadastroForm.get('password')?.errors?.['senhaForte'] || cadastroForm.get('password')?.errors">
-                            <p>Digite uma senha contendo:</p>
-                            <p>Número.</p>
-                            <p>Letras maiúsculas e minúsculas.</p>
-                            <p>Com 8 dígitos no mínimo.</p>
-                        </div>
-                     </span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword">Confirmação Senha</label>
-                    <input type="password"
-                     class="form-control" 
-                     id="inputConfPassword" 
-                     placeholder="Confirme a senha"
-                     formControlName="confirm-password"
-                     [ngClass]="{ 'border border-danger is-invalid': cadastroForm.get('confirm-password')?.invalid && cadastroForm.get('confirm-password')?.touched}">
-                     <span *ngIf="cadastroForm.get('confirm-password')?.invalid && cadastroForm.get('confirm-password')?.touched"
-                     class="text-danger d-inline invalid-feedback senha-error">
-                        <p *ngIf="cadastroForm.get('confirm-password')?.errors?.['required']">Digite a confirmação da senha.</p>
-                        <p *ngIf="cadastroForm.get('password')?.value != cadastroForm.get('confirm-password')?.value">As senhas diferem.</p>
-                     </span>
-                </div>
-            </div>
+        </div>
         </div>
     </div>
 

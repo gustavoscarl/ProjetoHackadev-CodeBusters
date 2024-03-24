@@ -31,7 +31,7 @@ export class CadastroComponent {
   obterEndereco():void{
     this.servico.retornarEndereco(this.cadastroForm.get('cep')?.value)
     .subscribe((retorno: Endereco | undefined) => { 
-      this.enderecoPorCep = retorno;
+      // this.enderecoPorCep = retorno;
       console.log(retorno);
       this.preencherCamposEndereco();
     });
