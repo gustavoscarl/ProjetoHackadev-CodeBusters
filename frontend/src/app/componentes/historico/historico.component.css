@@ -424,7 +424,7 @@
 }
 
 .transationcard:hover {
-  box-shadow: 2px 1px 4px 1px var(--gray700);
+  box-shadow: 2px 1px 4px 1px var(--purple500);
 }
 
 .resumoDir {
