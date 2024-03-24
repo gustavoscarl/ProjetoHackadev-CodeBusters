@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 import { ResumoHistComponent } from '../resumo-hist/resumo-hist.component';
 import { HttpClient } from '@angular/common/http';
+import { TransacaoTipo } from '../../modelos/TransacaoTipo';
+import { ConverterTipoTransacaoPipe } from '../../pipes/converterTipoTransacao';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
 
-  imports: [CommonModule, FormsModule, ChartModule, CalendarModule, RouterModule, HeaderComponent, ResumoHistComponent],
+  imports: [CommonModule, FormsModule, ChartModule, CalendarModule, RouterModule, HeaderComponent, ResumoHistComponent, ConverterTipoTransacaoPipe],
   templateUrl: './historico.component.html',
   styleUrl: './historico.component.css'
 })
@@ -38,6 +40,19 @@ dados: any = { transacoes: []};
       })
   }
   
+  converterParaTransacaoTipo(valor: number): TransacaoTipo | undefined {
+    switch (valor) {
+      case 1:
+        return TransacaoTipo.SAQUE;
+      case 2:
+        return TransacaoTipo.DEPOSITO;
+      case 3:
+        return TransacaoTipo.TRANSFERENCIA;
+      default:
+        return undefined; // Valor não corresponde a nenhum tipo de transação conhecido
+    }
+  }
+
 
     
   // Vetor de transacões - Onde as transações ficarão armazenadas no momento (sem backend)
