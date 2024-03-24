@@ -17,21 +17,30 @@
             </span>
       </div>
       <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="password" 
+      <label for="senha">Senha:
+        <div>
+        <!-- > -->
+          <button type="button" (click)="senhaVisibilidade()" class="exibirSenha">
+            <img class="darkOrLightMode"
+              [src]="isdarkMode ? (senhaVisivel ? 'assets/logotypes-login-cadastro/eye-solid-dark-mode.png' : 'assets/logotypes-login-cadastro/eye-slash-solid-dark-mode.png') : (senhaVisivel ? 'assets/logotypes-login-cadastro/eye-solid-light-mode.svg' : 'assets/logotypes-login-cadastro/eye-slash-solid-light-mode.svg')"
+              alt="">
+          </button>
+        </div>
+        </label>
+        <input type="{{ senhaVisivel ? 'text' : 'password' }}"
         id="senha" 
         name="senha" 
         placeholder="Digite sua senha"
-        formControlName="senha"
+        formControlName="senha"        
         [ngClass]="{ 'border border-danger is-invalid': loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched}">
           <span *ngIf="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched"
           class="text-danger d-inline invalid-feedback text-start">
               <p *ngIf="loginForm.get('senha')?.errors?.['required']">Por favor, digite a senha cadastrada.</p>
           </span>
-      </div>
+      </div>     
+
       <div class="form-group links-container link-estilo">
         <a class="link-estilo" [routerLink]="['/esquecer-senha']">Esqueci minha senha</a>
-
       </div>
       
       <div class="form-group">
