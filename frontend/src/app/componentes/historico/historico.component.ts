@@ -30,7 +30,7 @@ dados: any = { transacoes: []};
   }
 
     pegarTransacoes() {
-      this.httpClient.get('https://localhost:7085/contas/historico')
+      this.httpClient.get('http://localhost:5062/contas/historico')
       .subscribe((data: any) => {
         console.log(data);
         this.dados = data.historico;

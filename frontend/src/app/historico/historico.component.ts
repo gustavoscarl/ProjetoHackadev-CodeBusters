@@ -7,7 +7,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { ResumoHistComponent } from '../resumo-hist/resumo-hist.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-historico',
@@ -29,8 +29,18 @@ dados: any;
     this.pegarTransacoes();
   }
 
+  private _httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+      'Access-Control-Allow-Headers':
+        'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+    })
+  };
+
     pegarTransacoes() {
-      this.httpClient.get('http://localhost:5062/contas/historico')
+      this.httpClient.get('http://localhost:5062/contas/historico', this._httpOptions)
       .subscribe((data: any) => {
         console.log(data);
         this.dados = data.transacoes;
