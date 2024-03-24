@@ -16,7 +16,8 @@ export class InputserviceService {
     this.dadosProntos.next(true);
   }
 
-  temConta?:boolean
+  temInvestimento?:boolean;
+  temConta?:boolean;
   nomeDoUsuario?: string;
   saldoDoUsuario?: number;
   constructor() { }
