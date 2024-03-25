@@ -18,6 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // No futuro, arrumar o loop infinito que esse interceptor gera nas requisições GET das páginas, e inverter o IF para verificar somente requisições internas e requisições externas não incluirem authorization e withcredentials.
     const token = this.authService.getToken();
     const refresh = this.authService.getRefreshToken();
 
