@@ -22,20 +22,20 @@ export const routes: Routes = [
   {
     path: 'conta',
     children: [
-      { path: 'criar-conta', component: CriarContaComponent },
-      { path: 'criada', component: ContaCriadaComponent }
+      { path: 'criar-conta', component: CriarContaComponent, canActivate: [authGuard] },
+      { path: 'criada', component: ContaCriadaComponent, canActivate: [authGuard] }
     ]
   },
   { path: 'cadastro', component: CadastroComponent},
   { path: 'esquecer-senha', component: EsquecerSenhaComponent},
-  { path: 'historico', component: HistoricoPageComponent},
-  { path: 'pix', component: PixComponent},
-  { path: 'deposito', component: DepositoComponent},
-  { path: 'pin-pad', component: PinPadComponent },
-  { path: 'cartao', component: CardpageComponent },
-  { path: 'transfer', component: TransferenciaComponent },
-  { path: 'saque', component: SaqueComponent },
-  { path: 'investimento', component: InvestimentosComponent},
+  { path: 'historico', component: HistoricoPageComponent, canActivate: [authGuard]},
+  { path: 'pix', component: PixComponent, canActivate: [authGuard]},
+  { path: 'deposito', component: DepositoComponent, canActivate: [authGuard]},
+  { path: 'pin-pad', component: PinPadComponent, canActivate: [authGuard] },
+  { path: 'cartao', component: CardpageComponent, canActivate: [authGuard] },
+  { path: 'transfer', component: TransferenciaComponent, canActivate: [authGuard] },
+  { path: 'saque', component: SaqueComponent, canActivate: [authGuard] },
+  { path: 'investimento', component: InvestimentosComponent, canActivate: [authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];
