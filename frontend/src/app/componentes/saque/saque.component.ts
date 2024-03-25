@@ -37,8 +37,9 @@ export class SaqueComponent {
         .subscribe(
           retorno => {
             setTimeout(() => {
+              alert('Saque feito com sucessso!')
               this.route.navigateByUrl('home');
-            }, 1000);
+            }, 250);
             console.log(retorno);
           },
           error => {
