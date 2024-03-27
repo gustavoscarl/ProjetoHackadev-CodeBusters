@@ -1,4 +1,4 @@
-<img src="/logo.png" alt="Logo" width="200" style="display: block; margin: 0 auto;"/>
+<p align="center"><img src="/logo.png" alt="Logo" width="200" /></p>
 
 ___
 1. [Descrição](#descricao)
@@ -29,10 +29,20 @@ Projeto Hackadev realizado no Bootcamp Sharp Coders da Imã Tech em parceria com
 
 ## <a id="tecnologias"></a>3. Tecnologias Utilizadas
 
+<p><img alt="HTML5" height="30" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
+<img alt="CSS3" height="30" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+<img alt="Bootstrap" height="30" width="30" src="https://github.com/devicons/devicon/blob/master/icons/bootstrap/bootstrap-original.svg" />
+<img alt="TypeScript" height="30" width="30" src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" />
+<img alt="Angular" height="30" width="30" src="https://github.com/devicons/devicon/blob/master/icons/angular/angular-original.svg" />
+<img alt="C#" height="30" width="30" src="https://github.com/devicons/devicon/blob/master/icons/csharp/csharp-original.svg" />
+<img alt="Angular" height="30" width="30" src="https://github.com/devicons/devicon/blob/master/icons/sqlite/sqlite-original.svg" />
+</p>
+
 ### Front-end
 - HTML
 - CSS
 - Bootstrap
+- TypeScript
 - Angular
 ### Back-end
 - C# (Asp.Net)
@@ -45,37 +55,8 @@ Projeto Hackadev realizado no Bootcamp Sharp Coders da Imã Tech em parceria com
 
 ## <a id="time"></a>4. Time 👩‍💻👨‍💻👩‍💻👨‍💻
 
-
-<div align="center" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.875rem;">
-<div>
-<img src="https://avatars.githubusercontent.com/u/96749239?v=4" height="100" style="display:block; margin-top:.5rem" /><br>
-<a href="https://github.com/AlanEduardoCruz">Alan Eduardo</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/137793024?v=4" height="100" style="display:block; margin-top:.5rem" /><br>
-<a href="https://github.com/AlxdPaiva">Alexandre Paiva</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/101590857?v=4/" height="100" style="display:block; margin-top:.5rem"/><br>
-<a href="https://github.com/CamilaSBVieira">Camila Vieira</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/110201520?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
-<a href="https://github.com/daytrevisan">Dayane Trevisan</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/104864916?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
-<a href="https://github.com/E-A-D-S">Eduardo Santos</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/104444836?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
-<a href="https://github.com/gustavoscarl">Gustavo Lucianelli</a>
-</div>
-<div>
-<img src="https://avatars.githubusercontent.com/u/86315467?v=4" height="100" style="display:block; margin-top:.5rem"/><br>
-<a href="https://github.com/Psbrandes">Pedro Brandes</a>
-</div>
-</div>
+| <img src="https://avatars.githubusercontent.com/u/96749239?v=4" height="100" style="display:block; margin-top:.5rem" /><br><a href="https://github.com/AlanEduardoCruz">Alan Eduardo</a> | <img src="https://avatars.githubusercontent.com/u/137793024?v=4" height="100"/><br><a href="https://github.com/AlxdPaiva">Alexandre Paiva</a> | <img src="https://avatars.githubusercontent.com/u/101590857?v=4/" height="100"/><br><a href="https://github.com/CamilaSBVieira">Camila Vieira</a> | <img src="https://avatars.githubusercontent.com/u/110201520?v=4" height="100"/><br><a href="https://github.com/daytrevisan">Dayane Trevisan</a> | <img src="https://avatars.githubusercontent.com/u/104864916?v=4" height="100"/><br><a href="https://github.com/E-A-D-S">Eduardo Santos</a> | <img src="https://avatars.githubusercontent.com/u/104444836?v=4" height="100"/><br><a href="https://github.com/gustavoscarl">Gustavo Lucianelli</a> | <img src="https://avatars.githubusercontent.com/u/86315467?v=4" height="100"/><br><a href="https://github.com/Psbrandes">Pedro Brandes</a> |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 
 ## <a id="tutorial"></a>5. Tutorial para Instalação 
 
